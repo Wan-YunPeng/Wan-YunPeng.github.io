@@ -39,19 +39,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/14/hello-world/index.html">
+<meta property="og:title" content="常量表达式constexpr">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/22/常量表达式constexpr/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-10-14T10:22:38.454Z">
+<meta property="og:description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
+<meta property="og:updated_time" content="2015-10-22T02:44:51.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="常量表达式constexpr">
+<meta name="twitter:description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +58,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | YunPeng’s Blog </title>
+  <title> 常量表达式constexpr | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,7 +157,7 @@ Quick">
           
           
             
-              Hello World
+              常量表达式constexpr
             
           
         </h1>
@@ -169,8 +166,8 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-14T18:22:38+08:00" content="2015-10-14">
-            2015-10-14
+          <time itemprop="dateCreated" datetime="2015-10-22T10:38:55+08:00" content="2015-10-22">
+            2015-10-22
           </time>
         </span>
 
@@ -180,8 +177,8 @@ Quick">
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/10/14/hello-world/#comments" itemprop="discussionUrl">
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/14/hello-world/" itemprop="commentsCount"></span>
+            <a href="/2015/10/22/常量表达式constexpr/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/22/常量表达式constexpr/" itemprop="commentsCount"></span>
             </a>
           </span>
           
@@ -195,22 +192,33 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-</span>
+        <span itemprop="articleBody"><h3 id="const常量用作数组大小的两种情况">const常量用作数组大小的两种情况</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size(); <span class="comment">// s.size()的大小在编译时不能确定</span></span><br><span class="line"><span class="keyword">int</span> a[n]; <span class="comment">// 错误,const int n 表达式必须含有常量值 </span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[n]; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">10</span>; <span class="comment">// n的大小在编译时可以确定</span></span><br><span class="line"><span class="keyword">int</span> a[m]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>想动态分配二维数组:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line"><span class="keyword">int</span> **a = <span class="keyword">new</span> <span class="keyword">int</span>*[n];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[n * n]; <span class="comment">// 一次性确定所需空间,此处连续</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="constexpr修饰常量表达式">constexpr修饰常量表达式</h3><p>常量表达式必须在编译期间计算出它的值，它的值不可以被改变<br>常量表达式机制是为了:<br>提供了更多的通用的值不发生变化的表达式<br>允许用户自定义的类型成为常量表达式<br>提供了一种保证在编译期完成初始化的方法(可以在编译时期执行某些函数调用)  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var1 = <span class="number">10</span>  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> const_var2 = <span class="number">20</span>  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> const_var3 = var  </span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> constexpr_var1 = <span class="number">3</span> + const_var2 * <span class="number">4</span>; <span class="comment">//成立, const_var2可以在编译时  </span></span><br><span class="line"><span class="comment">// constexpr int constexpr_var2 = 3 + var1 * 4; //错误,var1在编译时并不确定  </span></span><br><span class="line"><span class="comment">// constexpr int constexpr_var3 = 3 + const_var3 * 4; //错误,const_var3的值</span></span><br><span class="line"><span class="comment">//由var1但var1在编译时不能被确定。 constexpr为c++11新增关键字</span></span><br></pre></td></tr></table></figure>
+<h3 id="constexpr修饰函数">constexpr修饰函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">Inc</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">return</span> i + <span class="number">1</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> a = Inc(<span class="number">1</span>); <span class="comment">// 正确  </span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> b = Inc(<span class="built_in">cin</span>.get()); <span class="comment">// 错误  </span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> c = a * <span class="number">2</span> + <span class="number">1</span>; <span class="comment">// 正确，但是如果没有Inc(1)，也是错误的。</span></span><br></pre></td></tr></table></figure>
+<p>constexpr修饰的值要有初始值，和const不同的是初始化的值可以一个表达式，但是这个表达式的值必须是在编译期间就能确定值的。</p>
+<h3 id="字符串常量不能与一个字符相加,而字符串变量却可以">字符串常量不能与一个字符相加,而字符串变量却可以</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> a = <span class="string">"bb"</span>;</span><br><span class="line">a += a[<span class="number">0</span>]; <span class="comment">// OK</span></span><br><span class="line">a += <span class="string">'b'</span>; <span class="comment">// OK</span></span><br><span class="line">a += <span class="string">"bb"</span> + <span class="string">'a'</span>; <span class="comment">// 错误,先计算"bb" + 'a',产生一个不确定的值,可能无法与a连接上:</span></span><br><span class="line"><span class="built_in">string</span> a = <span class="string">"bb"</span>;</span><br><span class="line">a += <span class="string">"a"</span> + <span class="string">'b'</span>; <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"><span class="comment">// 输出bbi,将'b'换成'c',只输出bb</span></span><br></pre></td></tr></table></figure></span>
       
     </div>
 
     <footer class="post-footer">
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/17/hello-world/" rel="next">Hello World</a>
+            
+          </div>
+        </div>
       
 
       
@@ -273,14 +281,14 @@ Quick">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               
           </div>
@@ -321,7 +329,7 @@ Quick">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#const常量用作数组大小的两种情况"><span class="nav-number">1.</span> <span class="nav-text">const常量用作数组大小的两种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constexpr修饰常量表达式"><span class="nav-number">2.</span> <span class="nav-text">constexpr修饰常量表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constexpr修饰函数"><span class="nav-number">3.</span> <span class="nav-text">constexpr修饰函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串常量不能与一个字符相加,而字符串变量却可以"><span class="nav-number">4.</span> <span class="nav-text">字符串常量不能与一个字符相加,而字符串变量却可以</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -375,9 +383,9 @@ Quick">
 
     <script type="text/javascript">
       var disqus_shortname = 'wyptca.duoshuo.com';
-      var disqus_identifier = '2015/10/14/hello-world/';
-      var disqus_title = 'Hello World';
-      var disqus_url = 'http://Wan-YunPeng.github.io/2015/10/14/hello-world/';
+      var disqus_identifier = '2015/10/22/常量表达式constexpr/';
+      var disqus_title = '常量表达式constexpr';
+      var disqus_url = 'http://Wan-YunPeng.github.io/2015/10/22/常量表达式constexpr/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
