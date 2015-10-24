@@ -158,6 +158,161 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/24/lambda-and-function/" itemprop="url">
+                lambda函数和std::function
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-24T13:38:41+08:00" content="2015-10-24">
+            2015-10-24
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="lambda函数">lambda函数</h2><h3 id="基本的lambda函数">基本的lambda函数</h3><p>在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所以前述的作法是不可行的。<br> C++11 对 lambda 的支持可以解决上述问题。  </p>
+<p>一个 lambda 函数可以用如下的方式定义:  </p>
+<blockquote>
+<p>[](int x, int y) { return x + y; }  </p>
+</blockquote>
+<p>这个不具名函数的回返类型是 decltype(x+y)。只有在 lambda 函数符合”return expression”的形式下，它的回返类型才能被忽略。在前述的情况下，lambda 函数仅能为一个述句。<br>在一个更为复杂的例子中，回返类型可以被明确的指定如下：</p>
+<blockquote>
+<p>[](int x, int y) -&gt; int { int z = x + y; return z + x; }</p>
+</blockquote>
+<p>本例中，一个临时的参数 z 被创建用来存储中间结果。如同一般的函数，z 的值不会保留到下一次该不具名函数再次被调用时。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/lambda-and-function/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/23/C-类型转换总结/" itemprop="url">
+                C++类型转换总结
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
+            2015-10-23
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/10/23/C-类型转换总结/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/23/C-类型转换总结/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/23/C-类型转换总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/10/22/常量表达式constexpr/" itemprop="url">
                 常量表达式constexpr
               </a>
@@ -336,14 +491,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">0</span>
               <span class="site-state-item-name">分类</span>
               
           </div>

@@ -39,22 +39,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/17/hello-world/index.html">
+<meta property="og:title" content="C++类型转换总结">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/23/C-类型转换总结/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:image" content="http://Wan-YunPeng.github.io/C:\Users\wanyunpeng\Pictures\Camera Roll\1.jpg">
-<meta property="og:image" content="http://Wan-YunPeng.github.io/path/to/img.jpg">
-<meta property="og:image" content="http://i.imgur.com/auDQAjQ.jpg">
-<meta property="og:updated_time" content="2015-10-17T04:37:54.582Z">
+<meta property="og:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
+<meta property="og:updated_time" content="2015-10-23T04:03:59.629Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="C++类型转换总结">
+<meta name="twitter:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -64,7 +58,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | YunPeng’s Blog </title>
+  <title> C++类型转换总结 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +157,7 @@ Quick">
           
           
             
-              Hello World
+              C++类型转换总结
             
           
         </h1>
@@ -172,8 +166,8 @@ Quick">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-17T12:37:54+08:00" content="2015-10-17">
-            2015-10-17
+          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
+            2015-10-23
           </time>
         </span>
 
@@ -183,8 +177,8 @@ Quick">
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/10/17/hello-world/#comments" itemprop="discussionUrl">
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/17/hello-world/" itemprop="commentsCount"></span>
+            <a href="/2015/10/23/C-类型转换总结/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/23/C-类型转换总结/" itemprop="commentsCount"></span>
             </a>
           </span>
           
@@ -198,51 +192,105 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ ddd</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-<p>#一级标题</p>
-<p>##二级标题 </p>
-<p>###三级标题</p>
-<p>####四级标题</p>
-<p>#####五级标题</p>
-<p>######六级标题,也是最后一级</p>
-<blockquote>
-<p>此为注释块<br>一个回车只是加上一个空格而已  一个回车会延用上一格式</p>
-<pre><code>双汇车换行,注释块与‘&gt;’添加五个空格时,格式变化
-</code></pre></blockquote>
-<p><strong>粗体</strong>  <strong>粗体</strong></p>
-<p><em>斜体</em> <em>斜体</em></p>
+        <span itemprop="articleBody"><p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br><a id="more"></a></p>
+<h2 id="第一部分-隐式类型转换">第一部分.隐式类型转换</h2><h3 id="算术转换(Arithmetic_conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。">算术转换(Arithmetic conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。</h3><pre><code><span class="keyword">int</span> ival = <span class="number">3</span>;  
+<span class="keyword">double</span> dval = <span class="number">3.2</span>;  
+ival + dval; <span class="comment">//ival被提升为double类型</span>
+</code></pre><h3 id="一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型">一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型</h3><pre><code><span class="keyword">int</span> *pi = <span class="number">0</span>; <span class="comment">// 0被转化为int *类型  </span>
+ival = dval; <span class="comment">// double-&gt;int</span>
+</code></pre><p>例外:void指针赋值给其他指定类型指针时，不存在标准转换，编译出错  </p>
+<h3 id="将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型">将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型</h3><pre><code><span class="function"><span class="keyword">extern</span> <span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span>)</span></span>;  
+<span class="built_in">cout</span>&lt;&lt;<span class="string">"The square root 2 is "</span>&lt;&lt;<span class="built_in">sqrt</span>(<span class="number">2</span>)&lt;&lt;endl;  
+<span class="comment">// 2被提升为double类型：2.0</span>
+</code></pre><h3 id="从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型">从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型</h3><pre><code><span class="function"><span class="keyword">double</span> <span class="title">difference</span><span class="params">(<span class="keyword">int</span> ival1, <span class="keyword">int</span> ival2)</span>  
+</span>{  
+  <span class="keyword">return</span> ival1 - ival2;  
+  <span class="comment">// 返回值被提升为double类型  </span>
+}
+</code></pre><h2 id="第二部分-显式类型转换">第二部分.显式类型转换</h2><p>被称为“强制类型转换”(cast)<br>C     风格： (type-id)<br>C++风格： static_cast、dynamic_cast、reinterpret_cast、和const_cast..  </p>
+<h3 id="static_cast">static_cast</h3><blockquote>
+<p>用法：static_cast &lt; type-id &gt; ( expression )<br>说明：该运算符把expression转换为type-id类型，但没有运行时类型检查来保证转换的安全性  </p>
+<p>来源：为什么需要static_cast强制转换？<br>情况1：void-&gt;其他类型指针<br>情况2：改变通常的标准转换<br>情况3：避免出现可能多种转换的歧义 </p>
+</blockquote>
+<p>它主要有如下几种用法：  </p>
 <ul>
-<li>无须列表(+、-、*)留有空格</li>
-<li>列表1</li>
-<li>列表2</li>
+<li>用于类层次结构中基类和子类之间指针或引用的转换。进行上行转换（把子类的指针或引用转换成基类表示）是安全的；进行下行转换（把基类指针或引用转换成子类指针或引用）时，由于没有动态类型检查，所以是不安全的。  </li>
+<li>用于基本数据类型之间的转换，如把int转换成char，把int转换成enum。这种转换的安全性也要开发人员来保证。  </li>
+<li>把void指针转换成目标类型的指针(不安全!!)  </li>
+<li>把任何类型的表达式转换成void类型。  </li>
 </ul>
-<ol>
-<li>有序列表</li>
-<li>列表2</li>
-<li>列表3</li>
-</ol>
-<p>链接的两种方式:<br>内联方式–<a href="www.baidu.com">百度</a></p>
-<p>引用方式–<a href="www.baidu.com">百度</a>和<a href="http://search.yahoo.com" target="_blank" rel="external">雅虎</a></p>
-<p>图片处理–和链接处理方式相同</p>
-<p>内联方式—-<img src="C:\Users\wanyunpeng\Pictures\Camera Roll\1.jpg" alt="alt text" title="Title"></p>
-<p>引用方式—-<img src="/path/to/img.jpg" alt="aa" title="Title"></p>
-<p><img src="http://i.imgur.com/auDQAjQ.jpg" alt="touxiang"></p>
-<p>代码添加:</p>
-<p>第一种:简单文字出现一个代码框。使用<code>&lt;blockquote&gt;</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hello world</span><br><span class="line">$ dddd</span><br></pre></td></tr></table></figure>
-<p>第二种:大片文字需要实现代码框。使用Tab和四个空格(双tab也行)</p>
-<pre><code><span class="title">hello</span> world
-ddddd
-</code></pre></span>
+<p>注意：static_cast不能转换掉expression的const、volitale、或者__unaligned属性。</p>
+<h3 id="dynamic_cast">dynamic_cast</h3><blockquote>
+<p>用法：dynamic_cast &lt; type-id &gt; ( expression )<br>说明：该运算符把expression转换成type-id类型的对象。Type-id必须是类的指针、类的引用或者void *；如果type-id是类指针类型，那么expression也必须是一个指针，如果type-id是一个引用，那么expression也必须是一个引用。  </p>
+</blockquote>
+<p>dynamic_cast主要用于类层次间的上行转换和下行转换，还可以用于类之间的交叉转换。<br>在类层次间进行上行转换时，dynamic_cast和static_cast的效果是一样的；在进行下行转换时，dynamic_cast具有类型检查的功能，比static_cast更安全。  </p>
+<pre><code><span class="keyword">class</span> Base  
+{  
+<span class="keyword">public</span>:  
+    <span class="keyword">int</span> m_iNum;  
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;  
+};  
+
+<span class="keyword">class</span> Derived:<span class="keyword">public</span> Base  
+{  
+<span class="keyword">public</span>:  
+    <span class="keyword">char</span> *m_szName[<span class="number">100</span>];  
+};  
+
+<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(Base *pb)</span>  
+</span>{  
+    Derived *pd1 = <span class="keyword">static_cast</span>&lt;Derived *&gt;(pb);  
+
+    Derived *pd2 = <span class="keyword">dynamic_cast</span>&lt;Derived *&gt;(pb);  
+}
+</code></pre><p>在上面的代码段中，<br>如果pb实际指向一个Derived类型的对象，pd1和pd2是一样的，并且对这两个指针执行Derived类型的任何操作都是安全的；<br>如果pb实际指向的是一个Base类型的对象，那么pd1将是一个指向该对象的指针，对它进行Derived类型的操作将是不安全的（如访问m_szName），而pd2将是一个空指针(即0，因为dynamic_cast失败,安全性)。<br>另外要注意：Base要有虚函数，否则会编译出错；static_cast则没有这个限制。这是由于运行时类型检查需要运行时类型信息，而这个信息存储在类的虚函数表（关于虚函数表的概念，详细可见<inside c++="" object="" model="">）中，只有定义了虚函数的类才有虚函数表，没有定义虚函数的类是没有虚函数表的。  </inside></p>
+<p>另外，dynamic_cast还支持交叉转换（cross cast）。如下代码所示。  </p>
+<pre><code><span class="keyword">class</span> Base  
+{  
+<span class="keyword">public</span>:  
+    <span class="keyword">int</span> m_iNum;  
+    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>{}  
+};  
+
+<span class="keyword">class</span> Derived1 : <span class="keyword">public</span> Base  
+{  
+
+};  
+
+<span class="keyword">class</span> Derived2 : <span class="keyword">public</span> Base  
+{  
+
+};  
+
+<span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span>  
+</span>{  
+    derived1 *pd1 = <span class="keyword">new</span> Drived1;  
+    pd1-&gt;m_iNum = <span class="number">100</span>;  
+    Derived2 *pd2 = <span class="keyword">static_cast</span>&lt;Derived2 *&gt;(pd1); <span class="comment">//compile error  </span>
+    Derived2 *pd2 = <span class="keyword">dynamic_cast</span>&lt;Derived2 *&gt;(pd1); <span class="comment">//pd2 is NULL  </span>
+    <span class="keyword">delete</span> pd1;  
+}
+</code></pre><p>在函数foo中，使用static_cast进行转换是不被允许的，将在编译时出错；而使用 dynamic_cast的转换则是允许的，结果是空指针。  </p>
+<h3 id="reinpreter_cast">reinpreter_cast</h3><blockquote>
+<p>用法：reinpreter_cast<type-id> (expression)<br>说明：type-id必须是一个指针、引用、算术类型、函数指针或者成员指针。它可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针（先把一个指针转换成一个整数，在把该整数转换成原类型的指针，还可以得到原先的指针值）。<br>该运算符的用法比较多。</type-id></p>
+</blockquote>
+<h3 id="const_cast">const_cast</h3><blockquote>
+<p>用法：const_cast<type_id> (expression)<br>说明：该运算符用来修改类型的const或volatile属性。除了const 或volatile修饰之外， type_id和expression的类型是一样的。 </type_id></p>
+</blockquote>
+<p>常量指针被转化成非常量指针，并且仍然指向原来的对象；常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象。<br>Voiatile和const类试。举如下一例：  </p>
+<pre><code><span class="keyword">class</span> B{  
+<span class="keyword">public</span>:  
+<span class="keyword">int</span> m_iNum;  
+}  
+
+<span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>{  
+<span class="keyword">const</span> B b1;  
+b1.m_iNum = <span class="number">100</span>; <span class="comment">//comile error  </span>
+B b2 = <span class="keyword">const_cast</span>&lt;B&gt;(b1);  
+b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </span>
+}
+</code></pre><p>上面的代码编译时会报错，因为b1是一个常量对象，不能对它进行改变；使用const_cast把它转换成一个常量对象，就可以对它的数据成员任意改变。注意：b1和b2是两个不同的对象。</p>
+</span>
       
     </div>
 
@@ -253,11 +301,13 @@ ddddd
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/22/常量表达式constexpr/" rel="prev">常量表达式constexpr</a>
+              <a href="/2015/10/24/lambda-and-function/" rel="prev">lambda函数和std::function</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/22/常量表达式constexpr/" rel="next">常量表达式constexpr</a>
             
           </div>
         </div>
@@ -371,7 +421,7 @@ ddddd
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分-隐式类型转换"><span class="nav-number">1.</span> <span class="nav-text">第一部分.隐式类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算术转换(Arithmetic_conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。"><span class="nav-number">1.1.</span> <span class="nav-text">算术转换(Arithmetic conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型"><span class="nav-number">1.2.</span> <span class="nav-text">一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型"><span class="nav-number">1.3.</span> <span class="nav-text">将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型"><span class="nav-number">1.4.</span> <span class="nav-text">从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二部分-显式类型转换"><span class="nav-number">2.</span> <span class="nav-text">第二部分.显式类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#static_cast"><span class="nav-number">2.1.</span> <span class="nav-text">static_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic_cast"><span class="nav-number">2.2.</span> <span class="nav-text">dynamic_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reinpreter_cast"><span class="nav-number">2.3.</span> <span class="nav-text">reinpreter_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const_cast"><span class="nav-number">2.4.</span> <span class="nav-text">const_cast</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -425,9 +475,9 @@ ddddd
 
     <script type="text/javascript">
       var disqus_shortname = 'wyptca.duoshuo.com';
-      var disqus_identifier = '2015/10/17/hello-world/';
-      var disqus_title = 'Hello World';
-      var disqus_url = 'http://Wan-YunPeng.github.io/2015/10/17/hello-world/';
+      var disqus_identifier = '2015/10/23/C-类型转换总结/';
+      var disqus_title = 'C++类型转换总结';
+      var disqus_url = 'http://Wan-YunPeng.github.io/2015/10/23/C-类型转换总结/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
