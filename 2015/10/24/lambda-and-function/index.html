@@ -41,13 +41,13 @@
 
 <meta name="description" content="lambda函数基本的lambda函数在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lambda函数和std::function">
+<meta property="og:title" content="\[原创\]lambda函数和std::function">
 <meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/24/lambda-and-function/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
 <meta property="og:description" content="lambda函数基本的lambda函数在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所">
-<meta property="og:updated_time" content="2015-10-24T05:59:39.625Z">
+<meta property="og:updated_time" content="2015-10-30T13:04:40.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lambda函数和std::function">
+<meta name="twitter:title" content="\[原创\]lambda函数和std::function">
 <meta name="twitter:description" content="lambda函数基本的lambda函数在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所">
 
 
@@ -58,7 +58,7 @@
   };
 </script>
 
-  <title> lambda函数和std::function | YunPeng’s Blog </title>
+  <title> \[原创\]lambda函数和std::function | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -114,6 +114,14 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             <i class="menu-item-icon icon-next-archives"></i> <br />
@@ -157,7 +165,7 @@
           
           
             
-              lambda函数和std::function
+              \[原创\]lambda函数和std::function
             
           
         </h1>
@@ -176,11 +184,11 @@
         
           
             <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
-            </a>
-          </span>
+              &nbsp; | &nbsp;
+              <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
         
       </div>
@@ -232,13 +240,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/26/fibonacci/" rel="prev">fibonacci数列及其应用</a>
+              <a href="/2015/10/26/fibonacci/" rel="prev">\[转载\]fibonacci数列及其应用</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/23/C++类型转换总结/" rel="next">C++类型转换总结</a>
+              <a href="/2015/10/23/C++类型转换总结/" rel="next">\[转载\]C++类型转换总结</a>
             
           </div>
         </div>
@@ -263,8 +271,8 @@
         
           <div class="comments" id="comments">
             
-              <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <div class="ds-thread" data-thread-key="2015/10/24/lambda-and-function/"
+                   data-title="\[原创\]lambda函数和std::function" data-url="http://Wan-YunPeng.github.io/2015/10/24/lambda-and-function/">
               </div>
             
           </div>
@@ -310,10 +318,10 @@
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">0</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -332,6 +340,22 @@
             
               <span class="links-of-author-item">
                 <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
               </span>
             
           
@@ -400,32 +424,26 @@
   
   
     
+
+  
     
-
   
 
-    <script type="text/javascript">
-      var disqus_shortname = 'wyptca.duoshuo.com';
-      var disqus_identifier = '2015/10/24/lambda-and-function/';
-      var disqus_title = 'lambda函数和std::function';
-      var disqus_url = 'http://Wan-YunPeng.github.io/2015/10/24/lambda-and-function/';
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
 
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
+    
   
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
