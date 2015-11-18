@@ -39,16 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
+<meta name="description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
+不能将静态成员函数定义为虚函数。  
+由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
+由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="\[原创\]常量表达式constexpr">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/22/常量表达式constexpr/index.html">
+<meta property="og:title" content="类static成员变量">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/11/18/static/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
-<meta property="og:updated_time" content="2015-10-30T13:04:33.795Z">
+<meta property="og:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
+不能将静态成员函数定义为虚函数。  
+由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
+由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta property="og:updated_time" content="2015-11-18T12:04:29.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="\[原创\]常量表达式constexpr">
-<meta name="twitter:description" content="const常量用作数组大小的两种情况123456string s(&quot;test&quot;);const int n = s.size(); // s.size()的大小在编译时不能确定int a[n]; // 错误,const int n 表达式必须含有常量值 int *a = new int[n]; //OKconst int m = 10; // n的大小在编译时可以确定int a[m]; // 正确">
+<meta name="twitter:title" content="类static成员变量">
+<meta name="twitter:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
+不能将静态成员函数定义为虚函数。  
+由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
+由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -58,7 +67,7 @@
   };
 </script>
 
-  <title> \[原创\]常量表达式constexpr | YunPeng’s Blog </title>
+  <title> 类static成员变量 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +174,7 @@
           
           
             
-              \[原创\]常量表达式constexpr
+              类static成员变量
             
           
         </h1>
@@ -174,8 +183,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-22T10:38:55+08:00" content="2015-10-22">
-            2015-10-22
+          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
+            2015-11-18
           </time>
         </span>
 
@@ -185,8 +194,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/22/常量表达式constexpr/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/常量表达式constexpr/" itemprop="commentsCount"></span>
+              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -200,15 +209,21 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="const常量用作数组大小的两种情况">const常量用作数组大小的两种情况</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size(); <span class="comment">// s.size()的大小在编译时不能确定</span></span><br><span class="line"><span class="keyword">int</span> a[n]; <span class="comment">// 错误,const int n 表达式必须含有常量值 </span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[n]; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">10</span>; <span class="comment">// n的大小在编译时可以确定</span></span><br><span class="line"><span class="keyword">int</span> a[m]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
-<p>想动态分配二维数组:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line"><span class="keyword">int</span> **a = <span class="keyword">new</span> <span class="keyword">int</span>*[n];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[n * n]; <span class="comment">// 一次性确定所需空间,此处连续</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="constexpr修饰常量表达式">constexpr修饰常量表达式</h3><p>常量表达式必须在编译期间计算出它的值，它的值不可以被改变<br>常量表达式机制是为了:<br>提供了更多的通用的值不发生变化的表达式<br>允许用户自定义的类型成为常量表达式<br>提供了一种保证在编译期完成初始化的方法(可以在编译时期执行某些函数调用)  </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> var1 = <span class="number">10</span>  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> const_var2 = <span class="number">20</span>  </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> const_var3 = var  </span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> constexpr_var1 = <span class="number">3</span> + const_var2 * <span class="number">4</span>; <span class="comment">//成立, const_var2可以在编译时  </span></span><br><span class="line"><span class="comment">// constexpr int constexpr_var2 = 3 + var1 * 4; //错误,var1在编译时并不确定  </span></span><br><span class="line"><span class="comment">// constexpr int constexpr_var3 = 3 + const_var3 * 4; //错误,const_var3的值</span></span><br><span class="line"><span class="comment">//由var1但var1在编译时不能被确定。 constexpr为c++11新增关键字</span></span><br></pre></td></tr></table></figure>
-<h3 id="constexpr修饰函数">constexpr修饰函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">Inc</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;  </span><br><span class="line">	<span class="keyword">return</span> i + <span class="number">1</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> a = Inc(<span class="number">1</span>); <span class="comment">// 正确  </span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> b = Inc(<span class="built_in">cin</span>.get()); <span class="comment">// 错误  </span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> c = a * <span class="number">2</span> + <span class="number">1</span>; <span class="comment">// 正确，但是如果没有Inc(1)，也是错误的。</span></span><br></pre></td></tr></table></figure>
-<p>constexpr修饰的值要有初始值，和const不同的是初始化的值可以一个表达式，但是这个表达式的值必须是在编译期间就能确定值的。</p>
-<h3 id="字符串常量不能与一个字符相加,而字符串变量却可以">字符串常量不能与一个字符相加,而字符串变量却可以</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> a = <span class="string">"bb"</span>;</span><br><span class="line">a += a[<span class="number">0</span>]; <span class="comment">// OK</span></span><br><span class="line">a += <span class="string">'b'</span>; <span class="comment">// OK</span></span><br><span class="line">a += <span class="string">"bb"</span> + <span class="string">'a'</span>; <span class="comment">// 错误,先计算"bb" + 'a',产生一个不确定的值,可能无法与a连接上:</span></span><br><span class="line"><span class="built_in">string</span> a = <span class="string">"bb"</span>;</span><br><span class="line">a += <span class="string">"a"</span> + <span class="string">'b'</span>; <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"><span class="comment">// 输出bbi,将'b'换成'c',只输出bb</span></span><br></pre></td></tr></table></figure></span>
+        <span itemprop="articleBody"><ol>
+<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
+<li>不能将静态成员函数定义为虚函数。  </li>
+<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
+<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
+<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
+<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
+<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
+<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;  <a id="more"></a></li>
+<li>为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。</li>
+<li>静态成员之间可以相互访问，包括静态成员函数访问静态数据成员和访问静态成员函数；非静态成员函数可以任意地访问静态成员函数和静态数据成员；静态成员函数不能访问非静态成员函数和非静态数据成员；调用静态成员函数，可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指针调用静态成员函数;静态成员变量只能被静态成员函数调用，静态成员函数也是由同一类中的所有对象共用，只能调用静态成员变量和静态成员函数。</li>
+<li>由const修饰的static内置类型，可以在类内直接初始化</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Singleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 将构造函数隐藏起来，不被外部访问--》不能构造对象</span></span><br><span class="line">	Singleton()&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"init"</span> &lt;&lt; endl; &#125;; </span><br><span class="line">	<span class="comment">// 声明一个静态Singleton指针，指向其对象，实现单例模式   ：  </span></span><br><span class="line">	<span class="comment">// 这里只是声明变量，并未给其分配内存空间，需要在实现文件中分配空间</span></span><br><span class="line">	<span class="keyword">static</span> Singleton* singleton; </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 返回Singleton对象</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> Singleton* <span class="title">getSingleton</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Singleton* Singleton::singleton = NULL;</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> SINGLETON</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"Singleton.h"</span></span></span><br><span class="line"></span><br><span class="line">// 初始化时直接创建单件实例，确保线程安全</span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::getSingleton()</span><br><span class="line">&#123;</span><br><span class="line">	/*<span class="keyword">if</span> (<span class="built_in">singleton</span> == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">singleton</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
       
     </div>
 
@@ -219,13 +234,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/23/C++类型转换总结/" rel="prev">\[转载\]C++类型转换总结</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/17/hello-world/" rel="next">Hello World</a>
+              <a href="/2015/11/04/const/" rel="next">const总结</a>
             
           </div>
         </div>
@@ -250,8 +263,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/10/22/常量表达式constexpr/"
-                   data-title="\[原创\]常量表达式constexpr" data-url="http://Wan-YunPeng.github.io/2015/10/22/常量表达式constexpr/">
+              <div class="ds-thread" data-thread-key="2015/11/18/static/"
+                   data-title="类static成员变量" data-url="http://Wan-YunPeng.github.io/2015/11/18/static/">
               </div>
             
           </div>
@@ -355,7 +368,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#const常量用作数组大小的两种情况"><span class="nav-number">1.</span> <span class="nav-text">const常量用作数组大小的两种情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constexpr修饰常量表达式"><span class="nav-number">2.</span> <span class="nav-text">constexpr修饰常量表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constexpr修饰函数"><span class="nav-number">3.</span> <span class="nav-text">constexpr修饰函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串常量不能与一个字符相加,而字符串变量却可以"><span class="nav-number">4.</span> <span class="nav-text">字符串常量不能与一个字符相加,而字符串变量却可以</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

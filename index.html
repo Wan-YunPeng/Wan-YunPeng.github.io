@@ -166,6 +166,87 @@
           
           
             
+              <a class="post-title-link" href="/2015/11/18/static/" itemprop="url">
+                类static成员变量
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
+            2015-11-18
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <ol>
+<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
+<li>不能将静态成员函数定义为虚函数。  </li>
+<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
+<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
+<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
+<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
+<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
+<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/18/static/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/11/04/const/" itemprop="url">
                 const总结
               </a>
@@ -471,79 +552,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/10/23/C++类型转换总结/" itemprop="url">
-                \[转载\]C++类型转换总结
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
-            2015-10-23
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/10/23/C++类型转换总结/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/23/C++类型转换总结/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/23/C++类型转换总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -582,7 +590,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

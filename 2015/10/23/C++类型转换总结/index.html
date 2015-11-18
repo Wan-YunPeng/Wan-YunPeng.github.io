@@ -45,7 +45,7 @@
 <meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/23/C++类型转换总结/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
 <meta property="og:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
-<meta property="og:updated_time" content="2015-11-10T06:46:34.284Z">
+<meta property="og:updated_time" content="2015-11-10T06:49:23.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="\[转载\]C++类型转换总结">
 <meta name="twitter:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
@@ -280,7 +280,7 @@ ival = dval; <span class="comment">// double-&gt;int</span>
 }
 </code></pre><p>在函数foo中，使用static_cast进行转换是不被允许的，将在编译时出错；而使用 dynamic_cast的转换则是允许的，结果是空指针。  </p>
 <h3 id="reinpreter_cast">reinpreter_cast</h3><blockquote>
-<p>用法：reinpreter_cast<type-id> (expression)<br>说明：type-id必须是一个指针、引用、算术类型、函数指针或者成员指针。它可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针（先把一个指针转换成一个整数，在把该整数转换成原类型的指针，还可以得到原先的指针值）。<br>该运算符的用法比较多。</type-id></p>
+<p>用法：reinpreter_cast &lt; type-id &gt; (expression)<br>说明：type-id必须是一个指针、引用、算术类型、函数指针或者成员指针。它可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针（先把一个指针转换成一个整数，在把该整数转换成原类型的指针，还可以得到原先的指针值）。<br>该运算符的用法比较多。</p>
 </blockquote>
 <h3 id="const_cast">const_cast</h3><blockquote>
 <p>用法：const_cast &lt; type_id &gt; (expression)<br>说明：该运算符用来修改类型的const或volatile属性。除了const 或volatile修饰之外， type_id和expression的类型是一样的。 </p>
@@ -382,7 +382,7 @@ b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </sp
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
