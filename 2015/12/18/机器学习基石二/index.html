@@ -39,25 +39,24 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类static成员变量">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/11/18/static/index.html">
+<meta property="og:title" content="机器学习基石二">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
-<meta property="og:updated_time" content="2015-11-18T12:04:29.443Z">
+<meta property="og:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
+<meta property="og:image" content="http://i.imgur.com/wggMOeL.png">
+<meta property="og:image" content="http://i.imgur.com/7uSFMpW.png">
+<meta property="og:image" content="http://i.imgur.com/xzyGpIh.png">
+<meta property="og:image" content="http://i.imgur.com/1rBHA4I.png">
+<meta property="og:image" content="http://i.imgur.com/1UA2U36.png">
+<meta property="og:image" content="http://i.imgur.com/9aQK8UX.png">
+<meta property="og:image" content="http://i.imgur.com/bMs9eNp.png">
+<meta property="og:image" content="http://i.imgur.com/iquLyQa.png">
+<meta property="og:updated_time" content="2015-12-20T04:10:09.908Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类static成员变量">
-<meta name="twitter:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="twitter:title" content="机器学习基石二">
+<meta name="twitter:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -67,7 +66,7 @@
   };
 </script>
 
-  <title> 类static成员变量 | YunPeng’s Blog </title>
+  <title> 机器学习基石二 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -174,7 +173,7 @@
           
           
             
-              类static成员变量
+              机器学习基石二
             
           
         </h1>
@@ -183,8 +182,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
-            2015-11-18
+          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
+            2015-12-18
           </time>
         </span>
 
@@ -194,8 +193,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
+              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -209,21 +208,24 @@
       
 
       
-        <span itemprop="articleBody"><ol>
-<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
-<li>不能将静态成员函数定义为虚函数。  </li>
-<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
-<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
-<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
-<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
-<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
-<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;  <a id="more"></a></li>
-<li>为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。</li>
-<li>静态成员之间可以相互访问，包括静态成员函数访问静态数据成员和访问静态成员函数；非静态成员函数可以任意地访问静态成员函数和静态数据成员；静态成员函数不能访问非静态成员函数和非静态数据成员；调用静态成员函数，可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指针调用静态成员函数;静态成员变量只能被静态成员函数调用，静态成员函数也是由同一类中的所有对象共用，只能调用静态成员变量和静态成员函数。</li>
-<li>由const修饰的static内置类型，可以在类内直接初始化</li>
+        <span itemprop="articleBody"><p><font color="red">感知机</font>&emsp;<font color="red">线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
+<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br><a id="more"></a><br>机器学习首要要有资料，资料从哪里来，从一个我们想学但是不知道的公式 f 里产生（可以理解为数据服从某个分布），有了这个资料以后，我们将这个资料喂给机器学习的演算法，机器学习通过观察所有的可能性 H ，从这些可能性中选一个 g 来，我们希望的是这个 g 和 f 越接近越好。以申请信用卡为例，当有人申请信用卡时， g 能很好的判断是否要给他信用卡。  </p>
+<p>H 到底长什么样子？<br>把每一个申请者用一个向量来表示，或用 \(\chi\) 来表示， \(\chi\) 有很多维度，比如这里第一维是他的年纪，第二维是他的年薪等等。<br><img src="http://i.imgur.com/7uSFMpW.png" alt="">  </p>
+<p>每个维度可能对我们有不同的正面或负面的影响，来决定我们到底给不给他信用卡。我们将这些维度综合的算起来，得到一个分数，如果这个分数超过一个阈值，我们就给他信用卡，如果没有超过，就不给他信用卡：<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &gt;    阈值   给他信用卡<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &lt;    阈值   不给他信用卡<br>就好比你考试，各个题的分数加起来超过60分，那你就及格了，没有达到60分就不及格。<br>\( {w}_{i}\)表示这个维度的权重，如果这个维度是正相关的，那\({w}_{i}\)很能很大，要是负相关的，\( {w}_{i}\)可能很小或是负的。<br>Y : {+1(good),-1(bad)},0忽略——线性公式 $${\color{Red}  h}(x) = sign ((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i}) - {\color{Red} {threshold}})$$<br>刚好等于0的概率很小，但出现时，一般忽略不计.这里的 h 叫做<font color="#DC143C">感知机</font>（类神经网络） h 由 w 算出来，再减去一个阈值。将threshold视为 w 的一部分，简化表达式：<br>$${\color{Red} h}(x) = sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} - {\color{Blue}{ threshold}})<br>= sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} + {\color{Blue}{(\underset{w_{0}}{\underbrace{-threshold}})\cdot (\underset{x_{0}}{\underbrace{+1}}})})=sign((\sum_{i=1}^{d}{\color{Red} {w}_{0}}{x}_{i})= sign({\color{Red} W^{T}}X)$$<br>简化成了 W 和 X 的内积。</p>
+<p><img src="http://i.imgur.com/xzyGpIh.png" alt=""></p>
+<p>假设 W 只有两维来分析， \(\chi\) 对于图中的点，圆圈代表+1，叉叉代表-1， h 画出来是一条直线， h 的一边代表+1，另一边代表-1；我们之前说的感知器其实就是对应平面一条条的直线。<br>&emsp;&emsp;现在我们知道了一个可能的hypothesis set，这个 H 是平面内所有的线，现在面临的问题是怎样设计一个演算法，从这么多条线中选择一条最好的出来，来接近<font color="red">未知的 f</font>。虽然不知道 f ，但是我们知道我们的资料是从 f 中来的，至少要求我们的 g 在我们的资料上在 f 上很接近，最好一模一样。<br><img src="http://i.imgur.com/1rBHA4I.png" alt=""><br>困难是 H 的集合无限，想法是先假设一条，然后不断的修正它，使得他接近我们的最优解。<br>For t = 0,1,,,,,,</p>
+<ol>
+<li>找出资料中的某个点<font color="blue">(\( x_{n(t)},y_{n(t)} \))</font>在<font color="red">\( w_{t} \)</font>上犯错，意思就是拿到这条线，跟X做内积，得到的正负号和想要的正负号不一致： sign(\( {\color{Red} w_{t}^{T}}{\color{Blue}x<em>{n(t)}}) \neq {\color{Blue}y\</em>{n(t)}}  \)   </li>
+<li>修正不正确的W:$${\color{Purple} w_{t+1}}\leftarrow {\color{Red} w_{t}} + {\color{Blue} y_{n(t)}x_{n(t)}} $$</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Singleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 将构造函数隐藏起来，不被外部访问--》不能构造对象</span></span><br><span class="line">	Singleton()&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"init"</span> &lt;&lt; endl; &#125;; </span><br><span class="line">	<span class="comment">// 声明一个静态Singleton指针，指向其对象，实现单例模式   ：  </span></span><br><span class="line">	<span class="comment">// 这里只是声明变量，并未给其分配内存空间，需要在实现文件中分配空间</span></span><br><span class="line">	<span class="keyword">static</span> Singleton* singleton; </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 返回Singleton对象</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> Singleton* <span class="title">getSingleton</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Singleton* Singleton::singleton = NULL;</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> SINGLETON</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"Singleton.h"</span></span></span><br><span class="line"></span><br><span class="line">// 初始化时直接创建单件实例，确保线程安全</span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::getSingleton()</span><br><span class="line">&#123;</span><br><span class="line">	/*<span class="keyword">if</span> (<span class="built_in">singleton</span> == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">singleton</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+<p><img src="http://i.imgur.com/1UA2U36.png" alt="">   </p>
+<p>当没有错误的时候，演算法就会停下来，但是资料一定是线性可分的吗？（噪音）假设它能停下来，那么在我们已知的资料上 g 和 f 的表现是一样的，但是在资料之外呢？g 的表现性我们也是未知的。上面的这个算法我们叫PLA(perceptron learning algorithm)</p>
+<p>当数据线性可分时\(\Leftrightarrow \)会存在一个\(w_{f}^{T}\)使得\( y_{n} = sign(w_{f}^{T}x_{n}) \)成立，也就是说对于每一个\(x_{n}\)都有$$ {\color{Purple} y_{n(t)}w_{f}^{T}x_{n(t)}}{\color{Blue} \geqslant  y_{n}w_{f}^{T}x_{n}}{\color{Red} &gt;0} $$<br>对于PLA算法中W选到的错误的点，也会满足上面的式子。用两个向量的内积来衡量两个向量之间到底接不接近。为了知道\(w_{f}^{T}\)和我们求的\(w<em>{t}\)是否接近，使他们两个做内积<br><img src="http://i.imgur.com/9aQK8UX.png" alt=""><br>上面是式子说明\(w\</em>{f}^{T}\)和\(w<em>{t}\)的内积越来越大，但两个向量的内积大也可能是他们本身就很大，而不是很接近，这里只证明了一半。<br>接下来用到PLA另外一个重要的性质：只有当我们有错的时候才更新\( \Leftrightarrow sign(w\</em>{t}^{T}x_{n(t)})\neq y_{n(t)}\Leftrightarrow {\color{Blue} y_{n(t)}w_{t}^{T}x_{n(t)} \leq 0} \)<br>用这个性质来观察\(w_{t+1}\)后的值：<br><img src="http://i.imgur.com/bMs9eNp.png" alt=""><br>蓝色部分是小于0的，所以如果只有犯错才更新的话，我们的Wt是不会成长得很快的，因为他要加一个负的项上去。只能靠红色的那一项成长，将犯错的点和最远的点作比较，得到最后一个不等式。最多更新最大的\({||x_{n}||}^{2}\)<br>所以之前说wt和wf可以越来越接近，但是wt会更新的很慢，这里得到一个很重要的结论：<br><img src="http://i.imgur.com/iquLyQa.png" alt=""><br>定义\( R_{2} = \underset{n}{max}{||x_{n} ||}^{2} \)&emsp;\( \rho = \underset{n}{min} y_{n}\frac{w_{f}^{T}}{||w_{f}||}x_{n}  \)<br>其中T为迭代次数，constant为一个常量，其值为\(\rho\)/R,又因为余弦夹角小于等于1，所以PLA之多迭代次数为：\(R_{2}/\rho \)<br>当我们从0开始一路做更新，做了T个更新之后，发现两个正规化向量的内积会大于等于更新次数的开方和某个常数，这里两个正规化向量的内积表示他们的接近程度，每一次的更新，就会接近一点，那他会不会无限次的靠近，不可能，因为两个正规化向量的内积最大为1。所以证明了这个演算法会停下来。</p>
+<p>这里总结一下，资料线性可分，wt每次选择一个错误出来修正。线性可分说明wt和wf会越来越接近，每次修正一个错误说明wt会缓慢的成长，融合这两个结果，证明了PLA会停下来。好处就是代码实现很简单（20行）。坏处就是资料是否线性可分是不能确定的，就是资料是线性可分的，资料中也有可能存在噪音数据，就算没有噪音且线性可分，但也不知道wt什么时候会停，之前算出迭代次数T \(\leq R_{2}/\rho_{2}\),而\(\rho\)的大小要依靠wf（未知），所以我们不知道PLA什么时候会停下来。所以，PLA在真正使用的时候会有很大的问题。<br>对于有噪音的数据，我们只需找到犯错误最少的\( w_{g} \)<br>pocket算法：</p>
+<blockquote>
+<p>for t = 0,1,….<br>找到\(w_{t}\)的一个错误，记为(\(x_{n(t)},y_{n(t)}\));<br>尝试修正这个错误：$$w_{t+1} \leftarrow w_{t} + y_{n(t)}x_{n(t)}$$<br>如果\(w_{t+1}\)犯的错比\(\hat{w}\)犯的错少，我们就用\(w_{t+1}\)代替\(\hat{w}\)<br>这个\(\hat{w}\)作为g返回</p>
+</blockquote>
+</span>
       
     </div>
 
@@ -234,13 +236,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/17/机器学习基石一/" rel="prev">机器学习基石一</a>
+              <a href="/2015/12/20/机器学习基石三/" rel="prev">机器学习基石三</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/04/const/" rel="next">const总结</a>
+              <a href="/2015/12/17/机器学习基石一/" rel="next">机器学习基石一</a>
             
           </div>
         </div>
@@ -265,8 +267,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/18/static/"
-                   data-title="类static成员变量" data-url="http://Wan-YunPeng.github.io/2015/11/18/static/">
+              <div class="ds-thread" data-thread-key="2015/12/18/机器学习基石二/"
+                   data-title="机器学习基石二" data-url="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/">
               </div>
             
           </div>

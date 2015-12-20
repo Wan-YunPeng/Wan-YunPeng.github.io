@@ -39,25 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="description" content="\(\color{red}{多元分类}\)&amp;emsp;\(\color{red}{回归分析}\)回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类static成员变量">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/11/18/static/index.html">
+<meta property="og:title" content="机器学习基石三">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/20/机器学习基石三/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
-<meta property="og:updated_time" content="2015-11-18T12:04:29.443Z">
+<meta property="og:description" content="\(\color{red}{多元分类}\)&amp;emsp;\(\color{red}{回归分析}\)回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手">
+<meta property="og:image" content="http://i.imgur.com/CczslyD.png">
+<meta property="og:image" content="http://i.imgur.com/QQtKKGg.png">
+<meta property="og:image" content="http://i.imgur.com/Sb0Hjlh.png">
+<meta property="og:image" content="http://i.imgur.com/N4XUIjo.png">
+<meta property="og:image" content="http://i.imgur.com/6DohhbQ.png">
+<meta property="og:image" content="http://i.imgur.com/l71p3cq.png">
+<meta property="og:image" content="http://i.imgur.com/ZnETzQK.png">
+<meta property="og:image" content="http://i.imgur.com/fDIkjg2.png">
+<meta property="og:image" content="http://i.imgur.com/IPogV9s.png">
+<meta property="og:updated_time" content="2015-12-20T04:15:48.263Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类static成员变量">
-<meta name="twitter:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="twitter:title" content="机器学习基石三">
+<meta name="twitter:description" content="\(\color{red}{多元分类}\)&amp;emsp;\(\color{red}{回归分析}\)回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -67,7 +67,7 @@
   };
 </script>
 
-  <title> 类static成员变量 | YunPeng’s Blog </title>
+  <title> 机器学习基石三 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -174,7 +174,7 @@
           
           
             
-              类static成员变量
+              机器学习基石三
             
           
         </h1>
@@ -183,8 +183,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
-            2015-11-18
+          <time itemprop="dateCreated" datetime="2015-12-20T12:15:48+08:00" content="2015-12-20">
+            2015-12-20
           </time>
         </span>
 
@@ -194,8 +194,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
+              <a href="/2015/12/20/机器学习基石三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/机器学习基石三/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -209,21 +209,53 @@
       
 
       
-        <span itemprop="articleBody"><ol>
-<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
-<li>不能将静态成员函数定义为虚函数。  </li>
-<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
-<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
-<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
-<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
-<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
-<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;  <a id="more"></a></li>
-<li>为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。</li>
-<li>静态成员之间可以相互访问，包括静态成员函数访问静态数据成员和访问静态成员函数；非静态成员函数可以任意地访问静态成员函数和静态数据成员；静态成员函数不能访问非静态成员函数和非静态数据成员；调用静态成员函数，可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指针调用静态成员函数;静态成员变量只能被静态成员函数调用，静态成员函数也是由同一类中的所有对象共用，只能调用静态成员变量和静态成员函数。</li>
-<li>由const修饰的static内置类型，可以在类内直接初始化</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Singleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 将构造函数隐藏起来，不被外部访问--》不能构造对象</span></span><br><span class="line">	Singleton()&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"init"</span> &lt;&lt; endl; &#125;; </span><br><span class="line">	<span class="comment">// 声明一个静态Singleton指针，指向其对象，实现单例模式   ：  </span></span><br><span class="line">	<span class="comment">// 这里只是声明变量，并未给其分配内存空间，需要在实现文件中分配空间</span></span><br><span class="line">	<span class="keyword">static</span> Singleton* singleton; </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 返回Singleton对象</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> Singleton* <span class="title">getSingleton</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Singleton* Singleton::singleton = NULL;</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> SINGLETON</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"Singleton.h"</span></span></span><br><span class="line"></span><br><span class="line">// 初始化时直接创建单件实例，确保线程安全</span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::getSingleton()</span><br><span class="line">&#123;</span><br><span class="line">	/*<span class="keyword">if</span> (<span class="built_in">singleton</span> == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">singleton</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+        <span itemprop="articleBody"><p>\(\color{red}{多元分类}\)&emsp;\(\color{red}{回归分析}\)<br>回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。<br>从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手上的铜板按照大小（可能是半径大小或是重量）得到下图<br><img src="http://i.imgur.com/CczslyD.png" alt=""><br>将这些资料喂给电脑，并告诉它这个大小、这个重量的是10cent,这个大小、这个重量的是1cent,这个大小、这个重量的是5cent,这个大小、这个重量的是25cent,我们希望电脑能不能得到一个 g ，能使贩卖机能准确的判断顾客投进去的一个铜板到底是哪一种？  </p>
+<blockquote>
+<p>分类US硬币（1c,5c,10c,25c）(按大小、重量)<br>y = {1c,5c,10c,25c} or y = {1,2,…,K}(abstractly)<br>binary classification: special cse with K = 2  </p>
+</blockquote>
+<a id="more"></a>
+<p>二元分类视为是一个<font color="red">多元分类（multiclass classification）</font>的一个特殊情况；<br>一些常见的应用：数字的手写识别、图中的水果（是苹果、草莓还是橘子）、邮件的分类（垃圾、社交、更新、…）所以多类别分类的应用也很常见，主要是用在视觉、听觉的辨识<br>多元分类问题的 Y 可能是个实数集R，或者是带有上下界的R，此类问题视为<font color="red">回归分析</font><br>回归分析可以用在哪里：比如说给机器公司资料，预测这个公司明天的股票怎么样。或者是给电脑一些天气的资料来预判明天天气怎么样。这些都是回归分析的典型实例，它的特点就是要输出一个实数。这类问题已被研究了很久，有许多成熟的工具。   </p>
+<p>如下图，考虑NLP的问题，当我们输入一个单词，要机器直到他的词性（动词、名词、…）是一个多元分类问题，<br>考虑我们输入的不是一个单词，而是一个句子，要求输出的也是每个单词的词性，但是呢，这些单词的词性又组成一个有效的结构，这样的结构是很多的。<br><img src="http://i.imgur.com/QQtKKGg.png" alt="">  </p>
+<p>大类别的分类问题，每个类别有某个结构上的关系，structure learning,结构化学习，就是说我们要得输出有某种结构在里面，我们希望电脑想办法去学到这些结构。可以想象这是一个很复杂的问题，它的一些解法实际上都是从很多类别的分类问题延伸出来的。<br>总结一下：我们会做是非题，从是非题我们延伸到多类别的分类问题；另外一个核心的问题是回归分析，回归分析实际上就是要我们输出实数或者有点像我们的输出空间就是无限大个各式各样不同的实数。然后如果从多类别的问题在分出来，我们可以做结构的学习，但这些结构的学习很像一个很大类别的多类别分类问题。这里的核心问题是是非题和回归分析  </p>
+<p><img src="http://i.imgur.com/Sb0Hjlh.png" alt=""></p>
+<p>之前接触的问题都是监督学习，在没有告诉电脑类别的情况下，也就是不告诉电脑答案（假如不告诉电脑铜板的含义），那么电脑能不能将铜板分类，如下图所示，电脑可能会得到几个不同的类别。叫做<font color="red">聚类问题</font>。如下图，我们很明显就看出电脑将铜板的种类分错了，但是如果我们也在不知道铜板种类的情况下进行聚类，我们很可能也会分成三类，换成其他人，他可能只分一类，这也是对的，所以怎么样衡量聚类的好坏更为困难一些。</p>
+<p><img src="http://i.imgur.com/N4XUIjo.png" alt=""></p>
+<p>聚类的应用也有很多：</p>
+<blockquote>
+<p>articles \(\Rightarrow\) topics 将文章分到不同的主题中去<br>consumer profiles \(\Rightarrow\) consumer groups 将顾客分成多个不同群  </p>
+<p><font color="orange">clustering</font>:a challengin but useful problem   </p>
+</blockquote>
+<p>其他一些无监督学习的问题：    </p>
+<blockquote>
+<p>clustering:{\(x_{n} \Rightarrow\)}cluster(x)无监督多元分类 i.e. articles \(\Rightarrow\) topics  </p>
+<p><font color="orange">density estimation</font>:{\(x_{n} \Rightarrow\)}density(x) 无监督有界回归，比如给电脑一群点，电脑能不能告诉我这些点在哪些地方是比较稠密的，那边是比较稀疏的。比如今天给电脑是各个路口肇事的记录，希望得到哪里比较常发生是个，哪里不常发生事故 i.e. traffic reports with location\(\Rightarrow\) dangerous areas  </p>
+<p><font color="orange">outlier detection</font>:{\(x_{n}\Rightarrow\)}unusual(x)无监督二元分类。假设我今天有一些资料，这些资料大部分是正常的，有小部分是怪怪的，例如这个资料是网络流量的资料，怪怪的可能代表入侵者或是某一台机器坏了，那我能不能自动的把他找出来，这个问题有点像是非题，只不过这些异常情况很少，很难取得他的标签，可以用无监督去解决  i.e. internet logs\(\Rightarrow\) instrusion alert<br>… and a lot more!!</p>
+</blockquote>
+<p>这些无监督学习的例子告诉我们，他们的目标其实还满分散的，通常也很难衡量演算法的好坏。</p>
+<blockquote>
+<p><font color="orange">unsupervised learning</font>:diverse,with possibly very different performance goals</p>
+</blockquote>
+<p>semi-supervised Learning（半监督问题）  </p>
+<p><img src="http://i.imgur.com/6DohhbQ.png" alt=""></p>
+<blockquote>
+<p><font color="orange">Semi-unsupervised-learning</font>:leverage unlabeled data to avoid ‘expensive’ labeling.</p>
+</blockquote>
+<p>前面讲了监督学习，半监督学习和无监督学习。接来下，讲一个和机器学习中很不一样的方式。将设你养了一只宠物，你怎么训练他，比如说你说‘坐下’，那他坐下是对的，但如果他在地上小便了，这是不正确的，那你就会骂他或者惩罚他或者一些你想得到的方式去惩罚他。</p>
+<p><img src="http://i.imgur.com/l71p3cq.png" alt=""></p>
+<p>你没办法说坐下是对的，但是你有办法告诉他它选择的另外一个动作是错的。你使用了奖励和惩罚来使你的宠物学到你想让他学到的动作，奖励发生在你所接受的动作时。不一定这个动作是对的，但在你看来确实好的，比如你说坐下，他和你握手</p>
+<font color="orange">(x,\(\tilde{y}\),goodness)</font><br>&gt; (customer,ad choice,ad click earning) \(\Rightarrow\)ad system 顾客在训练广告系统怎么做得更好<br>&gt; (cards,strategy,winning amount)\(\Rightarrow\)black jack agent 玩牌游戏，21点是否补牌<br><br>reinforcement:learn with <font color="orange">‘partial/implicit information’</font>(often sequentially)<br>和之前不一样的是，我们不是直接说我们需要什么样的咨询，靠的是另外这个输出还有另外这个输出的好或不好来做学习的动作，通常这样学习的动作会序列的发生，是一笔一笔的学到东西的，并不是我们喂给他一堆资料给他。<br>总结一下，上面所讲的四种学习方式的区别在于这四种学习方式的不同是我们对y的标记。<br><br><img src="http://i.imgur.com/ZnETzQK.png" alt=""><br><br>大部分时间都是在讲输出的不同（标记不同），接下来讲一下输入部分 X 有什么不同的变化。<br>之前的信用卡问题，我们想要决定是否给他信用卡，那我们就把他的申请书喂给电脑，输入部分就是申请书上的资料，然后从这些资料来看，我们假设这些资料大体上非常的具体，叫做<font color="red">concrete</font>，实际上更进一步说，它们代表一些蛮复杂的已经经过处理的资讯，我们相信这个资讯可以和我们的输出有关，。输入部分我们通常叫做input或者feature<br>&gt; <font color="orange">concrete</font> features:each dimension of \(\chi \subseteq \mathbb{R}^{d}\) represents ‘sophisticated physical meaning’<br><br>像之前的问题，铜板分类，我们用的是大小和重量，信用卡问题，我们使用的是顾客具体的资料，癌症问题，使用的是病人的资料。通常这些资料里面，这些特征里面都带有人类的智慧对这个问题的描述，我们常常称之为<font color="red">domain knowledge</font>,也就是说你对这个问题的专业知识，所以这是把人类的专业知识放在，也就是我们经过一些预处理的，脑袋里思考预处理的动作，才喂给机器去做。这些问题对机器来说像是比较简单的问题（其实也不是那么简单），相对于下面提到的比较简单<br>&gt; concrete features:the ‘easy’ ones for ML<br><br>假设现在有一个手写识别的问题，那么机器应该怎么做，我们喂给机器什么当作我们的\(\chi\),一个可能性是这个数字的对称性和密度来区别数字。<br><img src="http://i.imgur.com/fDIkjg2.png" alt=""><br>&gt; 16 by 16 gray image \(\chi \equiv (0,0,0,9,0,…) \subseteq \mathbb{R}^{256}\) 真正写出来的数字是靠这个点和周围的点的关系来决定这个数字的。这个特性可能比上图的两维（对称和密度）更为复杂，也更为抽象<br>&gt; ‘<font color="red">simple</font> physicla meaning’;thus more difficult for ML than concrete features<br><br>像视觉和听觉识别都属于这类抽象的问题。人帮着机器将一些特征表示成机器可以识别的，可以接受的让他去学习，我们常常把这个东西叫做<font color="red">feature engineering</font><br>&gt; raw features:often need human or machines to <font color="orange">convert to concrete ones</font>
+
+<p>更抽象的问题是’no physical meaning’;thus even more difficult for ML.就像是给参加歌唱比赛的歌手打分，曲风，歌词等等。  </p>
+<blockquote>
+<p>student ID in online tutoring system<br>advertisement ID in online ad system</p>
+<p>abstract:again need ‘<font color="orange">feature conversion</font>/extraction/construction’</p>
+</blockquote>
+<p>总结一下，讲了三种不同的输入的形式</p>
+<blockquote>
+<p>concrete: sophisticated (and related) physical meaning<br>raw : simple physical meaning<br>abstract: nor (or little) physical meaning<br>…and more!!  </p>
+</blockquote>
+<p>不同的输入，不同的输出对应的问题的种类：<br><img src="http://i.imgur.com/IPogV9s.png" alt=""></p>
+</span>
       
     </div>
 
@@ -234,13 +266,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/17/机器学习基石一/" rel="prev">机器学习基石一</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/04/const/" rel="next">const总结</a>
+              <a href="/2015/12/18/机器学习基石二/" rel="next">机器学习基石二</a>
             
           </div>
         </div>
@@ -265,8 +295,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/18/static/"
-                   data-title="类static成员变量" data-url="http://Wan-YunPeng.github.io/2015/11/18/static/">
+              <div class="ds-thread" data-thread-key="2015/12/20/机器学习基石三/"
+                   data-title="机器学习基石三" data-url="http://Wan-YunPeng.github.io/2015/12/20/机器学习基石三/">
               </div>
             
           </div>

@@ -39,25 +39,33 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="description" content="之前看ng的视频有些的地方感觉没搞明白,总觉得自己基础知识不是特别牢固,看见网上都在推荐台湾大学的林轩田老师的课程,基础性强,打算学习一下,刚好巩固一下基础,正好这几天也在学习latex编辑,刚好可以练习一下数学公式的编辑,对以后也是很有帮助的。
+理论+实践
+课程安排:
+
+When Can Machines Learn? (illustrative + technical)Why can Mach">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类static成员变量">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/11/18/static/index.html">
+<meta property="og:title" content="机器学习基石一">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/17/机器学习基石一/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
-<meta property="og:updated_time" content="2015-11-18T12:04:29.443Z">
+<meta property="og:description" content="之前看ng的视频有些的地方感觉没搞明白,总觉得自己基础知识不是特别牢固,看见网上都在推荐台湾大学的林轩田老师的课程,基础性强,打算学习一下,刚好巩固一下基础,正好这几天也在学习latex编辑,刚好可以练习一下数学公式的编辑,对以后也是很有帮助的。
+理论+实践
+课程安排:
+
+When Can Machines Learn? (illustrative + technical)Why can Mach">
+<meta property="og:image" content="http://i.imgur.com/haRe8E0.png">
+<meta property="og:image" content="http://i.imgur.com/du5Zcac.png">
+<meta property="og:image" content="http://i.imgur.com/QPOAszd.png">
+<meta property="og:image" content="http://i.imgur.com/7LpVeTK.png">
+<meta property="og:image" content="http://i.imgur.com/XgwzF3B.png">
+<meta property="og:updated_time" content="2015-12-20T04:10:13.554Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类static成员变量">
-<meta name="twitter:description" content="类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  
-不能将静态成员函数定义为虚函数。  
-由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  
-由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结">
+<meta name="twitter:title" content="机器学习基石一">
+<meta name="twitter:description" content="之前看ng的视频有些的地方感觉没搞明白,总觉得自己基础知识不是特别牢固,看见网上都在推荐台湾大学的林轩田老师的课程,基础性强,打算学习一下,刚好巩固一下基础,正好这几天也在学习latex编辑,刚好可以练习一下数学公式的编辑,对以后也是很有帮助的。
+理论+实践
+课程安排:
+
+When Can Machines Learn? (illustrative + technical)Why can Mach">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -67,7 +75,7 @@
   };
 </script>
 
-  <title> 类static成员变量 | YunPeng’s Blog </title>
+  <title> 机器学习基石一 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -174,7 +182,7 @@
           
           
             
-              类static成员变量
+              机器学习基石一
             
           
         </h1>
@@ -183,8 +191,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
-            2015-11-18
+          <time itemprop="dateCreated" datetime="2015-12-17T10:38:55+08:00" content="2015-12-17">
+            2015-12-17
           </time>
         </span>
 
@@ -194,8 +202,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
+              <a href="/2015/12/17/机器学习基石一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/17/机器学习基石一/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -209,21 +217,28 @@
       
 
       
-        <span itemprop="articleBody"><ol>
-<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
-<li>不能将静态成员函数定义为虚函数。  </li>
-<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
-<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
-<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
-<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
-<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
-<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;  <a id="more"></a></li>
-<li>为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。</li>
-<li>静态成员之间可以相互访问，包括静态成员函数访问静态数据成员和访问静态成员函数；非静态成员函数可以任意地访问静态成员函数和静态数据成员；静态成员函数不能访问非静态成员函数和非静态数据成员；调用静态成员函数，可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指针调用静态成员函数;静态成员变量只能被静态成员函数调用，静态成员函数也是由同一类中的所有对象共用，只能调用静态成员变量和静态成员函数。</li>
-<li>由const修饰的static内置类型，可以在类内直接初始化</li>
+        <span itemprop="articleBody"><p>之前看ng的视频有些的地方感觉没搞明白,总觉得自己基础知识不是特别牢固,看见网上都在推荐台湾大学的林轩田老师的课程,基础性强,打算学习一下,刚好巩固一下基础,正好这几天也在学习latex编辑,刚好可以练习一下数学公式的编辑,对以后也是很有帮助的。</p>
+<p>理论+实践</p>
+<p>课程安排:</p>
+<blockquote>
+<p><strong><font color="#DC143C">When</font></strong> Can Machines Learn? (illustrative + technical)<br><strong><font color="#DC143C">Why</font></strong> can Machines Learn? (theoretical + illustrative)<br><strong><font color="#DC143C">How</font></strong> can Machines Learn? (technical + practical)<br>How can Machines Learn <strong><font color="#DC143C">Better</font></strong>? (practical + theoretical)   </p>
+</blockquote>
+<p>什么情况下使用机器学习?</p>
+<p><img src="http://i.imgur.com/haRe8E0.png" alt=""><br><a id="more"></a><br>将电脑观察到的<font color="#DC143C">数据</font>(可能是人为给他的)，然后经过一番<font color="#DC143C">处理</font>，就想人们的思考过程一样，大脑不停的转，电脑的cup或硬盘也一直转，之后变成有用的<font color="#DC143C">技巧</font>。这个技巧定义于改进某一种表现的增进。  </p>
+<p><img src="http://i.imgur.com/du5Zcac.png" alt="">  </p>
+<p>概括来说就是机器学习就相当于根据资料出发，经过某种计算，达到某一种方面表现的增进。<br>机器学习的<font color="#DC143C">三个关键</font>：（机器学习并不适用与所有问题）  </p>
+<ol>
+<li>某一种表现能够增进（有某一种潜在的模式）  </li>
+<li>有学习的规则，但是我们不知道怎么把这些规则写下来，所以才要它学习  </li>
+<li>有输入的资料  </li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SINGLETON</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Singleton</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 将构造函数隐藏起来，不被外部访问--》不能构造对象</span></span><br><span class="line">	Singleton()&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">"init"</span> &lt;&lt; endl; &#125;; </span><br><span class="line">	<span class="comment">// 声明一个静态Singleton指针，指向其对象，实现单例模式   ：  </span></span><br><span class="line">	<span class="comment">// 这里只是声明变量，并未给其分配内存空间，需要在实现文件中分配空间</span></span><br><span class="line">	<span class="keyword">static</span> Singleton* singleton; </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">// 返回Singleton对象</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> Singleton* <span class="title">getSingleton</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Singleton* Singleton::singleton = NULL;</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> SINGLETON</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"Singleton.h"</span></span></span><br><span class="line"></span><br><span class="line">// 初始化时直接创建单件实例，确保线程安全</span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Singleton</span>* <span class="built_in">Singleton</span>::getSingleton()</span><br><span class="line">&#123;</span><br><span class="line">	/*<span class="keyword">if</span> (<span class="built_in">singleton</span> == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="built_in">singleton</span> = new <span class="built_in">Singleton</span>()<span class="comment">;*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">singleton</span><span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+<p>现在，假设有个人想去申请信用卡，银行根据他的资料来决定是否给他信用卡，我们把这个问题应用到机器学习上：(输入的特征化)</p>
+<p><img src="http://i.imgur.com/QPOAszd.png" alt=""></p>
+<p><img src="http://i.imgur.com/7LpVeTK.png" alt=""></p>
+<p>\(\chi\)为输入，此处为申请人的各项信息，<br>Y为输出，此处为银行是否给他信用卡<br>之前提到机器学习底下要有某个可能学习得到的东西，叫做目标函数： f ，我们想要学习 f ，但是我们不知道 f ，所有的资料都是有 f 产生, f 是数据的真实分布。<br>还有就是机器学习所需的资料，以前银行所统计的顾客资料<br>机器学习所学到的函数并不是 f ，因为 f 不知道，我们所学到的是函数 g ，用来表示是否给申请人信用卡</p>
+<p><img src="http://i.imgur.com/XgwzF3B.png" alt=""></p>
+<p>强调： f 我们不知道，但我们希望 g 和 f 越像越好。<br>再一次定义一下机器学习：我们从资料出发，要算出一个假说，一个hypothesis，我们叫做 g ，我们希望 g 接近资料真实的那个函数 f （ f 用来产生资料，但是我们并不知道）  </p>
+</span>
       
     </div>
 
@@ -234,13 +249,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/17/机器学习基石一/" rel="prev">机器学习基石一</a>
+              <a href="/2015/12/18/机器学习基石二/" rel="prev">机器学习基石二</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/04/const/" rel="next">const总结</a>
+              <a href="/2015/11/18/static/" rel="next">类static成员变量</a>
             
           </div>
         </div>
@@ -265,8 +280,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/18/static/"
-                   data-title="类static成员变量" data-url="http://Wan-YunPeng.github.io/2015/11/18/static/">
+              <div class="ds-thread" data-thread-key="2015/12/17/机器学习基石一/"
+                   data-title="机器学习基石一" data-url="http://Wan-YunPeng.github.io/2015/12/17/机器学习基石一/">
               </div>
             
           </div>
