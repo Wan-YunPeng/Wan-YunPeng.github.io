@@ -51,7 +51,7 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
 unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）
 
 当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复1） unique(A,A + n)(A为数组，n为数组大小)2） unique(num">
-<meta property="og:updated_time" content="2015-12-20T11:20:02.909Z">
+<meta property="og:updated_time" content="2015-12-20T12:59:08.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode——线性表笔记">
 <meta name="twitter:description" content="线性表笔记数组
@@ -218,7 +218,7 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
 <li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
 </li>
 <li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
-<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器</li>
+<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器<a id="more"></a></li>
 <li><p>对于在容器中添加类的对象时, 相比于push_back,emplace_back可以避免额外类的复制和移动操作.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">elections.emplace_back(<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>); <span class="comment">//没有类的额外创建，直接在向量中构造对象</span></span><br><span class="line">elections.push_back(President（<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>）); <span class="comment">// 先构造一个对象实例，再向向量中移动</span></span><br></pre></td></tr></table></figure>
 </li>
