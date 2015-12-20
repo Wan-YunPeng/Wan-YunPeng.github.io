@@ -39,15 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Read the f**king code">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YunPeng’s Blog">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/index.html">
+<meta name="description" content="字符串1.是否为空字符串是否为空
+2.[]、itr和substrs[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，
+3.tolowerint tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理
+4.transform–uoOutpu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode——字符串笔记">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/20/leetcode_string/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="Read the f**king code">
+<meta property="og:description" content="字符串1.是否为空字符串是否为空
+2.[]、itr和substrs[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，
+3.tolowerint tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理
+4.transform–uoOutpu">
+<meta property="og:updated_time" content="2015-12-20T11:27:21.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YunPeng’s Blog">
-<meta name="twitter:description" content="Read the f**king code">
+<meta name="twitter:title" content="leetcode——字符串笔记">
+<meta name="twitter:description" content="字符串1.是否为空字符串是否为空
+2.[]、itr和substrs[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，
+3.tolowerint tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理
+4.transform–uoOutpu">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +67,7 @@
   };
 </script>
 
-  <title> YunPeng’s Blog </title>
+  <title> leetcode——字符串笔记 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -75,9 +85,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -153,9 +161,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -166,9 +174,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/20/leetcode_string/" itemprop="url">
-                leetcode——字符串笔记
-              </a>
+              leetcode——字符串笔记
             
           
         </h1>
@@ -203,8 +209,7 @@
       
 
       
-        
-          <span itemprop="articleBody"><h2 id="字符串">字符串</h2><h4 id="1-是否为空">1.是否为空</h4><p>字符串是否为空</p>
+        <span itemprop="articleBody"><h2 id="字符串">字符串</h2><h4 id="1-是否为空">1.是否为空</h4><p>字符串是否为空</p>
 <h4 id="2-[]、itr和substr">2.[]、itr和substr</h4><p>s[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，</p>
 <h4 id="3-tolower">3.tolower</h4><p>int tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理</p>
 <h4 id="4-transform–uo">4.transform–uo</h4><p>OutputIterator transform (InputIterator first1, InputIterator last1,                        OutputIterator result, UnaryOperation op);返回一个指向结果的迭代器，将区间[first1,last1)之间的元素进行一员操作op后,将其结果保存在result为首的空间中，源区间的值不受影响。除非就保存在源区间的位置</p>
@@ -218,7 +223,6 @@
 <p><font color="red">它不提供指针运算，所以不能用数组首地+N的方式访问数组元素，如*(sa + 10) = 10;错误用法，无法通过编译</font><br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::string <span class="built_in">str</span>;</span><br><span class="line">boost::scoped_array&lt;<span class="built_in">char</span>&gt; writable(<span class="keyword">new</span> <span class="built_in">char</span>[<span class="built_in">str</span>.<span class="built_in">size</span>() + <span class="number">1</span>]);</span><br><span class="line">std::<span class="built_in">copy</span>(<span class="built_in">str</span>.begin(), <span class="built_in">str</span>.end(), writable.<span class="built_in">get</span>());</span><br><span class="line">writable[<span class="built_in">str</span>.<span class="built_in">size</span>()] = <span class="string">'\0'</span>; <span class="comment">// don't forget the terminating 0</span></span><br></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;使用vector来实现<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> str;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; writable(str.begin(), str.end());</span><br><span class="line">writable.push_back(<span class="string">'\0'</span>);</span><br></pre></td></tr></table></figure></p>
 </span>
-        
       
     </div>
 
@@ -226,381 +230,43 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2015/12/20/leetcode/" itemprop="url">
-                leetcode——线性表笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T19:13:00+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/leetcode/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><h2 id="线性表笔记">线性表笔记</h2><h3 id="数组">数组</h3><ol>
-<li><p>unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）</p>
-<blockquote>
-<p>当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次<br>当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复<br>1） unique(A,A + n)(A为数组，n为数组大小)<br>2） unique(nums.begin(),nums.end())(nums为容器–含有迭代器)</p>
-</blockquote>
-</li>
-<li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
-</li>
-<li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
-<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器</li>
-<li><p>对于在容器中添加类的对象时, 相比于push_back,emplace_back可以避免额外类的复制和移动操作.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">elections.emplace_back(<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>); <span class="comment">//没有类的额外创建，直接在向量中构造对象</span></span><br><span class="line">elections.push_back(President（<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>）); <span class="comment">// 先构造一个对象实例，再向向量中移动</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在乱序中，找到最长连续序列，可用unordered_map做标记，以每个元素为中心，向左右扩展，用unordered_map记录扩展元素是否在此集合（键表示），若有，标记为已读，继续向下扩展，直至没有元素被找到为止。类似的，若有重复的元素，可以用set来记录（变向去除了重复的元素），找到相邻的元素之后将其标记为已读（删除也是一种方法）</p>
-</li>
-<li>removeElement(int A[],int n,int elem):为什么要将数组大小n作为参数传递进函数，不能用sizeof(A)/sizeof(A[0])求得吗？——原因是编译器将A变为一个指向源数组的指针，sizeof(A)/sizeof(A[0]) == 1 恒成立。</li>
-<li>remove(A,A + n, elem)返回一个迭代器（end）移除value值和elem相等的元素</li>
-<li>sort(start,end)默认是升序排序，即sort(start,end,less<int>())(假设待排列对象为int)。想要升序排列，改less<int>()为greater<int>()即可。–扩展：sort(rstart,rend)即为升序排列，因为是逆向迭代器，从end向start遍历。</int></int></int></li>
-<li>less<int>(),greater<int>(),equal_to<int>(),not_equal_to<int>(),less_equal<int>(),greater_equal<int>()，bit_xor<int>()(异或)，bit_and<int>(),bit_or<int>()</int></int></int></int></int></int></int></int></int></li>
-<li>remove_if(first,last,func),此类函数还有count_if,find_if,find_if_not</li>
-<li>bind1st和bind2nd返回一个函数对象（可被remove_if,count_if,find_if等带有函数参数的函数调用）。头文件为functional，将一个二元算子（binary functor,bf）转换为一元算子（unary functor,uf）:bind1st将该函数传入的参数作为第一个参数，例如：bind1st(less<int>(),x)–&gt;x &lt; ? ,找到第一个小于x的数。传入的x作为less<int>()的第一个参数，bind2nd同理</int></int></li>
-<li>vector<int>的方法reserve只是设置的向量（容器）的容量（capacity），它的size并未改变，还是得用push_back来添加新的元素。不是说用reserve设置了容量后就可以直接使用re[i]来设置新值了。</int></li>
-<li>accumulate (InputIterator first, InputIterator last, T init)计算区间和，并加上初值</li>
-<li>accumulate (InputIterator first, InputIterator last, T init,BinaryOperation binary_op)，计算区间和，并调用二元函数binary_op进行计算，区间和作为第一个参数传入，init作为第二个参数</li>
-<li>不可在没有元素的空容器上调用fill/fill_n。—&gt;使用迭代器即可，例如：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec: <span class="comment">// 空容器</span></span><br><span class="line">fill_n(back_insert(vec),<span class="number">10</span>,val)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>fill_n()没写入一个值，都会通过back_insert产生的插入迭代器实现，相当于在vec上调用push_back</p>
-<ol>
-<li>unordered_multimap允许键重复，没有[]下标运算，其有一个成员函数equal_range(x)，表示返回所有键为x的迭代器范围（因为unordered_multimap内部实现为红黑树，x的所有元素集中在一起）其返回类型为pair<iterator,iterator>,分别为x的起始迭代器和终止迭代器，可进行++预算。</iterator,iterator></li>
-<li>find_if(str.rbegin(),str.rend(),::isalpha) 从字符串末尾开始查找，找到第一个字母的位子。::isalnum,::isdigit…。这是一元函数在类似于find_if(remove_if,find_if_not,count_if同理)中的应用.</li>
-</ol>
-<h3 id="单链表">单链表</h3><blockquote>
-<p>总是加上一个头节点dumpy(-1)为好。处理链表时，可考虑先分开，再合并<br>slow和fast不仅可以找到中间节点，还可通过判断fast==nullptr偶数节点、fast！=nullptr奇数节点<br>对链表，nullptr的判断很重要，链表是否有环也很重要，面试时都是要判断的</p>
-</blockquote>
-<p>list::splice,拼接两个list时操作简单。  </p>
-<blockquote>
-<p>a1.splice(a1.begin(),a2),并不一定非的是a1.begin(),只要是指向a1的迭代器即可:将a2连接在a1的begin前,释放a2</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a2 = &#123;<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line">a1.splice(a1.begin(),a2); <span class="comment">// a1: 10,11,12,1,2,3; a2被释放</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>a1.splice(a1.begin(),a2,next(a2.begin()))将a2begin位置的元素拼接到a1.begin()前，并释放next(a2.begin())位置的元素</p>
-</blockquote>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">a1.splice</span>(<span class="literal">a1</span>.<span class="keyword">begin(),a2,next(a2.begin())); </span>// <span class="literal">a1</span>:<span class="number">11</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>  <span class="literal">a2</span>:<span class="number">10</span>,<span class="number">12</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>a1.splice(a1.begin(),a2,a2.begin(),a2.end()):将a2中区间[begin,end)的元素拼接到a1.begin()前的位置，并释放a2中的区间[begin,end)</p>
-</blockquote>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/c-15晦涩特性/" itemprop="url">
-                c++15晦涩特性
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T13:20:32+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/c-15晦涩特性/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/c-15晦涩特性/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <ol>
-<li>方括号的真正含义  </li>
-<li>最烦人的解析  </li>
-<li>替代运算标记符  </li>
-<li>重定义关键字  </li>
-<li>Placement new  </li>
-<li>在声明变量的同时进行分支  </li>
-<li>成员函数的引用修饰符  </li>
-<li>图灵完备的模板元编程  </li>
-<li>指向成员的指针操作符  </li>
-<li>静态实例方法  </li>
-<li>重载++和–  </li>
-<li>操作符重载和检查顺序  </li>
-<li>函数作为模板参数  </li>
-<li>模板的参数也是模板  </li>
-<li>try块作为函数  </li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/c-15晦涩特性/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+          <div class="post-nav-next post-nav-item">
             
-              <a class="post-title-link" href="/2015/12/20/机器学习基石三/" itemprop="url">
-                机器学习基石三
-              </a>
+              <a href="/2015/12/20/leetcode/" rel="next">leetcode——线性表笔记</a>
             
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T12:15:48+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/机器学习基石三/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/机器学习基石三/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>\(\color{red}{多元分类}\)&emsp;\(\color{red}{回归分析}\)<br>回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。<br>从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手上的铜板按照大小（可能是半径大小或是重量）得到下图<br><img src="http://i.imgur.com/CczslyD.png" alt=""><br>将这些资料喂给电脑，并告诉它这个大小、这个重量的是10cent,这个大小、这个重量的是1cent,这个大小、这个重量的是5cent,这个大小、这个重量的是25cent,我们希望电脑能不能得到一个 g ，能使贩卖机能准确的判断顾客投进去的一个铜板到底是哪一种？  </p>
-<blockquote>
-<p>分类US硬币（1c,5c,10c,25c）(按大小、重量)<br>y = {1c,5c,10c,25c} or y = {1,2,…,K}(abstractly)<br>binary classification: special cse with K = 2  </p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/机器学习基石三/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/18/机器学习基石二/" itemprop="url">
-                机器学习基石二
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
-            2015-12-18
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><font color = red>感知机</font>&emsp;<font color = red>线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
-<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/18/机器学习基石二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
-  </nav>
+  </div>
 
  </div>
 
         
 
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/12/20/leetcode_string/"
+                   data-title="leetcode——字符串笔记" data-url="http://Wan-YunPeng.github.io/2015/12/20/leetcode_string/">
+              </div>
+            
+          </div>
         
       </div>
 
@@ -617,6 +283,15 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -686,6 +361,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-是否为空"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.是否为空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-[]、itr和substr"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.[]、itr和substr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-tolower"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.tolower</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-transform–uo"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.transform–uo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-transform–bo"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.transform–bo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-isalnum"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.isalnum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-”a”_+_‘c’"><span class="nav-number">1.0.7.</span> <span class="nav-text">7.”a” + ‘c’</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-sortod"><span class="nav-number">1.0.8.</span> <span class="nav-text">8.sortod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9将string转换成char*:"><span class="nav-number">1.0.9.</span> <span class="nav-text">9将string转换成char*:</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
       
 
     </div>
@@ -770,6 +456,165 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {

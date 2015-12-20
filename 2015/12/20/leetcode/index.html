@@ -39,24 +39,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
+<meta name="description" content="线性表笔记数组
+unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）
+
+当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复1） unique(A,A + n)(A为数组，n为数组大小)2） unique(num">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习基石二">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/index.html">
+<meta property="og:title" content="leetcode——线性表笔记">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/20/leetcode/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
-<meta property="og:image" content="http://i.imgur.com/wggMOeL.png">
-<meta property="og:image" content="http://i.imgur.com/7uSFMpW.png">
-<meta property="og:image" content="http://i.imgur.com/xzyGpIh.png">
-<meta property="og:image" content="http://i.imgur.com/1rBHA4I.png">
-<meta property="og:image" content="http://i.imgur.com/1UA2U36.png">
-<meta property="og:image" content="http://i.imgur.com/9aQK8UX.png">
-<meta property="og:image" content="http://i.imgur.com/bMs9eNp.png">
-<meta property="og:image" content="http://i.imgur.com/iquLyQa.png">
-<meta property="og:updated_time" content="2015-12-20T04:10:09.908Z">
+<meta property="og:description" content="线性表笔记数组
+unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）
+
+当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复1） unique(A,A + n)(A为数组，n为数组大小)2） unique(num">
+<meta property="og:updated_time" content="2015-12-20T11:20:02.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习基石二">
-<meta name="twitter:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
+<meta name="twitter:title" content="leetcode——线性表笔记">
+<meta name="twitter:description" content="线性表笔记数组
+unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）
+
+当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复1） unique(A,A + n)(A为数组，n为数组大小)2） unique(num">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +67,7 @@
   };
 </script>
 
-  <title> 机器学习基石二 | YunPeng’s Blog </title>
+  <title> leetcode——线性表笔记 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -173,7 +174,7 @@
           
           
             
-              机器学习基石二
+              leetcode——线性表笔记
             
           
         </h1>
@@ -182,8 +183,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
-            2015-12-18
+          <time itemprop="dateCreated" datetime="2015-12-20T19:13:00+08:00" content="2015-12-20">
+            2015-12-20
           </time>
         </span>
 
@@ -193,8 +194,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
+              <a href="/2015/12/20/leetcode/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -208,22 +209,52 @@
       
 
       
-        <span itemprop="articleBody"><p><font color="red">感知机</font>&emsp;<font color="red">线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
-<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br><a id="more"></a><br>机器学习首要要有资料，资料从哪里来，从一个我们想学但是不知道的公式 f 里产生（可以理解为数据服从某个分布），有了这个资料以后，我们将这个资料喂给机器学习的演算法，机器学习通过观察所有的可能性 H ，从这些可能性中选一个 g 来，我们希望的是这个 g 和 f 越接近越好。以申请信用卡为例，当有人申请信用卡时， g 能很好的判断是否要给他信用卡。  </p>
-<p>H 到底长什么样子？<br>把每一个申请者用一个向量来表示，或用 \(\chi\) 来表示， \(\chi\) 有很多维度，比如这里第一维是他的年纪，第二维是他的年薪等等。<br><img src="http://i.imgur.com/7uSFMpW.png" alt="">  </p>
-<p>每个维度可能对我们有不同的正面或负面的影响，来决定我们到底给不给他信用卡。我们将这些维度综合的算起来，得到一个分数，如果这个分数超过一个阈值，我们就给他信用卡，如果没有超过，就不给他信用卡：<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &gt;    阈值   给他信用卡<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &lt;    阈值   不给他信用卡<br>就好比你考试，各个题的分数加起来超过60分，那你就及格了，没有达到60分就不及格。<br>\( {w}_{i}\)表示这个维度的权重，如果这个维度是正相关的，那\({w}_{i}\)很能很大，要是负相关的，\( {w}_{i}\)可能很小或是负的。<br>Y : {+1(good),-1(bad)},0忽略——线性公式 $${\color{Red}  h}(x) = sign ((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i}) - {\color{Red} {threshold}})$$<br>刚好等于0的概率很小，但出现时，一般忽略不计.这里的 h 叫做<font color="#DC143C">感知机</font>（类神经网络） h 由 w 算出来，再减去一个阈值。将threshold视为 w 的一部分，简化表达式：<br>$${\color{Red} h}(x) = sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} - {\color{Blue}{ threshold}})<br>= sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} + {\color{Blue}{(\underset{w_{0}}{\underbrace{-threshold}})\cdot (\underset{x_{0}}{\underbrace{+1}}})})=sign((\sum_{i=1}^{d}{\color{Red} {w}_{0}}{x}_{i})= sign({\color{Red} W^{T}}X)$$<br>简化成了 W 和 X 的内积。</p>
-<p><img src="http://i.imgur.com/xzyGpIh.png" alt=""></p>
-<p>假设 W 只有两维来分析， \(\chi\) 对于图中的点，圆圈代表+1，叉叉代表-1， h 画出来是一条直线， h 的一边代表+1，另一边代表-1；我们之前说的感知器其实就是对应平面一条条的直线。<br>&emsp;&emsp;现在我们知道了一个可能的hypothesis set，这个 H 是平面内所有的线，现在面临的问题是怎样设计一个演算法，从这么多条线中选择一条最好的出来，来接近<font color="red">未知的 f</font>。虽然不知道 f ，但是我们知道我们的资料是从 f 中来的，至少要求我们的 g 在我们的资料上在 f 上很接近，最好一模一样。<br><img src="http://i.imgur.com/1rBHA4I.png" alt=""><br>困难是 H 的集合无限，想法是先假设一条，然后不断的修正它，使得他接近我们的最优解。<br>For t = 0,1,,,,,,</p>
-<ol>
-<li>找出资料中的某个点<font color="blue">(\( x_{n(t)},y_{n(t)} \))</font>在<font color="red">\( w_{t} \)</font>上犯错，意思就是拿到这条线，跟X做内积，得到的正负号和想要的正负号不一致： sign(\( {\color{Red} w_{t}^{T}}{\color{Blue}x<em>{n(t)}}) \neq {\color{Blue}y\</em>{n(t)}}  \)   </li>
-<li>修正不正确的W:$${\color{Purple} w_{t+1}}\leftarrow {\color{Red} w_{t}} + {\color{Blue} y_{n(t)}x_{n(t)}} $$</li>
-</ol>
-<p><img src="http://i.imgur.com/1UA2U36.png" alt="">   </p>
-<p>当没有错误的时候，演算法就会停下来，但是资料一定是线性可分的吗？（噪音）假设它能停下来，那么在我们已知的资料上 g 和 f 的表现是一样的，但是在资料之外呢？g 的表现性我们也是未知的。上面的这个算法我们叫PLA(perceptron learning algorithm)</p>
-<p>当数据线性可分时\(\Leftrightarrow \)会存在一个\(w_{f}^{T}\)使得\( y_{n} = sign(w_{f}^{T}x_{n}) \)成立，也就是说对于每一个\(x_{n}\)都有$$ {\color{Purple} y_{n(t)}w_{f}^{T}x_{n(t)}}{\color{Blue} \geqslant  y_{n}w_{f}^{T}x_{n}}{\color{Red} &gt;0} $$<br>对于PLA算法中W选到的错误的点，也会满足上面的式子。用两个向量的内积来衡量两个向量之间到底接不接近。为了知道\(w_{f}^{T}\)和我们求的\(w<em>{t}\)是否接近，使他们两个做内积<br><img src="http://i.imgur.com/9aQK8UX.png" alt=""><br>上面是式子说明\(w\</em>{f}^{T}\)和\(w<em>{t}\)的内积越来越大，但两个向量的内积大也可能是他们本身就很大，而不是很接近，这里只证明了一半。<br>接下来用到PLA另外一个重要的性质：只有当我们有错的时候才更新\( \Leftrightarrow sign(w\</em>{t}^{T}x_{n(t)})\neq y_{n(t)}\Leftrightarrow {\color{Blue} y_{n(t)}w_{t}^{T}x_{n(t)} \leq 0} \)<br>用这个性质来观察\(w_{t+1}\)后的值：<br><img src="http://i.imgur.com/bMs9eNp.png" alt=""><br>蓝色部分是小于0的，所以如果只有犯错才更新的话，我们的Wt是不会成长得很快的，因为他要加一个负的项上去。只能靠红色的那一项成长，将犯错的点和最远的点作比较，得到最后一个不等式。最多更新最大的\({||x_{n}||}^{2}\)<br>所以之前说wt和wf可以越来越接近，但是wt会更新的很慢，这里得到一个很重要的结论：<br><img src="http://i.imgur.com/iquLyQa.png" alt=""><br>定义\( R_{2} = \underset{n}{max}{||x_{n} ||}^{2} \)&emsp;\( \rho = \underset{n}{min} y_{n}\frac{w_{f}^{T}}{||w_{f}||}x_{n}  \)<br>其中T为迭代次数，constant为一个常量，其值为\(\rho\)/R,又因为余弦夹角小于等于1，所以PLA之多迭代次数为：\(R_{2}/\rho \)<br>当我们从0开始一路做更新，做了T个更新之后，发现两个正规化向量的内积会大于等于更新次数的开方和某个常数，这里两个正规化向量的内积表示他们的接近程度，每一次的更新，就会接近一点，那他会不会无限次的靠近，不可能，因为两个正规化向量的内积最大为1。所以证明了这个演算法会停下来。</p>
-<p>这里总结一下，资料线性可分，wt每次选择一个错误出来修正。线性可分说明wt和wf会越来越接近，每次修正一个错误说明wt会缓慢的成长，融合这两个结果，证明了PLA会停下来。好处就是代码实现很简单（20行）。坏处就是资料是否线性可分是不能确定的，就是资料是线性可分的，资料中也有可能存在噪音数据，就算没有噪音且线性可分，但也不知道wt什么时候会停，之前算出迭代次数T \(\leq R_{2}/\rho_{2}\),而\(\rho\)的大小要依靠wf（未知），所以我们不知道PLA什么时候会停下来。所以，PLA在真正使用的时候会有很大的问题。<br>对于有噪音的数据，我们只需找到犯错误最少的\( w_{g} \)<br>pocket算法：</p>
+        <span itemprop="articleBody"><h2 id="线性表笔记">线性表笔记</h2><h3 id="数组">数组</h3><ol>
+<li><p>unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）</p>
 <blockquote>
-<p>for t = 0,1,….<br>找到\(w_{t}\)的一个错误，记为(\(x_{n(t)},y_{n(t)}\));<br>尝试修正这个错误：$$w_{t+1} \leftarrow w_{t} + y_{n(t)}x_{n(t)}$$<br>如果\(w_{t+1}\)犯的错比\(\hat{w}\)犯的错少，我们就用\(w_{t+1}\)代替\(\hat{w}\)<br>这个\(\hat{w}\)作为g返回</p>
+<p>当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次<br>当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复<br>1） unique(A,A + n)(A为数组，n为数组大小)<br>2） unique(nums.begin(),nums.end())(nums为容器–含有迭代器)</p>
+</blockquote>
+</li>
+<li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
+</li>
+<li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
+<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器</li>
+<li><p>对于在容器中添加类的对象时, 相比于push_back,emplace_back可以避免额外类的复制和移动操作.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">elections.emplace_back(<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>); <span class="comment">//没有类的额外创建，直接在向量中构造对象</span></span><br><span class="line">elections.push_back(President（<span class="string">"Nelson Mandela"</span>, <span class="string">"South Africa"</span>, <span class="number">1994</span>）); <span class="comment">// 先构造一个对象实例，再向向量中移动</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在乱序中，找到最长连续序列，可用unordered_map做标记，以每个元素为中心，向左右扩展，用unordered_map记录扩展元素是否在此集合（键表示），若有，标记为已读，继续向下扩展，直至没有元素被找到为止。类似的，若有重复的元素，可以用set来记录（变向去除了重复的元素），找到相邻的元素之后将其标记为已读（删除也是一种方法）</p>
+</li>
+<li>removeElement(int A[],int n,int elem):为什么要将数组大小n作为参数传递进函数，不能用sizeof(A)/sizeof(A[0])求得吗？——原因是编译器将A变为一个指向源数组的指针，sizeof(A)/sizeof(A[0]) == 1 恒成立。</li>
+<li>remove(A,A + n, elem)返回一个迭代器（end）移除value值和elem相等的元素</li>
+<li>sort(start,end)默认是升序排序，即sort(start,end,less<int>())(假设待排列对象为int)。想要升序排列，改less<int>()为greater<int>()即可。–扩展：sort(rstart,rend)即为升序排列，因为是逆向迭代器，从end向start遍历。</int></int></int></li>
+<li>less<int>(),greater<int>(),equal_to<int>(),not_equal_to<int>(),less_equal<int>(),greater_equal<int>()，bit_xor<int>()(异或)，bit_and<int>(),bit_or<int>()</int></int></int></int></int></int></int></int></int></li>
+<li>remove_if(first,last,func),此类函数还有count_if,find_if,find_if_not</li>
+<li>bind1st和bind2nd返回一个函数对象（可被remove_if,count_if,find_if等带有函数参数的函数调用）。头文件为functional，将一个二元算子（binary functor,bf）转换为一元算子（unary functor,uf）:bind1st将该函数传入的参数作为第一个参数，例如：bind1st(less<int>(),x)–&gt;x &lt; ? ,找到第一个小于x的数。传入的x作为less<int>()的第一个参数，bind2nd同理</int></int></li>
+<li>vector<int>的方法reserve只是设置的向量（容器）的容量（capacity），它的size并未改变，还是得用push_back来添加新的元素。不是说用reserve设置了容量后就可以直接使用re[i]来设置新值了。</int></li>
+<li>accumulate (InputIterator first, InputIterator last, T init)计算区间和，并加上初值</li>
+<li>accumulate (InputIterator first, InputIterator last, T init,BinaryOperation binary_op)，计算区间和，并调用二元函数binary_op进行计算，区间和作为第一个参数传入，init作为第二个参数</li>
+<li>不可在没有元素的空容器上调用fill/fill_n。—&gt;使用迭代器即可，例如：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec: <span class="comment">// 空容器</span></span><br><span class="line">fill_n(back_insert(vec),<span class="number">10</span>,val)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>fill_n()没写入一个值，都会通过back_insert产生的插入迭代器实现，相当于在vec上调用push_back</p>
+<ol>
+<li>unordered_multimap允许键重复，没有[]下标运算，其有一个成员函数equal_range(x)，表示返回所有键为x的迭代器范围（因为unordered_multimap内部实现为红黑树，x的所有元素集中在一起）其返回类型为pair<iterator,iterator>,分别为x的起始迭代器和终止迭代器，可进行++预算。</iterator,iterator></li>
+<li>find_if(str.rbegin(),str.rend(),::isalpha) 从字符串末尾开始查找，找到第一个字母的位子。::isalnum,::isdigit…。这是一元函数在类似于find_if(remove_if,find_if_not,count_if同理)中的应用.</li>
+</ol>
+<h3 id="单链表">单链表</h3><blockquote>
+<p>总是加上一个头节点dumpy(-1)为好。处理链表时，可考虑先分开，再合并<br>slow和fast不仅可以找到中间节点，还可通过判断fast==nullptr偶数节点、fast！=nullptr奇数节点<br>对链表，nullptr的判断很重要，链表是否有环也很重要，面试时都是要判断的</p>
+</blockquote>
+<p>list::splice,拼接两个list时操作简单。  </p>
+<blockquote>
+<p>a1.splice(a1.begin(),a2),并不一定非的是a1.begin(),只要是指向a1的迭代器即可:将a2连接在a1的begin前,释放a2</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; a2 = &#123;<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>&#125;;</span><br><span class="line">a1.splice(a1.begin(),a2); <span class="comment">// a1: 10,11,12,1,2,3; a2被释放</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>a1.splice(a1.begin(),a2,next(a2.begin()))将a2begin位置的元素拼接到a1.begin()前，并释放next(a2.begin())位置的元素</p>
+</blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">a1.splice</span>(<span class="literal">a1</span>.<span class="keyword">begin(),a2,next(a2.begin())); </span>// <span class="literal">a1</span>:<span class="number">11</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>  <span class="literal">a2</span>:<span class="number">10</span>,<span class="number">12</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>a1.splice(a1.begin(),a2,a2.begin(),a2.end()):将a2中区间[begin,end)的元素拼接到a1.begin()前的位置，并释放a2中的区间[begin,end)</p>
 </blockquote>
 </span>
       
@@ -236,13 +267,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/20/机器学习基石三/" rel="prev">机器学习基石三</a>
+              <a href="/2015/12/20/leetcode_string/" rel="prev">leetcode——字符串笔记</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/17/机器学习基石一/" rel="next">机器学习基石一</a>
+              <a href="/2015/12/20/c-15晦涩特性/" rel="next">c++15晦涩特性</a>
             
           </div>
         </div>
@@ -267,8 +298,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/12/18/机器学习基石二/"
-                   data-title="机器学习基石二" data-url="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/">
+              <div class="ds-thread" data-thread-key="2015/12/20/leetcode/"
+                   data-title="leetcode——线性表笔记" data-url="http://Wan-YunPeng.github.io/2015/12/20/leetcode/">
               </div>
             
           </div>
@@ -372,7 +403,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表笔记"><span class="nav-number">1.</span> <span class="nav-text">线性表笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单链表"><span class="nav-number">1.2.</span> <span class="nav-text">单链表</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
