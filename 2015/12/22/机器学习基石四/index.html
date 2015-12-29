@@ -1,0 +1,728 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Feasibility of Learning
+对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。我们再从数学的角度来看，观察下面这个例子
+
+输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。三个维度，三个bit只有8种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基石四">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/22/机器学习基石四/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Feasibility of Learning
+对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。我们再从数学的角度来看，观察下面这个例子
+
+输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。三个维度，三个bit只有8种">
+<meta property="og:image" content="http://i.imgur.com/zKbmDjv.png">
+<meta property="og:image" content="http://i.imgur.com/M2OP9bN.png">
+<meta property="og:image" content="http://i.imgur.com/ihiyuuU.png">
+<meta property="og:image" content="http://i.imgur.com/E7P5r5K.png">
+<meta property="og:image" content="http://i.imgur.com/769E02j.png">
+<meta property="og:image" content="http://i.imgur.com/WKotkdq.png">
+<meta property="og:image" content="http://i.imgur.com/a3ElE5F.png">
+<meta property="og:image" content="http://i.imgur.com/XBzxA33.png">
+<meta property="og:image" content="http://i.imgur.com/kcngTQK.png">
+<meta property="og:image" content="http://i.imgur.com/RTwJyQB.png">
+<meta property="og:image" content="http://i.imgur.com/4rVKVDs.png">
+<meta property="og:image" content="http://i.imgur.com/k1aw0kd.png">
+<meta property="og:image" content="http://i.imgur.com/F32rsMC.png">
+<meta property="og:image" content="http://i.imgur.com/3KwnFCG.png">
+<meta property="og:image" content="http://i.imgur.com/F1CBIKC.png">
+<meta property="og:image" content="http://i.imgur.com/jSGv1BE.png">
+<meta property="og:updated_time" content="2015-12-22T13:22:48.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基石四">
+<meta name="twitter:description" content="Feasibility of Learning
+对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。我们再从数学的角度来看，观察下面这个例子
+
+输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。三个维度，三个bit只有8种">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习基石四 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习基石四
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-22T10:38:55+08:00" content="2015-12-22">
+            2015-12-22
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/机器学习基石四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Feasibility_of_Learning">Feasibility of Learning</h2><p><img src="http://i.imgur.com/zKbmDjv.png" alt=""></p>
+<p>对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。<br>我们再从数学的角度来看，观察下面这个例子</p>
+<p><img src="http://i.imgur.com/M2OP9bN.png" alt=""></p>
+<p>输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。<br>三个维度，三个bit只有8种可能性，输出是两种，所以总共的函数最多有\(2^{8}\)=256种，好吧，我们把这256种统统放在high positive set里面，然后让我的机器演算法选择一个 g ，这个 g 在这五笔资料上都跟 f 一模一样，也就是这个 g 在这五笔资料上统统都是正确的。我们之前学的perceptron learning algorithm大体上来说就是做的这件事，看他能不能找到一条线，把所有的圈圈和叉叉都分开。现在的问题是这样的 g 好还是不好？<br><a id="more"></a> </p>
+<p><img src="http://i.imgur.com/ihiyuuU.png" alt=""></p>
+<p>不管你怎样设计你的演算法，我们总之找出了这样的一个 g ，因为最多有8种输入，我们这个g在给出的五笔资料上做衡量，都是正确的，我们不妨看看这个 g 在剩下的三种资料上做出什么样的预测。因为我们刚才设计那个演算法的方式确保了 g 和 f 在D上的表现是一模一样的，可是在D之外呢（外面三个）？假设你找出的 g 对另外三个做出的预测是圈叉圈，可是观察上图我们可以得出有8种可能的\(f_{i}\)都满足我们的条件，在上这5笔资料上和 f 的表现是一样的，刚说你的 g 得到的答案是圈叉圈，那么最坏的情形是真实的 f 是叉圈叉，那你这个 g 就错了。我们真的没有其他理由判断这8个\(f_{i}\)对错，如果要能判断，也必须加上一些其他的额外条件，平均来说我们好像没有学到什么东西。<font color="red">我们想要的不是说在把资料原来有的东西全都答对，而是我们在没有看过的资料里面能不能跟 f 做得一样好</font>,就好像之前的信用卡问题，不是拿一个旧的顾客的资料来看是否能够答对，而是一个新的顾客，来判断我们能否答对。  </p>
+<blockquote>
+<p>difficult to infer <font color="orange">unknown target f ouside D</font> in learning; can we infer <font color="orange">something unknown</font> in <font color="purple">other scenarios</font>?</p>
+</blockquote>
+<p>learning想做的东西就是对那个未知 f 做一些些推论。有没有一些方法，存在一个东西我们不知道，但是我们有一些方法去推论或者去估计到底这个东西是什么样的。<br><img src="http://i.imgur.com/E7P5r5K.png" alt=""></p>
+<p>如果弹珠很多很多，没有一颗一颗数的时候，就不能直到橘色弹珠的比例是多少。<br>但是我们可以随机抓一把弹珠出来，叫做sample，看一下这个sample里有多少颗橘色弹珠，就可以知道橘色弹珠的大概比例<br><img src="http://i.imgur.com/769E02j.png" alt=""></p>
+<blockquote>
+<p>dose <font color="orange">in-sample \(\nu\)</font> say anything about out-fo-sample \(\mu\)?<br>No! possibly not: sample can be mostly <font color="green">green</font> while bin is mostly <font color="orange">orange</font><br>Yes! probably yes:in-sample \(\nu\) likely <font color="purple">close to</font> unknown \(\mu\)<br>formally, <font color="orange">what does \(\nu\) say about \(\mu\)</font>?  </p>
+</blockquote>
+<p>我们从数学的角度来看一下这件事情</p>
+<p><img src="http://i.imgur.com/WKotkdq.png" alt=""></p>
+<p>我们知道的事情是如果我们今天抽一把起来，抽的数量叫做 N ，（可能10，可能20），得到的\(\mu 和真实的\nu\)很接近，数学上说这件事情发生的几率很小.</p>
+<blockquote>
+<p>in big sample<font color="blue">(N large)</font>,\(\nu\) is probably close to \(\mu\)<font color="red">(within \(\epsilon\))</font>$$\mathbb{P}[|\nu - \mu| &gt; {\color{Red} \epsilon} ] \leq 2 exp(-2{\color{Red} \varepsilon}^{2}{\color{Blue} N} )$$</p>
+</blockquote>
+<p>当N很大时，\(\nu 和 \mu\)相差大于\(\epsilon\)的几率是很小的。抽样调查（N很大）得到的估计和你有兴趣想要得到不会差很大。</p>
+<blockquote>
+<p>the statement ‘\(\nu = \mu\)’ is <font color="orange">probably approximately correct</font>(PAC)</p>
+</blockquote>
+<p>大概（上面这句话）差不多（得到的是30%，实际上可能是32%，31%）是正确的。<br>Hoeffding’s Inequality$$\mathbb{P}[|\nu - \mu| &gt; {\color{Red} \epsilon} ] \leq 2 exp(-2{\color{Red} \varepsilon}^{2}{\color{Blue} N} )$$ </p>
+<blockquote>
+<p>valid for all <font color="blue">N</font> and \(\color{Red}{\epsilon}\) 实际上不管你选择的N是多少，还有你选择的\(\epsilon\)包容性，容忍多少的误差，这个不等式统统都是对的<br>does not depend on \(\mu\),<font color="purple">no need to ‘know’ \(\mu\)</font> 跟真实的\(\mu\)无关，那我们就不需要知道它，我们知道的是sample的大小和\(\nu\)，然后我们要推论回来</p>
+<p><font color="blue">larger sample size N</font> or <font color="red">looser gap \(\epsilon\)</font> \(\Rightarrow\) highter probability for ‘\(\nu \approx \mu\)’ 抽很多的样本或者设置一个比较大的容忍度，那么坏事发生地几率就会变小，但是大包容性可能不能很好的使\(\nu 和 \mu\)接近。</p>
+</blockquote>
+<p><img src="http://i.imgur.com/a3ElE5F.png" alt=""><br>样本独立同分布，弹珠视为输入空间\(\chi\)</p>
+<blockquote>
+<p>if <font color="blue">large N</font> &amp; <font color="orange">i.i.d.</font> \(x_{n}\),can <font color="orange">probably</font> infer unknown [h(x) \(\neq\) f(x)] probability by known [h(\(x_{n}) \neq y_{n}\)] fraction. 我们大概可以说 h 跟 f 不一样的概率到底是多少。从哪里说？从我们看得到的地方说，我们看得到资料里的 h 跟 f 不一样的几率是多少</p>
+</blockquote>
+<p><img src="http://i.imgur.com/XBzxA33.png" alt=""><br>我们有一个几率P，这个几率用来做什么？从罐子里取样。这个取样会用在两个地方。哪两个地方？第一个我们取样产生了我们的资料，就好像我们刚才从罐子里抽一把出来。第二个我们用这个同样的几率去衡量 h 和 f 到底一不一样？（虚线表示不知道）h 和 f 到底一不一样呢，我们就可以用我们手上的资料来看</p>
+<blockquote>
+<p>for any fixed h, can probably infer <font color="orange">unknown \(E_{out}(h)\)</font> = \(\underset{x\sim P}{\varepsilon }\)[h(x) \(\neq\) f(x)] by <font color="orange">known \(E_{in}(h)\)</font> = \(\frac{1}{N}\sum_{n=1}^{N}[h(x_{n}) \neq y_{n}]\)</p>
+</blockquote>
+<p>将hoeffding不等式套进来：</p>
+<blockquote>
+<p>for any fixed h, in ‘big’ data(<font color="blue">N large</font>),<font color="red">in-sample error \(E_{in}(h)\)</font> is probably close to <font color="red">out-of-sample error \(E_{out}(h)\) (within \(\epsilon\))</font> $$\mathbb{P}[|E_{in}(h) - E_{out}(h)| &gt; {\color{Red} \epsilon} ] \leq 2 exp(-2{\color{Red} \varepsilon}^{2}{\color{Blue} N} )$$ Ein和Eout大概差不多是接近的<br>valid for all \(\color{Blue}{N}\) and \(\color{Red}{\epsilon}\) 对所有的N和\(\epsilon\)都是有效的<br>does not depend on \(E_{out}(h)\),<font color="orange">no need to ‘known’ \(E_{out}(h)\)</font>——f and P can stay unknwon f 和 P 都是我们的假设，都不需要知道<br>‘\(E_{in}(h) = E_{out}(h)\)’ is <font color="orange">probably approximately correct(PAC)</font> Ein可以推论到Eout。如果今天Ein很低，那么就表示Eout可能也很低<br>if <font color="orange">‘\(E_{in}(h) = E_{out}(h)\)’</font> and <font color="purple">‘\(E_{in}(h)\) small’</font> \(\Rightarrow E_{out}(h)\) small \(\Rightarrow h \sim f\) with respect to P</p>
+</blockquote>
+<p>已经有一个 g ，当资料很充分时，Ein 和Eout很很接近。No的情况是你的演算法要选择那个H，有点像强迫你选到那一个H， 你现在有一千个H在手上，但是你的演算法一定要选那个H，选到别的H不行，如果你有一个机器学习的演算法，但是他不管面对什么题目都给你一样，一定是那个H的话，十之八九那个H不是很好的。<br><img src="http://i.imgur.com/kcngTQK.png" alt=""></p>
+<blockquote>
+<p>real learning:<br>A shall <font color="orange">make choices \(\in\) H</font>(like PLA) rather than <font color="blue">being forced to pich one h.</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/RTwJyQB.png" alt=""></p>
+<p>我们现在做的不是learning而是verification，我们要确认，我们的表现好不好，我一样有资料，不过这个资料没有经过learning，没有经过那个选择的程序，然后我也不是一个Hypothesis Set因为我既然没有选择就不需要一个Hypothesis Set，我只有一个固定Hypothesis，但是我可以验证这个Hypothesis的表现到底好还是不好，把他当成g，再去找一堆资料，看看这个Hypothesis在这些资料上表现的好不好。</p>
+<p>假设现在这种情况，如果有是个Hypothesis，其中有一个Hypothesis在你所看到的资料上全对，你要不要选他<br><img src="http://i.imgur.com/4rVKVDs.png" alt=""></p>
+<blockquote>
+<p>Coin Game<br>Q:if everyone in size-150 NTU ML calss <font color="blue">flips a coin 5 times</font>,and <font color="orange"> one of the students gets 5 ehads for her coin ‘g’</font>.Is ‘g’ really magical?<br>A:No.Even if all coins are fair,the probablility that <font color="orange">one of the coins</font> results in <font color="orange">5 head</font> is 1 - \({(\frac{31}{32})}^{150}\) &gt; 99%  </p>
+<p><font color="red">BAD</font> sample:<font color="red"> \(E_{in}\) and \(E_{out}\) far away</font>——can get <font color="orange">worse</font> when involving ‘choice’  </p>
+</blockquote>
+<p>想想hoeffding告诉我们什么事情？hoeffding告诉我们的事情是我取样出来的跟罐子里的大部分的时候是一样的。只有小部分的时候是不好的，不好的这个我取样出来的跟我罐子里的那两个\(\mu\)跟\(\nu\)差的非常远，不好的我就说bad，就是不好的。然后hoeffding说不好的这件事情很小。那现在怎么样？我们现在发现有选择的时候，这些选择会恶化这些不好的情形。对比我们coin game，当你只有一个铜板时，拿到正面的概率是1/2，那么拿到不好的就是你拿到5个正面的几率是1/32而已，现在有150个选择时，概率超过99%，就是不好的几率恶化了<br>那什么是不好的资料？<br><img src="http://i.imgur.com/k1aw0kd.png" alt=""><br>铜板就是弹珠，就是我们手上的资料，不好的铜板是怎么样？它实际上的几率是1/2，但我们丢丢丢丢了5次正面，也就是说它的Ein，我们手上的sample看起来好像是0，所以两个差的很远。不好的资料是怎么样？不好的资料就是Eout和Ein差的很远，如果我只有一个Hypothesis就可以直接看说Eout和Ein如果差的很远，比什么远，比\(\epsilon\)/h来得远的话那我们就说他是不好的。典型的例子就是Ein很小，在我们手上的看起来很好，但是它在Eout也就是我们看不到的地方实际上很不好，Eout很大<br><img src="http://i.imgur.com/F32rsMC.png" alt=""><br>hoeffding保证的事情是说你抽一把出来的时候有很大的机会会是好的情形，只有很小的机会是不好的情形，几率是在你抽一把这件事情上，所以你可以说我抽一把，这把是好的，抽一把，这把是不好的，你可以一把一把各种不同的抽，各种不同的抽就会对应各种不同的资料，如上图的Di。反映到上图，hoeffding保障的事情是没有太多格式bad，也就是说总体来说bad的几率是小于等于我们之前的那个exponention.hoeffding说的事情是这样，我把所有可能的资料列成一排（穷举），大概有n笔资料列成一排，D1有n笔，D2有n笔..，不好的那些格很少，或者说他们几率加起来非常的小。<br><img src="http://i.imgur.com/3KwnFCG.png" alt=""><br>不好的资料就是可能让演算法踩到雷<br>在我的演算法可以自由自在的做选择的时候，不好的资料的概率是多少。<br><img src="http://i.imgur.com/F1CBIKC.png" alt=""><br>如果我今天又一个hypothesis set里面有100项，那我就比原来的hoeffding不好的事情发生的机会乘上100倍。</p>
+<blockquote>
+<p>finit-bin version of Hoeffding,valid for all <font color="orange">M</font>, N and \(\epsilon\)<br>does not depend on any \(E_{out}(h_{m})\),<font color="orange">no need to ‘know’ \(E_{out}(h_{m})\)</font>—— f and P can stay unknown<br>‘\(E_{in}(g)=E_{out}(g)\)’ is <font color="orange">PAC, regardless of A</font><br><img src="http://i.imgur.com/jSGv1BE.png" alt=""><br>如果我今天的hypothesis set只有有限多种选择，我的资料量够多，不管我的演算法怎样选，Ein和Eout都会接近，这是我们刚才推导的这个finite-bin的hoeffding告诉我们的事情。</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/22/机器学习基石五/" rel="prev">机器学习基石五</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/20/leetcode_string/" rel="next">leetcode——字符串笔记</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/12/22/机器学习基石四/"
+                   data-title="机器学习基石四" data-url="http://Wan-YunPeng.github.io/2015/12/22/机器学习基石四/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Feasibility_of_Learning"><span class="nav-number">1.</span> <span class="nav-text">Feasibility of Learning</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -39,16 +39,33 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
+<meta name="description" content="机器学习基石七VC维上次课得出的一个重要的结论：
+几个条件，让我们的learning可以做得到：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++类型转换总结">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/10/23/C++类型转换总结/index.html">
+<meta property="og:title" content="机器学习基石七">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/26/机器学习基石七/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
-<meta property="og:updated_time" content="2015-12-17T03:13:48.733Z">
+<meta property="og:description" content="机器学习基石七VC维上次课得出的一个重要的结论：
+几个条件，让我们的learning可以做得到：">
+<meta property="og:image" content="http://i.imgur.com/bokvHuM.png">
+<meta property="og:image" content="http://i.imgur.com/aKjK4oA.png">
+<meta property="og:image" content="http://i.imgur.com/tIId7X0.png">
+<meta property="og:image" content="http://i.imgur.com/e5mgbyA.png">
+<meta property="og:image" content="http://i.imgur.com/f7wW7Lm.png">
+<meta property="og:image" content="http://i.imgur.com/69rOugh.png">
+<meta property="og:image" content="http://i.imgur.com/QWjY0Xw.png">
+<meta property="og:image" content="http://i.imgur.com/ariWuuN.png">
+<meta property="og:image" content="http://i.imgur.com/86ekABv.png">
+<meta property="og:image" content="http://i.imgur.com/YRgSqPq.png">
+<meta property="og:image" content="http://i.imgur.com/lafl8ZG.png">
+<meta property="og:image" content="http://i.imgur.com/U9vldtI.png">
+<meta property="og:image" content="http://i.imgur.com/LO7rW9L.png">
+<meta property="og:image" content="http://i.imgur.com/9dhR0Yc.png">
+<meta property="og:updated_time" content="2015-12-29T15:14:18.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++类型转换总结">
-<meta name="twitter:description" content="C++类型转换分为：隐式类型转换和显式类型转换隐式转换：编译器自行转换，可能与程序员预期不一致显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换">
+<meta name="twitter:title" content="机器学习基石七">
+<meta name="twitter:description" content="机器学习基石七VC维上次课得出的一个重要的结论：
+几个条件，让我们的learning可以做得到：">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -58,7 +75,7 @@
   };
 </script>
 
-  <title> C++类型转换总结 | YunPeng’s Blog </title>
+  <title> 机器学习基石七 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +182,7 @@
           
           
             
-              C++类型转换总结
+              机器学习基石七
             
           
         </h1>
@@ -174,8 +191,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
-            2015-10-23
+          <time itemprop="dateCreated" datetime="2015-12-26T16:10:55+08:00" content="2015-12-26">
+            2015-12-26
           </time>
         </span>
 
@@ -185,8 +202,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/23/C++类型转换总结/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/23/C++类型转换总结/" itemprop="commentsCount"></span>
+              <a href="/2015/12/26/机器学习基石七/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/机器学习基石七/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -200,105 +217,20 @@
       
 
       
-        <span itemprop="articleBody"><p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br><a id="more"></a></p>
-<h2 id="第一部分-隐式类型转换">第一部分.隐式类型转换</h2><h3 id="算术转换(Arithmetic_conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。">算术转换(Arithmetic conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。</h3><pre><code><span class="keyword">int</span> ival = <span class="number">3</span>;  
-<span class="keyword">double</span> dval = <span class="number">3.2</span>;  
-ival + dval; <span class="comment">//ival被提升为double类型</span>
-</code></pre><h3 id="一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型">一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型</h3><pre><code><span class="keyword">int</span> *pi = <span class="number">0</span>; <span class="comment">// 0被转化为int *类型  </span>
-ival = dval; <span class="comment">// double-&gt;int</span>
-</code></pre><p>例外:void指针赋值给其他指定类型指针时，不存在标准转换，编译出错  </p>
-<h3 id="将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型">将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型</h3><pre><code><span class="function"><span class="keyword">extern</span> <span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span>)</span></span>;  
-<span class="built_in">cout</span>&lt;&lt;<span class="string">"The square root 2 is "</span>&lt;&lt;<span class="built_in">sqrt</span>(<span class="number">2</span>)&lt;&lt;endl;  
-<span class="comment">// 2被提升为double类型：2.0</span>
-</code></pre><h3 id="从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型">从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型</h3><pre><code><span class="function"><span class="keyword">double</span> <span class="title">difference</span><span class="params">(<span class="keyword">int</span> ival1, <span class="keyword">int</span> ival2)</span>  
-</span>{  
-  <span class="keyword">return</span> ival1 - ival2;  
-  <span class="comment">// 返回值被提升为double类型  </span>
-}
-</code></pre><h2 id="第二部分-显式类型转换">第二部分.显式类型转换</h2><p>被称为“强制类型转换”(cast)<br>C     风格： (type-id)<br>C++风格： static_cast、dynamic_cast、reinterpret_cast、和const_cast..  </p>
-<h3 id="static_cast">static_cast</h3><blockquote>
-<p>用法：static_cast &lt; type-id &gt; ( expression )<br>说明：该运算符把expression转换为type-id类型，但没有运行时类型检查来保证转换的安全性  </p>
-<p>来源：为什么需要static_cast强制转换？<br>情况1：void-&gt;其他类型指针<br>情况2：改变通常的标准转换<br>情况3：避免出现可能多种转换的歧义 </p>
+        <span itemprop="articleBody"><h2 id="机器学习基石七">机器学习基石七</h2><p>VC维<br>上次课得出的一个重要的结论：<br><img src="http://i.imgur.com/bokvHuM.png" alt=""></p>
+<p>几个条件，让我们的learning可以做得到：</p>
+<p><img src="http://i.imgur.com/aKjK4oA.png" alt=""><br><a id="more"></a><br>VC维：在break point之前的那个点<br><img src="http://i.imgur.com/tIId7X0.png" alt=""><br><img src="http://i.imgur.com/e5mgbyA.png" alt=""><br>之前提到好的hypothesis set是有break point的，现在好多hypothesis set是<font color="red">VC维是finite的。</font>    </p>
+<blockquote>
+<p>有限的VC维表示Ein和Eout很接近，不管你的演算法如何选择<br>跟资料是由什么分布产生没有关系<br>和目标函数f没有关系</p>
 </blockquote>
-<p>它主要有如下几种用法：  </p>
-<ul>
-<li>用于类层次结构中基类和子类之间指针或引用的转换。进行上行转换（把子类的指针或引用转换成基类表示）是安全的；进行下行转换（把基类指针或引用转换成子类指针或引用）时，由于没有动态类型检查，所以是不安全的。  </li>
-<li>用于基本数据类型之间的转换，如把int转换成char，把int转换成enum。这种转换的安全性也要开发人员来保证。  </li>
-<li>把void指针转换成目标类型的指针(不安全!!)  </li>
-<li>把任何类型的表达式转换成void类型。  </li>
-</ul>
-<p>注意：static_cast不能转换掉expression的const、volitale、或者__unaligned属性。</p>
-<h3 id="dynamic_cast">dynamic_cast</h3><blockquote>
-<p>用法：dynamic_cast &lt; type-id &gt; ( expression )<br>说明：该运算符把expression转换成type-id类型的对象。Type-id必须是类的指针、类的引用或者void *；如果type-id是类指针类型，那么expression也必须是一个指针，如果type-id是一个引用，那么expression也必须是一个引用。  </p>
+<p><img src="http://i.imgur.com/f7wW7Lm.png" alt=""></p>
+<p>回到之前的演算法PLA。<br><img src="http://i.imgur.com/69rOugh.png" alt=""><br>那么在多维的情况下呢？  </p>
+<blockquote>
+<p>1维下perceptron：\(d_(vc)\) = 2<br>2维下perceptron，\(d_(vc)\) = 3<br>3维下perceptron，\(d_(vc)\) = 4  </p>
 </blockquote>
-<p>dynamic_cast主要用于类层次间的上行转换和下行转换，还可以用于类之间的交叉转换。<br>在类层次间进行上行转换时，dynamic_cast和static_cast的效果是一样的；在进行下行转换时，dynamic_cast具有类型检查的功能，比static_cast更安全。  </p>
-<pre><code><span class="keyword">class</span> Base  
-{  
-<span class="keyword">public</span>:  
-    <span class="keyword">int</span> m_iNum;  
-    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;  
-};  
-
-<span class="keyword">class</span> Derived:<span class="keyword">public</span> Base  
-{  
-<span class="keyword">public</span>:  
-    <span class="keyword">char</span> *m_szName[<span class="number">100</span>];  
-};  
-
-<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(Base *pb)</span>  
-</span>{  
-    Derived *pd1 = <span class="keyword">static_cast</span>&lt;Derived *&gt;(pb);  
-
-    Derived *pd2 = <span class="keyword">dynamic_cast</span>&lt;Derived *&gt;(pb);  
-}
-</code></pre><p>在上面的代码段中，<br>如果pb实际指向一个Derived类型的对象，pd1和pd2是一样的，并且对这两个指针执行Derived类型的任何操作都是安全的；<br>如果pb实际指向的是一个Base类型的对象，那么pd1将是一个指向该对象的指针，对它进行Derived类型的操作将是不安全的（如访问m_szName），而pd2将是一个空指针(即0，因为dynamic_cast失败,安全性)。<br>另外要注意：Base要有虚函数，否则会编译出错；static_cast则没有这个限制。这是由于运行时类型检查需要运行时类型信息，而这个信息存储在类的虚函数表（关于虚函数表的概念，详细可见<inside c++="" object="" model="">）中，只有定义了虚函数的类才有虚函数表，没有定义虚函数的类是没有虚函数表的。  </inside></p>
-<p>另外，dynamic_cast还支持交叉转换（cross cast）。如下代码所示。  </p>
-<pre><code><span class="keyword">class</span> Base  
-{  
-<span class="keyword">public</span>:  
-    <span class="keyword">int</span> m_iNum;  
-    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>{}  
-};  
-
-<span class="keyword">class</span> Derived1 : <span class="keyword">public</span> Base  
-{  
-
-};  
-
-<span class="keyword">class</span> Derived2 : <span class="keyword">public</span> Base  
-{  
-
-};  
-
-<span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span>  
-</span>{  
-    derived1 *pd1 = <span class="keyword">new</span> Drived1;  
-    pd1-&gt;m_iNum = <span class="number">100</span>;  
-    Derived2 *pd2 = <span class="keyword">static_cast</span>&lt;Derived2 *&gt;(pd1); <span class="comment">//compile error  </span>
-    Derived2 *pd2 = <span class="keyword">dynamic_cast</span>&lt;Derived2 *&gt;(pd1); <span class="comment">//pd2 is NULL  </span>
-    <span class="keyword">delete</span> pd1;  
-}
-</code></pre><p>在函数foo中，使用static_cast进行转换是不被允许的，将在编译时出错；而使用 dynamic_cast的转换则是允许的，结果是空指针。  </p>
-<h3 id="reinpreter_cast">reinpreter_cast</h3><blockquote>
-<p>用法：reinpreter_cast &lt; type-id &gt; (expression)<br>说明：type-id必须是一个指针、引用、算术类型、函数指针或者成员指针。它可以把一个指针转换成一个整数，也可以把一个整数转换成一个指针（先把一个指针转换成一个整数，在把该整数转换成原类型的指针，还可以得到原先的指针值）。<br>该运算符的用法比较多。</p>
-</blockquote>
-<h3 id="const_cast">const_cast</h3><blockquote>
-<p>用法：const_cast &lt; type_id &gt; (expression)<br>说明：该运算符用来修改类型的const或volatile属性。除了const 或volatile修饰之外， type_id和expression的类型是一样的。 </p>
-</blockquote>
-<p>常量指针被转化成非常量指针，并且仍然指向原来的对象；常量引用被转换成非常量引用，并且仍然指向原来的对象；常量对象被转换成非常量对象。<br>Voiatile和const类试。举如下一例：  </p>
-<pre><code><span class="keyword">class</span> B{  
-<span class="keyword">public</span>:  
-<span class="keyword">int</span> m_iNum;  
-}  
-
-<span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>{  
-<span class="keyword">const</span> B b1;  
-b1.m_iNum = <span class="number">100</span>; <span class="comment">//comile error </span>
-<span class="keyword">const_cast</span>&lt;B&amp;&gt;(b1).m_iNum = <span class="number">10</span>; <span class="comment">// OK </span>
-B b2 = <span class="keyword">const_cast</span>&lt;B&amp;&gt;(b1);  
-b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </span>
-}
-</code></pre><p>上面的代码编译时会报错，因为b1是一个常量对象，不能对它进行改变；使用const_cast把它转换成一个常量对象，就可以对它的数据成员任意改变。注意：b1和b2是两个不同的对象。</p>
+<p>事实上，对于线性分类器perceptron，其VC维是\(d_(vc)\)N + 1（证明看ppt）</p>
+<p><img src="http://i.imgur.com/QWjY0Xw.png" alt=""><br>这些perceptron，这些hypothesis是有参数W来表示的，W实际上就是我们hypothesis set里面的自由度到底有多少。VC维在我今天要做perceptron，做二元分类的状况下，到底有多少的自由度，最多能产生多少的dichotomy<br><img src="http://i.imgur.com/ariWuuN.png" alt=""><br>想要知道你的VC维是多少，看看你的参数（旋钮）有多少（并不一定总是对的）<br><img src="http://i.imgur.com/86ekABv.png" alt=""><br>用vc维代替原来的M是等价的。<br><img src="http://i.imgur.com/YRgSqPq.png" alt=""><br><img src="http://i.imgur.com/lafl8ZG.png" alt=""><br><img src="http://i.imgur.com/U9vldtI.png" alt=""><br><img src="http://i.imgur.com/LO7rW9L.png" alt=""><br>理论上需要10000倍的vc维的数据，实际上只要10倍就足够，这个之间的差距就是vc bound的宽松度，这个宽松都从哪里来？<br><img src="http://i.imgur.com/9dhR0Yc.png" alt=""></p>
+<p>VC维的物理意义：我们的hypothesis set到底有多少的自由度，大概就是有多少自由的旋钮</p>
 </span>
       
     </div>
@@ -310,13 +242,13 @@ b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </sp
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/24/lambda-and-function/" rel="prev">lambda函数和std::function</a>
+              <a href="/2015/12/29/机器学习基石八/" rel="prev">机器学习基石八</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/22/常量表达式constexpr/" rel="next">常量表达式constexpr</a>
+              <a href="/2015/12/24/机器学习基石六/" rel="next">机器学习基石六</a>
             
           </div>
         </div>
@@ -341,8 +273,8 @@ b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </sp
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/10/23/C++类型转换总结/"
-                   data-title="C++类型转换总结" data-url="http://Wan-YunPeng.github.io/2015/10/23/C++类型转换总结/">
+              <div class="ds-thread" data-thread-key="2015/12/26/机器学习基石七/"
+                   data-title="机器学习基石七" data-url="http://Wan-YunPeng.github.io/2015/12/26/机器学习基石七/">
               </div>
             
           </div>
@@ -446,7 +378,7 @@ b2. m_iNum = <span class="number">200</span>; <span class="comment">//fine  </sp
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一部分-隐式类型转换"><span class="nav-number">1.</span> <span class="nav-text">第一部分.隐式类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算术转换(Arithmetic_conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。"><span class="nav-number">1.1.</span> <span class="nav-text">算术转换(Arithmetic conversion):在混合类型的算术表达式中,最宽的数据类型成为目标转换类型。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型"><span class="nav-number">1.2.</span> <span class="nav-text">一种类型表达式赋值给另一种类型的对象:目标类型是被赋值对象的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型"><span class="nav-number">1.3.</span> <span class="nav-text">将一个表达式作为实参传递给函数调用，此时形参和实参类型不一致：目标转换类型为形参的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型"><span class="nav-number">1.4.</span> <span class="nav-text">从一个函数返回一个表达式，表达式类型与返回类型不一致：目标转换类型为函数的返回类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二部分-显式类型转换"><span class="nav-number">2.</span> <span class="nav-text">第二部分.显式类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#static_cast"><span class="nav-number">2.1.</span> <span class="nav-text">static_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic_cast"><span class="nav-number">2.2.</span> <span class="nav-text">dynamic_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reinpreter_cast"><span class="nav-number">2.3.</span> <span class="nav-text">reinpreter_cast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const_cast"><span class="nav-number">2.4.</span> <span class="nav-text">const_cast</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石七"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石七</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -42,7 +42,7 @@
 <meta name="description" content="Read the f**king code">
 <meta property="og:type" content="website">
 <meta property="og:title" content="YunPeng’s Blog">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/index.html">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/page/4/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
 <meta property="og:description" content="Read the f**king code">
 <meta name="twitter:card" content="summary">
@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
-                机器学习基石八
+              <a class="post-title-link" href="/2015/10/26/fibonacci/" itemprop="url">
+                fibonacci数列及其应用
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
-            2015-12-29
+          <time itemprop="dateCreated" datetime="2015-10-26T09:24:17+08:00" content="2015-10-26">
+            2015-10-26
           </time>
         </span>
 
@@ -188,8 +188,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
+              <a href="/2015/10/26/fibonacci/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/fibonacci/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -204,13 +204,17 @@
 
       
         
-          <h2 id="机器学习基石八">机器学习基石八</h2><p>上次学到：</p>
+          <h3 id="一、起源和定义">一、起源和定义</h3><p>斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：  </p>
 <blockquote>
-<p>learning happens if <font color=orange>finite \(d_{vc}\), large N,</font> and <font color=orange>low \(E_{in}\)</font></p>
+<p>有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？  </p>
 </blockquote>
-<p><img src="http://i.imgur.com/BM9fHgo.png" alt=""><br>target function会产生一堆的样本，我们的资料，这些资料从哪里来？除了从target function得到他的y的部分，它的x是由某个我们所不知道的分布产生的，未来在测试的时候，我们也要用一样的分布，我们的演算法从这些资料和一个好的hypothesis set里找到一个好的的hypothesis。好的hypothesis set是vc维是有限的，好的hypothesis是Ein是很小的。<br>要是资料有<font color=red>噪音</font>呢？<br>
+<p>而最早研究这个数列的当然就是<a href="http://baike.baidu.com/view/112871.htm">斐波那契</a>(Leonardo Fibonacci)了，他当时是为了描述如下情况的兔子生长数目：  </p>
+<blockquote>
+<p>-第一个月有一对刚诞生的兔子<br>-第二个月之后（第三个月初）它们可以生育<br>-每月每对可生育的兔子会诞生下一对新兔子<br>-兔子永不死去</p>
+</blockquote>
+<p><img src="http://i.imgur.com/5nR3KFi.png" alt=""><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/29/机器学习基石八/#more" rel="contents">
+            <a class="btn" href="/2015/10/26/fibonacci/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -243,8 +247,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/26/机器学习基石七/" itemprop="url">
-                机器学习基石七
+              <a class="post-title-link" href="/2015/10/24/lambda-and-function/" itemprop="url">
+                lambda函数和std::function
               </a>
             
           
@@ -254,8 +258,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-26T16:10:55+08:00" content="2015-12-26">
-            2015-12-26
+          <time itemprop="dateCreated" datetime="2015-10-24T13:38:41+08:00" content="2015-10-24">
+            2015-10-24
           </time>
         </span>
 
@@ -265,8 +269,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/26/机器学习基石七/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/机器学习基石七/" itemprop="commentsCount"></span>
+              <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -281,11 +285,18 @@
 
       
         
-          <h2 id="机器学习基石七">机器学习基石七</h2><p>VC维<br>上次课得出的一个重要的结论：<br><img src="http://i.imgur.com/bokvHuM.png" alt=""></p>
-<p>几个条件，让我们的learning可以做得到：</p>
-<p><img src="http://i.imgur.com/aKjK4oA.png" alt=""><br>
+          <h2 id="lambda函数">lambda函数</h2><h3 id="基本的lambda函数">基本的lambda函数</h3><p>在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所以前述的作法是不可行的。<br> C++11 对 lambda 的支持可以解决上述问题。  </p>
+<p>一个 lambda 函数可以用如下的方式定义:  </p>
+<blockquote>
+<p>[](int x, int y) { return x + y; }  </p>
+</blockquote>
+<p>这个不具名函数的回返类型是 decltype(x+y)。只有在 lambda 函数符合”return expression”的形式下，它的回返类型才能被忽略。在前述的情况下，lambda 函数仅能为一个述句。<br>在一个更为复杂的例子中，回返类型可以被明确的指定如下：</p>
+<blockquote>
+<p>[](int x, int y) -&gt; int { int z = x + y; return z + x; }</p>
+</blockquote>
+<p>本例中，一个临时的参数 z 被创建用来存储中间结果。如同一般的函数，z 的值不会保留到下一次该不具名函数再次被调用时。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/26/机器学习基石七/#more" rel="contents">
+            <a class="btn" href="/2015/10/24/lambda-and-function/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -318,8 +329,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/24/机器学习基石六/" itemprop="url">
-                机器学习基石六
+              <a class="post-title-link" href="/2015/10/23/C++类型转换总结/" itemprop="url">
+                C++类型转换总结
               </a>
             
           
@@ -329,8 +340,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-24T12:15:55+08:00" content="2015-12-24">
-            2015-12-24
+          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
+            2015-10-23
           </time>
         </span>
 
@@ -340,8 +351,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/24/机器学习基石六/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/机器学习基石六/" itemprop="commentsCount"></span>
+              <a href="/2015/10/23/C++类型转换总结/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/23/C++类型转换总结/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -356,16 +367,9 @@
 
       
         
-          <h2 id="机器学习基石六">机器学习基石六</h2><p>###Theory of Generalization  </p>
-<blockquote>
-<p>growth function \(m_{H}(N)\):max number of dichotomies</p>
-</blockquote>
-<p><img src="http://i.imgur.com/94K3T1h.png" alt=""><br>假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dichotomy  </p>
-<blockquote>
-<p>N = 1:every \(m_{H}(N)\) = 2 by definition<br>N = 2:every \(m_{H}(N)\) &lt; 4 by definition(so <font color=purple>maximum possible=3</font>)</p>
-</blockquote>
+          <p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/24/机器学习基石六/#more" rel="contents">
+            <a class="btn" href="/2015/10/23/C++类型转换总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -398,8 +402,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/22/morris后序遍历/" itemprop="url">
-                morris遍历
+              <a class="post-title-link" href="/2015/10/22/常量表达式constexpr/" itemprop="url">
+                常量表达式constexpr
               </a>
             
           
@@ -409,8 +413,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-22T21:21:55+08:00" content="2015-12-22">
-            2015-12-22
+          <time itemprop="dateCreated" datetime="2015-10-22T10:38:55+08:00" content="2015-10-22">
+            2015-10-22
           </time>
         </span>
 
@@ -420,8 +424,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/22/morris后序遍历/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/morris后序遍历/" itemprop="commentsCount"></span>
+              <a href="/2015/10/22/常量表达式constexpr/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/常量表达式constexpr/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -436,14 +440,11 @@
 
       
         
-          <h2 id="morris遍历">morris遍历</h2><p>二叉树的Morris遍历可不使用用栈，在常量空间O(1)、线性时间O(n)内实现二叉树的前中后序遍历，且遍历后不破坏二叉树的形状（中间过程允许改变其形状）。Morris遍历的基本原理是利用所有叶子结点的right指针，指向其后继结点，组成一个环，在第二次遍历到这个结点时，由于其左子树已经遍历完了，则访问该结点。</p>
-<h3 id="中序遍历">中序遍历</h3><p>中序遍历的算法步骤如下：</p>
-<ol>
-<li>如果当前节点的左孩子为空，则<font color=red>输出</font>当前节点并将其右孩子作为当前节点。  </li>
-<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在<font color=red>中序遍历下的前驱节点</font>。<br>A. 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。<br>B. 如果前驱节点的右孩子为当前节点，<font color=red>输出</font>当前节点。将它的右孩子重新设为空（恢复树的形状）。当前节点更新为当前节点的右孩子。  </li>
-<li>重复以上1、2直到当前节点为空。
+          <h3 id="const常量用作数组大小的两种情况">const常量用作数组大小的两种情况</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size(); <span class="comment">// s.size()的大小在编译时不能确定</span></span><br><span class="line"><span class="keyword">int</span> a[n]; <span class="comment">// 错误,const int n 表达式必须含有常量值 </span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[n]; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">10</span>; <span class="comment">// n的大小在编译时可以确定</span></span><br><span class="line"><span class="keyword">int</span> a[m]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>想动态分配二维数组:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line"><span class="keyword">int</span> **a = <span class="keyword">new</span> <span class="keyword">int</span>*[n];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[n * n]; <span class="comment">// 一次性确定所需空间,此处连续</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/22/morris后序遍历/#more" rel="contents">
+            <a class="btn" href="/2015/10/22/常量表达式constexpr/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -476,8 +477,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/22/机器学习基石五/" itemprop="url">
-                机器学习基石五
+              <a class="post-title-link" href="/2015/10/17/hello-world/" itemprop="url">
+                Hello World
               </a>
             
           
@@ -487,8 +488,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-22T18:38:55+08:00" content="2015-12-22">
-            2015-12-22
+          <time itemprop="dateCreated" datetime="2015-10-17T12:37:54+08:00" content="2015-10-17">
+            2015-10-17
           </time>
         </span>
 
@@ -498,8 +499,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/22/机器学习基石五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石五/" itemprop="commentsCount"></span>
+              <a href="/2015/10/17/hello-world/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/hello-world/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -514,13 +515,16 @@
 
       
         
-          <h2 id="Training_versus_Testing">Training versus Testing</h2><p>训练和测试的过程到底有什么不一样？<br>上一节的一个简单总结，机器有时是学不到东西的，有时是可以学到的，什么时候可以学到：</p>
-<blockquote>
-<p>learning is <font color=orange>PAC</font>-possible if enough <font color=orange>statistical data</font> and <font color=orange>finite |H|</font> 资料来自某个分布并且演算法的假设集合个数有限</p>
-</blockquote>
-<p>另外一种情况，如果Hypothesis Set是无限大的（就像我们之前的perceptron），到底会发生什么事情？<br>回顾一下前四堂课所讲的内容：<br><img src="http://i.imgur.com/THn7QAp.png" alt=""><br>第一堂课的时候就告诉大家，有一个未知的 f ，我们希望找出一个 g ，这个 g 和 f 能够很接近。在第四堂课的时候把这件事情写成了\(E_{out}\)(g)要很接近0，我们拿出某些新的资料（从P中产生），在上面犯的错误要越少越好；第二堂课里面，我们采用了一个不一样的方法，先在我们看过的资料上做得好就好了，所以我们找一些方法，能够让\(E_{in}\)(g)接近0，例如Perceptron learning algorithm或是pocket算法。第三次课讲了学习是在特定的情况下（批次的资料、监督、二元分类等——机器学习核心的问题），有了这些概念后，我们在第四次上课终于想办法把Ein和Eout联系起来，如果我们的Hypothesis Set不是很多的话，我们真的能够让Ein和Eout会很接近。<br>
+          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ ddd</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/22/机器学习基石五/#more" rel="contents">
+            <a class="btn" href="/2015/10/17/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -546,7 +550,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
  </div>

@@ -51,7 +51,7 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
 unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）
 
 当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复1） unique(A,A + n)(A为数组，n为数组大小)2） unique(num">
-<meta property="og:updated_time" content="2015-12-20T12:59:08.099Z">
+<meta property="og:updated_time" content="2015-12-20T14:23:55.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode——线性表笔记">
 <meta name="twitter:description" content="线性表笔记数组
@@ -226,7 +226,7 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
 </li>
 <li>removeElement(int A[],int n,int elem):为什么要将数组大小n作为参数传递进函数，不能用sizeof(A)/sizeof(A[0])求得吗？——原因是编译器将A变为一个指向源数组的指针，sizeof(A)/sizeof(A[0]) == 1 恒成立。</li>
 <li>remove(A,A + n, elem)返回一个迭代器（end）移除value值和elem相等的元素</li>
-<li>sort(start,end)默认是升序排序，即sort(start,end,less<int>())(假设待排列对象为int)。想要升序排列，改less<int>()为greater<int>()即可。–扩展：sort(rstart,rend)即为升序排列，因为是逆向迭代器，从end向start遍历。</int></int></int></li>
+<li>sort(start,end)默认是升序排序，即sort(start,end,less<int>())(假设待排列对象为int)。想要降序排列，改less<int>()为greater<int>()即可。–扩展：sort(rstart,rend)即为降序排列，因为是逆向迭代器，从end向start遍历。</int></int></int></li>
 <li>less<int>(),greater<int>(),equal_to<int>(),not_equal_to<int>(),less_equal<int>(),greater_equal<int>()，bit_xor<int>()(异或)，bit_and<int>(),bit_or<int>()</int></int></int></int></int></int></int></int></int></li>
 <li>remove_if(first,last,func),此类函数还有count_if,find_if,find_if_not</li>
 <li>bind1st和bind2nd返回一个函数对象（可被remove_if,count_if,find_if等带有函数参数的函数调用）。头文件为functional，将一个二元算子（binary functor,bf）转换为一元算子（unary functor,uf）:bind1st将该函数传入的参数作为第一个参数，例如：bind1st(less<int>(),x)–&gt;x &lt; ? ,找到第一个小于x的数。传入的x作为less<int>()的第一个参数，bind2nd同理</int></int></li>
@@ -236,9 +236,9 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
 <li>不可在没有元素的空容器上调用fill/fill_n。—&gt;使用迭代器即可，例如：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec: <span class="comment">// 空容器</span></span><br><span class="line">fill_n(back_insert(vec),<span class="number">10</span>,val)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>fill_n()没写入一个值，都会通过back_insert产生的插入迭代器实现，相当于在vec上调用push_back</p>
+<p>fill_n()每写入一个值，都会通过back_insert产生的插入迭代器实现，相当于在vec上调用push_back</p>
 <ol>
-<li>unordered_multimap允许键重复，没有[]下标运算，其有一个成员函数equal_range(x)，表示返回所有键为x的迭代器范围（因为unordered_multimap内部实现为红黑树，x的所有元素集中在一起）其返回类型为pair<iterator,iterator>,分别为x的起始迭代器和终止迭代器，可进行++预算。</iterator,iterator></li>
+<li>unordered_multimap允许键重复，没有[]下标运算，其有一个成员函数equal_range(x)，表示返回所有键为x的迭代器范围（因为unordered_multimap内部实现为红黑树，x的所有元素集中在一起）其返回类型为pair<iterator,iterator>,分别为x的起始迭代器和终止迭代器，可进行++运算。</iterator,iterator></li>
 <li>find_if(str.rbegin(),str.rend(),::isalpha) 从字符串末尾开始查找，找到第一个字母的位子。::isalnum,::isdigit…。这是一元函数在类似于find_if(remove_if,find_if_not,count_if同理)中的应用.</li>
 </ol>
 <h3 id="单链表">单链表</h3><blockquote>
@@ -339,7 +339,7 @@ unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
