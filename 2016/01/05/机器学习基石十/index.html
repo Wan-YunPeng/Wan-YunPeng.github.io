@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://i.imgur.com/Lcr1iF6.png">
 <meta property="og:image" content="http://i.imgur.com/DFn5iJy.png">
 <meta property="og:image" content="http://i.imgur.com/WeMymG1.png">
-<meta property="og:updated_time" content="2016-01-06T14:46:07.056Z">
+<meta property="og:updated_time" content="2016-01-06T15:34:26.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基十">
 <meta name="twitter:description" content="机器学习基石十logistic regression之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：
@@ -232,7 +232,7 @@
 <blockquote>
 <p><font color="purple">‘soft’</font> binary classification:<font color="purple">f</font>(x) = <font color="orange">P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
 </blockquote>
-<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br><img src="http://i.imgur.com/LClbCZ0.png" alt=""><br>但是我们可能拿到这样的资料吗，我们可能拿不到。例如说，癌症的例子中，医院里的资料是什么？我们有病人的病例，有他过了两个月或三个月后他到底有没有病发，我们并没有像0.2，0.6这样的数字，我们只知道他是否病发。<br><img src="http://i.imgur.com/otwWcaz.png" alt=""><br>所以实际上的资料和我们做binary classification的资料是一样的，我们手上的只有圈圈或叉叉，说他有心脏病发或没有心脏病发，从另外一个角度来看，我们可以把我们手上的资料看成ideal(noiseless) data的一个有杂讯的版本，什么叫有杂讯的版本？我想要的是0.9，可是实际上，我没有那个P(+1|x)的值，所以我是p(y|x)抽样了一下，根据这个0.9抽样了一下，我得到了一个圈圈，比如说我今天如果用1跟0来代表的话，圈圈是用1，想要的是0.9，得到的实际数字是1。那又或者在下面我想要的是0.2，经过抽样后我得到的是叉叉（0），，所以，我们得到的不是p(+1|x)的值，我们得到的是我们在做了一次抽样后发生了一些什么事情，有时发生的几率大于0.5，但是抽样得到的却是叉叉的结果。<br><img src="http://i.imgur.com/bMb43Rq.png" alt=""></p>
+<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br><a id="more"></a><br><img src="http://i.imgur.com/LClbCZ0.png" alt=""><br>但是我们可能拿到这样的资料吗，我们可能拿不到。例如说，癌症的例子中，医院里的资料是什么？我们有病人的病例，有他过了两个月或三个月后他到底有没有病发，我们并没有像0.2，0.6这样的数字，我们只知道他是否病发。<br><img src="http://i.imgur.com/otwWcaz.png" alt=""><br>所以实际上的资料和我们做binary classification的资料是一样的，我们手上的只有圈圈或叉叉，说他有心脏病发或没有心脏病发，从另外一个角度来看，我们可以把我们手上的资料看成ideal(noiseless) data的一个有杂讯的版本，什么叫有杂讯的版本？我想要的是0.9，可是实际上，我没有那个P(+1|x)的值，所以我是p(y|x)抽样了一下，根据这个0.9抽样了一下，我得到了一个圈圈，比如说我今天如果用1跟0来代表的话，圈圈是用1，想要的是0.9，得到的实际数字是1。那又或者在下面我想要的是0.2，经过抽样后我得到的是叉叉（0），，所以，我们得到的不是p(+1|x)的值，我们得到的是我们在做了一次抽样后发生了一些什么事情，有时发生的几率大于0.5，但是抽样得到的却是叉叉的结果。<br><img src="http://i.imgur.com/bMb43Rq.png" alt=""></p>
 <blockquote>
 <p>same data as hard binary classification,different <font color="purple">target function</font></p>
 </blockquote>

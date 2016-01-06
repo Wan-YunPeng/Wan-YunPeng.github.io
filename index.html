@@ -204,7 +204,7 @@
 
       
         
-          <span itemprop="articleBody"><h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
+          <h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
 <blockquote>
 <p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
 </blockquote>
@@ -212,34 +212,11 @@
 <blockquote>
 <p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
 </blockquote>
-<p>今天的问题，linear classification是NP hard，不太好解，那么看看起来linear regression和logistic regression好像在求解这个很低的Ein上容易很多，我们能不能借用linear regression或logistic regression来作为我们替代linear classification的一个替代工具？<br>我们想在还是有linear scoring function这是大家都用的，但是我们现在要把它用在，把这些不同的演算法都用在classification上，也就是说我们限制y的输出只能是+1/-1.对于logistic regression来说，这个不是太大的问题，因为logistic regression本来拿到的资料就和binary classification没有什么不一样，对于linear regression来说+1和-1是两个特别的实数，所以好像我们也可以直接借来用。<br>把error function的计算过程串起来看一下。<br><img src="http://i.imgur.com/uxchdVJ.png" alt=""><br>将error function稍作变形，好在三者之间进行比较。linear不等号同乘一个y；linear regression同乘一个y的平方；logistic已经有ys了。这里只是把linear classification和regression做相应的变化动作。<br>这里就是要看看ys和error function之间的关系，在做这件事情之前，先看看ys的物理意义。  </p>
-<blockquote>
-<p>(<font color="blut">y</font><font color="purple">s</font>):classification <font color="blue">correctness</font> <font color="purple">score</font></p>
-</blockquote>
-<p>把y乘上去代表我们在意的是y的正确度，对y的correctness，s则是这个score，我们希望correctness score要越大越好。</p>
-<p>要比较这些error function，想做的事是把他们画在同一平面上看看<br><img src="http://i.imgur.com/1d4cSXW.png" alt=""><br>横轴是ys，纵轴是err。0/1看的是ys的sign是否是+1；sqr的特点是：如果今天有一个样本，在sqr err上得到一个比较低的error，那么它在0/1 err上也会得到一个蛮低的值，也就是说小的范围、小的那个范围sqr和0/1很像。那在比较远的地方0/1和sqr就会越来越不类似；logistic是一个平滑的曲线，ys越来越大的时候，他会趋近于0。当ys越来越小的时候，他就会离0/1越来越远<br>我们这里把logistic error function，这个cross-entropy的error做一个换底的动作，乘上一个倍数，这个scaled其实就是把原来我们取log e换成log 2，这样做目的在于ys等于0这个点上，我们看到scaled的cross-entropy跟0/1真的切在一起，这会利于我们的推导。<br><img src="http://i.imgur.com/B9IgVrY.png" alt=""><br>那么我们就会得到这样一个结论：</p>
-<blockquote>
-<p>for any <font color="purple">ys</font> where <font color="purple">s = \(W^T\)X</font>$${\color{Blue} {err_{0/1}}}({\color{Purple} {s,y}}) \leq {\color{Orange} {err_{SCE}}}({\color{Purple} {s,y}}) = {\color{Orange} {\frac{1}{In2}}}err_{CE}({\color{Purple} {s,y}})$$<br>$$\Rightarrow {\color{Blue} {E_{in}^{0/1}(W)}} \leq {\color{Orange} {E_{in}^{SCE}(W)}}={\color{Orange} {\frac{1}{In2}}}E_{in}^{CE}(W)$$<br>$${\color{Blue} {E_{out}^{0/1}(W)}} \leq {\color{Orange} {E_{out}^{SCE}(W)}}={\color{Orange} {\frac{1}{In2}}}E_{out}^{CE}(W)$$</p>
-</blockquote>
-<p><img src="http://i.imgur.com/eYJ7ZJj.png" alt=""><br>只要我们把cross-entropy做好的话，从某种角度说也把0/1做得不错。sqr也可以，只是比较宽松而已。<br><img src="http://i.imgur.com/f0NLflc.png" alt=""><br>三种方法的优点与缺点。<br>一些建议：<br><img src="http://i.imgur.com/6DCfeCc.png" alt=""><br>用linear regression求出来的w作为初始化的w，再用其他算法就行优化<br>大部分情况下使用logistic regression而不见的会用pocket算法  </p>
-<p>PLA和logistic regression的比较<br><img src="http://i.imgur.com/eWBp2Ht.png" alt=""><br>logistic regression每一轮会花更多的力气。那么我们能不能让logistic regression和PLA一样快？不然现在logistic regression和pocket一样快，都是每一轮看完所有的点，才决定要不要把\(\hat{w}\)换掉。<br>logistic regression的梯度：<br><img src="http://i.imgur.com/zptye28.png" alt=""><br>我们希望更新方向和gradient很接近，但是我们不想花n倍的那个力气去把gradient求出来，那么我们要怎么做？把\(\frac{1}{N} \sum_{n=1}^{N}\)想成是一个随机的过程的平均，随机抽取一个点然后平均，我们就避开了把他加起来除以N的动作，而是我们随机抽一个，然后从期望值上来说跟我真正把N个加起来然后求平均的值很接近。这个抽取的随机的梯度值叫做stochastic gradient，不是平均的梯度，而是在单一的一个点上求他的偏微分。<br><img src="http://i.imgur.com/n3yG5BJ.png" alt=""><br>这样，就可以得到另外一个演算法，不是用真正的梯度来下降，而是用一个随机的梯度来做<br><img src="http://i.imgur.com/NvCqzEW.png" alt=""><br>这样的话，计算上就很简单，每次迭代只需计算一个点。缺点就是这个算法不稳定，要是\(\eta\)太大，梯度下降的方向和真实的方向很可能不太一样。<br><img src="http://i.imgur.com/9xjiQf8.png" alt=""></p>
-<blockquote>
-<p>SGD logistic regression \(\approx\)<font color="purple">‘soft’</font> PLA<br>PLA \(\approx\)SGD logistic regression with <font color="blue">\(\eta\) = 1</font> when \(W_t^T X_n\) large</p>
-</blockquote>
-<p>两个使用的建议：</p>
-<blockquote>
-<p>1.迭代停止条件？SGD决定什么情况停很困难，一般相信<font color="orange">迭代次数够多</font>后就会达到我们想要的那个解<br>2.\(\eta\)?经验上通常取<font color="orange">0.1左右</font>。</p>
-</blockquote>
-<p>将这些模型进行延伸，从是非题到选择题/二元分类到多元分类<br>假设现在有四个类别：<br><img src="http://i.imgur.com/jvAsqEw.png" alt=""><br>四个类别看起来不太好做，我们的办法是先把其中一个类别先分出来，如：<br><img src="http://i.imgur.com/FVWvnwm.png" alt=""><br>像把方块从四个类别中分开一样，依次可以分开其他三个类别，注意每次只分出一个类别<br><img src="http://i.imgur.com/HI30B5f.png" alt=""><br>每一次我就做一个binary classify，把某一个类别跟其他类别分开，这样分开以后有什么好处？这样分开以后我可以确定一些事情，我们有四个不同的分类器，如上图中下面的四幅图一样，有些时候我的四个分类器里，只会有一个分类器告诉我这个点真的是这个类别，而其他分类器就说他不是他们的类别。有些区域会很确定这个点的类型。但是分类器会犯错，会有一些区域会有多个分类器抢着说这个点是他的类别；还有一种情况就是中间那个区域，四个分类器都说不是他们的类别。所以只有分类器的方式来做切割的话，会有些区域很确定，但是有些区域我们没办法确定。<br>那我们怎么做呢？我们用soft classification，soft binary classification工具，我们来做软性的分类，不要只说是或不是，我们求他的可能性，这里说的softly，也就是对应我们使用logistic regression，在下图中用颜色不同深浅来代表到底有多大的可能性是那个类别，越深的，代表的可能性越大，越浅的代表可能性越小<br><img src="http://i.imgur.com/7uKTrx5.png" alt=""><br>这四个分类器不再是像原来那样告诉我0/1，而是告诉我属于这个类别的概率是多少。将四个分类器组合起来，选取可能性最大的那个类别：<br><img src="http://i.imgur.com/EmenT8p.png" alt=""><br>应为sigmoid函数是单向性的，我们不一定要把\(\theta\)值求出来，直接比较scoring value也可以。<br>所以这边我们得到一个简单的演算法：<br><img src="http://i.imgur.com/F516GfA.png" alt=""><br>one-versus-all(OVA)：一个类别对其他类别<br>你要做多类别分类，先对于每个类别跑一个logistic regression，什么叫对每个类别跑一个logistic regression，就是对于某个类别，把资料中属于这个类别的说是圈圈，不是这个类别的说是叉叉，最后对每个类别都跑完之后怎么做预测呢，就选这k个logistic regression哪一个告诉我的分数最高，我就选哪一个。  </p>
-<blockquote>
-<p>优点：高效；这里使用logistic regression，在将来，有其他的演算法也可以像logistic regression输出0到1之间的实数值或者一个可以比大小的实数值的话，都可以套用这个方法<br>缺点：这个方法所使用的资料的类别太大，会导致对于每一个类别来说圈圈和叉叉的比例差的太大：我有100类别，这100个类别平均分布，对于我们要做logistic regression的那个类别来说，其余99个类别都是叉叉，相当于资料中有99%的是叉叉，1%的是圈圈，那么对于这个logistic regression来说，他可以有一个很轻易就做的很好的solution，这个solution说每个输入的资料都猜是叉叉（99%的正确率），也就是说到最后你拿到很多个logistic regression的集合，每个都很喜欢叉叉，到时候你只是选出一个猜叉叉概率最大的那一个，这样有时候会让你的表现不是很好<br>扩展：multinomial(‘coupled’) logistic regression我们没有考虑几率加起来是1，我们这里只是个别的估计，而真正的多元logistic regression就会把几率加起来为1这个事情放进去</p>
-</blockquote>
-<p>OVA的问题就是当资料里的类别过多的时候，我们就会遇见一个Unbalance的问题，也就是说我天的圈圈很少，叉叉非常的多。解决办法是不再使用one-versus-all，而是从资料中选出两个类别来，先看看这两个类别哪个比较像是我要的答案。如下图，之选方块和菱形就行对打，其他类别不放进来，观察哪边比较像是方块，哪一边比较像菱形，相当于我把方块当圈圈，菱形当叉叉来考虑<br><img src="http://i.imgur.com/aH7N0nS.png" alt=""><br>4个里面选2种，会有6种分类的方法。对于其他任意两个类别，我们也可以这样做，最终会得到一下分类<br><img src="http://i.imgur.com/P80mrDG.png" alt=""><br>那我们把这些分类问题都解出来之后，我们最后要怎么样决定哪一边要当作方块/菱形…，我们来看跟方块有关的分类器有哪些：上图种的第一个、第二个和第三个。这里有关的意思就是说在分类过程中我们有把方块使用进去的，我们看到这三个分类器在接近方块的地方通通都给了蓝色，从这三个分类器我们可以看出重叠的部分我们可以说是方块。<br>最后做预测的时候，用每个分类器去进行预测；类似于用这些分类器去进行一个投票，看哪个类别获得最高的支持。<br>得到另外一个算法：one-versus-one<br><img src="http://i.imgur.com/D4MxidA.png" alt=""></p>
-<blockquote>
-<p>优点：高效（训练资料量比原来的少，只取我们关心的两个类别的资料），稳定，他可以和任何的binary classification approaches搭配<br>缺点：use O(\(\k^2\))\(w_{[k,l]}\)——<font color="orange">more space,slower prediction,more training</font></p>
-<p>OVO:another simple multiclass <font color="orange">meta-algorithm</font> to keep in your toolbox</p>
-</blockquote>
-</span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/06/机器学习基石十一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -307,20 +284,12 @@
 
       
         
-          <span itemprop="articleBody"><p>计算机的随机数都是由伪随机数，即是由小M多项式序列生成的，其中产生每个小序列都有一个初始值，即随机种子。（注意： 小M多项式序列的周期是65535，即每次利用一个随机种子生成的随机数的<font color="red">周期是65535</font>，当你取得65535个随机数后它们又重复出现了。）<br>rand()函数可以用来产生随机数，但是这不是真正意义上的随机数，是一个<font color="red">伪随机数</font>，是根据一个数（我们可以称它为种子）为基准以某个递推公式推算出来的一系列数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统。</p>
-<h3 id="rand()">rand()</h3><p>rand()的内部实现是用线性同余法做的，它不是真的随机数，因其周期特别长，故在一定的范围里可看成是随机的。<br>rand()返回一随机数值的范围在0至RAND_MAX 间。RAND_MAX的范围最少是在32767之间(int)。用unsigned int 双字节是65535，四字节是4294967295的整数范围。0~RAND_MAX每个数字被选中的机率是相同的。<br>用户未设定随机数种子时，系统默认的随机数种子为1。<br>rand()产生的是伪随机数字，每次执行时是相同的;若要不同,用函数srand()初始化它。  </p>
-<h3 id="srand()">srand()</h3><p>srand()用来设置rand()产生随机数时的随机数种子。参数seed必须是个整数，如果每次seed都设相同值，rand()所产生的随机数值每次就会一样。</p>
-<h3 id="使用当前时钟作为随机数种子">使用当前时钟作为随机数种子</h3><p>rand()产生的随机数在每次运行的时候都是与上一次相同的。若要不同,用函数srand()初始化它。可以利用srand((unsigned int)(time(NULL))的方法，产生不同的随机数种子，因为每一次运行程序的时间是不同的。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">srand<span class="list">(<span class="list">(<span class="keyword">unsigned</span> int)</span><span class="list">(<span class="keyword">time</span><span class="list">(<span class="keyword">NULL</span>)</span>)</span>)</span><span class="comment">;</span></span><br><span class="line">cout &lt;&lt; rand<span class="list">()</span>&lt;&lt;endl<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="产生随机数的用法">产生随机数的用法</h3><ol>
-<li>给srand()提供一个种子，它是一个unsigned int类型； </li>
-<li>调用rand()，它会根据提供给srand()的种子值返回一个随机数(在0到RAND_MAX之间)； </li>
-<li>根据需要多次调用rand()，从而不间断地得到新的随机数； </li>
-<li>无论什么时候，都可以给srand()提供一个新的种子，从而进一步“随机化”rand()的输出结果。</li>
-</ol>
-<h3 id="产生一定范围随机数的通用表示公式">产生一定范围随机数的通用表示公式</h3><blockquote>
-<p>要取得[a,b)的随机整数，使用(rand() % (b-a))+ a;<br>要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a;<br>要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1;<br>通用公式:a + rand() % n；其中的a是起始值，n是整数的范围。<br>要取得a到b之间的随机整数，另一种表示：a + (int)b * rand() / (RAND_MAX + 1)。<br>要取得0～1之间的浮点数，可以使用rand() / double(RAND_MAX)。  </p>
-</blockquote>
-</span>
+          <p>计算机的随机数都是由伪随机数，即是由小M多项式序列生成的，其中产生每个小序列都有一个初始值，即随机种子。（注意： 小M多项式序列的周期是65535，即每次利用一个随机种子生成的随机数的<font color=red>周期是65535</font>，当你取得65535个随机数后它们又重复出现了。）<br>rand()函数可以用来产生随机数，但是这不是真正意义上的随机数，是一个<font color=red>伪随机数</font>，是根据一个数（我们可以称它为种子）为基准以某个递推公式推算出来的一系列数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/c-c-随机数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -388,30 +357,16 @@
 
       
         
-          <span itemprop="articleBody"><h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
+          <h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
 <blockquote>
-<p><font color="purple">‘soft’</font> binary classification:<font color="purple">f</font>(x) = <font color="orange">P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
+<p><font color=purple>‘soft’</font> binary classification:<font color=purple>f</font>(x) = <font color=orange>P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
 </blockquote>
-<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br><img src="http://i.imgur.com/LClbCZ0.png" alt=""><br>但是我们可能拿到这样的资料吗，我们可能拿不到。例如说，癌症的例子中，医院里的资料是什么？我们有病人的病例，有他过了两个月或三个月后他到底有没有病发，我们并没有像0.2，0.6这样的数字，我们只知道他是否病发。<br><img src="http://i.imgur.com/otwWcaz.png" alt=""><br>所以实际上的资料和我们做binary classification的资料是一样的，我们手上的只有圈圈或叉叉，说他有心脏病发或没有心脏病发，从另外一个角度来看，我们可以把我们手上的资料看成ideal(noiseless) data的一个有杂讯的版本，什么叫有杂讯的版本？我想要的是0.9，可是实际上，我没有那个P(+1|x)的值，所以我是p(y|x)抽样了一下，根据这个0.9抽样了一下，我得到了一个圈圈，比如说我今天如果用1跟0来代表的话，圈圈是用1，想要的是0.9，得到的实际数字是1。那又或者在下面我想要的是0.2，经过抽样后我得到的是叉叉（0），，所以，我们得到的不是p(+1|x)的值，我们得到的是我们在做了一次抽样后发生了一些什么事情，有时发生的几率大于0.5，但是抽样得到的却是叉叉的结果。<br><img src="http://i.imgur.com/bMb43Rq.png" alt=""></p>
-<blockquote>
-<p>same data as hard binary classification,different <font color="purple">target function</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/VlAoRSt.png" alt=""><br>将得到的分数反映到0/1上面。\(\theta\)就是我们的logistic函数。<br>这里做得事情和linear regression或linear classification都一样，我们先计算得到一个分数，因为我们想要的是0到1值，所以在透过一个logistic函数把他转换为一个0到1之间的值。<br>常用的logistic function:<br><img src="http://i.imgur.com/1HqUdtf.png" alt=""></p>
-<blockquote>
-<p>logistic regression: use$${\color{Orange} {h}}(x)=\frac{1}{1+exp(-{\color{Orange} {W^T}}X)}$$<br>to approximate target function f(x) = P(y|x)</p>
-</blockquote>
-<p>三种用到线性加权的方法<br><img src="http://i.imgur.com/SyeCFZF.png" alt=""></p>
-<blockquote>
-<p>how to define <font color="orange">\(E_{in}(W)\) for logistic regression</font>?</p>
-</blockquote>
-<p><img src="http://i.imgur.com/zjk5qik.png" alt=""><br>我们的target function是P(+1|x)，如果把它反过来写，就是P(y|x),我们y有两种，一种是+1，一种是-1。<br><img src="http://i.imgur.com/bIh7roM.png" alt=""><br>用h(x)来代替圈圈和叉叉。</p>
-<blockquote>
-<p>if \({\color{Orange}{h}} \approx {\color{Purple}{f}}\) then likelihood(\({\color{Orange}{h}} \approx \)probability using \({\color{Purple}{f}}\)<br>probability using <font color="purple">f</font> usually <font color="purple">large</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/dxfJrlv.png" alt=""><br>把参数h换成我们真正感兴趣的w<br><img src="http://i.imgur.com/25CdCoI.png" alt=""><br>将上式的连乘换成连加，并且把求最大转换成求最小得（加了一个常数1/N，方便计算）<br><img src="http://i.imgur.com/qlEfyKo.png" alt=""><br>进行带入，化简，求得<br><img src="http://i.imgur.com/Gytv6Ub.png" alt=""></p>
-<p>因为Ein是一个凸函数，和之前的求法相似，求他的梯度最小。<br><img src="http://i.imgur.com/AOvTLT2.png" alt=""><br>求梯度最小，就是梯度为0的点<br><img src="http://i.imgur.com/KtvmqVj.png" alt=""><br>梯度是用\(\theta(x)\)来当权重的式子。<br>当\(\theta(x)\)全为0时，我们的梯度是否为0？我们发现这种情况下资料必须是线性可分，这个解法不可行<br>linear regression是一步求出，而PLA是一步一步修正，从某个W出发，然后想办法去修正这个W所犯的错误，我们这里用的方法类似于PLA。<br><img src="http://i.imgur.com/JNBalWS.png" alt=""><br>有错的话更新的方向是错误的方向，要是没有错误的话，更新0<br><img src="http://i.imgur.com/n5gfwxH.png" alt=""></p>
-<p><img src="http://i.imgur.com/PrAOsWI.png" alt=""><br>每次让W更新到最大程度。<br><img src="http://i.imgur.com/kKY3Iol.png" alt=""><br>通过泰勒展开将非线性优化转换成为一个近似于直线的情况<br><img src="http://i.imgur.com/j4qxjWd.png" alt=""><br>两个向量内积最小是他俩完全反方向，得到一个很负的值。现在知道梯度要往反方向走，那么\(\eta\)怎么选择<br><img src="http://i.imgur.com/Lcr1iF6.png" alt=""><br>\(\eta\)和梯度应该是正相关的关系<br><img src="http://i.imgur.com/DFn5iJy.png" alt=""><br>W的更新办法是：W走一个固定的紫色的\(\eta\)，往哪里走？往直接乘上一个gradient的方向走。<br><img src="http://i.imgur.com/WeMymG1.png" alt=""><br>初始化一个W0，计算gradient(W),再更新紫色\(\eta\)大小，目的是走到谷底，不一定非的是0才行，接近0或迭代次数够多就行。</p>
-</span>
+<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/机器学习基石十/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -479,29 +434,16 @@
 
       
         
-          <span itemprop="articleBody"><h2 id="机器学习基石九">机器学习基石九</h2><p>linear regression</p>
+          <h2 id="机器学习基石九">机器学习基石九</h2><p>linear regression</p>
 <p>之前的信用卡问题，今天不是要决定是否给他信用卡，而是决定给他多少钱的信用卡。我们想说我们的hypothesis要长什么样才能输出一个实数，和之前一样，先假设一些简单的hypothesis：根据顾客的资料，来做一些加权，求出一个值，我们希望算出来的这个加权值和我们想要给顾客多少额度的金额是接近的<br><img src="http://i.imgur.com/kYimNhh.png" alt=""></p>
 <blockquote>
-<p>for x = (<font color="red">\(x_0\))</font>,\(x_1,x_2,…,x_d\))’features of customer’,<br>approximate the <font color="purple">desired credit limit</font> with a <font color="blue">weighted</font> sum:$${\color{Purple}{y}} \approx \sum_{\color{Red}{i=0}}^{d} {\color{Blue}{W_i}} X_i$$<br>linear regression hypothesis:<font color="blue">h</font>(x)=\({\color{Blue}{W^T}}X\)</p>
+<p>for x = (<font color=red>\(x_0\))</font>,\(x_1,x_2,…,x_d\))’features of customer’,<br>approximate the <font color=purple>desired credit limit</font> with a <font color=blue>weighted</font> sum:$${\color{Purple}{y}} \approx \sum_{\color{Red}{i=0}}^{d} {\color{Blue}{W_i}} X_i$$<br>linear regression hypothesis:<font color=blue>h</font>(x)=\({\color{Blue}{W^T}}X\)</p>
 </blockquote>
-<p>线性回归的示例图：<br><img src="http://i.imgur.com/YWFjXBw.png" alt=""><br>希望的是图中的点离直线（x为一维）、平面（x为二维）以及多维的超平面越接近越好。图中的红线叫误差或余数</p>
-<blockquote>
-<p>linear regression: find <font color="blue">lines/hyperplanes</font> with small <font color="red">residuals</font></p>
-</blockquote>
-<p>传统上的对于线性回归余数的评估方法是：squared error <font color="red">\(err(\hat{y},y)={(\hat{y} - y)}^2\)</font>——预测的y和想要的y到底差多远<br><img src="http://i.imgur.com/E2tw1tn.png" alt=""><br>如果我们现在已经切换到一个可能有noise的setting，可能有noise的setting是什么，就是除了我们的x要从某个distribution（分布）出来之外，我们的y也要从某个distribution出来，他们两个的结合起来等于我们可以说它是从一个所谓的joint distribution联合分布中抽取出来，我们用这样的设定来看看说我们可以达到什么样理论上的效果。<br>接下来的问题就是这样最小化\(E_{in}({\color{Blue}{W}})\)<br><img src="http://i.imgur.com/vNX1r3G.png" alt=""></p>
-<p>最后得到的式子：$$\underset{\color{Blue}{W}}{min}E_{in}({\color{Blue}{W}})=\frac{1}{N}{\left | {\color{Red}{X}}W - {\color{Purple}{y}} \right |}^2$$  </p>
-<p><img src="http://i.imgur.com/CscT912.png" alt=""><br>计算什么时候梯度为0：<br><img src="http://i.imgur.com/3z7plxw.png" alt=""><br>A为矩阵，b为向量，c为常数，那么该如何计算呢。先假设w只有一个维度，在得出向量的计算方式<br><img src="http://i.imgur.com/7ViNimP.png" alt=""><br>得出可以计算梯度的式子，目标是梯度为0的点，那么什么时候梯度为0呢。除了W之外，其余的数据都可以从资料上得出来。<br><img src="http://i.imgur.com/HSQvOpL.png" alt=""><br>左边是有反矩阵存在的情况，当我们没有反矩阵存在是，如上图右所示，我们可能有很多组解，有其他方式定义这个反矩阵的形式。这样可以求得很多解中的一种。</p>
-<blockquote>
-<p>practical suggestion:<br>use <font color="orange">well-implemented \(\dagger\) routine</font> instead of <font color="red">\({(X^TX)}^{-1}X^T\)</font> for numerical stability when <font color="orange">almost-sigular</font> </p>
-</blockquote>
-<p><img src="http://i.imgur.com/K6LeNia.png" alt=""><br>simple and efficient with <font color="orange">good \(\dagger\) routine</font></p>
-<p><img src="http://i.imgur.com/nkWgZy0.png" alt=""><br><img src="http://i.imgur.com/Lgn63cu.png" alt=""><br><img src="http://i.imgur.com/DAA4RiD.png" alt=""><br><img src="http://i.imgur.com/okxreR5.png" alt=""></p>
-<p>线性分类和线性回归的比较<br><img src="http://i.imgur.com/48nuQ2f.png" alt=""><br>对于线性分类，y去正负1，而正负1也属于实数集，那么可以用线性回归来解线性分类呢？</p>
-<blockquote>
-<p>run LinReg on binary classification data D(<font color="orange">efficient</font>)<br>return g(<strong>x</strong>) = sign(\({\color{Blue}{W_{LIN}^{T}}}X\))</p>
-</blockquote>
-<p>上面的分析看着好像是对的，那到底对不对呢？二者最大分别是对错误的计算方式:<br><img src="http://i.imgur.com/jjQ9oEE.png" alt=""><br>平方的错误一定比0/1的错误来的大<br><img src="http://i.imgur.com/tkcfKDh.png" alt=""><br>可以用线性回归来计算线性分类</p>
-</span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/03/机器学习基石九/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

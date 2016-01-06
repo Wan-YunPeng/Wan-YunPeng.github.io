@@ -78,7 +78,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 <meta property="og:image" content="http://i.imgur.com/aH7N0nS.png">
 <meta property="og:image" content="http://i.imgur.com/P80mrDG.png">
 <meta property="og:image" content="http://i.imgur.com/D4MxidA.png">
-<meta property="og:updated_time" content="2016-01-06T14:46:03.858Z">
+<meta property="og:updated_time" content="2016-01-06T15:35:18.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基十一">
 <meta name="twitter:description" content="机器学习基石十一Linear Models for Classification
@@ -247,6 +247,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 <blockquote>
 <p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
 </blockquote>
+<a id="more"></a>
 <p>今天的问题，linear classification是NP hard，不太好解，那么看看起来linear regression和logistic regression好像在求解这个很低的Ein上容易很多，我们能不能借用linear regression或logistic regression来作为我们替代linear classification的一个替代工具？<br>我们想在还是有linear scoring function这是大家都用的，但是我们现在要把它用在，把这些不同的演算法都用在classification上，也就是说我们限制y的输出只能是+1/-1.对于logistic regression来说，这个不是太大的问题，因为logistic regression本来拿到的资料就和binary classification没有什么不一样，对于linear regression来说+1和-1是两个特别的实数，所以好像我们也可以直接借来用。<br>把error function的计算过程串起来看一下。<br><img src="http://i.imgur.com/uxchdVJ.png" alt=""><br>将error function稍作变形，好在三者之间进行比较。linear不等号同乘一个y；linear regression同乘一个y的平方；logistic已经有ys了。这里只是把linear classification和regression做相应的变化动作。<br>这里就是要看看ys和error function之间的关系，在做这件事情之前，先看看ys的物理意义。  </p>
 <blockquote>
 <p>(<font color="blut">y</font><font color="purple">s</font>):classification <font color="blue">correctness</font> <font color="purple">score</font></p>
