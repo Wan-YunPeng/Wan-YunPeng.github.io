@@ -39,15 +39,55 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Read the f**king code">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YunPeng’s Blog">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/index.html">
+<meta name="description" content="机器学习基石十一Linear Models for Classification
+
+linear scoring function: s = \(W^T\)X三者的计算分数方式
+
+三个线性算法的比较与总结：
+
+1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基十一">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="Read the f**king code">
+<meta property="og:description" content="机器学习基石十一Linear Models for Classification
+
+linear scoring function: s = \(W^T\)X三者的计算分数方式
+
+三个线性算法的比较与总结：
+
+1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
+<meta property="og:image" content="http://i.imgur.com/MEetY67.png">
+<meta property="og:image" content="http://i.imgur.com/uxchdVJ.png">
+<meta property="og:image" content="http://i.imgur.com/1d4cSXW.png">
+<meta property="og:image" content="http://i.imgur.com/B9IgVrY.png">
+<meta property="og:image" content="http://i.imgur.com/eYJ7ZJj.png">
+<meta property="og:image" content="http://i.imgur.com/f0NLflc.png">
+<meta property="og:image" content="http://i.imgur.com/6DCfeCc.png">
+<meta property="og:image" content="http://i.imgur.com/eWBp2Ht.png">
+<meta property="og:image" content="http://i.imgur.com/zptye28.png">
+<meta property="og:image" content="http://i.imgur.com/n3yG5BJ.png">
+<meta property="og:image" content="http://i.imgur.com/NvCqzEW.png">
+<meta property="og:image" content="http://i.imgur.com/9xjiQf8.png">
+<meta property="og:image" content="http://i.imgur.com/jvAsqEw.png">
+<meta property="og:image" content="http://i.imgur.com/FVWvnwm.png">
+<meta property="og:image" content="http://i.imgur.com/HI30B5f.png">
+<meta property="og:image" content="http://i.imgur.com/7uKTrx5.png">
+<meta property="og:image" content="http://i.imgur.com/EmenT8p.png">
+<meta property="og:image" content="http://i.imgur.com/F516GfA.png">
+<meta property="og:image" content="http://i.imgur.com/aH7N0nS.png">
+<meta property="og:image" content="http://i.imgur.com/P80mrDG.png">
+<meta property="og:image" content="http://i.imgur.com/D4MxidA.png">
+<meta property="og:updated_time" content="2016-01-06T14:46:03.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YunPeng’s Blog">
-<meta name="twitter:description" content="Read the f**king code">
+<meta name="twitter:title" content="机器学习基十一">
+<meta name="twitter:description" content="机器学习基石十一Linear Models for Classification
+
+linear scoring function: s = \(W^T\)X三者的计算分数方式
+
+三个线性算法的比较与总结：
+
+1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +97,7 @@
   };
 </script>
 
-  <title> YunPeng’s Blog </title>
+  <title> 机器学习基十一 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -75,9 +115,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -153,9 +191,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -166,9 +204,7 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/06/机器学习基石十一/" itemprop="url">
-                机器学习基十一
-              </a>
+              机器学习基十一
             
           
         </h1>
@@ -203,8 +239,7 @@
       
 
       
-        
-          <span itemprop="articleBody"><h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
+        <span itemprop="articleBody"><h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
 <blockquote>
 <p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
 </blockquote>
@@ -240,7 +275,6 @@
 <p>OVO:another simple multiclass <font color="orange">meta-algorithm</font> to keep in your toolbox</p>
 </blockquote>
 </span>
-        
       
     </div>
 
@@ -248,366 +282,43 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
             
-              <a class="post-title-link" href="/2016/01/05/c-c-随机数/" itemprop="url">
-                c_c++随机数
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-05T18:08:19+08:00" content="2016-01-05">
-            2016-01-05
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/05/c-c-随机数/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/c-c-随机数/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>计算机的随机数都是由伪随机数，即是由小M多项式序列生成的，其中产生每个小序列都有一个初始值，即随机种子。（注意： 小M多项式序列的周期是65535，即每次利用一个随机种子生成的随机数的<font color="red">周期是65535</font>，当你取得65535个随机数后它们又重复出现了。）<br>rand()函数可以用来产生随机数，但是这不是真正意义上的随机数，是一个<font color="red">伪随机数</font>，是根据一个数（我们可以称它为种子）为基准以某个递推公式推算出来的一系列数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统。</p>
-<h3 id="rand()">rand()</h3><p>rand()的内部实现是用线性同余法做的，它不是真的随机数，因其周期特别长，故在一定的范围里可看成是随机的。<br>rand()返回一随机数值的范围在0至RAND_MAX 间。RAND_MAX的范围最少是在32767之间(int)。用unsigned int 双字节是65535，四字节是4294967295的整数范围。0~RAND_MAX每个数字被选中的机率是相同的。<br>用户未设定随机数种子时，系统默认的随机数种子为1。<br>rand()产生的是伪随机数字，每次执行时是相同的;若要不同,用函数srand()初始化它。  </p>
-<h3 id="srand()">srand()</h3><p>srand()用来设置rand()产生随机数时的随机数种子。参数seed必须是个整数，如果每次seed都设相同值，rand()所产生的随机数值每次就会一样。</p>
-<h3 id="使用当前时钟作为随机数种子">使用当前时钟作为随机数种子</h3><p>rand()产生的随机数在每次运行的时候都是与上一次相同的。若要不同,用函数srand()初始化它。可以利用srand((unsigned int)(time(NULL))的方法，产生不同的随机数种子，因为每一次运行程序的时间是不同的。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">srand<span class="list">(<span class="list">(<span class="keyword">unsigned</span> int)</span><span class="list">(<span class="keyword">time</span><span class="list">(<span class="keyword">NULL</span>)</span>)</span>)</span><span class="comment">;</span></span><br><span class="line">cout &lt;&lt; rand<span class="list">()</span>&lt;&lt;endl<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="产生随机数的用法">产生随机数的用法</h3><ol>
-<li>给srand()提供一个种子，它是一个unsigned int类型； </li>
-<li>调用rand()，它会根据提供给srand()的种子值返回一个随机数(在0到RAND_MAX之间)； </li>
-<li>根据需要多次调用rand()，从而不间断地得到新的随机数； </li>
-<li>无论什么时候，都可以给srand()提供一个新的种子，从而进一步“随机化”rand()的输出结果。</li>
-</ol>
-<h3 id="产生一定范围随机数的通用表示公式">产生一定范围随机数的通用表示公式</h3><blockquote>
-<p>要取得[a,b)的随机整数，使用(rand() % (b-a))+ a;<br>要取得[a,b]的随机整数，使用(rand() % (b-a+1))+ a;<br>要取得(a,b]的随机整数，使用(rand() % (b-a))+ a + 1;<br>通用公式:a + rand() % n；其中的a是起始值，n是整数的范围。<br>要取得a到b之间的随机整数，另一种表示：a + (int)b * rand() / (RAND_MAX + 1)。<br>要取得0～1之间的浮点数，可以使用rand() / double(RAND_MAX)。  </p>
-</blockquote>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
-                机器学习基十
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
-            2016-01-05
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
-<blockquote>
-<p><font color="purple">‘soft’</font> binary classification:<font color="purple">f</font>(x) = <font color="orange">P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
-</blockquote>
-<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br><img src="http://i.imgur.com/LClbCZ0.png" alt=""><br>但是我们可能拿到这样的资料吗，我们可能拿不到。例如说，癌症的例子中，医院里的资料是什么？我们有病人的病例，有他过了两个月或三个月后他到底有没有病发，我们并没有像0.2，0.6这样的数字，我们只知道他是否病发。<br><img src="http://i.imgur.com/otwWcaz.png" alt=""><br>所以实际上的资料和我们做binary classification的资料是一样的，我们手上的只有圈圈或叉叉，说他有心脏病发或没有心脏病发，从另外一个角度来看，我们可以把我们手上的资料看成ideal(noiseless) data的一个有杂讯的版本，什么叫有杂讯的版本？我想要的是0.9，可是实际上，我没有那个P(+1|x)的值，所以我是p(y|x)抽样了一下，根据这个0.9抽样了一下，我得到了一个圈圈，比如说我今天如果用1跟0来代表的话，圈圈是用1，想要的是0.9，得到的实际数字是1。那又或者在下面我想要的是0.2，经过抽样后我得到的是叉叉（0），，所以，我们得到的不是p(+1|x)的值，我们得到的是我们在做了一次抽样后发生了一些什么事情，有时发生的几率大于0.5，但是抽样得到的却是叉叉的结果。<br><img src="http://i.imgur.com/bMb43Rq.png" alt=""></p>
-<blockquote>
-<p>same data as hard binary classification,different <font color="purple">target function</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/VlAoRSt.png" alt=""><br>将得到的分数反映到0/1上面。\(\theta\)就是我们的logistic函数。<br>这里做得事情和linear regression或linear classification都一样，我们先计算得到一个分数，因为我们想要的是0到1值，所以在透过一个logistic函数把他转换为一个0到1之间的值。<br>常用的logistic function:<br><img src="http://i.imgur.com/1HqUdtf.png" alt=""></p>
-<blockquote>
-<p>logistic regression: use$${\color{Orange} {h}}(x)=\frac{1}{1+exp(-{\color{Orange} {W^T}}X)}$$<br>to approximate target function f(x) = P(y|x)</p>
-</blockquote>
-<p>三种用到线性加权的方法<br><img src="http://i.imgur.com/SyeCFZF.png" alt=""></p>
-<blockquote>
-<p>how to define <font color="orange">\(E_{in}(W)\) for logistic regression</font>?</p>
-</blockquote>
-<p><img src="http://i.imgur.com/zjk5qik.png" alt=""><br>我们的target function是P(+1|x)，如果把它反过来写，就是P(y|x),我们y有两种，一种是+1，一种是-1。<br><img src="http://i.imgur.com/bIh7roM.png" alt=""><br>用h(x)来代替圈圈和叉叉。</p>
-<blockquote>
-<p>if \({\color{Orange}{h}} \approx {\color{Purple}{f}}\) then likelihood(\({\color{Orange}{h}} \approx \)probability using \({\color{Purple}{f}}\)<br>probability using <font color="purple">f</font> usually <font color="purple">large</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/dxfJrlv.png" alt=""><br>把参数h换成我们真正感兴趣的w<br><img src="http://i.imgur.com/25CdCoI.png" alt=""><br>将上式的连乘换成连加，并且把求最大转换成求最小得（加了一个常数1/N，方便计算）<br><img src="http://i.imgur.com/qlEfyKo.png" alt=""><br>进行带入，化简，求得<br><img src="http://i.imgur.com/Gytv6Ub.png" alt=""></p>
-<p>因为Ein是一个凸函数，和之前的求法相似，求他的梯度最小。<br><img src="http://i.imgur.com/AOvTLT2.png" alt=""><br>求梯度最小，就是梯度为0的点<br><img src="http://i.imgur.com/KtvmqVj.png" alt=""><br>梯度是用\(\theta(x)\)来当权重的式子。<br>当\(\theta(x)\)全为0时，我们的梯度是否为0？我们发现这种情况下资料必须是线性可分，这个解法不可行<br>linear regression是一步求出，而PLA是一步一步修正，从某个W出发，然后想办法去修正这个W所犯的错误，我们这里用的方法类似于PLA。<br><img src="http://i.imgur.com/JNBalWS.png" alt=""><br>有错的话更新的方向是错误的方向，要是没有错误的话，更新0<br><img src="http://i.imgur.com/n5gfwxH.png" alt=""></p>
-<p><img src="http://i.imgur.com/PrAOsWI.png" alt=""><br>每次让W更新到最大程度。<br><img src="http://i.imgur.com/kKY3Iol.png" alt=""><br>通过泰勒展开将非线性优化转换成为一个近似于直线的情况<br><img src="http://i.imgur.com/j4qxjWd.png" alt=""><br>两个向量内积最小是他俩完全反方向，得到一个很负的值。现在知道梯度要往反方向走，那么\(\eta\)怎么选择<br><img src="http://i.imgur.com/Lcr1iF6.png" alt=""><br>\(\eta\)和梯度应该是正相关的关系<br><img src="http://i.imgur.com/DFn5iJy.png" alt=""><br>W的更新办法是：W走一个固定的紫色的\(\eta\)，往哪里走？往直接乘上一个gradient的方向走。<br><img src="http://i.imgur.com/WeMymG1.png" alt=""><br>初始化一个W0，计算gradient(W),再更新紫色\(\eta\)大小，目的是走到谷底，不一定非的是0才行，接近0或迭代次数够多就行。</p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
-                机器学习基九
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-03T17:24:35+08:00" content="2016-01-03">
-            2016-01-03
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/03/机器学习基石九/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/机器学习基石九/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><h2 id="机器学习基石九">机器学习基石九</h2><p>linear regression</p>
-<p>之前的信用卡问题，今天不是要决定是否给他信用卡，而是决定给他多少钱的信用卡。我们想说我们的hypothesis要长什么样才能输出一个实数，和之前一样，先假设一些简单的hypothesis：根据顾客的资料，来做一些加权，求出一个值，我们希望算出来的这个加权值和我们想要给顾客多少额度的金额是接近的<br><img src="http://i.imgur.com/kYimNhh.png" alt=""></p>
-<blockquote>
-<p>for x = (<font color="red">\(x_0\))</font>,\(x_1,x_2,…,x_d\))’features of customer’,<br>approximate the <font color="purple">desired credit limit</font> with a <font color="blue">weighted</font> sum:$${\color{Purple}{y}} \approx \sum_{\color{Red}{i=0}}^{d} {\color{Blue}{W_i}} X_i$$<br>linear regression hypothesis:<font color="blue">h</font>(x)=\({\color{Blue}{W^T}}X\)</p>
-</blockquote>
-<p>线性回归的示例图：<br><img src="http://i.imgur.com/YWFjXBw.png" alt=""><br>希望的是图中的点离直线（x为一维）、平面（x为二维）以及多维的超平面越接近越好。图中的红线叫误差或余数</p>
-<blockquote>
-<p>linear regression: find <font color="blue">lines/hyperplanes</font> with small <font color="red">residuals</font></p>
-</blockquote>
-<p>传统上的对于线性回归余数的评估方法是：squared error <font color="red">\(err(\hat{y},y)={(\hat{y} - y)}^2\)</font>——预测的y和想要的y到底差多远<br><img src="http://i.imgur.com/E2tw1tn.png" alt=""><br>如果我们现在已经切换到一个可能有noise的setting，可能有noise的setting是什么，就是除了我们的x要从某个distribution（分布）出来之外，我们的y也要从某个distribution出来，他们两个的结合起来等于我们可以说它是从一个所谓的joint distribution联合分布中抽取出来，我们用这样的设定来看看说我们可以达到什么样理论上的效果。<br>接下来的问题就是这样最小化\(E_{in}({\color{Blue}{W}})\)<br><img src="http://i.imgur.com/vNX1r3G.png" alt=""></p>
-<p>最后得到的式子：$$\underset{\color{Blue}{W}}{min}E_{in}({\color{Blue}{W}})=\frac{1}{N}{\left | {\color{Red}{X}}W - {\color{Purple}{y}} \right |}^2$$  </p>
-<p><img src="http://i.imgur.com/CscT912.png" alt=""><br>计算什么时候梯度为0：<br><img src="http://i.imgur.com/3z7plxw.png" alt=""><br>A为矩阵，b为向量，c为常数，那么该如何计算呢。先假设w只有一个维度，在得出向量的计算方式<br><img src="http://i.imgur.com/7ViNimP.png" alt=""><br>得出可以计算梯度的式子，目标是梯度为0的点，那么什么时候梯度为0呢。除了W之外，其余的数据都可以从资料上得出来。<br><img src="http://i.imgur.com/HSQvOpL.png" alt=""><br>左边是有反矩阵存在的情况，当我们没有反矩阵存在是，如上图右所示，我们可能有很多组解，有其他方式定义这个反矩阵的形式。这样可以求得很多解中的一种。</p>
-<blockquote>
-<p>practical suggestion:<br>use <font color="orange">well-implemented \(\dagger\) routine</font> instead of <font color="red">\({(X^TX)}^{-1}X^T\)</font> for numerical stability when <font color="orange">almost-sigular</font> </p>
-</blockquote>
-<p><img src="http://i.imgur.com/K6LeNia.png" alt=""><br>simple and efficient with <font color="orange">good \(\dagger\) routine</font></p>
-<p><img src="http://i.imgur.com/nkWgZy0.png" alt=""><br><img src="http://i.imgur.com/Lgn63cu.png" alt=""><br><img src="http://i.imgur.com/DAA4RiD.png" alt=""><br><img src="http://i.imgur.com/okxreR5.png" alt=""></p>
-<p>线性分类和线性回归的比较<br><img src="http://i.imgur.com/48nuQ2f.png" alt=""><br>对于线性分类，y去正负1，而正负1也属于实数集，那么可以用线性回归来解线性分类呢？</p>
-<blockquote>
-<p>run LinReg on binary classification data D(<font color="orange">efficient</font>)<br>return g(<strong>x</strong>) = sign(\({\color{Blue}{W_{LIN}^{T}}}X\))</p>
-</blockquote>
-<p>上面的分析看着好像是对的，那到底对不对呢？二者最大分别是对错误的计算方式:<br><img src="http://i.imgur.com/jjQ9oEE.png" alt=""><br>平方的错误一定比0/1的错误来的大<br><img src="http://i.imgur.com/tkcfKDh.png" alt=""><br>可以用线性回归来计算线性分类</p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
-                机器学习基石八
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
-            2015-12-29
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石八">机器学习基石八</h2><p>上次学到：</p>
-<blockquote>
-<p>learning happens if <font color=orange>finite \(d_{vc}\), large N,</font> and <font color=orange>low \(E_{in}\)</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/BM9fHgo.png" alt=""><br>target function会产生一堆的样本，我们的资料，这些资料从哪里来？除了从target function得到他的y的部分，它的x是由某个我们所不知道的分布产生的，未来在测试的时候，我们也要用一样的分布，我们的演算法从这些资料和一个好的hypothesis set里找到一个好的的hypothesis。好的hypothesis set是vc维是有限的，好的hypothesis是Ein是很小的。<br>要是资料有<font color=red>噪音</font>呢？<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/29/机器学习基石八/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/05/c-c-随机数/" rel="next">c_c++随机数</a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
-  </nav>
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
  </div>
 
         
 
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/06/机器学习基石十一/"
+                   data-title="机器学习基十一" data-url="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/">
+              </div>
+            
+          </div>
         
       </div>
 
@@ -624,6 +335,15 @@
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <section class="site-overview">
@@ -693,6 +413,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十一"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十一</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
       
 
     </div>
@@ -777,6 +508,165 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {

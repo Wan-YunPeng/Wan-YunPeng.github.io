@@ -54,7 +54,7 @@
 <meta property="og:image" content="http://i.imgur.com/ZnETzQK.png">
 <meta property="og:image" content="http://i.imgur.com/fDIkjg2.png">
 <meta property="og:image" content="http://i.imgur.com/IPogV9s.png">
-<meta property="og:updated_time" content="2015-12-20T04:15:48.263Z">
+<meta property="og:updated_time" content="2016-01-06T15:09:51.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基石三">
 <meta name="twitter:description" content="\(\color{red}{多元分类}\)&amp;emsp;\(\color{red}{回归分析}\)回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手">
@@ -183,7 +183,7 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T12:15:48+08:00" content="2015-12-20">
+          <time itemprop="dateCreated" datetime="2015-12-20T20:45:55+08:00" content="2015-12-20">
             2015-12-20
           </time>
         </span>
@@ -215,7 +215,7 @@
 </blockquote>
 <a id="more"></a>
 <p>二元分类视为是一个<font color="red">多元分类（multiclass classification）</font>的一个特殊情况；<br>一些常见的应用：数字的手写识别、图中的水果（是苹果、草莓还是橘子）、邮件的分类（垃圾、社交、更新、…）所以多类别分类的应用也很常见，主要是用在视觉、听觉的辨识<br>多元分类问题的 Y 可能是个实数集R，或者是带有上下界的R，此类问题视为<font color="red">回归分析</font><br>回归分析可以用在哪里：比如说给机器公司资料，预测这个公司明天的股票怎么样。或者是给电脑一些天气的资料来预判明天天气怎么样。这些都是回归分析的典型实例，它的特点就是要输出一个实数。这类问题已被研究了很久，有许多成熟的工具。   </p>
-<p>如下图，考虑NLP的问题，当我们输入一个单词，要机器直到他的词性（动词、名词、…）是一个多元分类问题，<br>考虑我们输入的不是一个单词，而是一个句子，要求输出的也是每个单词的词性，但是呢，这些单词的词性又组成一个有效的结构，这样的结构是很多的。<br><img src="http://i.imgur.com/QQtKKGg.png" alt="">  </p>
+<p>如下图，考虑NLP的问题，当我们输入一个单词，要机器知道他的词性（动词、名词、…）是一个多元分类问题，<br>考虑我们输入的不是一个单词，而是一个句子，要求输出的也是每个单词的词性，但是呢，这些单词的词性又组成一个有效的结构，这样的结构是很多的。<br><img src="http://i.imgur.com/QQtKKGg.png" alt="">  </p>
 <p>大类别的分类问题，每个类别有某个结构上的关系，structure learning,结构化学习，就是说我们要得输出有某种结构在里面，我们希望电脑想办法去学到这些结构。可以想象这是一个很复杂的问题，它的一些解法实际上都是从很多类别的分类问题延伸出来的。<br>总结一下：我们会做是非题，从是非题我们延伸到多类别的分类问题；另外一个核心的问题是回归分析，回归分析实际上就是要我们输出实数或者有点像我们的输出空间就是无限大个各式各样不同的实数。然后如果从多类别的问题在分出来，我们可以做结构的学习，但这些结构的学习很像一个很大类别的多类别分类问题。这里的核心问题是是非题和回归分析  </p>
 <p><img src="http://i.imgur.com/Sb0Hjlh.png" alt=""></p>
 <p>之前接触的问题都是监督学习，在没有告诉电脑类别的情况下，也就是不告诉电脑答案（假如不告诉电脑铜板的含义），那么电脑能不能将铜板分类，如下图所示，电脑可能会得到几个不同的类别。叫做<font color="red">聚类问题</font>。如下图，我们很明显就看出电脑将铜板的种类分错了，但是如果我们也在不知道铜板种类的情况下进行聚类，我们很可能也会分成三类，换成其他人，他可能只分一类，这也是对的，所以怎么样衡量聚类的好坏更为困难一些。</p>
@@ -223,7 +223,7 @@
 <p>聚类的应用也有很多：</p>
 <blockquote>
 <p>articles \(\Rightarrow\) topics 将文章分到不同的主题中去<br>consumer profiles \(\Rightarrow\) consumer groups 将顾客分成多个不同群  </p>
-<p><font color="orange">clustering</font>:a challengin but useful problem   </p>
+<p><font color="orange">clustering</font>:a challenging but useful problem   </p>
 </blockquote>
 <p>其他一些无监督学习的问题：    </p>
 <blockquote>
@@ -266,13 +266,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/20/c-15晦涩特性/" rel="prev">c++15晦涩特性</a>
+              <a href="/2015/12/22/机器学习基石四/" rel="prev">机器学习基石四</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/18/机器学习基石二/" rel="next">机器学习基石二</a>
+              <a href="/2015/12/20/leetcode_string/" rel="next">leetcode——字符串笔记</a>
             
           </div>
         </div>
@@ -338,7 +338,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -419,7 +419,7 @@
       <div class="footer-inner"> <div class="copyright" >
   
   &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>

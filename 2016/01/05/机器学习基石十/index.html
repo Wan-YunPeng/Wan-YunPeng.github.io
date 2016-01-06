@@ -39,24 +39,44 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
+<meta name="description" content="机器学习基石十logistic regression之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：
+
+‘soft’ binary classification:f(x) = P(+1|x) \(\in\)[0,1]——ta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习基石二">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/index.html">
+<meta property="og:title" content="机器学习基十">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/05/机器学习基石十/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
-<meta property="og:image" content="http://i.imgur.com/wggMOeL.png">
-<meta property="og:image" content="http://i.imgur.com/7uSFMpW.png">
-<meta property="og:image" content="http://i.imgur.com/xzyGpIh.png">
-<meta property="og:image" content="http://i.imgur.com/1rBHA4I.png">
-<meta property="og:image" content="http://i.imgur.com/1UA2U36.png">
-<meta property="og:image" content="http://i.imgur.com/9aQK8UX.png">
-<meta property="og:image" content="http://i.imgur.com/bMs9eNp.png">
-<meta property="og:image" content="http://i.imgur.com/iquLyQa.png">
-<meta property="og:updated_time" content="2015-12-31T08:52:33.254Z">
+<meta property="og:description" content="机器学习基石十logistic regression之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：
+
+‘soft’ binary classification:f(x) = P(+1|x) \(\in\)[0,1]——ta">
+<meta property="og:image" content="http://i.imgur.com/LClbCZ0.png">
+<meta property="og:image" content="http://i.imgur.com/otwWcaz.png">
+<meta property="og:image" content="http://i.imgur.com/bMb43Rq.png">
+<meta property="og:image" content="http://i.imgur.com/VlAoRSt.png">
+<meta property="og:image" content="http://i.imgur.com/1HqUdtf.png">
+<meta property="og:image" content="http://i.imgur.com/SyeCFZF.png">
+<meta property="og:image" content="http://i.imgur.com/zjk5qik.png">
+<meta property="og:image" content="http://i.imgur.com/bIh7roM.png">
+<meta property="og:image" content="http://i.imgur.com/dxfJrlv.png">
+<meta property="og:image" content="http://i.imgur.com/25CdCoI.png">
+<meta property="og:image" content="http://i.imgur.com/qlEfyKo.png">
+<meta property="og:image" content="http://i.imgur.com/Gytv6Ub.png">
+<meta property="og:image" content="http://i.imgur.com/AOvTLT2.png">
+<meta property="og:image" content="http://i.imgur.com/KtvmqVj.png">
+<meta property="og:image" content="http://i.imgur.com/JNBalWS.png">
+<meta property="og:image" content="http://i.imgur.com/n5gfwxH.png">
+<meta property="og:image" content="http://i.imgur.com/PrAOsWI.png">
+<meta property="og:image" content="http://i.imgur.com/kKY3Iol.png">
+<meta property="og:image" content="http://i.imgur.com/j4qxjWd.png">
+<meta property="og:image" content="http://i.imgur.com/Lcr1iF6.png">
+<meta property="og:image" content="http://i.imgur.com/DFn5iJy.png">
+<meta property="og:image" content="http://i.imgur.com/WeMymG1.png">
+<meta property="og:updated_time" content="2016-01-06T14:46:07.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习基石二">
-<meta name="twitter:description" content="感知机&amp;emsp;线性分类器承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）首先复习一下上一次的内容：">
+<meta name="twitter:title" content="机器学习基十">
+<meta name="twitter:description" content="机器学习基石十logistic regression之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：
+
+‘soft’ binary classification:f(x) = P(+1|x) \(\in\)[0,1]——ta">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +86,7 @@
   };
 </script>
 
-  <title> 机器学习基石二 | YunPeng’s Blog </title>
+  <title> 机器学习基十 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -173,7 +193,7 @@
           
           
             
-              机器学习基石二
+              机器学习基十
             
           
         </h1>
@@ -182,8 +202,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
-            2015-12-18
+          <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
+            2016-01-05
           </time>
         </span>
 
@@ -193,8 +213,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
+              <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -208,23 +228,29 @@
       
 
       
-        <span itemprop="articleBody"><p><font color="red">感知机</font>&emsp;<font color="red">线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
-<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br><a id="more"></a><br>机器学习首要要有资料，资料从哪里来，从一个我们想学但是不知道的公式 f 里产生（可以理解为数据服从某个分布），有了这个资料以后，我们将这个资料喂给机器学习的演算法，机器学习通过观察所有的可能性 H ，从这些可能性中选一个 g 来，我们希望的是这个 g 和 f 越接近越好。以申请信用卡为例，当有人申请信用卡时， g 能很好的判断是否要给他信用卡。  </p>
-<p>H 到底长什么样子？<br>把每一个申请者用一个向量来表示，或用 \(\chi\) 来表示， \(\chi\) 有很多维度，比如这里第一维是他的年纪，第二维是他的年薪等等。<br><img src="http://i.imgur.com/7uSFMpW.png" alt="">  </p>
-<p>每个维度可能对我们有不同的正面或负面的影响，来决定我们到底给不给他信用卡。我们将这些维度综合的算起来，得到一个分数，如果这个分数超过一个阈值，我们就给他信用卡，如果没有超过，就不给他信用卡：<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &gt;    阈值   给他信用卡<br>\( \sum_{i = 1}^{ d } {w}_{i}{x}_{i} \) &lt;    阈值   不给他信用卡<br>就好比你考试，各个题的分数加起来超过60分，那你就及格了，没有达到60分就不及格。<br>\( {w}_{i}\)表示这个维度的权重，如果这个维度是正相关的，那\({w}_{i}\)很能很大，要是负相关的，\( {w}_{i}\)可能很小或是负的。<br>Y : {+1(good),-1(bad)},0忽略——线性公式 $${\color{Red}  h}(x) = sign ((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i}) - {\color{Red} {threshold}})$$<br>刚好等于0的概率很小，但出现时，一般忽略不计.这里的 h 叫做<font color="#DC143C">感知机</font>（类神经网络） h 由 w 算出来，再减去一个阈值。将threshold视为 w 的一部分，简化表达式：<br>$${\color{Red} h}(x) = sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} - {\color{Blue}{ threshold}})<br>= sign((\sum_{i=1}^{d}{\color{Red} {w}_{i}}{x}_{i} + {\color{Blue}{(\underset{w_{0}}{\underbrace{-threshold}})\cdot (\underset{x_{0}}{\underbrace{+1}}})})=sign((\sum_{i=1}^{d}{\color{Red} {w}_{0}}{x}_{i})= sign({\color{Red} W^{T}}X)$$<br>简化成了 W 和 X 的内积。</p>
-<p><img src="http://i.imgur.com/xzyGpIh.png" alt=""></p>
-<p>假设 W 只有两维来分析， \(\chi\) 对于图中的点，圆圈代表+1，叉叉代表-1， h 画出来是一条直线， h 的一边代表+1，另一边代表-1；我们之前说的感知器其实就是对应平面一条条的直线。<br>&emsp;&emsp;现在我们知道了一个可能的hypothesis set，这个 H 是平面内所有的线，现在面临的问题是怎样设计一个演算法，从这么多条线中选择一条最好的出来，来接近<font color="red">未知的 f</font>。虽然不知道 f ，但是我们知道我们的资料是从 f 中来的，至少要求我们的 g 在我们的资料上在 f 上很接近，最好一模一样。<br><img src="http://i.imgur.com/1rBHA4I.png" alt=""><br>困难是 H 的集合无限，想法是先假设一条，然后不断的修正它，使得他接近我们的最优解。<br>For t = 0,1,,,,,,</p>
-<ol>
-<li>找出资料中的某个点<font color="blue">(\( x_{n(t)},y_{n(t)} \))</font>在<font color="red">\( w_{t} \)</font>上犯错，意思就是拿到这条线，跟X做内积，得到的正负号和想要的正负号不一致： sign(\( {\color{Red} w_{t}^{T}}{\color{Blue}x_{n(t)}}) \neq {\color{Blue}y_{n(t)}}  \)   </li>
-<li>修正不正确的W:$${\color{Purple} w_{t+1}}\leftarrow {\color{Red} w_{t}} + {\color{Blue} y_{n(t)}x_{n(t)}} $$</li>
-</ol>
-<p><img src="http://i.imgur.com/1UA2U36.png" alt="">   </p>
-<p>当没有错误的时候，演算法就会停下来，但是资料一定是线性可分的吗？（噪音）假设它能停下来，那么在我们已知的资料上 g 和 f 的表现是一样的，但是在资料之外呢？g 的表现性我们也是未知的。上面的这个算法我们叫PLA(perceptron learning algorithm)</p>
-<p>当数据线性可分时\(\Leftrightarrow \)会存在一个\(w_{f}^{T}\)使得\( y_{n} = sign(w_{f}^{T}x_{n}) \)成立，也就是说对于每一个\(x_{n}\)都有$$ {\color{Purple} y_{n(t)}w_{f}^{T}x_{n(t)}}{\color{Blue} \geqslant  y_{n}w_{f}^{T}x_{n}}{\color{Red} &gt;0} $$<br>对于PLA算法中W选到的错误的点，也会满足上面的式子。用两个向量的内积来衡量两个向量之间到底接不接近。为了知道\(w_{f}^{T}\)和我们求的\(w_{t}\)是否接近，使他们两个做内积<br><img src="http://i.imgur.com/9aQK8UX.png" alt=""><br>上面是式子说明\(w_{f}^{T}\)和\(w_{t}\)的内积越来越大，但两个向量的内积大也可能是他们本身就很大，而不是很接近，这里只证明了一半。<br>接下来用到PLA另外一个重要的性质：只有当我们有错的时候才更新\( \Leftrightarrow sign(w_{t}^{T}x_{n(t)})\neq y_{n(t)}\Leftrightarrow {\color{Blue} y_{n(t)}w_{t}^{T}x_{n(t)} \leq 0} \)<br>用这个性质来观察\(w_{t+1}\)后的值：<br><img src="http://i.imgur.com/bMs9eNp.png" alt=""><br>蓝色部分是小于0的，所以如果只有犯错才更新的话，我们的Wt是不会成长得很快的，因为他要加一个负的项上去。只能靠红色的那一项成长，将犯错的点和最远的点作比较，得到最后一个不等式。最多更新最大的\({||x_{n}||}^{2}\)<br>所以之前说wt和wf可以越来越接近，但是wt会更新的很慢，这里得到一个很重要的结论：<br><img src="http://i.imgur.com/iquLyQa.png" alt=""><br>定义\( R^{2} = \underset{n}{max}{||x_{n} ||}^{2} \)&emsp;\( \rho = \underset{n}{min} y_{n}\frac{w_{f}^{T}}{||w_{f}||}x_{n}  \)<br>其中T为迭代次数，constant为一个常量，其值为\(\rho\)/R,又因为余弦夹角小于等于1，所以PLA之多迭代次数为：\(R^{2}/{\rho}^2 \)<br>当我们从0开始一路做更新，做了T个更新之后，发现两个正规化向量的内积会大于等于更新次数的开方和某个常数，这里两个正规化向量的内积表示他们的接近程度，每一次的更新，就会接近一点，那他会不会无限次的靠近，不可能，因为两个正规化向量的内积最大为1。所以证明了这个演算法会停下来。</p>
-<p>这里总结一下，资料线性可分，wt每次选择一个错误出来修正。线性可分说明wt和wf会越来越接近，每次修正一个错误说明wt会缓慢的成长，融合这两个结果，证明了PLA会停下来。好处就是代码实现很简单（20行）。坏处就是资料是否线性可分是不能确定的，就是资料是线性可分的，资料中也有可能存在噪音数据，就算没有噪音且线性可分，但也不知道wt什么时候会停，之前算出迭代次数T \(\leq R^{2}/\rho^{2}\),而\(\rho\)的大小要依靠wf（未知），所以我们不知道PLA什么时候会停下来。所以，PLA在真正使用的时候会有很大的问题。<br>对于有噪音的数据，我们只需找到犯错误最少的\( w_{g} \)<br>pocket算法：</p>
+        <span itemprop="articleBody"><h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
 <blockquote>
-<p>for t = 0,1,….<br>找到\(w_{t}\)的一个错误，记为(\(x_{n(t)},y_{n(t)}\));<br>尝试修正这个错误：$$w_{t+1} \leftarrow w_{t} + y_{n(t)}x_{n(t)}$$<br>如果\(w_{t+1}\)犯的错比\(\hat{w}\)犯的错少，我们就用\(w_{t+1}\)代替\(\hat{w}\)<br>这个\(\hat{w}\)作为g返回</p>
+<p><font color="purple">‘soft’</font> binary classification:<font color="purple">f</font>(x) = <font color="orange">P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
 </blockquote>
+<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br><img src="http://i.imgur.com/LClbCZ0.png" alt=""><br>但是我们可能拿到这样的资料吗，我们可能拿不到。例如说，癌症的例子中，医院里的资料是什么？我们有病人的病例，有他过了两个月或三个月后他到底有没有病发，我们并没有像0.2，0.6这样的数字，我们只知道他是否病发。<br><img src="http://i.imgur.com/otwWcaz.png" alt=""><br>所以实际上的资料和我们做binary classification的资料是一样的，我们手上的只有圈圈或叉叉，说他有心脏病发或没有心脏病发，从另外一个角度来看，我们可以把我们手上的资料看成ideal(noiseless) data的一个有杂讯的版本，什么叫有杂讯的版本？我想要的是0.9，可是实际上，我没有那个P(+1|x)的值，所以我是p(y|x)抽样了一下，根据这个0.9抽样了一下，我得到了一个圈圈，比如说我今天如果用1跟0来代表的话，圈圈是用1，想要的是0.9，得到的实际数字是1。那又或者在下面我想要的是0.2，经过抽样后我得到的是叉叉（0），，所以，我们得到的不是p(+1|x)的值，我们得到的是我们在做了一次抽样后发生了一些什么事情，有时发生的几率大于0.5，但是抽样得到的却是叉叉的结果。<br><img src="http://i.imgur.com/bMb43Rq.png" alt=""></p>
+<blockquote>
+<p>same data as hard binary classification,different <font color="purple">target function</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/VlAoRSt.png" alt=""><br>将得到的分数反映到0/1上面。\(\theta\)就是我们的logistic函数。<br>这里做得事情和linear regression或linear classification都一样，我们先计算得到一个分数，因为我们想要的是0到1值，所以在透过一个logistic函数把他转换为一个0到1之间的值。<br>常用的logistic function:<br><img src="http://i.imgur.com/1HqUdtf.png" alt=""></p>
+<blockquote>
+<p>logistic regression: use$${\color{Orange} {h}}(x)=\frac{1}{1+exp(-{\color{Orange} {W^T}}X)}$$<br>to approximate target function f(x) = P(y|x)</p>
+</blockquote>
+<p>三种用到线性加权的方法<br><img src="http://i.imgur.com/SyeCFZF.png" alt=""></p>
+<blockquote>
+<p>how to define <font color="orange">\(E_{in}(W)\) for logistic regression</font>?</p>
+</blockquote>
+<p><img src="http://i.imgur.com/zjk5qik.png" alt=""><br>我们的target function是P(+1|x)，如果把它反过来写，就是P(y|x),我们y有两种，一种是+1，一种是-1。<br><img src="http://i.imgur.com/bIh7roM.png" alt=""><br>用h(x)来代替圈圈和叉叉。</p>
+<blockquote>
+<p>if \({\color{Orange}{h}} \approx {\color{Purple}{f}}\) then likelihood(\({\color{Orange}{h}} \approx \)probability using \({\color{Purple}{f}}\)<br>probability using <font color="purple">f</font> usually <font color="purple">large</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/dxfJrlv.png" alt=""><br>把参数h换成我们真正感兴趣的w<br><img src="http://i.imgur.com/25CdCoI.png" alt=""><br>将上式的连乘换成连加，并且把求最大转换成求最小得（加了一个常数1/N，方便计算）<br><img src="http://i.imgur.com/qlEfyKo.png" alt=""><br>进行带入，化简，求得<br><img src="http://i.imgur.com/Gytv6Ub.png" alt=""></p>
+<p>因为Ein是一个凸函数，和之前的求法相似，求他的梯度最小。<br><img src="http://i.imgur.com/AOvTLT2.png" alt=""><br>求梯度最小，就是梯度为0的点<br><img src="http://i.imgur.com/KtvmqVj.png" alt=""><br>梯度是用\(\theta(x)\)来当权重的式子。<br>当\(\theta(x)\)全为0时，我们的梯度是否为0？我们发现这种情况下资料必须是线性可分，这个解法不可行<br>linear regression是一步求出，而PLA是一步一步修正，从某个W出发，然后想办法去修正这个W所犯的错误，我们这里用的方法类似于PLA。<br><img src="http://i.imgur.com/JNBalWS.png" alt=""><br>有错的话更新的方向是错误的方向，要是没有错误的话，更新0<br><img src="http://i.imgur.com/n5gfwxH.png" alt=""></p>
+<p><img src="http://i.imgur.com/PrAOsWI.png" alt=""><br>每次让W更新到最大程度。<br><img src="http://i.imgur.com/kKY3Iol.png" alt=""><br>通过泰勒展开将非线性优化转换成为一个近似于直线的情况<br><img src="http://i.imgur.com/j4qxjWd.png" alt=""><br>两个向量内积最小是他俩完全反方向，得到一个很负的值。现在知道梯度要往反方向走，那么\(\eta\)怎么选择<br><img src="http://i.imgur.com/Lcr1iF6.png" alt=""><br>\(\eta\)和梯度应该是正相关的关系<br><img src="http://i.imgur.com/DFn5iJy.png" alt=""><br>W的更新办法是：W走一个固定的紫色的\(\eta\)，往哪里走？往直接乘上一个gradient的方向走。<br><img src="http://i.imgur.com/WeMymG1.png" alt=""><br>初始化一个W0，计算gradient(W),再更新紫色\(\eta\)大小，目的是走到谷底，不一定非的是0才行，接近0或迭代次数够多就行。</p>
 </span>
       
     </div>
@@ -236,13 +262,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/20/c-15晦涩特性/" rel="prev">c++15晦涩特性</a>
+              <a href="/2016/01/05/c-c-随机数/" rel="prev">c_c++随机数</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/17/机器学习基石一/" rel="next">机器学习基石一</a>
+              <a href="/2016/01/03/机器学习基石九/" rel="next">机器学习基九</a>
             
           </div>
         </div>
@@ -267,8 +293,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/12/18/机器学习基石二/"
-                   data-title="机器学习基石二" data-url="http://Wan-YunPeng.github.io/2015/12/18/机器学习基石二/">
+              <div class="ds-thread" data-thread-key="2016/01/05/机器学习基石十/"
+                   data-title="机器学习基十" data-url="http://Wan-YunPeng.github.io/2016/01/05/机器学习基石十/">
               </div>
             
           </div>
@@ -372,7 +398,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -42,7 +42,7 @@
 <meta name="description" content="Read the f**king code">
 <meta property="og:type" content="website">
 <meta property="og:title" content="YunPeng’s Blog">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/page/3/index.html">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/page/5/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
 <meta property="og:description" content="Read the f**king code">
 <meta name="twitter:card" content="summary">
@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/20/机器学习基石三/" itemprop="url">
-                机器学习基石三
+              <a class="post-title-link" href="/2015/10/24/lambda-and-function/" itemprop="url">
+                lambda函数和std::function
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T20:45:55+08:00" content="2015-12-20">
-            2015-12-20
+          <time itemprop="dateCreated" datetime="2015-10-24T13:38:41+08:00" content="2015-10-24">
+            2015-10-24
           </time>
         </span>
 
@@ -188,8 +188,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/20/机器学习基石三/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/机器学习基石三/" itemprop="commentsCount"></span>
+              <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -204,171 +204,18 @@
 
       
         
-          <p>\(\color{red}{多元分类}\)&emsp;\(\color{red}{回归分析}\)<br>回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。<br>从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手上的铜板按照大小（可能是半径大小或是重量）得到下图<br><img src="http://i.imgur.com/CczslyD.png" alt=""><br>将这些资料喂给电脑，并告诉它这个大小、这个重量的是10cent,这个大小、这个重量的是1cent,这个大小、这个重量的是5cent,这个大小、这个重量的是25cent,我们希望电脑能不能得到一个 g ，能使贩卖机能准确的判断顾客投进去的一个铜板到底是哪一种？  </p>
+          <h2 id="lambda函数">lambda函数</h2><h3 id="基本的lambda函数">基本的lambda函数</h3><p>在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所以前述的作法是不可行的。<br> C++11 对 lambda 的支持可以解决上述问题。  </p>
+<p>一个 lambda 函数可以用如下的方式定义:  </p>
 <blockquote>
-<p>分类US硬币（1c,5c,10c,25c）(按大小、重量)<br>y = {1c,5c,10c,25c} or y = {1,2,…,K}(abstractly)<br>binary classification: special cse with K = 2  </p>
+<p>[](int x, int y) { return x + y; }  </p>
 </blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/机器学习基石三/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/leetcode_string/" itemprop="url">
-                leetcode——字符串笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T19:15:00+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/leetcode_string/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode_string/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>  </p>
-<h2 id="字符串">字符串</h2><h4 id="1-是否为空">1.是否为空</h4><p>字符串是否为空</p>
-<h4 id="2-[]、itr和substr">2.[]、itr和substr</h4><p>s[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，</p>
-<h4 id="3-tolower">3.tolower</h4><p>int tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理</p>
-<h4 id="4-transform–uo">4.transform–uo</h4><p>OutputIterator transform (InputIterator first1, InputIterator last1,                        OutputIterator result, UnaryOperation op);返回一个指向结果的迭代器，将区间[first1,last1)之间的元素进行一员操作op后,将其结果保存在result为首的空间中，源区间的值不受影响。除非就保存在源区间的位置<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/leetcode_string/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/leetcode/" itemprop="url">
-                leetcode——线性表笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T19:13:00+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/leetcode/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="线性表笔记">线性表笔记</h2><h3 id="数组">数组</h3><ol>
-<li><p>unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）</p>
+<p>这个不具名函数的回返类型是 decltype(x+y)。只有在 lambda 函数符合”return expression”的形式下，它的回返类型才能被忽略。在前述的情况下，lambda 函数仅能为一个述句。<br>在一个更为复杂的例子中，回返类型可以被明确的指定如下：</p>
 <blockquote>
-<p>当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次<br>当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复<br>1） unique(A,A + n)(A为数组，n为数组大小)<br>2） unique(nums.begin(),nums.end())(nums为容器–含有迭代器)</p>
+<p>[](int x, int y) -&gt; int { int z = x + y; return z + x; }</p>
 </blockquote>
-</li>
-<li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
-</li>
-<li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
-<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器
+<p>本例中，一个临时的参数 z 被创建用来存储中间结果。如同一般的函数，z 的值不会保留到下一次该不具名函数再次被调用时。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/leetcode/#more" rel="contents">
+            <a class="btn" href="/2015/10/24/lambda-and-function/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -401,8 +248,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/20/c-15晦涩特性/" itemprop="url">
-                c++15晦涩特性
+              <a class="post-title-link" href="/2015/10/23/C++类型转换总结/" itemprop="url">
+                C++类型转换总结
               </a>
             
           
@@ -412,8 +259,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T13:20:32+08:00" content="2015-12-20">
-            2015-12-20
+          <time itemprop="dateCreated" datetime="2015-10-23T11:18:01+08:00" content="2015-10-23">
+            2015-10-23
           </time>
         </span>
 
@@ -423,8 +270,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/20/c-15晦涩特性/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/c-15晦涩特性/" itemprop="commentsCount"></span>
+              <a href="/2015/10/23/C++类型转换总结/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/23/C++类型转换总结/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -439,25 +286,9 @@
 
       
         
-          <ol>
-<li>方括号的真正含义  </li>
-<li>最烦人的解析  </li>
-<li>替代运算标记符  </li>
-<li>重定义关键字  </li>
-<li>Placement new  </li>
-<li>在声明变量的同时进行分支  </li>
-<li>成员函数的引用修饰符  </li>
-<li>图灵完备的模板元编程  </li>
-<li>指向成员的指针操作符  </li>
-<li>静态实例方法  </li>
-<li>重载++和–  </li>
-<li>操作符重载和检查顺序  </li>
-<li>函数作为模板参数  </li>
-<li>模板的参数也是模板  </li>
-<li>try块作为函数  </li>
-</ol>
+          <p>C++类型转换分为：隐式类型转换和显式类型转换<br>隐式转换：编译器自行转换，可能与程序员预期不一致<br>显示转换：static_cast、dynamic_cast、reinpreter_cast、const_cast。强烈建议使用显示转换<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/c-15晦涩特性/#more" rel="contents">
+            <a class="btn" href="/2015/10/23/C++类型转换总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -490,8 +321,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/12/18/机器学习基石二/" itemprop="url">
-                机器学习基石二
+              <a class="post-title-link" href="/2015/10/22/常量表达式constexpr/" itemprop="url">
+                常量表达式constexpr
               </a>
             
           
@@ -501,8 +332,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
-            2015-12-18
+          <time itemprop="dateCreated" datetime="2015-10-22T10:38:55+08:00" content="2015-10-22">
+            2015-10-22
           </time>
         </span>
 
@@ -512,8 +343,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
+              <a href="/2015/10/22/常量表达式constexpr/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/常量表达式constexpr/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -528,10 +359,91 @@
 
       
         
-          <p><font color = red>感知机</font>&emsp;<font color = red>线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
-<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br>
+          <h3 id="const常量用作数组大小的两种情况">const常量用作数组大小的两种情况</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size(); <span class="comment">// s.size()的大小在编译时不能确定</span></span><br><span class="line"><span class="keyword">int</span> a[n]; <span class="comment">// 错误,const int n 表达式必须含有常量值 </span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[n]; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">10</span>; <span class="comment">// n的大小在编译时可以确定</span></span><br><span class="line"><span class="keyword">int</span> a[m]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>想动态分配二维数组:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line"><span class="keyword">int</span> **a = <span class="keyword">new</span> <span class="keyword">int</span>*[n];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[n * n]; <span class="comment">// 一次性确定所需空间,此处连续</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/18/机器学习基石二/#more" rel="contents">
+            <a class="btn" href="/2015/10/22/常量表达式constexpr/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/17/hello-world/" itemprop="url">
+                Hello World
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-17T12:37:54+08:00" content="2015-10-17">
+            2015-10-17
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/17/hello-world/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/hello-world/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ ddd</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/17/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -557,7 +469,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
  </div>
