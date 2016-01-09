@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,25 +17,38 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
-
-
-    <meta name="description" content="Read the f**king code" />
-
-
-
-  <meta name="keywords" content="Hexo,next" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
 
 
 <meta name="description" content="Training versus Testing训练和测试的过程到底有什么不一样？上一节的一个简单总结，机器有时是学不到东西的，有时是可以学到的，什么时候可以学到：
@@ -67,7 +79,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 <meta property="og:image" content="http://i.imgur.com/j0cM75K.png">
 <meta property="og:image" content="http://i.imgur.com/YsJX6x8.png">
 <meta property="og:image" content="http://i.imgur.com/sKUlCLG.png">
-<meta property="og:updated_time" content="2015-12-29T14:40:27.757Z">
+<meta property="og:updated_time" content="2016-01-08T02:39:40.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基石五">
 <meta name="twitter:description" content="Training versus Testing训练和测试的过程到底有什么不一样？上一节的一个简单总结，机器有时是学不到东西的，有时是可以学到的，什么时候可以学到：
@@ -77,10 +89,12 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 另外一种情况，如果Hypothesis Set是无限">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
 
@@ -102,20 +116,25 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 
 
 
+
+
+
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand" rel="start">
-      <span class="logo">
-        <i class="icon-next-logo"></i>
-      </span>
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">YunPeng’s Blog</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Read the f**king code</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -134,23 +153,19 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            <i class="menu-item-icon icon-next-categories"></i> <br />
-            分类
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
@@ -158,7 +173,9 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
           </a>
         </li>
@@ -177,48 +194,78 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
 
+  
+  
+
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              机器学习基石五
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-22T18:38:55+08:00" content="2015-12-22">
-            2015-12-22
-          </time>
-        </span>
+    
+      <header class="post-header">
 
         
-
         
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习基石五
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-22T18:38:55+08:00" content="2015-12-22">
+              2015-12-22
+            </time>
+          </span>
+
           
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/22/机器学习基石五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石五/" itemprop="commentsCount"></span>
-              </a>
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
             </span>
           
-        
-      </div>
-    </header>
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/22/机器学习基石五/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石五/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
 
     <div class="post-body">
 
@@ -252,7 +299,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 <p>must be \(\leq2^{N}\)(why?)<br>finite ‘grouping’ of infinitedly-many lines \(\in\)H<br>wish: \(\mathbb{P}[|E_{in}(g) - E_{out}| &gt; \epsilon ] \leq 2\cdot \color{Orange}{effective(N)} \cdot exp(-2\epsilon^{2}N)\)</p>
 </blockquote>
 <p>如果我们能够将M换成effective(N)那么就可以实现learning。这个还只是一个假设，接下来会证明<br><img src="http://i.imgur.com/41KLoI8.png" alt=""></p>
-<p><img src="http://i.imgur.com/Pb1IaQJ.png" alt=""><br>假设现在我们有这样一个hypothesis h，他把我们的输入空间变成圈和叉这两种情形，x1,x2,…,xn表示有n个点，从这些点看过去，我们产生了多少种可能性，什么可能性？几种圈圈叉叉的组合，把这些组合叫做<font color="orange">dichotomy</font>(二分)。我们想知道的是一个hypothesis set到底能做出多少种不一样dichotomy出来<br>有一个小小的缺陷是：我们的dichotomy取决于我们先选好的x1,x2,…我们要移除这个对x的依赖。<br><img src="http://i.imgur.com/ehsc91N.png" alt=""><br>这个成长函数应该怎么算？先看两个例子：<br><img src="http://i.imgur.com/PNsasPC.png" alt=""><br><img src="http://i.imgur.com/4cGbzJn.png" alt=""><br><img src="http://i.imgur.com/mOFS1cz.png" alt=""><br><img src="http://i.imgur.com/j0cM75K.png" alt=""><br>shattered：如果我们找到N个点，这N个点可能是特别的N个点，我们可以把\(2^{N}\)种dichotomy全部做出来。<br>今天讲了4个不同的成长函数：<br><img src="http://i.imgur.com/YsJX6x8.png" alt=""></p>
+<p><img src="http://i.imgur.com/Pb1IaQJ.png" alt=""><br>假设现在我们有这样一个hypothesis h，他把我们的输入空间变成圈和叉这两种情形，x1,x2,…,xn表示有n个点，从这些点看过去，我们产生了多少种可能性，什么可能性？几种圈圈叉叉的组合，把这些组合叫做<font color="orange">dichotomy</font>(二分)。我们想知道的是<font color="red">一个hypothesis set到底能做出多少种不一样dichotomy出来（成长函数）</font><br>有一个小小的缺陷是：我们的dichotomy取决于我们先选好的x1,x2,…我们要移除这个对x的依赖。<br><img src="http://i.imgur.com/ehsc91N.png" alt=""><br>这个成长函数应该怎么算？先看两个例子：<br><img src="http://i.imgur.com/PNsasPC.png" alt=""><br><img src="http://i.imgur.com/4cGbzJn.png" alt=""><br><img src="http://i.imgur.com/mOFS1cz.png" alt=""><br><img src="http://i.imgur.com/j0cM75K.png" alt=""><br>shattered：如果我们找到N个点，这N个点可能是特别的N个点，我们可以把\(2^{N}\)种dichotomy全部做出来。<br>今天讲了4个不同的成长函数：<br><img src="http://i.imgur.com/YsJX6x8.png" alt=""></p>
 <blockquote>
 <p>what if \(m_{H}(N)\) replaces M?$$\mathbb{P}[|E_{in}(g) - E_{out}| &gt; \epsilon ] \overset{\color{Orange} {?}}{\leq }2\cdot m_{H}\cdot exp(-2\epsilon^{2}N)$$</p>
 <font color="orange">polynomial:good</font>;<font color="purple">exponential:bad</font>
@@ -273,18 +320,28 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/22/morris后序遍历/" rel="prev">morris遍历</a>
+              <a href="/2015/12/22/机器学习基石四/" rel="next" title="机器学习基石四">
+                <i class="fa fa-chevron-left"></i> 机器学习基石四
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/22/机器学习基石四/" rel="next">机器学习基石四</a>
+              <a href="/2015/12/22/morris后序遍历/" rel="prev" title="morris遍历">
+                morris遍历 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -302,22 +359,26 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div class="ds-thread" data-thread-key="2015/12/22/机器学习基石五/"
-                   data-title="机器学习基石五" data-url="http://Wan-YunPeng.github.io/2015/12/22/机器学习基石五/">
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/22/机器学习基石五/"
+           data-title="机器学习基石五" data-url="http://Wan-YunPeng.github.io/2015/12/22/机器学习基石五/">
+      </div>
+    
+  </div>
+
+
       </div>
 
       
+        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -331,6 +392,8 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
@@ -341,7 +404,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
         </ul>
       
 
-      <section class="site-overview">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Wan YunPeng</p>
@@ -350,16 +413,16 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -377,23 +440,43 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+                <a href="https://github.com/Wan-YunPeng" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.google.com" target="_blank">google</a>
+                <a href="https://www.google.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> google
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+                <a href="https://zh-cn.facebook.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com" target="_blank">twitter</a>
+                <a href="https://twitter.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com" target="_blank">weibo</a>
+                <a href="http://weibo.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
               </span>
             
           
@@ -409,15 +492,21 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
       </section>
 
       
-        <section class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
           <div class="post-toc">
+            
+              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Training_versus_Testing"><span class="nav-number">1.</span> <span class="nav-text">Training versus Testing</span></a></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
         </section>
       
 
@@ -425,15 +514,17 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
   </aside>
 
 
+      
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart"></i>
+    <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
 </div>
@@ -450,7 +541,8 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -460,6 +552,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 
   
   
+
   
     
 
@@ -472,6 +565,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
@@ -481,30 +575,28 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
     
      
 
+
     
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
-  
-
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -585,7 +677,7 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
 
     function tocOverflowIndicator (indicator, action) {
       var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
+      var opacity = action === 'show' ? 1 : 0;
       $indicator.velocity ?
         $indicator.velocity('stop').velocity({
           opacity: opacity
@@ -652,63 +744,26 @@ learning is PAC-possible if enough statistical data and finite |H| 资料来自�
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-    });
-  </script>
-
-  
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
+  
+
 </body>
 </html>

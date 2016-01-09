@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="机器学习基石十三hazard of overfitting先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。我本来不知道我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基石十三">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/09/机器学习基石十三/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习基石十三hazard of overfitting先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。我本来不知道我们">
+<meta property="og:image" content="http://i.imgur.com/djnlqWD.png">
+<meta property="og:image" content="http://i.imgur.com/J93jpMQ.png">
+<meta property="og:image" content="http://i.imgur.com/HUe9DS3.png">
+<meta property="og:image" content="http://i.imgur.com/ST6cBDH.png">
+<meta property="og:image" content="http://i.imgur.com/tOnNWMh.png">
+<meta property="og:image" content="http://i.imgur.com/Chscoac.png">
+<meta property="og:image" content="http://i.imgur.com/DMrcl8d.png">
+<meta property="og:image" content="http://i.imgur.com/EX5agPs.png">
+<meta property="og:image" content="http://i.imgur.com/NqraEiX.png">
+<meta property="og:image" content="http://i.imgur.com/MeQdJKM.png">
+<meta property="og:image" content="http://i.imgur.com/0aKZXFQ.png">
+<meta property="og:image" content="http://i.imgur.com/NK75iX7.png">
+<meta property="og:image" content="http://i.imgur.com/aEKVp13.png">
+<meta property="og:image" content="http://i.imgur.com/qThy42d.png">
+<meta property="og:image" content="http://i.imgur.com/oYrQ5q7.png">
+<meta property="og:image" content="http://i.imgur.com/3ZcMWCQ.png">
+<meta property="og:image" content="http://i.imgur.com/o2cU9Dn.png">
+<meta property="og:updated_time" content="2016-01-09T12:40:23.283Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基石十三">
+<meta name="twitter:description" content="机器学习基石十三hazard of overfitting先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。我本来不知道我们">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 机器学习基石十三 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YunPeng’s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Read the f**king code</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习基石十三
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-09T20:39:05+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/09/机器学习基石十三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/机器学习基石十三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习基石十三">机器学习基石十三</h2><p>hazard of overfitting<br>先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。<br><img src="http://i.imgur.com/djnlqWD.png" alt=""><br>我本来不知道我们的目标函数是一个二次函数，我有五个资料点，不然我用一个4次的多项式来做这个回归分析，怎么样用四次的多项式？我们上次讲过你只要把一个四次的特征转换配合我们原来学过的linear regression你就可以用4次多项式来做。你有五个点，你要用一个4次多项式的话，只有一个4次多项式会通过这个点，也就是一个唯一解。因为这个四次多项式通过这五个点，所以他的Ein一定是0，上图中红色的线。可以看出这条红色的线和我们的目标函数蓝色的那条线一点都不像，也就是说它的Eout其实非常非常的大。这种情况叫做bad generalization。<br><a id="more"></a><br>VC bound已经告诉我们这种情况会发生，什么时候？就是你的VC维太大的时候，你的Ein会很低，但是你的Eout很高的状况。  </p>
+<blockquote>
+<p>bad generalization:<font color="red">low Ein</font>,<font color="purple">high Eout</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/J93jpMQ.png" alt=""><br>overfitting:fitting做得很好，但是太过头了,对应的是underfitting，underfitting的问题比较好解决，只要增加你的VC维就行了，就像我们上一次将的non-linear transform的时候，其实就已经告诉大家工具了。但是overfitting是很常见，但是很不容易解决的问题，这一次我们要探讨的特题。<br>所以，overfitting和bad generalization有什么不一样，刚才提到，bad generalization是描述一个点的状态，低的Ein，高的Eout。但是如果我们是Ein变低了，Eout变高了，这个过程我们叫做overfitting。  </p>
+<blockquote>
+<p>bad generalization:<font color="red">low Ein</font>,<font color="purple">high Eout</font></p>
+<p><font color="orange">overfitting</font>:low<font color="orange">er</font> Ein,high<font color="orange">er</font> Eout</p>
+</blockquote>
+<p>例如说我今天真的选了一个好的VC维，得到了这样一条红色的线，他和蓝色的线虽然不是完全一样，但是没有差太多，这是一个好的fit，而overfitting则是我一不小心用了过多的vc维的状态。<br><img src="http://i.imgur.com/HUe9DS3.png" alt=""><br>怎样理解overfitting，用一个现实生活中的例子来描述：<br><img src="http://i.imgur.com/ST6cBDH.png" alt=""><br>接下来，我们学习一下<font color="orange">杂讯</font>和<font color="orange">数据量大小</font>怎样影响overfitting?</p>
+<p>为了让你了解overfitting到底是怎样一回事，这里通过一系列人工实验的结果来秀给大家看。在一部分的实验里面，我们用这样的方式来产生资料，我们还是想象我们在一个1维的回归分析问题上，那么我们怎么产生我们的资料呢？用一个10次多项式来当作我的目标函数，如下图蓝色的线，然后在这个10次多项式上加上一些杂讯来产生我的资料点，<br><img src="http://i.imgur.com/tOnNWMh.png" alt=""><br>在另外一部分资料里面，我则考虑目标函数是一个50次的多项式，可以看出，这个50次的多项式就比10次的更弯弯曲曲一些了，不过，这50次多项式我不考虑有杂讯的状况，也就是说这50次多项式我不在加上有任何的杂讯，我们要了解的事情是今天造成问题的是左边的情况还是右边的情况？到底什么时候会出overfitting这样的问题。<br>我们用两个不同的learning model，一个learning model是2次的，我们考虑所有的2次多项式，我用quadratic regression的方式找出一个最好的g2，用绿色的线表示；另外一个模型是10次多项式，用红色的线表示，我们想要知道用哪一个模型表示比较好。<br><img src="http://i.imgur.com/Chscoac.png" alt=""><br>上图秀出了他们的结果，在我的目标函数是一个10次多项式并且在资料上加了杂讯的时候到底发生了什么事情，可以看到，g10的Ein比g2的Ein来的好，但是Eout却是g2要比g10好，所以overfitting发生了，在什么样的过程中发生了？假设我们从g2切换到g10的时候，我们发生了overfitting，我们的Ein下降了，Eout上升了；另外一种情况，目标是50次的多项式，我从g2切换到g10的时候，Ein降低了，但是Eout却增加了，而且增加了很多，可以说g10的Eout糟的一塌糊涂。所以在这两个情况里面，overfitting都发生了。<br>所以，这里就产生了一个很奇怪的情形：在知道目标函数是10次多项式的情况下，只是给资料加上了一点点的杂讯，本来看起来10次多项式应该会比2次多项式的效果好，但是结果却刚好相反。<br><img src="http://i.imgur.com/DMrcl8d.png" alt=""><br>所以一件很有趣的事情是，你就算知道今天的目标是10次多项式，你真正用10次多项式也不见得会做得很好。<br>那么为什么会这样？我们来看看learning curve，learning curve描述的事情是我的资料量有多少，横轴表示资料量，我的资料量有多少的时候，我的error到底有什么样的变化。下图是linear regression或regression类的方法的learning curve，<br><img src="http://i.imgur.com/EX5agPs.png" alt=""><br>这里告诉我们只要在资料量不是很多的情况下，比较笨的那个学生（2次多项式），搞不好会有好处，所以在你资料量不是很多的情况下，一些简单的hypothesis可以很好的解释你的资料。<br><img src="http://i.imgur.com/NqraEiX.png" alt=""><br>刚才还有一个例子，是没有noise的，还是一样，比较笨的g2和比较聪明的g10，两个都是到没有办法做50次多项式，都知道没有noise，但是在没有noise的状况下g2还是比g10做得好。这个结果很奇怪，10次的那个有noise，g2做得好就算了，因为g10很有可能去靠近那个noise，所以做不好。那现在没有noise了，为什么g10还是做不好？这里有个问题，你觉得真的没有noise吗？这种情况下：目标函数是50次，一个2次的，一个10次的，真的没有noise吗？<br><img src="http://i.imgur.com/MeQdJKM.png" alt=""><br>实际上从右边这个线弯弯曲曲的跳来跳去，看以看出在这个情形里面是有noise的，是一些不一样的noise。就是你今天要学的事情很复杂，很复杂造成这个弯弯曲曲的线，这个弯弯曲曲的线10次也做不到，2次的也做不到，然后这些差距，其实都是noise，其实你说你今天要学的东西很复杂的时候，这个复杂度也造成了我们刚才看到的noise的影响。<br>在做完刚才的试验后，接下来讲一个更加细节的实验来告诉大家什么时候要信心overfit会发生？<br>我们把产生资料的过程分成两个部分，一个是我的target function，另一个则是我的noise。假设我的noise是Gaussian分布的，要探讨的问题是这个Gaussian的noise的强度不一样的时候，对我的overfitting到底有什么样的影响，这个Gaussian用红色表示，强度表示成\(\sigma^2\)，然后我们的target function，我把它想象成某个次方，把他叫做\(Q_f\)，某个次方的多项式，像我们刚才产生的50次方的话，\(Q_f\)就是50。这是我另外一个控制的变数，说我要产生几次的多项式。还有一个变数就是资料量。<br><img src="http://i.imgur.com/0aKZXFQ.png" alt=""><br>我们要探讨的就是这三个变数的不同变化的时候，到底对我的overfit有什么样的影响。还是用之前那个2次和10次的多项式，定义说来看2次多项式核10次多项式的Eout到底差多远，如果差的很远的话，就代表overfit很凶，如果差很近的话，就代表没有什么overfit。</p>
+<blockquote>
+<font color="orange">overfit measure</font> <font color="red">\(E_{out}(g_10)\)</font> - <font color="green">\(E_{out}(g_2)\)</font>
+
+</blockquote>
+<p>下图展示的是在各种不同的条件下：资料量n，Gaussian的强度\(\sigma^2\)和\(Q_f\)，到底有多么overfit？<br><img src="http://i.imgur.com/NK75iX7.png" alt=""><br>上图左：横轴是资料量，纵轴是Gaussian noise，把Qf，就是我们的目标函数的复杂度固定在20，图中的颜色代表有多么的overfit，如果比较靠近红色的话代表非常的overfit，也就是我们两个的Eout差距非常的大，如果是在蓝色的那边则表示没有什么overfit，也就是说今天10次多项式是表现的好的，2次多项式没有表现的那么好。我们发现红色集中在左上角的位置，noise很多，资料量很少的时候，蓝色集中在右下角，资料很多，noise 很小的时候，这个是意料之中的。<br>比较有趣的是右边的图，横轴还是资料量，纵轴是Qf，目标函数的赋值度。大部分的时候和左边的图是一样的，红色的部分在左上角，目标越复杂，但是你的资料很少的时候，这跟noise没什么分别；你的资料很够，目标不太复杂的时候，那应该可以做的很好，不会overfit。<br><img src="http://i.imgur.com/aEKVp13.png" alt=""><br>根据刚才那个图（上图左），我们知道Gaussian noise对overfit看起来是有很大的影响的，我们把他叫做stochastic noise，随机的noise。为什么要这样叫呢？因为我们刚才发现我们的目标的复杂度对于我们的overfit也有很大的类似的影响（上图右），我们把这个叫做deterministic noise，也就是说他和stochastic noise类似，都有一个杂讯的效果，差别是一个是随机产生的，一个是固定的，可以计算出来的，所以从这两个图我们可以看出四个可以发生overfitting的时间点：1.资料太少。2.stochastic noise太多的时候会overfitting（左图左上方）。3.deterministic noise太多的时候发生overfitting（右图左上方）。4.VC维太多，你有excessive power的时候，可能会overfitting（右图下方）。<br>之前讲到，要是目标函数太复杂的话，跟noise也没有什么两样，例如之前的50次多项式，我的hypothesis是10次多项式的话，一定这个目标函数有某些地方是没有办法很完美的被我的任何一个hypothesis所描述。什么意思，如下图右：<br><img src="http://i.imgur.com/qThy42d.png" alt=""><br>我最好的hypothesis，红色那条线和我的target function，蓝色那条，既然有些地方没有办法描述，那么他们中间一定会有灰色的那段差距，这些差距就是我们所指的deterministic noise，所以这个杂讯，他不是随机的，它的影响和stochastic noise没什么区别，不过呢，当然他跟真正随机的杂讯是有一些不一样，举例来说，他跟hypothesis set有关，我今天如果有更复杂的hypothesis set，理论上，我的deterministic noise会变小，只是我的power变大了，所以我还是变危险了，但我的deterministic noise应该会变小。还有，对同一个x来说，它的deterministic noise是一样的，就是我对这个x的y去很多次的话，我会得到同样的deterministic noise，但是是不同的stochastic noise。除此之外，没有什么不一样的了。就好像教小孩子的时候，不会给他讲负数，有理数等等。<br>这里告诉我们的是你在教一个简单的hypothesis set的时候，不要举太复杂的例子会比较好，因为这样的话，你的deterministic noise会比较小一些。<br>那么我们要怎么对付overfitting？<br>已经讲过一个办法了:从简单的model开始做起，就想开车开慢一点。或者是data cleaning/pruning等等，如下图，对应开车这个实际状况来理解<br><img src="http://i.imgur.com/oYrQ5q7.png" alt=""><br>先来介绍一下Data cleaning/pruning是怎么回事<br><img src="http://i.imgur.com/3ZcMWCQ.png" alt=""><br>这个手写识别之前提到过，我们把资料表示成concrete很具体的这个feature放到二维平面上。也许有人字写很丑或者说扫描出了问题等等时，左上角那边有一个被标称5的那个，相信大家怎么也看不出来那个为什么是5，如果我们有一些方法来侦测那个叉叉（5被标记为叉叉）不是真的叉叉，它是伪装的，我么怎么侦测呢？例如说他这个叉叉怎么和圈圈靠的那么近，又或者他这个叉叉和其他叉叉离得很远这样子，如果你有信心相信说这个叉叉可能是真的有问题的话，data cleaning可以把他的label改过来，例如把叉叉改成圈圈——5改成1.这就是data cleaning做得事情，让你的资料里有正确的资讯。或者今天可以做data pruning，你说这些资料是错误的，没有用的，把他丢掉。这些都是比较简单的事情，困难的是侦测哪一个是有noise的点。  </p>
+<blockquote>
+<p>possibly helps, but <font color="orange">effect varies</font> 有时候很有用，但不是总有用</p>
+</blockquote>
+<p>另外一个， 也用手写识别来说明怎么样做这个data hinting，你要做提示的话，可以考虑的一件事情是这样，我们手写的这个字稍微转一下，或者平移一下，这些字还是同一个字。所以这样，我手上有资料，我没有更多的资料，不过我想要告诉电脑我对于这个问题的一些知识的话，我可以把我手上的资料偷偷给他转一转，偷偷把他平移一下，这样我就有更多的资料加进去，再重新做一次训练的动作，这样的东西叫做virtual example，他不是我原来的资料，是我创造出来的资料。这样来规避一下我们可能资料不多的情况。<br><img src="http://i.imgur.com/o2cU9Dn.png" alt=""><br>值得注意的是，当你把这些virtual example加进去的时候，这些资料可能不在独立同分布于原来那个分布。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/08/机器学习基石十二/" rel="next" title="机器学习基石十二">
+                <i class="fa fa-chevron-left"></i> 机器学习基石十二
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/09/机器学习基石十三/"
+           data-title="机器学习基石十三" data-url="http://Wan-YunPeng.github.io/2016/01/09/机器学习基石十三/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> google
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十三"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十三</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="机器学习基石十二non-linear transformlinear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切一条线，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数s=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。这样的模型的好处在于它的vc维是受到控制的，这样可以确定我们的Ein和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基石十二">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/08/机器学习基石十二/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习基石十二non-linear transformlinear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切一条线，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数s=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。这样的模型的好处在于它的vc维是受到控制的，这样可以确定我们的Ein和">
+<meta property="og:image" content="http://i.imgur.com/JBTQ0GR.png">
+<meta property="og:image" content="http://i.imgur.com/UXEubWb.png">
+<meta property="og:image" content="http://i.imgur.com/BRA4T96.png">
+<meta property="og:image" content="http://i.imgur.com/kD9s0oJ.png">
+<meta property="og:image" content="http://i.imgur.com/yhp5IHj.png">
+<meta property="og:image" content="http://i.imgur.com/EIrqH5M.png">
+<meta property="og:image" content="http://i.imgur.com/iMe3RCX.png">
+<meta property="og:image" content="http://i.imgur.com/rIpdBrq.png">
+<meta property="og:image" content="http://i.imgur.com/Au4WzrD.png">
+<meta property="og:image" content="http://i.imgur.com/Cwnfyt0.png">
+<meta property="og:image" content="http://i.imgur.com/mKkqz13.png">
+<meta property="og:image" content="http://i.imgur.com/pgEpiel.png">
+<meta property="og:image" content="http://i.imgur.com/jnIjMb8.png">
+<meta property="og:image" content="http://i.imgur.com/ym70qmw.png">
+<meta property="og:image" content="http://i.imgur.com/uMz3IwO.png">
+<meta property="og:image" content="http://i.imgur.com/IeZCsCK.png">
+<meta property="og:image" content="http://i.imgur.com/883YeeI.png">
+<meta property="og:image" content="http://i.imgur.com/bPzvS6q.png">
+<meta property="og:image" content="http://i.imgur.com/J4TUTG7.png">
+<meta property="og:image" content="http://i.imgur.com/TUoqQNl.png">
+<meta property="og:image" content="http://i.imgur.com/ysbkQn2.png">
+<meta property="og:updated_time" content="2016-01-09T12:40:14.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基石十二">
+<meta name="twitter:description" content="机器学习基石十二non-linear transformlinear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切一条线，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数s=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。这样的模型的好处在于它的vc维是受到控制的，这样可以确定我们的Ein和">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 机器学习基石十二 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YunPeng’s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Read the f**king code</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习基石十二
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-08T20:26:49+08:00" content="2016-01-08">
+              2016-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/08/机器学习基石十二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/机器学习基石十二/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习基石十二">机器学习基石十二</h2><h3 id="non-linear_transform">non-linear transform</h3><p>linear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切<font color="orange">一条线</font>，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数<font color="purple">s</font>=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。<br>这样的模型的好处在于它的<font color="orange">vc维是受到控制的</font>，这样可以确定我们的Ein和Eout不会差太远，缺点是在实际情况中，总会有些资料，有些点是拿直线无法分开的（总是会分错），下图右，这样我们的Ein就会很大，而Ein和Eout不会差太远，就会导致我们的Eout也会很大。<br><a id="more"></a><br><img src="http://i.imgur.com/JBTQ0GR.png" alt=""><br>我们今天的课题就是探讨能否突破linear model的这个限制。<br>观察图中的资料分布我们知道这些资料不是线性可分的，但是仔细一看我们可以用圆圈把圈圈和叉叉分离开来<br><img src="http://i.imgur.com/UXEubWb.png" alt=""> <img src="http://i.imgur.com/BRA4T96.png" alt=""><br>把这个圈圈和叉叉分开的圆的方程式是这样，圆心在远点的圆，然后它的半径是\sqrt{0.6}$$h_{SEP}(x)=sign(-x_1^2 - x_2^2 + 0.6)$$也就是我考虑一个hypothesis，这个hypothesis是这样，我有每个点到圆心的距离的平方，就是x1的平方加x2的平方，将这个结果和0.6比，比0.6小就是圈圈，比0.6大就是叉叉。<br>这个资料虽说不是线性可分，但是他可以用一个圆来分开。那是不是就可以说我们怎么样用圆圈圈来做PLA或者做regression等等，把前面学习的改成圆圈圈来做。</p>
+<blockquote>
+<p>re-derive <font color="orange">Circular</font>-PLA,<font color="orange">Circular</font>-Regression,blahblah…all over again?</p>
+</blockquote>
+<p>我们要怎样来做到，例如说圆圈圈的方式，来做资料的分类？<br>将我们之前提到的那个假设中的参数一个名称，和线性模型对应起来<br><img src="http://i.imgur.com/kD9s0oJ.png" alt=""><br>观察上图发现，以前在线性模型中，我们的w1和x1对应，w2和x2对应，现在我们的w1和x1的平方对应，w2和x2的平方对应，为了让我们更方便的分析，把x1的平方叫做z1…得到最总结果\({\color{Orange}{h}}(x)=sign({\color{Orange} {\tilde{w}^T}}{\color{Purple} {z}})\)<br>我们做的事情其实很像是把每一个X空间里面的点转换到一个Z空间里面去，例如在X空间中有一个点X1，怎么转换到Z空间里面去，刚才已经提到，z1就要是x1的平方，z2是x2的平方(x1是下图左边的圆圈里面的点，这里的x1、x2是他的坐标值)<br><img src="http://i.imgur.com/yhp5IHj.png" alt=""><br>将X空间中的点全部投到Z空间后，我们就能在Z空间中找到一条直线，这条直线和\(\tilde{w}\)有关，这个\(\tilde{w}\)就会把我们的圈圈和叉叉分开。上图右边的直线对应左边的圈圈。X到Z的转换叫做<font color="red">特征转换</font><br>那反过来是对的吗？就是原来可以用直线分开，通过特征转换后，可以用圆圈分开吗？<br><img src="http://i.imgur.com/EIrqH5M.png" alt=""><br>上图是我们对x和z的转换过程的总结。对于\(\tilde{w}\)不同的取值，圆圈的形状也不一样。</p>
+<blockquote>
+<p>\(\tilde{w} = (\tilde{w}_0,\tilde{w}_1,\tilde{w}_2)\)<br>(0.6,-1,-1):圆——\({\color{Blue} {\circ}}\)在圆圈里面<br>(-0.6,+1,+1):圆——\({\color{Blue} {\circ}}\)在圆圈外面<br>(0.6,-1,-2):椭圆<br>(0.6,-1,+2):双曲线<br>(0.6,+1,+2):常数——怎么计算都是正的  </p>
+</blockquote>
+<p>所以，在Z空间里每一条线，都不见得是对应X中的正圆  </p>
+<blockquote>
+<p>lines in <font color="purlpe">Z</font>-space \(\Leftrightarrow \) <font color="red">special</font> quadratic curves in X-space </p>
+</blockquote>
+<p>注意一点，上面的所有二次曲线都是有限制的，如果说是正圆的话，它的圆心一定是过原点的（方程式中没有平移的操作），所以我们只能对应到特殊的二次曲线，而不是所有可以下X平面上画出来的所有曲线，那如果我们想做所有可能的二次曲线，应该怎么做？<br>我们就要把要表示所有的二次曲线所要用到的可能的项全都表示出来</p>
+<blockquote>
+<p>a ‘bigger’ Z-space with <font color="purple">\(\phi_2(x) = (1,x_1,x_2,x_1^2,x_1x_2,x_2^2)\)</font>你可能需要所有的二次项和一次项以及常数<br>perceptrons in Z-space \(\Leftrightarrow\) quadratic hypotheses in X-space Z中的每条直线就可以对应到X中的任意一个二次曲线，可以是正圆，也可以是斜的椭圆等等</p>
+</blockquote>
+<p><img src="http://i.imgur.com/iMe3RCX.png" alt=""><br>把x通过\(\phi\)转换到z空间里面后用某个线性的分类器\(\tilde{h}\)来分类。上图下面是一个例子。<br>我们现在知道怎么样定义一个二次的hypothesis set，所有的二次曲线集合起来的hypothesis set，那么下一步就是怎么样学到一个好的二次的hypothesis。</p>
+<p><img src="http://i.imgur.com/rIpdBrq.png" alt=""><br>我们建立的关系是这样：在Z空间里面所有的直线就对应到X空间里面所有的二次曲线，如果用到我们之前的6个维度的二次变换的话。就是说如果我们在Z空间里面找到一个好的hypothesis，也就是一条直线，那么我们在X里面也能找到一条好的二次曲线来把我们的资料分开，对应上图的例子，这个二次曲线恰好是一个正圆。<br>所以我们现在想做的事情是这样：在Z空间中找出一条好的直线<br>我们知道的：只能在X空间里找出好的直线<br>那么我们怎么在Z空间里找出好的直线：就是用Z空间里资料来做，也就是用\(\phi\)把X中的资料转换到Z中去，在Ｚ中用我们学过的任何binary　classification方法去找一条好的直线。　　<br><img src="http://i.imgur.com/Au4WzrD.png" alt="">　　<br>实际上，我们是做从x到z的变化。上图的方法是：<br><img src="http://i.imgur.com/Cwnfyt0.png" alt="">　　<br>所以我们现在要做的两件事情就是：</p>
+<ol>
+<li>特征转换函数的选择</li>
+<li>选择一个线性模型来做分类，不仅仅只是binary classification<blockquote>
+<font color="orange">Pandora’s box:</font><br>can now freely do <font color="red">quadratic PLA,quadratic regression,cubic regression,…,polynomial regression</font>
+
+</blockquote>
+</li>
+</ol>
+<p>知道了feature transform后，看起来好像可以多做很多事情，算法运用的灵活度就增加了。<br>其实之前我们就悄悄提到过feature transform。在第三讲的数字识别。输入的资料有原始类别、物理意义等等含义。<br><img src="http://i.imgur.com/mKkqz13.png" alt=""><br>做得是将原始的资料raw feature转换为具体的特征（密度、对称性）<br>这个听起来很好，我们做这个feature transform到底有什么代价？</p>
+<p>先来看看Q次的多项式转换需要多少个式子：<br><img src="http://i.imgur.com/pgEpiel.png" alt=""><br>转换之后的维度有多少？z有多长？我们需要计算的就是到底有多少种方法来组成Q次或小于等于Q次的项<br><img src="http://i.imgur.com/jnIjMb8.png" alt=""><br>如果我们把d看成是一个常数，那应该就是你的资料里面已经有了，我们给定的话，那么你使用什么Q的成长是什么？大概就是Q的d次方，也就是说你会付出Q的d次方这么多项，代表你今天要花这么多的力气计算从x到z，要算w，不管你今天是pocket也好，linear regression也好，logistic regression也好，至少要花\(\tilde{d}\)+1的力气去做更新。所以计算量会比之前多。存储上也是。<br><img src="http://i.imgur.com/ym70qmw.png" alt=""><br>另外一个代价是：\(\tilde{d}\)+1维代表我很有可能就有\(\tilde{d}\)+1这么多个w，大体就代表我们有\(\tilde{d}\)+1这个vc维，实际上我们可以证明vc的上限是\(\tilde{d}\)+1。之前证明了\(\tilde{d}\)+2个z空间的点是不能被shatter的，回到x空间也是这样。<br>这是所谓的model complexity的代价，也就是说我的Q变大的时候我的VC维也变大。那这件事情有什么坏处呢？<br><img src="http://i.imgur.com/uMz3IwO.png" alt=""><br>左边的图用一条线来做分类，右边的图用一个四次曲线来分类，右边的Ein是0，左边有几个点是没有分开的，是错误的。<br>还是learning的连个核心问题：</p>
+<blockquote>
+<p>1.<font color="orange">can we make sure that Eout is close enough to Ein?</font><br>2.<font color="red">can we make Ein small enough?</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/IeZCsCK.png" alt=""><br>所以我们要怎样选择feature transform？<br><img src="http://i.imgur.com/883YeeI.png" alt=""><br>在你将特征转换中的维度逐渐降低的时候，你其实付出了你的脑力，这个过程是有human learning在里面的。<br>要跟大家说的重要的一点是这样的：你要确保我们在VC这边的推导等等都是正确的话，你要非常小心，不要让你的视觉化或任何你聪明的决策进入这个机器学习里面，因为一旦这些视觉化的东西进来之后，一旦你偷看了资料，在做了决定之后，一定要把这些决定付出的代价小心的计算进去，不然的话，你会看起来你的机器好像做起来很好，结果最后，好像你拿去投资股市，却发现怎么做都做不好，就是因为你没有好好的把你这个付出的主关的代价或偏见算进去。</p>
+<p>之前我们提到多项式的变化，这边再多做写介绍。<br><img src="http://i.imgur.com/bPzvS6q.png" alt=""><br>0维的变换是变成一个常数，1维的变换是常数再加上所有的一次式，然后我们定义二维的变换，就是把之前的式子整理起来，我们发现，他前面的部分是所有一次的变换，后面的部分则是加上所有的二次式。。。<br>当我的hypothesis之间有这样相互包含的关系的时候，我们把它叫做hypothesis set的一个结构。<br><img src="http://i.imgur.com/J4TUTG7.png" alt=""><br>有了这个结构之后，我们来看看他们vc维是什么样的关系？<br><img src="http://i.imgur.com/TUoqQNl.png" alt=""><br>那H1里面的hypothesis比H0来的多啊，所以他可以shatter的点一定比H0可以shatter的点来的多，包含原来的，有多出一部分。除了做VC维之外，我们还对每个hypothesis去做最好的Ein，也就是最低的那个Ein，我去找一个hypothesis，让他的Ein最低，每一个hypothesis set我都做这件事情。那这些g1，g2，g3…他们的关系到底是什么，今天的hypothesis增加的时候，你的选择变多了，有可能在这些增加的里面找到更好的Ein，所以你的Ein就会下降，那至少你的Ein会跟本来的一样。如上图。<br>这告诉我们如果你一开始就用一个高纬度的变换，比如说1126维度的变化的话，肯定不会做的好的，因为你已经在这个曲线非常右边的地方，你的Ein可能很低但是你的Eout会很高，因为你已经付出了很大的model complexity的代价。<br><img src="http://i.imgur.com/ysbkQn2.png" alt=""><br>安全的做法是从低纬度开始做起，Ein很小就不用再继续做下去了，如果Ein不够小，还是可以往曲线的右边移动。也就是说一开始不要试那些很复杂的转换，从简单的hypothesis set做起，这样子很简单，很有效率，因为你的维度很小，很安全，而且很重要的是很多时候你会意外的发现他做的还不错。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/06/机器学习基石十一/" rel="next" title="机器学习基石十一">
+                <i class="fa fa-chevron-left"></i> 机器学习基石十一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/09/机器学习基石十三/" rel="prev" title="机器学习基石十三">
+                机器学习基石十三 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/08/机器学习基石十二/"
+           data-title="机器学习基石十二" data-url="http://Wan-YunPeng.github.io/2016/01/08/机器学习基石十二/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> google
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十二"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#non-linear_transform"><span class="nav-number">1.1.</span> <span class="nav-text">non-linear transform</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

@@ -1,11 +1,10 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next   use-motion ">
 <head>
-  
-
-<meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,41 +17,52 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
-
-
-    <meta name="description" content="Read the f**king code" />
-
-
-
-  <meta name="keywords" content="Hexo,next" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="机器学习基石六###Theory of Generalization  
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="机器学习基石六Theory of Generalization
 growth function \(m_{H}(N)\):max number of dichotomies
 
-假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产">
+假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dic">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习基石六">
 <meta property="og:url" content="http://Wan-YunPeng.github.io/2015/12/24/机器学习基石六/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="机器学习基石六###Theory of Generalization  
-
+<meta property="og:description" content="机器学习基石六Theory of Generalization
 growth function \(m_{H}(N)\):max number of dichotomies
 
-假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产">
+假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dic">
 <meta property="og:image" content="http://i.imgur.com/94K3T1h.png">
 <meta property="og:image" content="http://i.imgur.com/JCvw4Fc.png">
 <meta property="og:image" content="http://i.imgur.com/7qjtH9V.png">
@@ -66,20 +76,21 @@ growth function \(m_{H}(N)\):max number of dichotomies
 <meta property="og:image" content="http://i.imgur.com/1IiH3Yg.png">
 <meta property="og:image" content="http://i.imgur.com/qyAK6z1.png">
 <meta property="og:image" content="http://i.imgur.com/uNBQSmX.png">
-<meta property="og:updated_time" content="2015-12-29T15:14:28.084Z">
+<meta property="og:updated_time" content="2016-01-08T02:39:49.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基石六">
-<meta name="twitter:description" content="机器学习基石六###Theory of Generalization  
-
+<meta name="twitter:description" content="机器学习基石六Theory of Generalization
 growth function \(m_{H}(N)\):max number of dichotomies
 
-假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产">
+假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dic">
+
 
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post'
+    sidebar: 'post',
+    motion: true
   };
 </script>
 
@@ -101,20 +112,25 @@ growth function \(m_{H}(N)\):max number of dichotomies
 
 
 
+
+
+
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand" rel="start">
-      <span class="logo">
-        <i class="icon-next-logo"></i>
-      </span>
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
       <span class="site-title">YunPeng’s Blog</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Read the f**king code</p>
+</div>
 
 <div class="site-nav-toggle">
   <button>
@@ -133,23 +149,19 @@ growth function \(m_{H}(N)\):max number of dichotomies
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            <i class="menu-item-icon icon-next-categories"></i> <br />
-            分类
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
             归档
           </a>
         </li>
@@ -157,7 +169,9 @@ growth function \(m_{H}(N)\):max number of dichotomies
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
             标签
           </a>
         </li>
@@ -176,48 +190,78 @@ growth function \(m_{H}(N)\):max number of dichotomies
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div id="content" class="content">
+          
 
   <div id="posts" class="posts-expand">
     
 
+  
+  
+
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              机器学习基石六
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-24T12:15:55+08:00" content="2015-12-24">
-            2015-12-24
-          </time>
-        </span>
+    
+      <header class="post-header">
 
         
-
         
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习基石六
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-24T12:15:55+08:00" content="2015-12-24">
+              2015-12-24
+            </time>
+          </span>
+
           
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/24/机器学习基石六/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/机器学习基石六/" itemprop="commentsCount"></span>
-              </a>
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
             </span>
           
-        
-      </div>
-    </header>
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/24/机器学习基石六/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/机器学习基石六/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
 
     <div class="post-body">
 
@@ -225,8 +269,7 @@ growth function \(m_{H}(N)\):max number of dichotomies
       
 
       
-        <span itemprop="articleBody"><h2 id="机器学习基石六">机器学习基石六</h2><p>###Theory of Generalization  </p>
-<blockquote>
+        <span itemprop="articleBody"><h2 id="机器学习基石六">机器学习基石六</h2><h3 id="Theory_of_Generalization">Theory of Generalization</h3><blockquote>
 <p>growth function \(m_{H}(N)\):max number of dichotomies</p>
 </blockquote>
 <p><img src="http://i.imgur.com/94K3T1h.png" alt=""><br>假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dichotomy  </p>
@@ -251,25 +294,35 @@ growth function \(m_{H}(N)\):max number of dichotomies
 <p>Know: B(N,k) = \(2^N\) - 1 for N = k —-<font color="orange">removing a single dichotomy</font> satisfies ‘breaking condition’</p>
 </blockquote>
 <p>这样我们就完成了一半了。接下来我们要填剩下的表，剩下的表要困难一些。<br>Motivation: B(4,3) shall be <font color="purple">related to B(3,?)</font> —- ‘adding’ one point from B(3,?)<br>next: reduce B(4,3) to B(3,?)<br><img src="http://i.imgur.com/mngpMjQ.png" alt=""><br>我们的上线会被一个上线的上线所约束<br><img src="http://i.imgur.com/UBwmzVh.png" alt=""><br>成长函数会被上限函数bound，上限会被上限的上限bound，上限的上限会被某个多项式bound，这个多项式和你的break point有关，所以只要你的成长函数有那个beak point，那就不要怕，你最后一定会是一个多项式。</p>
-<p>want:$$\mathbb{P}[\exists h \in H s.t.|E_{in}(h) - E_{out}(h)| &gt; \epsilon ]\leq 2 \color{Orange}{m_{H}(N)}\cdot exp(-2 \epsilon^2 N )$$<br>actually,<font color="red">when N large enough</font>,<br>$$\mathbb{P}[\exists h \in H s.t.|E_{in}(h) - E_{out}(h)| &gt; \epsilon ]\leq 2\color{Red}{\cdot2} \color{Orange}{m_{H}(\color{Blue}{2}N)}\cdot exp(-2 \cdot \color{Purple}{\frac{1}{16}}\epsilon^2 N )$$<br>上面的公式比之前的多了三个常数，这个公式的推导比较有技巧性，下面从三个方面简单的证明一下。<br>Step 1:<font color="red">Replace \(E_{out}\) by \(E_{in}^’\)</font><br>我们有兴趣的是坏事情发生的概率<br><img src="http://i.imgur.com/3qisSVB.png" alt=""><br><img src="http://i.imgur.com/1IiH3Yg.png" alt=""><br><img src="http://i.imgur.com/qyAK6z1.png" alt=""><br><img src="http://i.imgur.com/uNBQSmX.png" alt=""></p>
+<p>want:$$\mathbb{P}[\exists h \in H s.t.|E_{in}(h) - E_{out}(h)| &gt; \epsilon ]\leq 2 \color{Orange}{m_{H}(N)}\cdot exp(-2 \epsilon^2 N )$$<br>actually,<font color="red">when N large enough</font>,<br>$$\mathbb{P}[\exists h \in H s.t.|E_{in}(h) - E_{out}(h)| &gt; \epsilon ]\leq 2\color{Red}{\cdot2} \color{Orange}{m_{H}(\color{Blue}{2}N)}\cdot exp(-2 \cdot \color{Purple}{\frac{1}{16}}\epsilon^2 N )$$<br>上面的公式比之前的多了三个常数，这个公式的推导比较有技巧性，下面从三个方面简单的证明一下。<br>Step 1:<font color="red">Replace \(E_{out}\) by \({E_{in}}’\)</font><br>我们有兴趣的是坏事情发生的概率<br><img src="http://i.imgur.com/3qisSVB.png" alt=""><br><img src="http://i.imgur.com/1IiH3Yg.png" alt=""><br><img src="http://i.imgur.com/qyAK6z1.png" alt=""><br><img src="http://i.imgur.com/uNBQSmX.png" alt=""></p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/26/机器学习基石七/" rel="prev">机器学习基石七</a>
+              <a href="/2015/12/22/morris后序遍历/" rel="next" title="morris遍历">
+                <i class="fa fa-chevron-left"></i> morris遍历
+              </a>
             
           </div>
 
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/22/morris后序遍历/" rel="next">morris遍历</a>
+              <a href="/2015/12/26/机器学习基石七/" rel="prev" title="机器学习基石七">
+                机器学习基石七 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -287,22 +340,26 @@ growth function \(m_{H}(N)\):max number of dichotomies
     </div>
   </div>
 
- </div>
+
+        </div>
 
         
 
+
         
-          <div class="comments" id="comments">
-            
-              <div class="ds-thread" data-thread-key="2015/12/24/机器学习基石六/"
-                   data-title="机器学习基石六" data-url="http://Wan-YunPeng.github.io/2015/12/24/机器学习基石六/">
-              </div>
-            
-          </div>
-        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/24/机器学习基石六/"
+           data-title="机器学习基石六" data-url="http://Wan-YunPeng.github.io/2015/12/24/机器学习基石六/">
+      </div>
+    
+  </div>
+
+
       </div>
 
       
+        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -316,6 +373,8 @@ growth function \(m_{H}(N)\):max number of dichotomies
     <div class="sidebar-inner">
 
       
+
+      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
@@ -326,7 +385,7 @@ growth function \(m_{H}(N)\):max number of dichotomies
         </ul>
       
 
-      <section class="site-overview">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Wan YunPeng</p>
@@ -335,16 +394,16 @@ growth function \(m_{H}(N)\):max number of dichotomies
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
@@ -362,23 +421,43 @@ growth function \(m_{H}(N)\):max number of dichotomies
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+                <a href="https://github.com/Wan-YunPeng" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.google.com" target="_blank">google</a>
+                <a href="https://www.google.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> google
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+                <a href="https://zh-cn.facebook.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com" target="_blank">twitter</a>
+                <a href="https://twitter.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com" target="_blank">weibo</a>
+                <a href="http://weibo.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
               </span>
             
           
@@ -394,15 +473,21 @@ growth function \(m_{H}(N)\):max number of dichotomies
       </section>
 
       
-        <section class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
           <div class="post-toc">
             
+              
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石六"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石六</span></a></li></ol></div>
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石六"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石六</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theory_of_Generalization"><span class="nav-number">1.1.</span> <span class="nav-text">Theory of Generalization</span></a></li></ol></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
         </section>
       
 
@@ -410,15 +495,17 @@ growth function \(m_{H}(N)\):max number of dichotomies
   </aside>
 
 
+      
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  &copy; &nbsp; 
+  &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart"></i>
+    <i class="icon-next-heart fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
 </div>
@@ -435,7 +522,8 @@ growth function \(m_{H}(N)\):max number of dichotomies
 </div>
 
 
- </div>
+
+      </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -445,6 +533,7 @@ growth function \(m_{H}(N)\):max number of dichotomies
 
   
   
+
   
     
 
@@ -457,6 +546,7 @@ growth function \(m_{H}(N)\):max number of dichotomies
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
@@ -466,30 +556,28 @@ growth function \(m_{H}(N)\):max number of dichotomies
     
      
 
+
     
   
+
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
-  
-
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
-
-
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -570,7 +658,7 @@ growth function \(m_{H}(N)\):max number of dichotomies
 
     function tocOverflowIndicator (indicator, action) {
       var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
+      var opacity = action === 'show' ? 1 : 0;
       $indicator.velocity ?
         $indicator.velocity('stop').velocity({
           opacity: opacity
@@ -637,63 +725,26 @@ growth function \(m_{H}(N)\):max number of dichotomies
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
       }
-    }
+    };
   });
 </script>
 
 
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-    });
-  </script>
-
-  
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
 
   
   
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
+  
+
 </body>
 </html>
