@@ -1,0 +1,775 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="机器学习基石十四RegularizationRegulared Hypothesis Set上次课讲到的overfitting发生的情况：
+
+overfitting happens with excessive power,stochastic/deterministic noise and limited data太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基石十四">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/10/机器学习基石十四/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习基石十四RegularizationRegulared Hypothesis Set上次课讲到的overfitting发生的情况：
+
+overfitting happens with excessive power,stochastic/deterministic noise and limited data太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能">
+<meta property="og:image" content="http://i.imgur.com/rVbLaH3.png">
+<meta property="og:image" content="http://i.imgur.com/pn2bI8C.png">
+<meta property="og:image" content="http://i.imgur.com/ER2FVb0.png">
+<meta property="og:image" content="http://i.imgur.com/E9SY6eF.png">
+<meta property="og:image" content="http://i.imgur.com/MoVF2ur.png">
+<meta property="og:image" content="http://i.imgur.com/7JenQHI.png">
+<meta property="og:image" content="http://i.imgur.com/79aG5p2.png">
+<meta property="og:image" content="http://i.imgur.com/qId22yL.png">
+<meta property="og:image" content="http://i.imgur.com/EqyzJqS.png">
+<meta property="og:image" content="http://i.imgur.com/i5OuKQw.png">
+<meta property="og:image" content="http://i.imgur.com/fFlT1iv.png">
+<meta property="og:image" content="http://i.imgur.com/3St4Try.png">
+<meta property="og:image" content="http://i.imgur.com/J7NzuKl.png">
+<meta property="og:image" content="http://i.imgur.com/KcFeyPE.png">
+<meta property="og:image" content="http://i.imgur.com/gO9yHB3.png">
+<meta property="og:image" content="http://i.imgur.com/JAifvmQ.png">
+<meta property="og:image" content="http://i.imgur.com/Bnej9wG.png">
+<meta property="og:image" content="http://i.imgur.com/G3kLJgy.png">
+<meta property="og:image" content="http://i.imgur.com/fDmjHmW.png">
+<meta property="og:image" content="http://i.imgur.com/7CX9q2Y.png">
+<meta property="og:image" content="http://i.imgur.com/SF5h3qH.png">
+<meta property="og:image" content="http://i.imgur.com/chNnUoe.png">
+<meta property="og:image" content="http://i.imgur.com/VQsJxaM.png">
+<meta property="og:image" content="http://i.imgur.com/t6ywEca.png">
+<meta property="og:image" content="http://i.imgur.com/aEU2Mq9.png">
+<meta property="og:updated_time" content="2016-01-10T12:50:59.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基石十四">
+<meta name="twitter:description" content="机器学习基石十四RegularizationRegulared Hypothesis Set上次课讲到的overfitting发生的情况：
+
+overfitting happens with excessive power,stochastic/deterministic noise and limited data太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 机器学习基石十四 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">YunPeng’s Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Read the f**king code</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习基石十四
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-10T20:13:49+08:00" content="2016-01-10">
+              2016-01-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/10/机器学习基石十四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/机器学习基石十四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习基石十四">机器学习基石十四</h2><h3 id="Regularization">Regularization</h3><h3 id="Regulared_Hypothesis_Set">Regulared Hypothesis Set</h3><p>上次课讲到的overfitting发生的情况：</p>
+<blockquote>
+<p>overfitting happens with <font color="orange">excessive power,stochastic/deterministic noise and limited data</font>太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能发生。  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color="red">规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br><a id="more"></a><br><img src="http://i.imgur.com/pn2bI8C.png" alt=""><br>这个regularization，规则化这个名字来自于早期做function approximation，比如说我们想要逼近某个函数，像回归分析就是逼近某个函数，但是逼近的时候发现很多问题都是所谓的<font color="orange">ill-posed</font>，ill-posed的意思是有很多的函数都满足我们想要的solution，但是我们不知道要选择哪一个，于是我们要对解进行限制，不然解太多会造成一些问题。我们今天要做的规则化从某种角度来说也是一个解太多的问题：我们只有有限多个点，穿过这些点的函数有很多，我们要怎么样通过某种限制从这些函数中选择出一个比较好的函数，这是regularization要做的事情。<br>怎样从高次走向低次？<br>使用我们比较熟悉的多项式转换和linear regression来做例子，用w来代替\(\tilde{w}\)——简单起见。<br><img src="http://i.imgur.com/ER2FVb0.png" alt=""><br>从H2和H10可以看出，H2相当于H10的一个特例。所以什么叫从10次多项式走回去2次多项式，就是我在我的learning问题上加上一些constraint（条件），上面H10到H2的条件是：\(w_3=w_4=…=w_10=0\)。<br><img src="http://i.imgur.com/E9SY6eF.png" alt=""><br>如果要找一个最好的10次多项式来minimize Ein，这个大家都很熟悉了，我的10次多项式有11个系数，minimize Ein就是找出11个w可能的组合，来使我的Ein达到最小；那怎么找2次的呢？可以假设我的hypothesis set和10次的一样，都是考虑11维的w的向量，但是加上一个条件：w3之后的维度全是0，minimize Ein的情况也是一样，同样加上一个限制，这个左边的情况相对应。</p>
+<blockquote>
+<p>step back = <font color="red">constrained optimization</font> of Ein 在Ein的求解上加上条件<br>why don’t you just use <font color="red">\(w \in R^{2+1}\)?:-)</font>希望能拓展我们的视野，在推到后面的问题的时候能够变得容易一些。  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/MoVF2ur.png" alt=""><br>我们解2次多项式的问题：还是在11维度的空间里面，但是我们加上一些条件，让后面的w全为0.如果现在我把这个条件放松一点会怎么样？将本来的特定的8个w一定是0变成只要有8个w是0就好，就是至少有8个任意的w是0，于是我可能是很多次的多项式，但是我这个很多次的多项式只有很少的系数，所以可以想成我的hypothesis看起来会和2次多项式有类似的简单。变成minimize Ein的情况是一样。<br><img src="http://i.imgur.com/7JenQHI.png" alt=""><br>我们发现\({H_2}’\)要比H2要宽松一些，但是又没有H10的power大。当我们想解\({H_2}’\)时，发现： </p>
+<blockquote>
+<p>bad news for <font color="purple">sparse hypothesis set \({H_2}’\):<font color="orange">NP-hard to solve :-(</font></font></p>
+</blockquote>
+<p>那怎么办？想法就是能不能把他转换成一个我们比较能解的一个问题<br><img src="http://i.imgur.com/79aG5p2.png" alt=""><br>还是做minimize Ein，但是把我的条件换掉，换成右边的条件，避开之前的constraint，它对应的hypothesis长什么样子？上图右上方。</p>
+<blockquote>
+<p>H(C):<font color="blue">overlaps</font> but not exactly the same as \({H_2}’\)  </p>
+<font color="blue">soft and smooth</font> structure over C &gt;= 0:$$H(0)\subset H(1.126) \subset…\subset H(1126) \subset… H(\infty ) = H_{10}$$ H(C)之间就想H2和H10一样，之间是有重叠的部分<br><br><font color="blue">regularized hypothesis</font> \(W_{REG}\):<font color="red"> optimal solution from regularized hypothesis set H(C)</font>
+
+</blockquote>
+<h3 id="Weight_Decay_Regularization">Weight Decay Regularization</h3><p>接下来看看我们要怎么样解我们这个新的最佳化的问题$$\underset { {\color{Purple} {w}} \in \mathbb{R}^{Q + 1}}{min} E_{in}({\color{Purple} {w}}) = \frac{1}{N} \underset{ (Z{\color{Purple} {w}}-y)^T(Z{\color{Purple} {w}}-y)} {\underbrace {\sum_{n=1}^{N}{(w^Tz_n-y_n)}^2}} s.t. {\color{Red} { \underset{w^Tw}{\underbrace {\sum_{q=0}^{Q}{w_q}^2 \leq C}}}} $$  </p>
+<p>上面的式子又可以转化换为：</p>
+<blockquote>
+<p>\({\sum}_n = {(Z{\color{Purple} {w}}-y)}^T(Z{\color{Purple} {w}}-y)\)，这个式子在之前的推导过。</p>
+<p><font color="red">\(w^Tw \leq C\)</font>:feasible <strong>w</strong> within a radius-\(\sqrt{C}\) hypersphere几何上代表我们要考虑的w在一个球里面，球心是原点，球的半径是\(\sqrt{C}\),我们只考虑这个球里面的w，球外面的都不考虑。</p>
+</blockquote>
+<p>那么要怎么解这个问题？<br><img src="http://i.imgur.com/qId22yL.png" alt=""><br>先来看看这个条件对我们的最佳化问题造成了什么样的影响？之前在没有条件的情况下我们的解法是看我们的objective function朝着谷底的方向一路滚下去，那谷底的方向在那里？梯度的反方向就是谷底的方向。<br><img src="http://i.imgur.com/EqyzJqS.png" alt=""><br>梯度的反方向告诉我们向\(W_{lin}\)的方向滚过去，但是现在不是向最低点滚过去，我们现在做的是在条件下解这个最佳化问题。一般最佳解的情况都是在圆的最边上，现在假设现在我有一个w在球的边上，我们要怎么样判断它是不是我们要的最佳解？我们就还要判断它还能不能从山坡上往下滚，球的法向量告诉我们你不能往外走（normal那条），但是可以往垂直这个方向的向量走，如果Ein的gradient的一个分量是和normal向量垂直的话，那么就表示我们可以滚到一个更好的解上面且不违反条件。达到最优解的条件就是我的gradient的方向和法向量的方向平行。<br><img src="http://i.imgur.com/i5OuKQw.png" alt=""><br>因为这两个向量是平行的，那么把他们的比值设为<font color="orange">\(\frac{2\lambda }{N}\)</font>，这是为了之后的推导方面。<br>所以我们要找到\(\lambda\)和\(w_{REG}\)让这两个向量加起来为0.也就是他们两个是平行的。要是有人告诉你\(\lambda\)是多少的话。就会得到\(w_{REG})的线性方程式。<br><img src="http://i.imgur.com/fFlT1iv.png" alt=""><br>又或者我们可以怎么样看这个问题呢？我们把这个问题看成梯度加上某一个项等于0的问题，之前再解梯度等于0的时候对应到的是最小化Ein(w)，现在是要解梯度加上某个项等于0，就相当于要解原来的函数（Ein）加上某个项，梯度是原来函数的微分，反推的话，现在就要把梯度拿来做积分，所以这个加上的项\({\color{Orange} {\frac{2\lambda }{N}}}{\color{Purple} {w_{REG}}}\)积分后得到\({\color{Orange} { \frac{\lambda }{N}}}{\color{Purple} {w^Tw}}\)<br><img src="http://i.imgur.com/3St4Try.png" alt=""><br>新加上的那项通常叫做regularizer，整个新的Ein叫做augmented error，把之前的constraint融入到新的Ein中，当作regularizer，所以这是我们的新观点，不一定要解那个有条件的问题，有条件那个问题比较难解，我可以解这个augmented error，解完之后得到的解符合constraint。\(\lambda\)一般是大于0的，代表两个向量的比值，当\(\lambda\)等于0时，就变成解原来Ein了。</p>
+<blockquote>
+<p>minimizing <font color="red">unconstrained <font color="green">\(E_aug\)</font></font> effectively minimizes some <font color="red">C-constrained&gt; <font color="blue">Ein</font></font>  </p>
+</blockquote>
+<p>C是一个设定好的参数，C与\(\lambda\)对应，与其告诉C，不如直接告诉\(\lambda\)。<br>不同\(\lambda\)对应着不同结果：<br><img src="http://i.imgur.com/J7NzuKl.png" alt=""><br>\(\lambda\)越加越大的时候，就回underfit<br><img src="http://i.imgur.com/KcFeyPE.png" alt=""><br>如果你把\(\lambda\)设得越大，就代表你希望的w是越短越好，因为你的\(\lambda\)有点像在惩罚那些很长的w，实际上就代表了你要比较小的C。叫做weight-decay,把weight变小的regularization。<br>这里有个小小的细节，刚才讲的这个regularization可以和任何的transform做搭配，为了让结果比较好看，在做transform时实际上做了一点小小的手脚，还是用polynomial transform，不过这个polynomial transform有一些小小的缺点，如果你的输入是在[-1,1]之间的话，你用这样的方法，q次式，假设是1126次式，那么x的1126次方会变成一个很小很小的数字，这个很小的数字除了精确度之外，最重要的是你这个数字要在你最后的hypothesis里发生影响力的话，需要一个很大的w，这就和我们regularization有点冲突。之前秀给大家的结果中，用了一个比较平衡的方式来表示做了转换z里面的每一个坐标。这个方法叫做坐标转换，因为原来有q+1个坐标，这q+1个坐标彼此不是垂直的，因此在regularization的过程中出了一些些问题，这些问题导致我在低次方的地方会容忍比较多，在高次方的地方做了太重的regularization，那我怎么做呢？我想方法在这些多项式中找出一些垂直的基底，垂直的基底意思是把这些函数当成向量，函数有点像是无限多维的向量，我希望这些函数的彼此的内积要是0.所以我这里用了一些特别的多项式。<br><img src="http://i.imgur.com/gO9yHB3.png" alt=""><br>前5个legendre polynomials:<br><img src="http://i.imgur.com/JAifvmQ.png" alt="">  </p>
+<h3 id="Regularization_and_VC_Theory">Regularization and VC Theory</h3><p><img src="http://i.imgur.com/Bnej9wG.png" alt="">  </p>
+<blockquote>
+<p>minimizing \(E_{aug}\):indirectly getting VC guarantee <font color="orange">without confining to <font color="red"> H(C)</font></font>在做Eaug的时候间接的把右上角的VC bound做好了</p>
+</blockquote>
+<p><img src="http://i.imgur.com/G3kLJgy.png" alt=""><br>augmented error和VC bound其实有一些相似和不同的地方，augmented error在Ein上加上了一项\(w^Tw\),VC Bound在Ein上加上了一项complexity的penality<br><img src="http://i.imgur.com/fDmjHmW.png" alt=""><br>那augmented error付出的复杂度是多少？在minimizing中，假设说所有w都可以选，就代表所有的w都是我的hypothesis set，那理论上就代表我最多付出\(\tilde{d}\)+1的代价，但实际上付出的代价只有在谷底的那些wi，所以实际上付出的代价是H(C)，而不是\VC(H)<br><img src="http://i.imgur.com/7CX9q2Y.png" alt=""><br><img src="http://i.imgur.com/SF5h3qH.png" alt="">  </p>
+<h3 id="General_Regularizers">General Regularizers</h3><blockquote>
+<p>want:constraint in the <font color="orange">‘direction’ of target function</font></p>
+</blockquote>
+<p>想知道好的hypothesis在哪一个方向，好的hypothesis就是说符合你的target function在哪一个方向。所以一个好的regulaizer有什么特性：<br><img src="http://i.imgur.com/chNnUoe.png" alt=""><br>如果你知道target function的一些特性，比如说对称性，那么在加入regularizer时就只考虑加入让奇数次方的w变小就好，偶数次方的不用管，长大一点也没关系，关键是奇数次方的变小；或者在事物上选择能够说服我们的regularizer——简单或平滑的；又或者找好优化的regularizer。  </p>
+<blockquote>
+<p>regularizer:<font color="red">target-dependent,<font color="orange">plausible,</font></font> or <font color="blue">friendly</font>  ringing a bell?<br>error measure:<font color="red">user-dependent,<font color="orange">plausible,</font></font> or <font color="blue">friendly</font><br>augmented error = \(error_{\hat{err}}\) + regularizer \(\Omega\)</p>
+</blockquote>
+<p>刚才讲的是L2的regularizer，接下来讲一个L1的regularizer<br><img src="http://i.imgur.com/VQsJxaM.png" alt=""><br>L1解的事情是把加进去的所有w的绝对值加起来。它的一些性质：凸函数，不是随处可导，所以最佳化来说会比L2难解一点。它的一个重要性质是<font color="red">稀疏性</font>.L1的最优解一般都会在顶点位置：因为在可导的地方没法满足法向量和梯度平行。</p>
+<blockquote>
+<p>L1 useful if needing <font color="orange">sparse solution</font></p>
+</blockquote>
+<p>\(\lambda\)的最佳选择<br><img src="http://i.imgur.com/t6ywEca.png" alt=""><br>上图各条线上的点代表该情况下\(\lambda\)的选择<br><img src="http://i.imgur.com/aEU2Mq9.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/09/机器学习基石十三/" rel="next" title="机器学习基石十三">
+                <i class="fa fa-chevron-left"></i> 机器学习基石十三
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/10/机器学习基石十四/"
+           data-title="机器学习基石十四" data-url="http://Wan-YunPeng.github.io/2016/01/10/机器学习基石十四/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> google
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十四"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十四</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularization"><span class="nav-number">1.1.</span> <span class="nav-text">Regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regulared_Hypothesis_Set"><span class="nav-number">1.2.</span> <span class="nav-text">Regulared Hypothesis Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight_Decay_Regularization"><span class="nav-number">1.3.</span> <span class="nav-text">Weight Decay Regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Regularization_and_VC_Theory"><span class="nav-number">1.4.</span> <span class="nav-text">Regularization and VC Theory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General_Regularizers"><span class="nav-number">1.5.</span> <span class="nav-text">General Regularizers</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

@@ -200,6 +200,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/10/机器学习基石十四/" itemprop="url">
+                  机器学习基石十四
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-10T20:13:49+08:00" content="2016-01-10">
+              2016-01-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/10/机器学习基石十四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/机器学习基石十四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十四">机器学习基石十四</h2><h3 id="Regularization">Regularization</h3><h3 id="Regulared_Hypothesis_Set">Regulared Hypothesis Set</h3><p>上次课讲到的overfitting发生的情况：</p>
+<blockquote>
+<p>overfitting happens with <font color=orange>excessive power,stochastic/deterministic noise and limited data</font>太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能发生。  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color=red>规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/10/机器学习基石十四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/09/机器学习基石十三/" itemprop="url">
                   机器学习基石十三
                 </a>
@@ -583,113 +690,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
-                  机器学习基十
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
-<blockquote>
-<p><font color=purple>‘soft’</font> binary classification:<font color=purple>f</font>(x) = <font color=orange>P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
-</blockquote>
-<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/05/机器学习基石十/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -736,7 +736,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

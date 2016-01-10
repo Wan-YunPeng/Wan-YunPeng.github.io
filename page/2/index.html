@@ -205,6 +205,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
+                  机器学习基十
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
+              2016-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
+<blockquote>
+<p><font color=purple>‘soft’</font> binary classification:<font color=purple>f</font>(x) = <font color=orange>P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
+</blockquote>
+<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/机器学习基石十/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
                   机器学习基九
                 </a>
@@ -612,99 +719,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/22/morris后序遍历/" itemprop="url">
-                  morris遍历
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-22T21:21:55+08:00" content="2015-12-22">
-              2015-12-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/22/morris后序遍历/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/morris后序遍历/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="morris遍历">morris遍历</h2><p>二叉树的Morris遍历可不使用用栈，在常量空间O(1)、线性时间O(n)内实现二叉树的前中后序遍历，且遍历后不破坏二叉树的形状（中间过程允许改变其形状）。Morris遍历的基本原理是利用所有叶子结点的right指针，指向其后继结点，组成一个环，在第二次遍历到这个结点时，由于其左子树已经遍历完了，则访问该结点。</p>
-<h3 id="中序遍历">中序遍历</h3><p>中序遍历的算法步骤如下：</p>
-<ol>
-<li>如果当前节点的左孩子为空，则<font color=red>输出</font>当前节点并将其右孩子作为当前节点。  </li>
-<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在<font color=red>中序遍历下的前驱节点</font>。<br>A. 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。<br>B. 如果前驱节点的右孩子为当前节点，<font color=red>输出</font>当前节点。将它的右孩子重新设为空（恢复树的形状）。当前节点更新为当前节点的右孩子。  </li>
-<li>重复以上1、2直到当前节点为空。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/22/morris后序遍历/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -751,7 +765,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
