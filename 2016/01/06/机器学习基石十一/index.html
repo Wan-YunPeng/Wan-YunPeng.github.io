@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,22 +18,16 @@
 
 
 
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
 
 
+    <meta name="description" content="Read the f**king code" />
 
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="机器学习," />
@@ -41,14 +36,7 @@
 
 
 
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
 <meta name="description" content="机器学习基石十一Linear Models for Classification
@@ -102,12 +90,10 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
 
@@ -129,25 +115,20 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 
 
 
-
-
-
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
       <span class="site-title">YunPeng’s Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">Read the f**king code</p>
-</div>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
 
 <div class="site-nav-toggle">
   <button>
@@ -166,19 +147,23 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-home"></i> <br />
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-archives"></i> <br />
             归档
           </a>
         </li>
@@ -186,9 +171,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-tags"></i> <br />
             标签
           </a>
         </li>
@@ -207,78 +190,63 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
 
   <div id="posts" class="posts-expand">
     
 
-  
-  
-
-  
-  
-  
-
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                机器学习基石十一
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
+      
+      
+        <h1 class="post-title" itemprop="name headline">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
+              机器学习基石十一
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
+            2016-01-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
                 </a>
               </span>
+
+              
+              
+
             
+          </span>
+        
+
+        
           
-
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
-
-        </div>
-      </header>
-    
-
+        
+      </div>
+    </header>
 
     <div class="post-body">
 
@@ -337,19 +305,15 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 
       
         <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+          <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/05/c-c-随机数/" rel="next" title="c_c++随机数">
-                <i class="fa fa-chevron-left"></i> c_c++随机数
-              </a>
+              <a href="/2016/01/08/机器学习基石十二/" rel="prev">机器学习基石十二</a>
             
           </div>
 
-          <div class="post-nav-prev post-nav-item">
+          <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/08/机器学习基石十二/" rel="prev" title="机器学习基石十二">
-                机器学习基石十二 <i class="fa fa-chevron-right"></i>
-              </a>
+              <a href="/2016/01/05/c-c-随机数/" rel="next">c_c++随机数</a>
             
           </div>
         </div>
@@ -367,26 +331,22 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
     </div>
   </div>
 
-
-        </div>
-
-        
-
+ </div>
 
         
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/01/06/机器学习基石十一/"
-           data-title="机器学习基石十一" data-url="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/">
-      </div>
-    
-  </div>
 
-
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/06/机器学习基石十一/"
+                   data-title="机器学习基石十一" data-url="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/">
+              </div>
+            
+          </div>
+        
       </div>
 
       
-        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -400,8 +360,6 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
     <div class="sidebar-inner">
 
       
-
-      
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
@@ -412,7 +370,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Wan YunPeng</p>
@@ -421,21 +379,21 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -448,43 +406,23 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/Wan-YunPeng" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> github
-                  
-                </a>
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.google.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> google
-                  
-                </a>
+                <a href="https://www.google.com" target="_blank">google</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://zh-cn.facebook.com/" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> facebook
-                  
-                </a>
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> twitter
-                  
-                </a>
+                <a href="https://twitter.com" target="_blank">twitter</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> weibo
-                  
-                </a>
+                <a href="http://weibo.com" target="_blank">weibo</a>
               </span>
             
           
@@ -500,21 +438,15 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
-            
-              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十一"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十一</span></a></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
         </section>
       
 
@@ -522,17 +454,15 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
   </aside>
 
 
-      
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
-  &copy; 
+  &copy; &nbsp; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="icon-next-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
 </div>
@@ -549,8 +479,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -560,7 +489,6 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 
   
   
-
   
     
 
@@ -573,7 +501,6 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
@@ -583,28 +510,30 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
     
      
 
-
     
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -685,7 +614,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
 
     function tocOverflowIndicator (indicator, action) {
       var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
+      var opacity = action === 'show' ? 0.4 : 0;
       $indicator.velocity ?
         $indicator.velocity('stop').velocity({
           opacity: opacity
@@ -752,26 +681,63 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
-        }
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
       }
-    };
+    }
   });
 </script>
 
 
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
   
 
   
-  
-
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>

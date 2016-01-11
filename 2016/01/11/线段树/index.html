@@ -1,0 +1,681 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="树," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="概述线段树（英语：Segment Tree）是一种二叉搜索树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是平衡二叉树。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。使用线段树可以快速的查找某一个节点在若干条线段中出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/11/线段树/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="概述线段树（英语：Segment Tree）是一种二叉搜索树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是平衡二叉树。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。使用线段树可以快速的查找某一个节点在若干条线段中出">
+<meta property="og:image" content="http://i.imgur.com/5eOYCsg.jpg">
+<meta property="og:updated_time" content="2016-01-11T05:12:18.799Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线段树">
+<meta name="twitter:description" content="概述线段树（英语：Segment Tree）是一种二叉搜索树，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是平衡二叉树。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。使用线段树可以快速的查找某一个节点在若干条线段中出">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 线段树 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              线段树
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-11T12:40:29+08:00" content="2016-01-11">
+            2016-01-11
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/11/线段树/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/线段树/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="概述">概述</h3><p><strong>线段树</strong>（英语：Segment Tree）是一种<font color="blue">二叉搜索树</font>，它将一个<font color="blue">区间</font>划分成一些单元区间，每个单元区间对应线段树中的一个<font color="red">叶结点</font>。<br>对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是<font color="blue">平衡二叉树</font>。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。<br>使用线段树可以快速的查找某一个节点在若干条线段中出现的次数，<font color="blue">时间复杂度</font>为O(logN)。而未优化的<font color="blue">空间复杂度</font>为2N，因此有时需要<font color="blue">离散化</font>让空间压缩。</p>
+<h3 id="基本操作">基本操作</h3><p>给定整个线段区间，建立一棵线段树的时间复杂度是 O(N)。单点修改的时间复杂度是 O(log N) 。单点查询的时间复杂度是 O(1)。如果允许惰性赋值而加上延迟标记的话，许多的区间修改的时间复杂度也会是 O(log N)，但是单点查询的时间复杂度会变成 O(log N)。<br><a id="more"></a></p>
+<h3 id="一个例子理解线段树">一个例子理解线段树</h3><p>问题描述如下:从数组arr[0…n-1]中查找某个数组某个区间内的最小值，其中<font color="red">数组大小固定</font>，但是数组中的元素的值可以随时更新。所以线段树的应用是容量大小固定不变，但是随时其内容随时更新的情况。<br>对这个问题一个简单的解法是：遍历数组区间找到最小值，时间复杂度是O(n),额外的空间复杂度O(1)。当数据量特别大，而查询操作很频繁的时候，耗时可能会不满足需求。<br>另一种解法：使用一个二维数组来保存提前计算好的区间[i,j]内的最小值，那么预处理时间为O(n^2)，查询耗时O(1), 但是需要额外的O(n^2)空间，当数据量很大时，这个空间消耗是庞大的，而且当改变了数组中的某一个值时，更新二维数组中的最小值也很麻烦。<br>我们可以用线段树来解决这个问题：预处理耗时O(n)，查询、更新操作O(logn)，需要额外的空间O(n)。根据这个问题我们构造如下的二叉树  </p>
+<ol>
+<li>叶子节点是原始数组arr中的元素  </li>
+<li>非叶子节点代表它的所有子孙叶子节点所在区间的最小值</li>
+</ol>
+<p>例如对于数组[2, 5, 1, 4, 9, 3]可以构造如下的二叉树（背景为白色表示叶子节点，非叶子节点的值是其对应数组区间内的最小值，例如根节点表示数组区间arr[0…5]内的最小值是1）：<br><img src="http://i.imgur.com/5eOYCsg.jpg" alt=""><br>由于线段树的父节点区间是平均分割到左右子树，因此线段树是完全二叉树，<strong>对于包含n个叶子节点的完全二叉树，它一定有n-1个非叶节点，总共2n-1个节点</strong>，因此存储线段是需要的空间复杂度是O(n)。那么线段树的操作：创建线段树、查询、节点更新 是如何运作的呢（<font color="red">以下所有代码都是针对求区间最小值问题</font>）？  </p>
+<h3 id="线段树">线段树</h3><h4 id="创建线段树">创建线段树</h4><p>对于线段树我们可以选择和<strong>普通二叉树</strong>一样的链式结构。由于线段树是完全二叉树，我们也可以用<strong>数组</strong>来存储，下面的讨论及代码都是数组来存储线段树，节点结构如下<br><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="type">SegTreeNode</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> <span class="keyword">val</span>;</span><br><span class="line">	<span class="built_in">int</span> addMark;</span><br><span class="line">&#125; <span class="type">SegTreeNode</span>[<span class="type">MAXNUM</span>];</span><br></pre></td></tr></table></figure></p>
+<p>定义包含n个节点的线段树 SegTreeNode segTree[n]，segTree[0]表示根节点。那么对于节点segTree[i]，它的左孩子是segTree[2*i+1],右孩子是segTree[2*i+2]。<br>我们可以从根节点开始，平分区间，递归的创建线段树，线段树的创建函数如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">功能：构建线段树</span><br><span class="line">root：当前线段树的根节点下标</span><br><span class="line">arr: 用来构造线段树的数组</span><br><span class="line">istart：数组的起始位置</span><br><span class="line">iend：数组的结束位置</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> arr[], <span class="keyword">int</span> istart, <span class="keyword">int</span> iend)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(istart == iend)<span class="comment">//叶子节点</span></span><br><span class="line">        segTree[root].val = arr[istart];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (istart + iend) / <span class="number">2</span>;</span><br><span class="line">        build(root*<span class="number">2</span>+<span class="number">1</span>, arr, istart, mid);<span class="comment">//递归构造左子树</span></span><br><span class="line">        build(root*<span class="number">2</span>+<span class="number">2</span>, arr, mid+<span class="number">1</span>, iend);<span class="comment">//递归构造右子树</span></span><br><span class="line">        <span class="comment">//根据左右子树根节点的值，更新当前根节点的值</span></span><br><span class="line">        segTree[root].val = min(segTree[root*<span class="number">2</span>+<span class="number">1</span>].val, segTree[root*<span class="number">2</span>+<span class="number">2</span>].val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="查询线段树">查询线段树</h4><p>已经构建好了线段树，那么怎样在它上面超找某个区间的最小值呢？查询的思想是选出一些区间，使他们相连后恰好涵盖整个查询区间，因此线段树适合解决“<font color="red">相邻的区间的信息可以被合并成两个区间的并区间的信息</font>”的问题。代码如下，具体见代码解释<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">功能：线段树的区间查询</span><br><span class="line">root：当前线段树的根节点下标</span><br><span class="line">[nstart, nend]: 当前节点所表示的区间</span><br><span class="line">[qstart, qend]: 此次查询的区间</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> qstart, <span class="keyword">int</span> qend)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">//查询区间和当前节点区间没有交集</span></span><br><span class="line">    <span class="keyword">if</span>(qstart &gt; nend || qend &lt; nstart)</span><br><span class="line">        <span class="keyword">return</span> INFINITE;</span><br><span class="line">    <span class="comment">//当前节点区间包含在查询区间内</span></span><br><span class="line">    <span class="keyword">if</span>(qstart &lt;= nstart &amp;&amp; qend &gt;= nend)</span><br><span class="line">        <span class="keyword">return</span> segTree[root].val;</span><br><span class="line">    <span class="comment">//分别从左右子树查询，返回两者查询结果的较小值</span></span><br><span class="line">    <span class="keyword">int</span> mid = (nstart + nend) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> min(query(root*<span class="number">2</span>+<span class="number">1</span>, nstart, mid, qstart, qend),</span><br><span class="line">               query(root*<span class="number">2</span>+<span class="number">2</span>, mid + <span class="number">1</span>, nend, qstart, qend));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>举例说明（对照上面的二叉树）：</p>
+<ol>
+<li><p>当我们要查询区间[0,2]的最小值时，从根节点开始，要分别查询左右子树，查询左子树时节点区间[0,2]包含在查询区间[0,2]内，返回当前节点的值1，查询右子树时，节点区间[3,5]和查询区间[0,2]没有交集，返回正无穷INFINITE，查询结果取两子树查询结果的较小值1，因此结果是1.</p>
+</li>
+<li><p>查询区间[0,3]时，从根节点开始，查询左子树的节点区间[0,2]包含在区间[0,3]内，返回当前节点的值1；查询右子树时，继续递归查询右子树的左右子树，查询到非叶节点4时，又要继续递归查询：叶子节点4的节点区间[3,3]包含在查询区间[0,3]内，返回4，叶子节点9的节点区间[4,4]和[0,3]没有交集，返回INFINITE,因此非叶节点4返回的是min(4, INFINITE) = 4，叶子节点3的节点区间[5,5]和[0,3]没有交集，返回INFINITE,因此非叶节点3返回min(4, INFINITE) = 4, 因此根节点返回 min(1,4) = 1。  </p>
+</li>
+</ol>
+<h4 id="单节点更新">单节点更新</h4><p>单节点更新是指只更新线段树的某个叶子节点的值，但是更新叶子节点会对其父节点的值产生影响，因此更新子节点后，要回溯更新其父节点的值。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">功能：更新线段树中某个叶子节点的值</span><br><span class="line">root：当前线段树的根节点下标</span><br><span class="line">[nstart, nend]: 当前节点所表示的区间</span><br><span class="line">index: 待更新节点在原始数组arr中的下标</span><br><span class="line">addVal: 更新的值（原来的值加上addVal）</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateOne</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> index, <span class="keyword">int</span> addVal)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nstart == nend)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(index == nstart)<span class="comment">//找到了相应的节点，更新之</span></span><br><span class="line">            segTree[root].val += addVal;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (nstart + nend) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(index &lt;= mid)<span class="comment">//在左子树中更新</span></span><br><span class="line">        updateOne(root*<span class="number">2</span>+<span class="number">1</span>, nstart, mid, index, addVal);</span><br><span class="line">    <span class="keyword">else</span> updateOne(root*<span class="number">2</span>+<span class="number">2</span>, mid+<span class="number">1</span>, nend, index, addVal);<span class="comment">//在右子树中更新</span></span><br><span class="line">    <span class="comment">//根据左右子树的值回溯更新当前节点的值</span></span><br><span class="line">    segTree[root].val = min(segTree[root*<span class="number">2</span>+<span class="number">1</span>].val, segTree[root*<span class="number">2</span>+<span class="number">2</span>].val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>比如我们要更新叶子节点4（addVal = 6）,更新后值变为10，那么其父节点的值从4变为9，非叶结点3的值更新后不变，根节点更新后也不变。</p>
+<h4 id="区间更新">区间更新</h4><p>区间更新是指更新某个区间内的叶子节点的值，因为涉及到的叶子节点不止一个，而叶子节点会影响其相应的非叶父节点，那么回溯需要更新的非叶子节点也会有很多，如果一次性更新完，操作的时间复杂度肯定不是O(lgn)，例如当我们要更新区间[0,3]内的叶子节点时，需要更新出了叶子节点3,9外的所有其他节点。为此引入了线段树中的<font color="red">延迟标记</font>概念，这也是线段树的精华所在。</p>
+<p><font color="red">延迟标记</font>：每个节点新增加一个标记，记录这个节点是否进行了某种修改(这种修改操作会影响其子节点)，对于任意区间的修改，我们先按照区间查询的方式将其划分成线段树中的节点，然后修改这些节点的信息，并给这些节点标记上代表这种修改操作的标记。在修改和查询的时候，如果我们到了一个节点p，并且决定考虑其子节点，那么我们就要看节点p是否被标记，如果有，就要按照标记修改其子节点的信息，并且给子节点都标上相同的标记，同时消掉节点p的标记。</p>
+<p>因此需要在线段树结构中加入延迟标记域，本文例子中我们加入标记与addMark，表示节点的子孙节点在原来的值的基础上加上addMark的值，同时还需要修改创建函数build 和 查询函数 query，修改的代码用红色字体表示，其中区间更新的函数为update，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INFINITE = INT_MAX;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXNUM = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> SegTreeNode</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line">	<span class="keyword">int</span> addMark;</span><br><span class="line">&#125; SegTreeNode[MAXNUM];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> arr[], <span class="keyword">int</span> istart, <span class="keyword">int</span> iend)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(<span class="keyword">int</span> root)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> qstart, <span class="keyword">int</span> qend)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> ustart, <span class="keyword">int</span> uend, <span class="keyword">int</span> addVal)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">	构建线段树</span><br><span class="line">	root：当前线段树的根节点下标</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> arr[], <span class="keyword">int</span> istart, <span class="keyword">int</span> iend)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	SegTreeNode[root].addMark = <span class="number">0</span>; <span class="comment">// 设置延迟标记</span></span><br><span class="line">	<span class="keyword">if</span> (istart == iend)</span><br><span class="line">		SegTreeNode[root].val = arr[istart];</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (istart + iend) / <span class="number">2</span>;</span><br><span class="line">		build(root * <span class="number">2</span> + <span class="number">1</span>, arr, istart, mid); <span class="comment">// 递归构建左子树</span></span><br><span class="line">		build(root * <span class="number">2</span> + <span class="number">2</span>, arr, mid + <span class="number">1</span>, iend); <span class="comment">// 递归构建右子树</span></span><br><span class="line">		SegTreeNode[root].val = min(SegTreeNode[root * <span class="number">2</span> + <span class="number">1</span>].val, SegTreeNode[root * <span class="number">2</span> + <span class="number">2</span>].val);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">	当前结点的标志域向孩子节点传递</span><br><span class="line">	root:当前线段树的根节点下标</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(<span class="keyword">int</span> root)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (SegTreeNode[root].addMark != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		SegTreeNode[root * <span class="number">2</span> + <span class="number">1</span>].addMark += SegTreeNode[root].addMark;</span><br><span class="line">		SegTreeNode[root * <span class="number">2</span> + <span class="number">2</span>].addMark += SegTreeNode[root].addMark;</span><br><span class="line">		<span class="comment">// 求的是区间最小值，因此当区间每个元素都加上一个值时，区间的最小值也得加上这个值</span></span><br><span class="line">		SegTreeNode[root * <span class="number">2</span> + <span class="number">1</span>].val += SegTreeNode[root].addMark;</span><br><span class="line">		SegTreeNode[root * <span class="number">2</span> + <span class="number">2</span>].val += SegTreeNode[root].addMark;</span><br><span class="line"></span><br><span class="line">		SegTreeNode[root].addMark = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">	线段树区间查询</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> qstart, <span class="keyword">int</span> qend)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (qstart &gt; nend || qend &lt; nstart)</span><br><span class="line">		<span class="keyword">return</span> INFINITE;</span><br><span class="line">	<span class="keyword">if</span> (qstart &lt;= nstart &amp;&amp; qend &gt;= nend)</span><br><span class="line">		<span class="keyword">return</span> SegTreeNode[root].val;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 分别从左右子树查询，返回最小值</span></span><br><span class="line">	pushDown(root); <span class="comment">// 延迟标记向下传递------------查询时更新；</span></span><br><span class="line">	<span class="keyword">int</span> mid = (nstart + nend) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">return</span> min(query(root * <span class="number">2</span> + <span class="number">1</span>, nstart, mid, qstart, qend), query(root * <span class="number">2</span> + <span class="number">2</span>, mid + <span class="number">1</span>, nend, qstart, qend));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line">	更新线段中某个区间的子节点的值</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> nstart, <span class="keyword">int</span> nend, <span class="keyword">int</span> ustart, <span class="keyword">int</span> uend, <span class="keyword">int</span> addVal)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ustart &gt; nend || uend &lt; nstart)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (ustart &lt;= nstart &amp;&amp; uend &gt;= nend)</span><br><span class="line">	&#123;</span><br><span class="line">		SegTreeNode[root].addMark += addVal;</span><br><span class="line">		SegTreeNode[root].val += addVal;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	pushDown(root); <span class="comment">// 延迟标记向下传递</span></span><br><span class="line">	<span class="keyword">int</span> mid = (nstart + nend) / <span class="number">2</span>;</span><br><span class="line">	update(root * <span class="number">2</span> + <span class="number">1</span>, nstart, mid, ustart, uend, addVal);</span><br><span class="line">	update(root * <span class="number">2</span> + <span class="number">2</span>, mid + <span class="number">1</span>, nend, ustart, uend, addVal);</span><br><span class="line">	SegTreeNode[root].val = min(SegTreeNode[root * <span class="number">2</span> + <span class="number">1</span>].val, SegTreeNode[root * <span class="number">2</span> + <span class="number">2</span>].val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>区间更新举例说明：当我们要对区间[0,2]的叶子节点增加2，利用区间查询的方法从根节点开始找到了非叶子节点[0-2]，把它的值设置为1+2 = 3，并且把它的延迟标记设置为2，更新完毕；当我们要查询区间[0,1]内的最小值时，查找到区间[0,2]时，发现它的标记不为0，并且还要向下搜索，因此要把标记向下传递，把节点[0-1]的值设置为2+2 = 4，标记设置为2，节点[2-2]的值设置为1+2 = 3，标记设置为2（其实叶子节点的标志是不起作用的，这里是为了操作的一致性），然后返回查询结果：[0-1]节点的值4；当我们再次更新区间[0,1]（增加3）时，查询到节点[0-1],发现它的标记值为2，因此把它的标记值设置为2+3 = 5，节点的值设置为4+3 = 7；</p>
+<p>其实当区间更新的区间左右值相等时（[i,i]），就相当于单节点更新，单节点更新只是区间更新的特例。</p>
+<h4 id="线段树实战">线段树实战</h4><p>ACM题目：<a href="http://blog.csdn.net/liuqiyao_01/article/details/9712191" target="_blank" rel="external">http://blog.csdn.net/liuqiyao_01/article/details/9712191</a>  </p>
+<p><strong>转载请注明出处</strong>：<a href="http://www.cnblogs.com/TenosDoIt/p/3453089.html" target="_blank" rel="external">http://www.cnblogs.com/TenosDoIt/p/3453089.html</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/树/" rel="tag">#树</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/11/机器学习基石十五/" rel="prev">机器学习基石十五</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/10/机器学习基石十四/" rel="next">机器学习基石十四</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/11/线段树/"
+                   data-title="线段树" data-url="http://Wan-YunPeng.github.io/2016/01/11/线段树/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个例子理解线段树"><span class="nav-number">3.</span> <span class="nav-text">一个例子理解线段树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树"><span class="nav-number">4.</span> <span class="nav-text">线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建线段树"><span class="nav-number">4.1.</span> <span class="nav-text">创建线段树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询线段树"><span class="nav-number">4.2.</span> <span class="nav-text">查询线段树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单节点更新"><span class="nav-number">4.3.</span> <span class="nav-text">单节点更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区间更新"><span class="nav-number">4.4.</span> <span class="nav-text">区间更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线段树实战"><span class="nav-number">4.5.</span> <span class="nav-text">线段树实战</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

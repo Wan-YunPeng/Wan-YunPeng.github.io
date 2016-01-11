@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+<html class="theme-next use-motion ">
 <head>
-  <meta charset="UTF-8"/>
+  
+
+<meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -17,38 +18,25 @@
 
 
 
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
 
 
 
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hexo,next" />
 
 
 
 
 
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
-
-
-
-
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
 <meta name="description" content="Read the f**king code">
@@ -62,12 +50,10 @@
 <meta name="twitter:description" content="Read the f**king code">
 
 
-
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: '',
-    sidebar: 'post',
-    motion: true
+    sidebar: 'post'
   };
 </script>
 
@@ -89,27 +75,22 @@
 
 
 
-
-
-
   <div class="container one-column 
    page-home 
 ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
       <span class="site-title">YunPeng’s Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">Read the f**king code</p>
-</div>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
 
 <div class="site-nav-toggle">
   <button>
@@ -128,19 +109,23 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-home"></i> <br />
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-archives"></i> <br />
             归档
           </a>
         </li>
@@ -148,9 +133,7 @@
         
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
+            <i class="menu-item-icon icon-next-tags"></i> <br />
             标签
           </a>
         </li>
@@ -169,87 +152,233 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div id="content" class="content"> 
   <section id="posts" class="posts-expand">
+    
+      
 
-    
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-    
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/06/机器学习基石十一/" itemprop="url">
+                机器学习基石十一
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
+            2016-01-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
+<blockquote>
+<p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
+</blockquote>
+<p>三个线性算法的比较与总结：<br><img src="http://i.imgur.com/MEetY67.png" alt=""></p>
+<blockquote>
+<p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/06/机器学习基石十一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
 
-  
-  
-
-  
-  
-  
-
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
-                  机器学习基十
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
-              2016-01-05
-            </time>
-          </span>
-
+      
+      
+        <h1 class="post-title" itemprop="name headline">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
+          
+            
+              <a class="post-title-link" href="/2016/01/05/c-c-随机数/" itemprop="url">
+                c_c++随机数
+              </a>
+            
+          
+        </h1>
+      
 
-                
-                
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-05T18:08:19+08:00" content="2016-01-05">
+            2016-01-05
+          </time>
+        </span>
 
-              
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/05/c-c-随机数/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/c-c-随机数/" itemprop="commentsCount"></span>
+              </a>
             </span>
           
+        
+      </div>
+    </header>
 
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>计算机的随机数都是由伪随机数，即是由小M多项式序列生成的，其中产生每个小序列都有一个初始值，即随机种子。（注意： 小M多项式序列的周期是65535，即每次利用一个随机种子生成的随机数的<font color=red>周期是65535</font>，当你取得65535个随机数后它们又重复出现了。）<br>rand()函数可以用来产生随机数，但是这不是真正意义上的随机数，是一个<font color=red>伪随机数</font>，是根据一个数（我们可以称它为种子）为基准以某个递推公式推算出来的一系列数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/c-c-随机数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
+              <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
+                机器学习基十
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
+            2016-01-05
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
                 </a>
               </span>
+
+              
+              
+
             
+          </span>
+        
+
+        
           
-
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
-
-        </div>
-      </header>
-    
-
+        
+      </div>
+    </header>
 
     <div class="post-body">
 
@@ -288,75 +417,60 @@
     
       
 
-  
-  
-
-  
-  
-  
-
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
-                  机器学习基九
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-03T17:24:35+08:00" content="2016-01-03">
-              2016-01-03
-            </time>
-          </span>
-
+      
+      
+        <h1 class="post-title" itemprop="name headline">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/03/机器学习基石九/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/机器学习基石九/" itemprop="commentsCount"></span>
+              <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
+                机器学习基九
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-03T17:24:35+08:00" content="2016-01-03">
+            2016-01-03
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
                 </a>
               </span>
+
+              
+              
+
             
+          </span>
+        
+
+        
           
-
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/03/机器学习基石九/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/机器学习基石九/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
-
-        </div>
-      </header>
-    
-
+        
+      </div>
+    </header>
 
     <div class="post-body">
 
@@ -395,75 +509,60 @@
     
       
 
-  
-  
-
-  
-  
-  
-
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
-                  机器学习基石八
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
-              2015-12-29
-            </time>
-          </span>
-
+      
+      
+        <h1 class="post-title" itemprop="name headline">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
+              <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
+                机器学习基石八
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
+            2015-12-29
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
                 </a>
               </span>
+
+              
+              
+
             
+          </span>
+        
+
+        
           
-
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
+              </a>
+            </span>
           
-
-        </div>
-      </header>
-    
-
+        
+      </div>
+    </header>
 
     <div class="post-body">
 
@@ -500,241 +599,21 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/26/机器学习基石七/" itemprop="url">
-                  机器学习基石七
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-26T16:10:55+08:00" content="2015-12-26">
-              2015-12-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/26/机器学习基石七/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/机器学习基石七/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石七">机器学习基石七</h2><p>VC维<br>上次课得出的一个重要的结论：<br><img src="http://i.imgur.com/bokvHuM.png" alt=""></p>
-<p>几个条件，让我们的learning可以做得到：</p>
-<p><img src="http://i.imgur.com/aKjK4oA.png" alt=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/26/机器学习基石七/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/24/机器学习基石六/" itemprop="url">
-                  机器学习基石六
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-24T12:15:55+08:00" content="2015-12-24">
-              2015-12-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/24/机器学习基石六/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/机器学习基石六/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石六">机器学习基石六</h2><h3 id="Theory_of_Generalization">Theory of Generalization</h3><blockquote>
-<p>growth function \(m_{H}(N)\):max number of dichotomies</p>
-</blockquote>
-<p><img src="http://i.imgur.com/94K3T1h.png" alt=""><br>假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dichotomy  </p>
-<blockquote>
-<p>N = 1:every \(m_{H}(N)\) = 2 by definition<br>N = 2:every \(m_{H}(N)\) &lt; 4 by definition(so <font color=purple>maximum possible=3</font>)</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/24/机器学习基石六/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
   </nav>
 
-
-
-        </div>
+ </div>
 
         
 
-
         
-
       </div>
 
       
-        
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -749,9 +628,7 @@
 
       
 
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
           <p class="site-author-name" itemprop="name">Wan YunPeng</p>
@@ -760,21 +637,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -787,43 +664,23 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/Wan-YunPeng" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> github
-                  
-                </a>
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://www.google.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> google
-                  
-                </a>
+                <a href="https://www.google.com" target="_blank">google</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://zh-cn.facebook.com/" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> facebook
-                  
-                </a>
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="https://twitter.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> twitter
-                  
-                </a>
+                <a href="https://twitter.com" target="_blank">twitter</a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> weibo
-                  
-                </a>
+                <a href="http://weibo.com" target="_blank">weibo</a>
               </span>
             
           
@@ -844,17 +701,15 @@
   </aside>
 
 
-      
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
+      <div class="footer-inner"> <div class="copyright" >
   
-  &copy; 
+  &copy; &nbsp; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="icon-next-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
 </div>
@@ -871,8 +726,7 @@
 </div>
 
 
-
-      </div>
+ </div>
     </footer>
 
     <div class="back-to-top"></div>
@@ -882,7 +736,6 @@
 
   
   
-
   
     
 
@@ -895,7 +748,6 @@
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
       ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
@@ -905,34 +757,75 @@
     
      
 
-
     
   
-
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
 
 
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
 
-  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
   
 
   
-  
-
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
 </body>
 </html>
