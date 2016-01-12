@@ -166,6 +166,267 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/22/morris后序遍历/" itemprop="url">
+                morris遍历
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-22T21:21:55+08:00" content="2015-12-22">
+            2015-12-22
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/morris后序遍历/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/morris后序遍历/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="morris遍历">morris遍历</h2><p>二叉树的Morris遍历可不使用用栈，在常量空间O(1)、线性时间O(n)内实现二叉树的前中后序遍历，且遍历后不破坏二叉树的形状（中间过程允许改变其形状）。Morris遍历的基本原理是利用所有叶子结点的right指针，指向其后继结点，组成一个环，在第二次遍历到这个结点时，由于其左子树已经遍历完了，则访问该结点。</p>
+<h3 id="中序遍历">中序遍历</h3><p>中序遍历的算法步骤如下：</p>
+<ol>
+<li>如果当前节点的左孩子为空，则<font color=red>输出</font>当前节点并将其右孩子作为当前节点。  </li>
+<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在<font color=red>中序遍历下的前驱节点</font>。<br>A. 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。<br>B. 如果前驱节点的右孩子为当前节点，<font color=red>输出</font>当前节点。将它的右孩子重新设为空（恢复树的形状）。当前节点更新为当前节点的右孩子。  </li>
+<li>重复以上1、2直到当前节点为空。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/22/morris后序遍历/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/22/机器学习基石五/" itemprop="url">
+                机器学习基石五
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-22T18:38:55+08:00" content="2015-12-22">
+            2015-12-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/机器学习基石五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石五/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Training_versus_Testing">Training versus Testing</h2><p>训练和测试的过程到底有什么不一样？<br>上一节的一个简单总结，机器有时是学不到东西的，有时是可以学到的，什么时候可以学到：</p>
+<blockquote>
+<p>learning is <font color=orange>PAC</font>-possible if enough <font color=orange>statistical data</font> and <font color=orange>finite |H|</font> 资料来自某个分布并且演算法的假设集合个数有限</p>
+</blockquote>
+<p>另外一种情况，如果Hypothesis Set是无限大的（就像我们之前的perceptron），到底会发生什么事情？<br>回顾一下前四堂课所讲的内容：<br><img src="http://i.imgur.com/THn7QAp.png" alt=""><br>第一堂课的时候就告诉大家，有一个未知的 f ，我们希望找出一个 g ，这个 g 和 f 能够很接近。在第四堂课的时候把这件事情写成了\(E_{out}\)(g)要很接近0，我们拿出某些新的资料（从P中产生），在上面犯的错误要越少越好；第二堂课里面，我们采用了一个不一样的方法，先在我们看过的资料上做得好就好了，所以我们找一些方法，能够让\(E_{in}\)(g)接近0，例如Perceptron learning algorithm或是pocket算法。第三次课讲了学习是在特定的情况下（批次的资料、监督、二元分类等——机器学习核心的问题），有了这些概念后，我们在第四次上课终于想办法把Ein和Eout联系起来，如果我们的Hypothesis Set不是很多的话，我们真的能够让Ein和Eout会很接近。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/22/机器学习基石五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/22/机器学习基石四/" itemprop="url">
+                机器学习基石四
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-22T14:34:55+08:00" content="2015-12-22">
+            2015-12-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/机器学习基石四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Feasibility_of_Learning">Feasibility of Learning</h2><p><img src="http://i.imgur.com/zKbmDjv.png" alt=""></p>
+<p>对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。<br>我们再从数学的角度来看，观察下面这个例子</p>
+<p><img src="http://i.imgur.com/M2OP9bN.png" alt=""></p>
+<p>输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。<br>三个维度，三个bit只有8种可能性，输出是两种，所以总共的函数最多有\(2^{8}\)=256种，好吧，我们把这256种统统放在high positive set里面，然后让我的机器演算法选择一个 g ，这个 g 在这五笔资料上都跟 f 一模一样，也就是这个 g 在这五笔资料上统统都是正确的。我们之前学的perceptron learning algorithm大体上来说就是做的这件事，看他能不能找到一条线，把所有的圈圈和叉叉都分开。现在的问题是这样的 g 好还是不好？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/22/机器学习基石四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/20/机器学习基石三/" itemprop="url">
                 机器学习基石三
               </a>
@@ -323,271 +584,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/leetcode/" itemprop="url">
-                leetcode——线性表笔记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T19:13:00+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/leetcode/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="线性表笔记">线性表笔记</h2><h3 id="数组">数组</h3><ol>
-<li><p>unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）</p>
-<blockquote>
-<p>当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次<br>当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复<br>1） unique(A,A + n)(A为数组，n为数组大小)<br>2） unique(nums.begin(),nums.end())(nums为容器–含有迭代器)</p>
-</blockquote>
-</li>
-<li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
-</li>
-<li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
-<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/leetcode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/20/c-15晦涩特性/" itemprop="url">
-                c++15晦涩特性
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-20T13:20:32+08:00" content="2015-12-20">
-            2015-12-20
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/20/c-15晦涩特性/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/c-15晦涩特性/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <ol>
-<li>方括号的真正含义  </li>
-<li>最烦人的解析  </li>
-<li>替代运算标记符  </li>
-<li>重定义关键字  </li>
-<li>Placement new  </li>
-<li>在声明变量的同时进行分支  </li>
-<li>成员函数的引用修饰符  </li>
-<li>图灵完备的模板元编程  </li>
-<li>指向成员的指针操作符  </li>
-<li>静态实例方法  </li>
-<li>重载++和–  </li>
-<li>操作符重载和检查顺序  </li>
-<li>函数作为模板参数  </li>
-<li>模板的参数也是模板  </li>
-<li>try块作为函数  </li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/20/c-15晦涩特性/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/18/机器学习基石二/" itemprop="url">
-                机器学习基石二
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
-            2015-12-18
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><font color = red>感知机</font>&emsp;<font color = red>线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
-<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/18/机器学习基石二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
   </nav>
 
  </div>
@@ -621,7 +622,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -1,0 +1,740 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="机器学习基石十六Three Learning Principles上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。
+Occam’s Razor
+entities must not be multi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习基石十六">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/12/机器学习基石十六/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习基石十六Three Learning Principles上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。
+Occam’s Razor
+entities must not be multi">
+<meta property="og:image" content="http://i.imgur.com/5NHLtsq.png">
+<meta property="og:image" content="http://i.imgur.com/c7vEvGl.png">
+<meta property="og:image" content="http://i.imgur.com/cQEAvce.png">
+<meta property="og:image" content="http://i.imgur.com/3Kd4dKE.png">
+<meta property="og:image" content="http://i.imgur.com/LycsawB.png">
+<meta property="og:image" content="http://i.imgur.com/GwjxGMQ.png">
+<meta property="og:image" content="http://i.imgur.com/iXddNM1.png">
+<meta property="og:image" content="http://i.imgur.com/i1kLurz.png">
+<meta property="og:image" content="http://i.imgur.com/JcSPCnc.png">
+<meta property="og:image" content="http://i.imgur.com/CvcR9FN.png">
+<meta property="og:image" content="http://i.imgur.com/VQkrP3x.png">
+<meta property="og:image" content="http://i.imgur.com/OzKlAEh.png">
+<meta property="og:image" content="http://i.imgur.com/F5xgBRo.png">
+<meta property="og:updated_time" content="2016-01-12T11:54:52.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习基石十六">
+<meta name="twitter:description" content="机器学习基石十六Three Learning Principles上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。
+Occam’s Razor
+entities must not be multi">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习基石十六 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习基石十六
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-12T19:53:22+08:00" content="2016-01-12">
+            2016-01-12
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/12/机器学习基石十六/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/机器学习基石十六/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习基石十六">机器学习基石十六</h2><h3 id="Three_Learning_Principles">Three Learning Principles</h3><p>上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。</p>
+<h3 id="Occam’s_Razor">Occam’s Razor</h3><blockquote>
+<p>entities must not be multiplied <font color="orange">beyond necessity</font>————William of Occam不要对一个东西多做过多的处理，应该用越简单的方式越好，把那些不必要的东西”剃掉”<br>‘<font color="orange">Occam’s razor</font>‘ for trimming down unnecessary explanation</p>
+</blockquote>
+<p>我们希望不要对资料做过多的解释。这在machine learning里是什么意思呢？他实际上就呼应了我们讲的：对资料最简单的解释也就是最好的解释  </p>
+<blockquote>
+<p>The simplest model that fits the data is also the most plausible</p>
+</blockquote>
+<a id="more"></a>
+<p>就像下面这张图一样：<br><img src="http://i.imgur.com/5NHLtsq.png" alt=""><br>那么现在有两个问题：</p>
+<ol>
+<li>What does it mean for a model to be simple? 什么叫做一个简单的模型</li>
+<li>How do we know that simpler is better? 我们为什么知道简单是比较好的  </li>
+</ol>
+<p>我们过去讲过什么叫做简单的hypothesis，你有单一的hypothesis的时候，我们到底怎么说它是简单的？<br><img src="http://i.imgur.com/c7vEvGl.png" alt=""><br>一个简单的hypothesis应该是“看起来”很简单，就想刚才那个大大的圆看起来很简单，不像另外一个弯弯曲曲的曲线，“看起来很简单”的意思实际上是我们只需要少数的参数；我们还提到过怎么说一个model是简单的，我们说一个model，有效的hypothesis数量不是很多的话，我们就说他是简单的。这两种解释的方法实际上是有关联性的，如果我们有一个hypothesis set，它最多只有\(2^l\)个hypothesis，那你的一个hypothesis最多需要多少的参数来描述？用bit来表示的话，你有\(2^l\)个hypothesis，那么你只需要l个bits就可以描述\(2^l\)这么多个排列组合<br><img src="http://i.imgur.com/cQEAvce.png" alt=""><br>所以如果你今天大大的model的complexity很小，是简单的话，那某种程度也可以表示它里面的hypothesis应该也是简单的。</p>
+<blockquote>
+<p>simple:<font color="orange">small hypothesis/model complexity</font>透过简单的hypothesis或model都可以对你的资料进行简单的解释</p>
+</blockquote>
+<p>那为什么简单的就是好的呢？这里提供一个哲学的解释：<br><img src="http://i.imgur.com/3Kd4dKE.png" alt=""><br>假设你有一个简单的model，简单的model就是成长函数很小，长得很慢，这代表什么？如果你今天随便丢一组资料，意思是你有一组输入，输出的部分你就丢铜板来产生，丢铜板产生大家可以想象，应该是没什么规律的，那如果这样烂烂的资料、随机产生的资料丢给你的模型会发生什么事？你就只有很小的机会能找到一个Ein是0的。所以乱乱的资料导致的结果是大部分的时候资料都没有办法分开，那反过来说，如果你今天有一组资料找到一个很完美的模型，可以把这些资料分开，那这是有显著性的，这表示你的资料应该不是乱乱的资料。所以你用简单的模型把资料分开的时候，就可以说资料是具有某种规律性的，相反的，你用很复杂的模型时，你就没办法知道他分开时这个资料到底是乱乱的还是有规律的，因为反正不管什么资料他统统有办法可以分开。  </p>
+<blockquote>
+<p>direct action: <font color="orange">linear first</font>;<br>always ask whether <font color="orange">data over-modeled</font> 选择模型时，想想这个是不是你现在可以选择的最简单的模型</p>
+<h3 id="Sampling_Bias">Sampling Bias</h3><p>if the data is sampled in a biased way, learning will pordece a similarly biased outcome 如果你今天抽样有偏差的话，那么你学起来也会有偏差，这样的情形我们叫sampling bias</p>
+<p>technical explanation :<br>data from <font color="red">P1</font>(x,y) but test under <font color="blue">p2</font> \(\neq\) <font color="red">p1</font> : <font color="orange">VC fails</font><br>philosophical explanation :<br>study <font color="red">dMath</font> hard but test <font color="blue">English</font>: <font color="orange">no strong test guarantee</font>学了一学期数学但是期末的时候却考的英语一样</p>
+</blockquote>
+<p>训练和测试要来自同一个分布。<br><img src="http://i.imgur.com/LycsawB.png" alt=""><br>这是林轩田老师当年参加的Netflix的比赛：只要你的推荐系统比他自身的好10%的话，就可以有100万美金。林轩田老师用了validation的方法，显示有13%的提高，但是去没有领到奖，为什么？训练模型时，从手上的资料里随机选出一部份作为他的测试资料，而在实际比赛中却不是这样，netflix是这样选择测试资料的：一个人看了好几部电影之后，我们就把它看到前几部，比如说7部作为训练资料后3部电影当测试资料，也就是说它的训练资料和测试资料是有前后的关系，不是随机取样，而是在时间轴上做了一个前后的取样。因为不是随机取样（validation用的是随机取样）而林轩田老师用了随机取样就使得他的validation的分布和test的分布不太一样。</p>
+<blockquote>
+<p>validation : <font color="red">random examples</font> within D;<br>test : <font color="blue">‘last’ user records</font> ‘after’ D</p>
+</blockquote>
+<p>那应该怎么办？在实物中我要用前面的资料做训练，后面的资料做测试</p>
+<blockquote>
+<p>practical rule of thumb : <font color="orange"> match test scenario as much as possible</font>了解你的测试环境，让你的训练环境和测试环境尽可能的接近<br>e.g. if test : <font color="blue">‘last’ user records </font>‘after’ D<br>training : <font color="blue">emphasize later</font> examples<br>validation : use <font color="blue">‘late’ user records</font>  </p>
+</blockquote>
+<p>你今天在做训练的时候，因为后面的比较重要，是不是说你应该那些属于时间轴上比较后面的资料我们要加强一下，我们说他的权重比较重或者用一下其他的方式加强，让我整个训练出来的hypothesis会偏向那些时间轴比较后面的资料；又或者说你在做validation的时候，就不要随机选择，而是选择时间轴上比较后面的那些资料来做验证资料。这些方法让你的训练环境和测试环境尽可能的接近，当两者很接近的时候就很有可能让你的学出来的hypothesis在真正测试的时候表现的很好。   </p>
+<blockquote>
+<p>last puzzle : danger when learning ‘credit card approval’ with existing bank records ?</p>
+</blockquote>
+<p>第一个个机器学习的问题，是否应该给新顾客信用卡？我们的训练资料是银行已经存在的资料，我们只能知道给了信用卡的人他们有没有把卡刷爆，而对于那些没有给信用卡的人，我们不知道要是我们给了他们信用卡后，他们会不会把卡刷爆，也就是说我们的训练资料实际上是经过筛选的资料，经过们原来的系统筛选说这些人应该要给他信用卡，给了之后我们看他们有没有乱花钱/刷爆卡，但是我们没办法说被我们排除的那些人到底会发生什么事。所以这个资料训练出来的模型用在新的顾客上，我可能接受他，我可能拒绝他，这两个的分布就不一定会一样。需要做一些调整。</p>
+<h3 id="Data_Snooping">Data Snooping</h3><p>不要”偷看资料”  </p>
+<blockquote>
+<p>if a data set has affected any step in the learning porcess,its ability to assess the outcome has been comromised</p>
+</blockquote>
+<p>假设今天有8年的货币交易的资料，我们想从这些资料中导出来看看能不能预测货币的走势，我们拿前6年做训练的工作，拿后两年做测试的工作。<br><img src="http://i.imgur.com/GwjxGMQ.png" alt=""><br>蓝色只放缩前6年，而红色是放缩了8年的资料，相当于测试资料已经影响了我们的训练资料。 </p>
+<blockquote>
+<p>snooping : shift-scale all values by training + testing<br>no snooping : shift-scale all values by training only</p>
+</blockquote>
+<p>怎么处理”偷看”资料这件事？这件事非常难<br><img src="http://i.imgur.com/iXddNM1.png" alt="">  </p>
+<blockquote>
+<p>one secret to winning KDDCups :<br>careful lalance between <font color="red">data-driven modeling(snooping)</font> and <font color="blue">validation(no-snooping)</font></p>
+<h3 id="Power_of_Three">Power of Three</h3><h4 id="三个和机器学习相关的领域">三个和机器学习相关的领域</h4><p><img src="http://i.imgur.com/i1kLurz.png" alt="">  </p>
+<h4 id="三个理论上的保障">三个理论上的保障</h4><p><img src="http://i.imgur.com/JcSPCnc.png" alt="">  </p>
+<h4 id="三个模型">三个模型</h4><p><img src="http://i.imgur.com/CvcR9FN.png" alt="">  </p>
+<h4 id="三个工具">三个工具</h4><p><img src="http://i.imgur.com/VQkrP3x.png" alt="">  </p>
+<h4 id="三个准则">三个准则</h4><p><img src="http://i.imgur.com/OzKlAEh.png" alt="">  </p>
+<h4 id="三个方向">三个方向</h4><p><img src="http://i.imgur.com/F5xgBRo.png" alt="">  </p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/12/最大M字段和/" rel="next">最大M子段和</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/12/机器学习基石十六/"
+                   data-title="机器学习基石十六" data-url="http://Wan-YunPeng.github.io/2016/01/12/机器学习基石十六/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十六"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十六</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Three_Learning_Principles"><span class="nav-number">1.1.</span> <span class="nav-text">Three Learning Principles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Occam’s_Razor"><span class="nav-number">1.2.</span> <span class="nav-text">Occam’s Razor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling_Bias"><span class="nav-number">1.3.</span> <span class="nav-text">Sampling Bias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data_Snooping"><span class="nav-number">1.4.</span> <span class="nav-text">Data Snooping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Power_of_Three"><span class="nav-number">1.5.</span> <span class="nav-text">Power of Three</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个和机器学习相关的领域"><span class="nav-number">1.5.1.</span> <span class="nav-text">三个和机器学习相关的领域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三个理论上的保障"><span class="nav-number">1.5.2.</span> <span class="nav-text">三个理论上的保障</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三个模型"><span class="nav-number">1.5.3.</span> <span class="nav-text">三个模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三个工具"><span class="nav-number">1.5.4.</span> <span class="nav-text">三个工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三个准则"><span class="nav-number">1.5.5.</span> <span class="nav-text">三个准则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三个方向"><span class="nav-number">1.5.6.</span> <span class="nav-text">三个方向</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

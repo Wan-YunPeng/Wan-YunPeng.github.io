@@ -166,6 +166,274 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/10/机器学习基石十四/" itemprop="url">
+                机器学习基石十四
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-10T20:13:49+08:00" content="2016-01-10">
+            2016-01-10
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/10/机器学习基石十四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/机器学习基石十四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十四">机器学习基石十四</h2><h3 id="Regularization">Regularization</h3><h3 id="Regulared_Hypothesis_Set">Regulared Hypothesis Set</h3><p>上次课讲到的overfitting发生的情况：</p>
+<blockquote>
+<p>overfitting happens with <font color=orange>excessive power,stochastic/deterministic noise and limited data</font>太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能发生。  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color=red>规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/10/机器学习基石十四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/09/机器学习基石十三/" itemprop="url">
+                机器学习基石十三
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-09T20:39:05+08:00" content="2016-01-09">
+            2016-01-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/09/机器学习基石十三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/机器学习基石十三/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十三">机器学习基石十三</h2><p>hazard of overfitting<br>先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。<br><img src="http://i.imgur.com/djnlqWD.png" alt=""><br>我本来不知道我们的目标函数是一个二次函数，我有五个资料点，不然我用一个4次的多项式来做这个回归分析，怎么样用四次的多项式？我们上次讲过你只要把一个四次的特征转换配合我们原来学过的linear regression你就可以用4次多项式来做。你有五个点，你要用一个4次多项式的话，只有一个4次多项式会通过这个点，也就是一个唯一解。因为这个四次多项式通过这五个点，所以他的Ein一定是0，上图中红色的线。可以看出这条红色的线和我们的目标函数蓝色的那条线一点都不像，也就是说它的Eout其实非常非常的大。这种情况叫做bad generalization。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/09/机器学习基石十三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/08/机器学习基石十二/" itemprop="url">
+                机器学习基石十二
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-08T20:26:49+08:00" content="2016-01-08">
+            2016-01-08
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/08/机器学习基石十二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/机器学习基石十二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十二">机器学习基石十二</h2><h3 id="non-linear_transform">non-linear transform</h3><p>linear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切<font color=orange>一条线</font>，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数<font color=purple>s</font>=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。<br>这样的模型的好处在于它的<font color=orange>vc维是受到控制的</font>，这样可以确定我们的Ein和Eout不会差太远，缺点是在实际情况中，总会有些资料，有些点是拿直线无法分开的（总是会分错），下图右，这样我们的Ein就会很大，而Ein和Eout不会差太远，就会导致我们的Eout也会很大。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/08/机器学习基石十二/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/06/机器学习基石十一/" itemprop="url">
                 机器学习基石十一
               </a>
@@ -323,287 +591,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
-                机器学习基十
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
-            2016-01-05
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
-<blockquote>
-<p><font color=purple>‘soft’</font> binary classification:<font color=purple>f</font>(x) = <font color=orange>P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
-</blockquote>
-<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/05/机器学习基石十/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
-                机器学习基九
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-03T17:24:35+08:00" content="2016-01-03">
-            2016-01-03
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/03/机器学习基石九/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/机器学习基石九/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石九">机器学习基石九</h2><p>linear regression</p>
-<p>之前的信用卡问题，今天不是要决定是否给他信用卡，而是决定给他多少钱的信用卡。我们想说我们的hypothesis要长什么样才能输出一个实数，和之前一样，先假设一些简单的hypothesis：根据顾客的资料，来做一些加权，求出一个值，我们希望算出来的这个加权值和我们想要给顾客多少额度的金额是接近的<br><img src="http://i.imgur.com/kYimNhh.png" alt=""></p>
-<blockquote>
-<p>for x = (<font color=red>\(x_0\))</font>,\(x_1,x_2,…,x_d\))’features of customer’,<br>approximate the <font color=purple>desired credit limit</font> with a <font color=blue>weighted</font> sum:$${\color{Purple}{y}} \approx \sum_{\color{Red}{i=0}}^{d} {\color{Blue}{W_i}} X_i$$<br>linear regression hypothesis:<font color=blue>h</font>(x)=\({\color{Blue}{W^T}}X\)</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/03/机器学习基石九/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
-                机器学习基石八
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
-            2015-12-29
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石八">机器学习基石八</h2><p>上次学到：</p>
-<blockquote>
-<p>learning happens if <font color=orange>finite \(d_{vc}\), large N,</font> and <font color=orange>low \(E_{in}\)</font></p>
-</blockquote>
-<p><img src="http://i.imgur.com/BM9fHgo.png" alt=""><br>target function会产生一堆的样本，我们的资料，这些资料从哪里来？除了从target function得到他的y的部分，它的x是由某个我们所不知道的分布产生的，未来在测试的时候，我们也要用一样的分布，我们的演算法从这些资料和一个好的hypothesis set里找到一个好的的hypothesis。好的hypothesis set是vc维是有限的，好的hypothesis是Ein是很小的。<br>要是资料有<font color=red>噪音</font>呢？<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/29/机器学习基石八/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
   </nav>
 
  </div>
@@ -637,7 +629,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
