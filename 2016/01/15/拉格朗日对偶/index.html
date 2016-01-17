@@ -1,0 +1,688 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="数学," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。
+原始问题假设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拉格朗日对偶">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/15/拉格朗日对偶/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。
+原始问题假设">
+<meta property="og:image" content="http://i.imgur.com/ox75Wr7.jpg">
+<meta property="og:updated_time" content="2016-01-17T06:23:32.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="拉格朗日对偶">
+<meta name="twitter:description" content="在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找变量受一个或多个条件所限制的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。
+原始问题假设">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 拉格朗日对偶 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              拉格朗日对偶
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-15T11:17:07+08:00" content="2016-01-15">
+            2016-01-15
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/数学/" itemprop="url" rel="index">
+                  <span itemprop="name">数学</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/15/拉格朗日对偶/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/拉格朗日对偶/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找<font color="blue">变量</font>受一个或<font color="blue">多个条件所限制</font>的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。</p>
+<h3 id="原始问题">原始问题</h3><p>假设\(f(x),(c_i)(x),(h_j)(x)\)是定义在\(R^n\)上的<font color="red">连续可微函数</font>(后面会提到为什么)，考虑约束最优化问题：$$\underset{x \in R^n}{min}f(x)$$ $$s.t.&emsp;c_i(x) \leq 0;i=1,2,…k$$ $$h_j(x)=0;j=1,2,…l$$<br>称为约束最优化问题的<font color="red">原始问题</font>。<br>现在<font color="blue">如果不考虑约束条件</font>,原始问题就是：$$\underset{x \in R^n}{min}f(x)$$<br>因为假设其连续可微，利用高中的知识，对\(f(x)\)求导数，然后令其为0，就可以解除最优解。那么问题来了，有约束条件，想方法<font color="red">把约束条件去掉</font>，引入拉格朗日函数。<br><a id="more"></a>  </p>
+<h3 id="广义拉格朗日函数">广义拉格朗日函数</h3><p>$$L(x,\alpha,\beta)=f(x)+\sum_{i=1}^{k}\alpha_ic_i(x) + \sum_{j=1}^{l}\beta_jh_j(x)$$<br>这里，\(x=(x^{(1)},x^{(2)},…,x^{(n)})^T \in R^n,\alpha_i,\beta_j\)是拉格朗日乘子。<font color="red">特别要求\(\alpha_i \geq\)0.</font>现在如果<font color="red">把\(L(x,\alpha,\beta)\)看作是关于\(\alpha_i,\beta_j\)的函数</font>，要求其最大值，即$$\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)$$<br>再次注意\(L(x,\alpha,\beta)\)是一个关于\(\alpha_i,\beta_j\)的函数，经过我们的优化（不管什么方法），就是确定\(\alpha_i,\beta_j\)的值使得\(L(x,\alpha,\beta)\)取得最大值（此过程中把\(x\)看作是常量），确定了\(\alpha_i,\beta_j\)的值，就可以得到\(L(x,\alpha,\beta)\)的最大值，<font color="red">因为\(\alpha_i,\beta_j\)已经确定</font>.显然最大值\(\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)\)就是<font color="red">只和\(x\)有关的函数</font>,定义这个函数为：$$\theta_p(x) = \underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)$$ $$L(x,\alpha,\beta)=f(x)+\sum_{i=1}^{k}\alpha_ic_i(x) + \sum_{j=1}^{l}\beta_jh_j(x)$$<br>其中，下面通过\(x\)是否满足约束条件两个方面来分析这个函数：</p>
+<p><font color="red">考虑某个\(x\)违反了原始的约束</font>,即\(c_i(x) &gt; 0\)或者\(h_j(x) \neq 0\)，那么$$\theta_p(x) = \underset{\alpha,\beta:\alpha_i \geq 0}{max}[f(x)+\sum_{i=1}^{k}\alpha_ic_i(x) + \sum_{j=1}^{l}\beta_jh_j(x)] = + \infty$$<br>注意中间的最大化式子就是确定\(\alpha_i,\beta_j\)之后的结果，若\(c_i(x) &gt; 0\)，则令\(\alpha_i \rightarrow + \infty\)，如果\(h_j(x) \neq 0\)，很容易取得\(\beta_j\)使得\(\beta_jh_j(x) \rightarrow + \infty\)  </p>
+<p><font color="red">考虑\(x\)满足原始的约束</font>，则：\(\theta_p(x) = \underset{\alpha,\beta:\alpha_i \geq 0}{max}f(x)\),注意中间的最大化是确定\(\alpha_i,\beta_j\)的过程，\(f(x)\)就是个常量，常量的最大值显然是其本身。<br>通过上面两条分析可以得出：<br><img src="http://i.imgur.com/ox75Wr7.jpg" alt=""><br>那么<font color="red">在满足约束条件下</font>：$$\underset{x}{min}\theta_P(x)=\underset{x}{min}\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)=\underset{x}{min}f(x)$$<br>即\(\underset{x}{min}\theta_P(x)\)与原始优化问题等价，所以常用\(\underset{x}{min}\theta_P(x)\)代表原始问题，下标P表示原始问题，定义<font color="red">原始问题的最优值</font>:$$p^*=\underset{x}{min}\theta_P(x)$$</p>
+<h3 id="对偶问题">对偶问题</h3><p>定于关于\(\alpha,\beta\)的函数：$$\theta_D(\alpha,\beta)=\underset{x}{min}L(x,\alpha,\beta)$$<br>注意等式右边是<font color="red">关于\(x\)的函数的最小化</font>,\(x\)确定之后，最小值就只与\(\alpha,\beta\)有关，所以是一个关于\(\alpha,\beta\)的函数。<br>考虑极大化\(\theta_D(\alpha,\beta)=\underset{x}{min}L(x,\alpha,\beta)\),即$$\underset{\alpha,\beta:\alpha_i \geq 0}{max}\theta_D(\alpha,\beta)=\underset{\alpha,\beta:\alpha_i \geq 0}{max}\underset{x}{min}L(x,\alpha,\beta)$$<br>这就是原始问题的对偶问题，再把原始问题写出来：$$\underset{x}{min}\theta_P(x)=\underset{x}{min}\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)$$<br>形式上可以看出很对称，只不过原始问题是先固定\(L(x,\alpha,\beta)\)中的\(x\),优化出参数\(\alpha,\beta\),再优化出\(x\)，而对偶问题是先固定\(\alpha,\beta\),优化出最优\(x\)，然后再确定\(\alpha,\beta\)。<br>定义<font color="red">对偶问题的最优值</font>:$$d^*=\underset{\alpha,\beta:\alpha_i \geq 0}{max}\theta_D(\alpha,\beta)$$</p>
+<h3 id="原始问题与对偶问题的关系">原始问题与对偶问题的关系</h3><p>定理：<font color="red">若原始问题与对偶问题都有最优值</font>，则$$d^*=\underset{\alpha,\beta:\alpha_i \geq 0}{max}\underset{x}{min}L(x,\alpha,\beta) \leq \underset{x}{min}\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)=p^*$$<br>证明：对任意的\(\alpha,\beta\)和\(x\),有$$\theta_D(\alpha,\beta) = \underset{x}{min}L(x,\alpha,\beta) \leq L(x,\alpha,\beta) \leq \underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)=\theta_P(x)$$<br>即$$\theta_D(\alpha,\beta) \leq \theta_P(x)$$</p>
+<p><font color="blue">由于原始问题和对偶问题都有最优值</font>,所以$$\underset{\alpha,\beta:\alpha_i \geq 0}{max}\theta_D(\alpha,\beta)\leq \underset{x}{min}\theta_P(x)$$<br>即$$d^*=\underset{\alpha,\beta:\alpha_i \geq 0}{max}\underset{x}{min}L(x,\alpha,\beta) \leq \underset{x}{min}\underset{\alpha,\beta:\alpha_i \geq 0}{max}L(x,\alpha,\beta)=p^*$$<br>也就是说原始问题的最优值不小于对偶问题的最优值，但是<font color="blue">我们通过对偶问题来求原始问题，就必须使得原始问题的最优值与对偶问题的最优值相等</font>,于是可以得出下面的结论：</p>
+<blockquote>
+<p><font color="red">推论</font>：假设\(x^*\)和\(\alpha^*,\beta^*\)分别是原始问题和对偶问题的可行解，如果\(d^*=p^*\)那么\(x^*\)和\(\alpha^*,\beta^*\)分别是原始问题和对偶问题的最优解</p>
+</blockquote>
+<p>所以，当原始问题和对偶问题的最优值相等：\(d^*=p^*\)时，可以用<font color="blue">求解对偶问题来求解原始问题（当然是对偶问题求解比直接求解原始问题简单的情况下）</font>，但是到底什么样的条件才能使\(d^*=p^*\)呢？这就是下面要阐述的<font color="red">KKT条件</font></p>
+<h3 id="KKT条件">KKT条件</h3><p>定理：对于原始问题和对偶问题，假设函数\(f(x)和c_i(x)\)是凸函数，\(h_i(x)\)是仿射函数(即由一阶多项式构成的函数：\(f(x)=Ax+b)\)形式，A是矩阵，\(x,b\)是向量);并且假设不等式约束\(c_i(x)\)是严格可行的，即存在\(x\)，对所有i有\(c_i(x) &lt; 0\),则存在\(x^*\)和\(\alpha^*,\beta^*\)，使得\(x^*\)是原始问题的最优解，\(\alpha^*,\beta^*\)是对偶问题的最优解，并且$$d^*=p^*=L(x^*,\alpha^*,\beta^*)$$<br>定理：对于原始问题和对偶问题，假设函数\(f(x)和c_i(x)\)是凸函数，\(h_i(x)\)是仿射函数(即由一阶多项式构成的函数：\(f(x)=Ax+b)\)形式，A是矩阵，\(x,b\)是向量);并且假设不等式约束\(c_i(x)\)是严格可行的，即存在\(x\)，对所有i有\(c_i(x) &lt; 0\),则存在\(x^*\)和\(\alpha^*,\beta^*\)分别是原始问题和对偶问题的最优解的<font color="blue">充分必要条件</font>是\(x^*\)和\(\alpha^*,\beta^*\)满足下面的Karush-Kuhn-Tucker(KKT)条件：<br>$$\bigtriangledown_xL(x^*,\alpha^*,\beta^*)=0 $$<br>$$\bigtriangledown_{\alpha}L(x^*,\alpha^*,\beta^*)=0$$<br>$$\bigtriangledown_{\beta}L(x^*,\alpha^*,\beta^*)=0$$<br>$$\alpha_i^*c_i(x^*)=0,i=1,2,…,k(KKT对偶互补条件)$$<br>$$c_i(x^*)\leq0,i=1,2,…k$$<br>$$\alpha^*\geq0,i=1,2,…k$$<br>$$h_j(x^*)=0,j=1,2,…l$$</p>
+<p><font color="blue">关于KKT条件的理解</font>：前面三个条件是由解析函数的知识，对于各个变量的偏导数为0(<font color="blue">这就解释了一开始为什么假设三个函数连续可微，如果不连续可微的话，这里的偏导数存在不存在就不能保证</font>),后面四个条件就是原始问题的约束条件以及拉格朗日乘子需要满足的约束。  </p>
+<p><font color="red">特别注意</font>当\(\alpha^* &gt; 0\)时，由KKT对偶互补条件可知：\(c_i(x^*\)=0),这个知识点会在SVM的推导中用到。</p>
+<h3 id="总结">总结</h3><p>一句话，<font color="red">某些条件下，把原始的约束问题通过拉格朗日函数转化为无约束问题，如果原始问题求解棘手，在满足KKT的条件下用求解对偶问题来代替求解原始问题，使得问题求解更加容易</font>。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数学/" rel="tag">#数学</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/15/机器学习技法三/" rel="prev">机器学习技法三</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/14/机器学习技法二/" rel="next">机器学习技法二</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/15/拉格朗日对偶/"
+                   data-title="拉格朗日对偶" data-url="http://Wan-YunPeng.github.io/2016/01/15/拉格朗日对偶/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始问题"><span class="nav-number">1.</span> <span class="nav-text">原始问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广义拉格朗日函数"><span class="nav-number">2.</span> <span class="nav-text">广义拉格朗日函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对偶问题"><span class="nav-number">3.</span> <span class="nav-text">对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原始问题与对偶问题的关系"><span class="nav-number">4.</span> <span class="nav-text">原始问题与对偶问题的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KKT条件"><span class="nav-number">5.</span> <span class="nav-text">KKT条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Kernel Support Vector Machinedual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  
+Kernel Trick上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法三">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/15/机器学习技法三/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Kernel Support Vector Machinedual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  
+Kernel Trick上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N">
+<meta property="og:image" content="http://i.imgur.com/e0T8ZYE.png">
+<meta property="og:image" content="http://i.imgur.com/tzXRluG.png">
+<meta property="og:image" content="http://i.imgur.com/5RJgRZt.png">
+<meta property="og:image" content="http://i.imgur.com/2L11iTO.png">
+<meta property="og:image" content="http://i.imgur.com/R2ZDhxf.png">
+<meta property="og:image" content="http://i.imgur.com/AirScPE.png">
+<meta property="og:image" content="http://i.imgur.com/UC2Ii2B.png">
+<meta property="og:image" content="http://i.imgur.com/se2BDwd.png">
+<meta property="og:image" content="http://i.imgur.com/tnDtbgV.png">
+<meta property="og:image" content="http://i.imgur.com/ZDM7xOt.png">
+<meta property="og:image" content="http://i.imgur.com/hPwrBWP.png">
+<meta property="og:image" content="http://i.imgur.com/YC9u1mQ.png">
+<meta property="og:image" content="http://i.imgur.com/WY2NKmV.png">
+<meta property="og:image" content="http://i.imgur.com/8HTa1a9.png">
+<meta property="og:image" content="http://i.imgur.com/aunljJh.png">
+<meta property="og:image" content="http://i.imgur.com/ytcY52K.png">
+<meta property="og:image" content="http://i.imgur.com/hz4NQKa.png">
+<meta property="og:image" content="http://i.imgur.com/8Efpb9L.png">
+<meta property="og:image" content="http://i.imgur.com/0WlStwq.png">
+<meta property="og:image" content="http://i.imgur.com/2yFGMG3.png">
+<meta property="og:image" content="http://i.imgur.com/qNrVomG.png">
+<meta property="og:image" content="http://i.imgur.com/KUFmSie.png">
+<meta property="og:image" content="http://i.imgur.com/sPBO1I1.png">
+<meta property="og:image" content="http://i.imgur.com/WOt8jzQ.png">
+<meta property="og:image" content="http://i.imgur.com/dIST15w.png">
+<meta property="og:image" content="http://i.imgur.com/AJjJFXT.png">
+<meta property="og:image" content="http://i.imgur.com/qMvi7L5.png">
+<meta property="og:image" content="http://i.imgur.com/2cElSM7.png">
+<meta property="og:image" content="http://i.imgur.com/X1SXqiv.png">
+<meta property="og:image" content="http://i.imgur.com/QnwjSrw.png">
+<meta property="og:image" content="http://i.imgur.com/dwpUqco.png">
+<meta property="og:image" content="http://i.imgur.com/zK6gaan.png">
+<meta property="og:image" content="http://i.imgur.com/fcrYtGu.png">
+<meta property="og:updated_time" content="2016-01-15T10:28:59.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法三">
+<meta name="twitter:description" content="Kernel Support Vector Machinedual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  
+Kernel Trick上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法三 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法三
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-15T14:40:45+08:00" content="2016-01-15">
+            2016-01-15
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/15/机器学习技法三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/机器学习技法三/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Kernel_Support_Vector_Machine">Kernel Support Vector Machine</h2><p>dual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  </p>
+<h3 id="Kernel_Trick">Kernel Trick</h3><p><img src="http://i.imgur.com/e0T8ZYE.png" alt=""><br>上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N+1（一个等号的条件和N个不等号的条件），所以不论我们是从变量个数还是条件个数都好像和\(\tilde{d}\)没有关系，可是我们仔细一看，\(\tilde{d}\)跑到了一个地方，在我们计算矩阵\(Q_D\)，\(Q_D\)里面是二次项系数，这些系数是怎么来的？是两个y相称和两个x做内积，这里是z空间，就是两个z做内积的结果，那就和\(\tilde{d}\)有关系了。从计算的角度来说，我们需要把\(Q_D\)里面的系数统统算出来，才能送到二次规划的问题里去求解。这里便是我们的瓶颈所在。那么有没有什么办法可以使我们的这步算的快一些。<br><a id="more"></a><br>我们要从z空间里面做内积，如果我们从x的空间来看的话，这其实是两个步骤，第一步是先用\(\Phi\)把x做转换，做完转换之后在做内积。那你要转换到一个10000维度的空间至少需要话费10000的力气，再做内积，你在10000的空间里直接做内积，那10000个数字要相乘再相加的话，那你至少也要花10000的力气。所以，先做转换再做内积，无论如何你都要花10000的力气。<br><img src="http://i.imgur.com/tzXRluG.png" alt=""><br>可是如果我们能够把这两个步骤合起来，然后算的快一点。<br>怎么做呢？先考虑一个简单的例子。<br><img src="http://i.imgur.com/5RJgRZt.png" alt=""><br>用我们熟悉的多项式转换：将原来的x中各个列（向量的每个维度）的排列组合统统都算出来。例如上面的二次转换：一次项系数和各种可能的二次项系数。为了简单起见，把x1x2和x2x1同时放在里面，方便后面的式子推导。<br>先看看转换了再做内积的过程：考虑两个输入x和x’：<br><img src="http://i.imgur.com/2L11iTO.png" alt=""><br>现在的问题是这个式子可不可以算快一点？我们可以看看最后面那个double summation能不能拆开，和i有关的项放在一边，和j有关的项放在另外一边，相当于只是把这四个项做了一个重新的整理，放到他该放的地方。<br><img src="http://i.imgur.com/R2ZDhxf.png" alt=""><br>发现这个最后的式子根本就是x和x’的内积。可以不用花\(d^2\)的力气去计算最后一项，可以先算两个向量的内积，再算平方。这样只需要花费d的力气就好，也不需要花费z空间里的力气。<br>我们把这个转换+内积叫做kernel function，你有某个转换就对应某个kernel function<br><img src="http://i.imgur.com/AirScPE.png" alt=""><br>有了这个核函数之后，我们看看在我们的dual SVM里面应该怎么用。<br><img src="http://i.imgur.com/UC2Ii2B.png" alt=""><br>把两个z向量的内积换成一个核函数，用的是原始的x，代表了：转换到z空间+z空间里做内积。这是第一个需要使用核函数的地方。那还有什么地方需要用到核函数呢？<br><img src="http://i.imgur.com/se2BDwd.png" alt=""><br>算完b后，需要回传那个\(g_{SVM}\)来做预测：<br><img src="http://i.imgur.com/tnDtbgV.png" alt=""><br>这一系列的转换下来，我们发现我们并没有真正的在z空间里做内积，需要在z空间里做得事情都通过核函数（找出两个z相乘的地方）来做了，我所有的计算都只需要x，没有需要z的，既然不需要z，那么就不需要\(\tilde{d}\)的转换动作和内积动作。<br>通常把这个叫做kernel trick:<br><img src="http://i.imgur.com/ZDM7xOt.png" alt=""><br>所以整个过程都写下来是这样的：所有的步骤都一样，只有在z空间里面的内积统统都换成了核函数，<br><img src="http://i.imgur.com/hPwrBWP.png" alt=""><br>我们来看看这些步骤：  </p>
+<ol>
+<li>把q统统算出来，花费N平方的力气，再加上你算kernel需要的力气，</li>
+<li>剩下的问题是QP，你只有N个变数和N+1个条件，和\(\tilde{d}\)一点关系也没有</li>
+<li>上面的第三步和第四步的计算只和我有多少个支持向量有关，我有多少的支持向量，就需要做多少的kernel evaluation，只要我们的kernel能很快的算出来，他就和\(\tilde{d}\)没有关系。  </li>
+</ol>
+<p><img src="http://i.imgur.com/YC9u1mQ.png" alt=""></p>
+<h3 id="Polynomial_Kernel">Polynomial Kernel</h3><p>刚才我们透过一个特殊的二次多项式的转换，导出了一个对应的kernel。那这个是不是唯一的二次多项式转换呢？不是，有很多的二次多项式转换可以用，有的可能很容易写出kernel的计算形式，有的可能没有办法，接下来介绍一些不一样但是很常用的二次多项式的转换。<br><img src="http://i.imgur.com/WY2NKmV.png" alt=""><br>我们刚才透过这个转换：拿原来的特征做一些变换啊，相乘等等的动作，如果我在这个过程中加上一点放缩的动作，比如说用一个常数的系数做一个放缩的动作。比如把所以的一次项都乘以一个\(\sqrt{2}\)：<br><img src="http://i.imgur.com/8HTa1a9.png" alt=""><br>更进一步，你加上更多的放缩：<br><img src="http://i.imgur.com/aunljJh.png" alt=""><br>这样整理起来就会有：<br><img src="http://i.imgur.com/ytcY52K.png" alt=""><br>看起来比k2要更容易计算一点。这个是平常比较常用的形式，也比较容易延伸到更高次方的多项式；两个\({\Phi}_2\)(蓝色和绿色)都对应到同一个空间，都是二次转换，他们的power/能够做的事情其实是一样的。但是因为它是还是不同的转换，因为那些系数在，他们实际上定义了不同的内积，在一个内积空间里面不同的内积就代表不同的距离，不同的距离会影响margin，不同的距离就有不同的几何特性，你算出俩的margin就不一样。你用不同的转换，就算你再看似同样的空间，你可能会得到不同的边界。<br>我们来看看刚才说的不同的转换对应不同的几何特性，不同的距离是什么意思，<br><img src="http://i.imgur.com/hz4NQKa.png" alt=""><br>support vector用方块表示出来。不同的kernel形式对应的分类器不太一样，统统都是二次曲线，但是这些二次曲线看起来不太一样，相应的support vector的数量也不一样。<br>我们这里并没有说哪个好，只是说他会不一样，support vector也会不一样，暂时来说我们没办法说哪一个一定比较好。这里只是建立一个基本的概念，就是你把kernel换掉，就算是很相近的kernel，你换掉就是把几何定义换掉，那么margin的定义就换掉了，对SVM来说可能会得到不一样的解。那以后我们就要仔细对kernel做选择。<br>从二次的出发，我们还可以继续一路推下去，<br><img src="http://i.imgur.com/8Efpb9L.png" alt=""><br>最终可以得到Q次方的多项式的kernel。有了这样的方法后，我们就可以做非常高次的转换，<br><img src="http://i.imgur.com/0WlStwq.png" alt=""><br>比如说10次转换，以前是把所有的z展出来，还要做内积等等，现在你做10次转换几乎和你做二次转换一样简单，你只要能把kernel算出来就好。你说10转换的时候那个空间太复杂了，我可不可能overfit？有可能，但是至少在SVM的世界里你还有一个帮手——large margin，large margin会帮助你稍微控制一下你的复杂度。<br><img src="http://i.imgur.com/2yFGMG3.png" alt=""><br>做一次转换叫做linear kernel，只是原来的内积。<br><img src="http://i.imgur.com/qNrVomG.png" alt=""><br>这个linear kernel是值得大家先尝试的。还记得吗，要是linear kernel的效果已经很好了的话，就不用再去考虑高次的这些转换了。</p>
+<h3 id="Gaussian_Kernel">Gaussian Kernel</h3><p>刚才我们讲完了polynomial kernel，假设我今天是个无限多维的转换，我能不能通过转换还是能够有效率的做运算？<br>我们考虑一个特别的例子，假设我们的原始资料只有一个维度，考虑一个特别的函数k，这个函数是一个高斯函数，之后会经过一番推导，发现它其实是两个转换在z空间里面的内积，而且这个转换时无限多维的。<br><img src="http://i.imgur.com/KUFmSie.png" alt=""><br>泰勒展开：连续函数，可以对某个点做一次微分、二次微分…来展开。<br>高斯函数里面藏着一个无限多维的转换，如果我们现在考虑的是一个比较复杂的情形，不像刚才x只有一个维度，现在x很有很多维度，其实可以证明对多个维度的x的高斯函数，它的里面也藏着一个无限多维的转换。<br><img src="http://i.imgur.com/sPBO1I1.png" alt=""><br>这就给了我们一个新的机会，把这个kernel放进之气的SVM里面：<br><img src="http://i.imgur.com/WOt8jzQ.png" alt=""><br>得到一个中心在support vector上面的高斯函数的线性组合；也因为有这个特性，常常有人把它叫做Radial Basis Function(RBF) kernel:长的像高斯函数图形（钟形曲线）的线性组合。  </p>
+<blockquote>
+<p><font color="green">linear combi</font><font color="orange">nation</font> of <font color="purple">Gaussians</font> centered at <font color="orange">SVs \(x_n\)</font><br>also called <font color="purple">Radial</font> <font color="green">Basis Function</font>(RBF) kernel  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/dIST15w.png" alt=""><br>以前我们能做到的是hyperplanes，后来做到hyperplane+transform，如果我们计算算的过来的话，现在我们用hyperplane+tranform但是用kernel来做计算，但是只做这样的话，没有办法控制复杂度，所有SVM还做了一个large margin，让我们的hypothesis set数量可以没有很多，但是我们的边界可以很复杂，使用kernel可以解决计算上的问题。<br><img src="http://i.imgur.com/AJjJFXT.png" alt=""><br>所以我们不再执着于把z算出来；然后我也不再执着于把z空间里的w存下来，我只要存w的表现方式就好，w的表现方式是他用哪些support vector表示出来，然后他需要的线性组合的系数是多少。<br><img src="http://i.imgur.com/qMvi7L5.png" alt=""><br>我们现在可以做无限多维空间里面的资料分类，通过向gaussian kernel这样的机制，你的保护是SVM里的large margin。故事真的这么美好吗？<br><img src="http://i.imgur.com/2cElSM7.png" alt=""><br>随着\(\gamma\)的增大，边界越来越复杂，为什么会发生这种事？\(\gamma\)变大的时候就是你的gaussian变尖了，标准差变小了，最后的结果是一堆gaussian的线性组合，也就是一堆尖尖的gaussian的线性组合，所以就跑出最后的小岛了。<br><img src="http://i.imgur.com/X1SXqiv.png" alt=""><br>所以大家可以看到，要是我的\(\gamma\)没有用得非常的好，还是有可能会overfit，虽说你有large margin的保证。  </p>
+<blockquote>
+<p>Gaussian SVM : need <font color="orange">careful selection \(\gamma\)</font></p>
+<h3 id="Comparison_of_Kernels">Comparison of Kernels</h3><p>现在稍微分析一下之前讲的kernel的好处和坏处是什么。<br><img src="http://i.imgur.com/QnwjSrw.png" alt=""><br>最简单是linear kernel，实际上不做任何的转换，这样的kernel，如果你硬要解dual的话，实际上就是把原始的内积丢进去就好。它的好处是linear最简单，最安全，应该是有限尝试的；还有因为他不涉及任何的转换，所以你可以针对他的primal问题设计特别的QP solver；再来linear一贯的好处就是你可以看出你的machine是怎么样做分类动作的。坏处就是不是线性的资料没法分开。<br>linear kernel : an important basic tool</p>
+</blockquote>
+<p>再来是polynomial kernel<br><img src="http://i.imgur.com/dwpUqco.png" alt=""><br>它的好处就是：没有linear的限制，通过设定这个Q来表达你对这个模型的想象。它的坏处是你要把这个kernel的值算出来的时候不是特别好算；大的Q，polynomial不是特别好用；有三个参数要选择，比较困难。  </p>
+<blockquote>
+<p>polynomial kernel : perhaps small-Q only<br>sometimes efficiently done by linear on \({\Phi}_Q\)(x)  </p>
+</blockquote>
+<p>最后是Gaussian kernel<br><img src="http://i.imgur.com/zK6gaan.png" alt=""><br>无限多维，可以做出更复杂的模型，只有一个参数的选择。难解释w在哪儿；能力太强。  </p>
+<blockquote>
+<p>Gaussian kernel : one of most popular but shall be used with care</p>
+</blockquote>
+<p>kernel其实代表两笔x的相似性，即这里的x和x’的相似性，转换之后在z空间里面的相似性。那我可不可以从某个相似性出发得到某个kernel？不见得可行，因为kernel是一种相似性，但是不是每一种相似性都可以代表kernel，kernel的相似性是向量的内积，在z空间里向量内积的相似性。从数学上来说，你想要用自己定义的kernel的话，得证明为什么它是一个kernel。那作为一个kernel的必要条件是什么？<br><img src="http://i.imgur.com/fcrYtGu.png" alt=""><br>他一定要是对称的。kernel是半正定矩阵。  </p>
+<blockquote>
+<p>define your own kernel : possible but hard.</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/16/机器学习技法四/" rel="prev">机器学习技法四</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/15/拉格朗日对偶/" rel="next">拉格朗日对偶</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/15/机器学习技法三/"
+                   data-title="机器学习技法三" data-url="http://Wan-YunPeng.github.io/2016/01/15/机器学习技法三/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel_Support_Vector_Machine"><span class="nav-number">1.</span> <span class="nav-text">Kernel Support Vector Machine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernel_Trick"><span class="nav-number">1.1.</span> <span class="nav-text">Kernel Trick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Polynomial_Kernel"><span class="nav-number">1.2.</span> <span class="nav-text">Polynomial Kernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaussian_Kernel"><span class="nav-number">1.3.</span> <span class="nav-text">Gaussian Kernel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Comparison_of_Kernels"><span class="nav-number">1.4.</span> <span class="nav-text">Comparison of Kernels</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

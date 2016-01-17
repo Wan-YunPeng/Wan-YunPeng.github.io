@@ -1,0 +1,702 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="机器学习技法二Dual Support Vector MachineMotivation of Dual SVM复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法二">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/14/机器学习技法二/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习技法二Dual Support Vector MachineMotivation of Dual SVM复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x">
+<meta property="og:image" content="http://i.imgur.com/4yLfYnD.png">
+<meta property="og:image" content="http://i.imgur.com/ce3wigB.png">
+<meta property="og:image" content="http://i.imgur.com/Ijw6sb3.png">
+<meta property="og:image" content="http://i.imgur.com/izk6pCy.png">
+<meta property="og:image" content="http://i.imgur.com/ip7Ln78.png">
+<meta property="og:image" content="http://i.imgur.com/vae50kt.png">
+<meta property="og:image" content="http://i.imgur.com/xOJLoW7.png">
+<meta property="og:image" content="http://i.imgur.com/icUXswy.png">
+<meta property="og:image" content="http://i.imgur.com/76z1LHH.png">
+<meta property="og:image" content="http://i.imgur.com/0LtWdkZ.png">
+<meta property="og:image" content="http://i.imgur.com/Ow6UtXf.png">
+<meta property="og:image" content="http://i.imgur.com/GHdJ6lm.png">
+<meta property="og:image" content="http://i.imgur.com/fs8N7Q1.png">
+<meta property="og:image" content="http://i.imgur.com/rcgDq9m.png">
+<meta property="og:image" content="http://i.imgur.com/IqZTg5m.png">
+<meta property="og:image" content="http://i.imgur.com/sfNUjtk.png">
+<meta property="og:image" content="http://i.imgur.com/EULLZfy.png">
+<meta property="og:image" content="http://i.imgur.com/GKkEC6n.png">
+<meta property="og:image" content="http://i.imgur.com/ARsVVcC.png">
+<meta property="og:image" content="http://i.imgur.com/SDM91Me.png">
+<meta property="og:image" content="http://i.imgur.com/siFO2cY.png">
+<meta property="og:updated_time" content="2016-01-15T06:23:23.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法二">
+<meta name="twitter:description" content="机器学习技法二Dual Support Vector MachineMotivation of Dual SVM复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法二 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法二
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-14T15:14:58+08:00" content="2016-01-14">
+            2016-01-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/14/机器学习技法二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/机器学习技法二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习技法二">机器学习技法二</h2><h3 id="Dual_Support_Vector_Machine">Dual Support Vector Machine</h3><h3 id="Motivation_of_Dual_SVM">Motivation of Dual SVM</h3><p>复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x空间可能就是一个很好的非线性分类器。<br><img src="http://i.imgur.com/4yLfYnD.png" alt="">  </p>
+<blockquote>
+<p>demanded:<font color="orange">not many</font> (large-margin),but <font color="orange">sophisticated</font> boundary(feature transform) 透过SVM（large margin）来控制模型的复杂度;又透过特征转换得到弯弯曲曲的边界把Ein降低<br>QP with <font color="purple">\(\tilde{d}\) + 1 </font>variables and N constraints——challenging if \(\tilde{d}\) large, or infinite?! 在z空间的维度是\(\tilde{d}\),这个值太大话，就不好解。  </p>
+</blockquote>
+<a id="more"></a>
+<p>所以我们的目标是怎么移除在计算上对\(\tilde{d}\)的依赖？<br><img src="http://i.imgur.com/ce3wigB.png" alt=""><br>我们原来的SVM是有\(\tilde{d}\) + 1个变数，然后又N个线性的条件，我们这次要做的是把这个转化成一个对等的问题，这个对等问题还是一个二次规划的问题，但是里面只会有N个变数和N + 1个条件，所以不管是变数的数量也好还是条件的数量也好，只会和你的资料量N有关，和你要转换到哪一个空间里面去没有关系，和你要转换到10000维或20000维没有关系。  </p>
+<blockquote>
+<p>‘Equivalent’ SVM : based on some <font color="orange">dual problem</font> of Original SVM 对等的问题叫做原问题的对偶问题。  </p>
+</blockquote>
+<p>想想之前的regularization的问题，把限制w的长度的常量C变成了\(\lambda\)放入了方程式中去求解，对应于dual SVM，把\(\lambda\)和所给的限制条件对应起来，同样使用变量来替代。这里有N个条件，那么就对应N个\(\lambda\).<br>所以我们这里要做的是把原来那个有条件的最佳化问题变成一个没有条件的最佳化问题。怎么做？<br><img src="http://i.imgur.com/Ijw6sb3.png" alt=""><br>为什么要定一个拉格朗日函数呢？因为我们要把SVM转换成一个看起来没有限制的问题。原来的问题有一堆的限制，而拉格朗日函数看起来是把这些限制都丢到了里面，所以我就可以做一个最小化的问题，这个最小化到问题是完全没有任何条件的。<br><img src="http://i.imgur.com/izk6pCy.png" alt=""><br>假设现在有一个b和w传进来（把，b和w固定），在这种情况下对\(\alpha\)进行调整，得到一个最大的代表值（拉格朗日的值），再传一个b和w进来，再算一个代表值，从这些最小值里面选一个最小的代表，他对应的b和w就是我们原来最小化的答案。\(\alpha\)的条件是大于等于0.  </p>
+<h3 id="Lagrange_Dual_SVM">Lagrange Dual SVM</h3><p>我们现在已经有了一个新的问题：<br><img src="http://i.imgur.com/ip7Ln78.png" alt=""><br>现对拉格朗日做最大化的动作，在对b和w做最小化的动作。他有一个特性：因为他里面已经对\(\alpha\)做了一个最大化的动作，如果我今天把\(\alpha\)固定，叫做\({\alpha}’\)，那你去做一个最大化的动作，他一定会比任何固定的\(\alpha\)大。<br><img src="http://i.imgur.com/vae50kt.png" alt=""><br><img src="http://i.imgur.com/xOJLoW7.png" alt=""><br><img src="http://i.imgur.com/icUXswy.png" alt=""><br>把得到的b的条件加进去，加在\(\alpha\)的地方，我不要考虑所有的\(\alpha\)，只考虑\(\sum y_na_n=0\),这样b就可以删除了。<br><img src="http://i.imgur.com/76z1LHH.png" alt=""><br>刚才是对b处理了一下里面的条件，现在对w也用同样的方法。<br><img src="http://i.imgur.com/0LtWdkZ.png" alt=""><br>当我们把w的条件加进去的时候，看看还能不能继续简化我们的问题：<br><img src="http://i.imgur.com/Ow6UtXf.png" alt=""><br>剩下一个只有\(\alpha\)问题，也就是我们对偶问题的简化版：只需要求\(\alpha\)。KKT条件，如果我的b,w,\(\alpha\)满足在我刚才的式子左边和右边，也就是原来的问题和对偶问题都是最佳解的话，他们要满足某些事情：<br><img src="http://i.imgur.com/GHdJ6lm.png" alt=""><br>满足原来问题的条件、对偶问题的条件、对对偶问题微分后求出的条件、原来的问题做最优化时的条件。<br>解决了\(\alpha\),再回头算w和b。</p>
+<h3 id="Solving_Dual_SVM">Solving Dual SVM</h3><p>我们不喜欢最大化，把他变成最小化，再把条件写在后面，再展开一些式子。w那个式子只是描述w和\(\alpha\)的关系，可以先不用管他。<br><img src="http://i.imgur.com/fs8N7Q1.png" alt=""><br>这个新的解\(\alpha\)的问题，N个变数，N个\(\alpha\)，原来的一个条件对应一个\(\alpha\),N个条件对应N个\(\alpha\)。变成了一个QP问题。<br><img src="http://i.imgur.com/rcgDq9m.png" alt=""><br>note : many solvers treat <strong>equality</strong>(<font color="blue">a\(\geq\),a\(\leq\)</font>) &amp; <strong>bound</strong><font color="blue">(\(a_n\))</font> constraints <font color="purple">specially for <strong>numerical stability</strong>.</font><br><img src="http://i.imgur.com/IqZTg5m.png" alt=""><br>资料量很大的时候可能会用一些特别的QP工具。不然计算量太大。<br><img src="http://i.imgur.com/sfNUjtk.png" alt=""><br>\({\alpha}_n\)对应的点刚好在边界上：支持向量</p>
+<h3 id="Messages_behind_Dual_SVM">Messages behind Dual SVM</h3><p><img src="http://i.imgur.com/EULLZfy.png" alt=""><br>只有支持向量（SV）才需要计算w：$$w=\sum_{n=1}^{N} {\alpha}_ny_nz_n = \underset{SV}{\sum }{\alpha}_ny_nz_n$$<br>只有支持向量（SV）才需要计算b：$$b=y_n-w^Tz_n&emsp;with&emsp;any&emsp;SV(z_n,y_n)$$<br>w和b都可以只靠support vector算出来。所以SVM可以看成是一个机制，通过\(\alpha\)大于0找出support vector，通过这些support vector算出那个胖胖的边界在哪里，其他的vector不重要，透过这个机制把你原来的资料分成两类，一类是又用的，一类是没用。<br><img src="http://i.imgur.com/GKkEC6n.png" alt=""><br>和之前PLA形式上有点像。这两个w都是原来资料的线性组合，这是偶然吗？<br><img src="http://i.imgur.com/ARsVVcC.png" alt=""><br>GD-Gradient Decent；SGD-Sophisticated Gradient Decent；<br>SVM只需要support vector表现出来，PLA需要犯错的点表现出来。两种硬边界的SVM<br><img src="http://i.imgur.com/SDM91Me.png" alt=""><br>这两种方法都可以得到b和w，得到一个最佳的超平面。<br>还记得我们刚开始的目标吗？计算SVM，但是不想依赖于\(\tilde{d}\)。我们的对偶问题只看到和N有关，和\(\tilde{d}\)好像没什么关系，真的没有关系吗？<br><img src="http://i.imgur.com/siFO2cY.png" alt=""><br>这个\(\tilde{d}\)藏在了Q矩阵里面：有两个z向量的内积。那我们怎么避开这个z的内积的计算呢？下一课题会讲解。  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/15/拉格朗日对偶/" rel="prev">拉格朗日对偶</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/13/机器学习技法一/" rel="next">机器学习技法一</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/14/机器学习技法二/"
+                   data-title="机器学习技法二" data-url="http://Wan-YunPeng.github.io/2016/01/14/机器学习技法二/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习技法二"><span class="nav-number">1.</span> <span class="nav-text">机器学习技法二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dual_Support_Vector_Machine"><span class="nav-number">1.1.</span> <span class="nav-text">Dual Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation_of_Dual_SVM"><span class="nav-number">1.2.</span> <span class="nav-text">Motivation of Dual SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lagrange_Dual_SVM"><span class="nav-number">1.3.</span> <span class="nav-text">Lagrange Dual SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solving_Dual_SVM"><span class="nav-number">1.4.</span> <span class="nav-text">Solving Dual SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Messages_behind_Dual_SVM"><span class="nav-number">1.5.</span> <span class="nav-text">Messages behind Dual SVM</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

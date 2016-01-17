@@ -1,0 +1,749 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="机器学习技法一Linear Support Vector MachineCourse IntroductionThree major techniques surrounding feature transforms:
+
+SVM  
+AdaBoost  
+Deep Learning  
+
+Large-Margin Separating Hyperplane看看之前讲过的linear classif">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法一">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/13/机器学习技法一/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="机器学习技法一Linear Support Vector MachineCourse IntroductionThree major techniques surrounding feature transforms:
+
+SVM  
+AdaBoost  
+Deep Learning  
+
+Large-Margin Separating Hyperplane看看之前讲过的linear classif">
+<meta property="og:image" content="http://i.imgur.com/Hpc5eqo.png">
+<meta property="og:image" content="http://i.imgur.com/zyKqXX2.png">
+<meta property="og:image" content="http://i.imgur.com/q34rfhG.png">
+<meta property="og:image" content="http://i.imgur.com/HKM1oAS.png">
+<meta property="og:image" content="http://i.imgur.com/OHZL060.png">
+<meta property="og:image" content="http://i.imgur.com/nzlM8Be.png">
+<meta property="og:image" content="http://i.imgur.com/kgA7Syy.png">
+<meta property="og:image" content="http://i.imgur.com/aVel6LM.png">
+<meta property="og:image" content="http://i.imgur.com/sdxPK6c.png">
+<meta property="og:image" content="http://i.imgur.com/MfVxZ7C.png">
+<meta property="og:image" content="http://i.imgur.com/YWKjeDI.png">
+<meta property="og:image" content="http://i.imgur.com/OF6JLhk.png">
+<meta property="og:image" content="http://i.imgur.com/AMynEaf.png">
+<meta property="og:image" content="http://i.imgur.com/vAPLYCe.png">
+<meta property="og:image" content="http://i.imgur.com/FBZnsX9.png">
+<meta property="og:image" content="http://i.imgur.com/4Po7FkV.png">
+<meta property="og:image" content="http://i.imgur.com/RBeixsK.png">
+<meta property="og:image" content="http://i.imgur.com/KgSDdK5.png">
+<meta property="og:image" content="http://i.imgur.com/V0xvk7c.png">
+<meta property="og:image" content="http://i.imgur.com/woBmOdP.png">
+<meta property="og:image" content="http://i.imgur.com/B8A4823.png">
+<meta property="og:image" content="http://i.imgur.com/pMwtiVy.png">
+<meta property="og:image" content="http://i.imgur.com/uio37Ro.png">
+<meta property="og:image" content="http://i.imgur.com/Ise9G4f.png">
+<meta property="og:image" content="http://i.imgur.com/gDSVCRb.png">
+<meta property="og:image" content="http://i.imgur.com/hGzCTz5.png">
+<meta property="og:image" content="http://i.imgur.com/Ek9Xw02.png">
+<meta property="og:image" content="http://i.imgur.com/LEPU9IN.png">
+<meta property="og:updated_time" content="2016-01-13T11:03:39.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法一">
+<meta name="twitter:description" content="机器学习技法一Linear Support Vector MachineCourse IntroductionThree major techniques surrounding feature transforms:
+
+SVM  
+AdaBoost  
+Deep Learning  
+
+Large-Margin Separating Hyperplane看看之前讲过的linear classif">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法一 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法一
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-13T15:11:32+08:00" content="2016-01-13">
+            2016-01-13
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/13/机器学习技法一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/13/机器学习技法一/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="机器学习技法一">机器学习技法一</h2><h3 id="Linear_Support_Vector_Machine">Linear Support Vector Machine</h3><h3 id="Course_Introduction">Course Introduction</h3><p>Three major techniques surrounding <font color="orange">feature transforms</font>:</p>
+<ol>
+<li>SVM  </li>
+<li>AdaBoost  </li>
+<li>Deep Learning  </li>
+</ol>
+<h3 id="Large-Margin_Separating_Hyperplane">Large-Margin Separating Hyperplane</h3><p>看看之前讲过的linear classification：有圈圈和叉叉两种标签，找出一条线，或是高维空间的超平面，来把圈圈和叉叉分开。数学上来说就是把我们的资料X拿过来，算一个加权的分数，看这个分数是正的还是负的，来决定要预测圈圈还是叉叉。之前讲过PLA和Pocket算法，PLA当资料线性可分时，他可以找出那条线来<br><img src="http://i.imgur.com/Hpc5eqo.png" alt=""><br><a id="more"></a><br>$$linear(hyperplane) classifiers : h(x) = sign(W^TX)$$<br>现在给大家一些线性可分的资料，如下图，其实不会只有一条线可以把圈圈叉叉分开，有很多种选择。下图给出了三种选择，那哪一条线比较好？<br><img src="http://i.imgur.com/zyKqXX2.png" alt=""><br>PLA会怎么选？这个不一定，PLA更新是每发现一个错误点时，将W转一下，所以PLA最终停在哪里是和过程中选择的点有关系的。如果你的PLA是随机的看一个点的话，最后会找出的直线是不能确定的。<br>而从我们学过的理论保证（VC bound）好像这三条线也没什么差别$$E_{out}(w) \leq \underset{0}{\underbrace{E_{in}(w)}} + \underset{d_{vc}=d+1}{\underbrace{\Omega (H)}}$$<br>什么意思？我们所在意的Eout会被两项的和所bound住，一个事Ein，在我们看过的资料上的表现，这三条线都可以完美的把资料分开，另外一项是一个复杂度，因为我们都是用的线，而线性模型的赋值度我们已经证明过时d+1，跟你的维度有关系。<br>如果你选了右边的线，为什么右边的线是比较好的线？<br><img src="http://i.imgur.com/q34rfhG.png" alt=""><br>这边先给一个简单的解释，想象我们已经拿到我们的原始资料，就是图上的这些点\(x_n\)，然后在未来测试的时候拿到一些和原始资料相近的测试资料x。<br><img src="http://i.imgur.com/HKM1oAS.png" alt=""><br>最右边的那条线可以容忍一定量的误差，而其他两条都可能在有误差的情况下分错。所以我们想要找到的每个点最好离线越远越好。  </p>
+<blockquote>
+<p>rightmost one : <font color="purple">more robust</font> because of <font color="orange">larger distance to closest \(x_n\)</font></p>
+</blockquote>
+<p>另一个角度是找线最“胖”的。<br><img src="http://i.imgur.com/OHZL060.png" alt=""><br>所以我们问题可以描述成$$\underset{w}{max}&emsp;fatness(w)$$ $$subject&emsp;to&emsp;w&emsp;classifies&emsp;every(x_n,y_n) correctly$$ $$fateness(w) = \underset{n=1,…,N}{min} distance(x_n,w)$$<br>找出某条线，这条线满足两个特性，一个是和PLA找出来的线一样，它能把所有的圈圈叉叉都能分开（资料线性可分），在那些所有可以把资料分开的线里，找出条最“胖”的：如何定义这个“胖”，看这条线和每个点的距离都算出来，取最小的距离，就是离线最近的点，看看我们的线到底可多“胖”。<br>正式的用法是我们把这条线多“胖”叫做这条线的边界，margin到底可以有多大，margin就像是上图中线可以留白的范围，这个范围里面没有任何的资料<br><img src="http://i.imgur.com/nzlM8Be.png" alt="">  </p>
+<blockquote>
+<p>fatness : formally called <font color="orange">margin</font>  </p>
+<p><font color="purple">correctness</font> : \(y_n=sign(W^TX_n)\)  </p>
+</blockquote>
+<p>所以我们这讲的目标是找到<font color="red">Lmargin最大</font>且能把<font color="purple">资料分开的线</font></p>
+<h3 id="Standard_Large-Margin_Problem">Standard Large-Margin Problem</h3><p>那我们怎么样算距离呢？首先要做一个步骤，把w0（截距）从w中单独表示出来<br><img src="http://i.imgur.com/kgA7Syy.png" alt=""><br>所以之后的假设变成：h(x) = sign(<font color="blue">\(w^Tx\)</font> + <font color="red">b</font>)<br><img src="http://i.imgur.com/aVel6LM.png" alt=""><br>假设我们现在已经有一个平面，在这个平面上考虑两个点x’和x’’，因为这两个点都在该平面上，所以他们都满足wx’+b=0,wx’’+b=0。<br><img src="http://i.imgur.com/sdxPK6c.png" alt=""><br>w垂直于该平面，计算点到平面的距离就是将该点和平面上任意一点连起来，把这个向量投影到垂直于平面的方向就好。<br><img src="http://i.imgur.com/MfVxZ7C.png" alt=""><br>wx’=b在上面已经推导过了。所以我们现在已经会算距离了。$$distance(x,b,w)=\frac{1}{\left | w \right |}|w^Tx+b|$$<br>我们要的不是随便的一条线，而是可以把圈圈和叉叉完美分开的一条线，这条分割的线有一个性质，那就是我们算出来的分数和圈圈叉叉是要同号的<br><img src="http://i.imgur.com/YWKjeDI.png" alt=""><br>同号就可以把distance(x,b,w)中的绝对值的符号去掉。这就得到我们新的式子。我们更进一步把这个式子简化一下。<br>同一平面的线可以用不同的方程式来表达：\(w^Tx\) + b = 0 和\(3w^T\) + 3b = 0是一样的，这些系数w，b好像是可以放缩的，那我们能不能用适当的放缩让我们的式子看起来更简单，让\(y_n(w^Tx_n+b)\)刚好等于1，这样就margin就可以用一个简单的式子表示了。<br><img src="http://i.imgur.com/OF6JLhk.png" alt=""><br>那么我们就可以把上面的式子简化，得到一个新的目标:<br><img src="http://i.imgur.com/AMynEaf.png" alt=""><br>有个这个新条件后，还有一个好处：如果\(y_n(w^Tx_n+b)\)的最小值是1，当然\(y_n(w^Tx_n+b)\)的值也会大于0，那么就可以省去\(y_n(w^Tx_n+b)\)&gt;0这个条件了。这样又可以得到一个更加简化的式子：<br><img src="http://i.imgur.com/vAPLYCe.png" alt=""><br>但是这个式子我们还是不会解啊，那么看看还能不能找出一些更好解的条件。我们不会解的原因是什么？好像这里面我们还要做一个最小化的动作，我想能不能把这个条件放松一点。只要放松条件后得到的解还是落在原来的限制里面就没有问题。就好像下图，一个放松后的条件把原来的条件包含在里面一样。<br><img src="http://i.imgur.com/FBZnsX9.png" alt=""><br>最小要等于1，那么每个都要大于等于1，这个没有什么问题，我们烦恼的是如果我们放松条件说每个点都大于等于1就好，会不会每个点统统都大于1了，就没有那个等于1的条件了，我们就没有办法满足我们原来条件，所以这是这边我们要证明不会发生的事情，我们希望就算放松了b和w，得到的最佳解也会落在原来的限制里面。如果得到的最佳解落在外面，那么就是每个点都大于等于1。比如说都大于1.126，那么我们把b和w都除以一个1.126，会使1/w变大，那么这个所谓的最佳解就不是最佳解，这表示如果你的b和w落在外边的区域话，根本不可能是最佳解，所以你找出的最佳解一定会落在原始条件的区域内，这表示我们把条件放松后对求解一点也不影响。<br><img src="http://i.imgur.com/4Po7FkV.png" alt=""><br>最后一步把最大化变成最小化，并且去掉根号（算w长度的时候会有一个根号）。最后的最后在w的内积前加上一个1/2，之后会用到。  </p>
+<h3 id="Support_Vector_Machine">Support Vector Machine</h3><p><img src="http://i.imgur.com/RBeixsK.png" alt=""><br>这个导出的最终形式我们叫做标准问题。先给大家一个特殊的例子来探讨我们可以怎样解这个问题。我有四个点，可以列出四个式子，<br><img src="http://i.imgur.com/KgSDdK5.png" alt=""><br>根据这四个式子可以得到1/2\(w^Tw \geq \)1；所以我们不管我们对1/2\(w^Tw\)怎么样做最小化，得到的最小值是1。我们干脆把w1设为1，w2设为-1，会得到b的一个范围，这里得到的有效b是-1，就可以得到$$g_{SVM}(x)=sign(x_1-x_2-1):SVM?$$<br>我们发现，在我们找出这条最“胖”的线的时候，会有一些点会理他最近，这个例子里面是两个叉叉和一个圈圈，很有趣的一件事情是，我再找出离他最近的点之后，把其他的点擦掉的话，你会找出来的最“胖”的线还是那条。<br><img src="http://i.imgur.com/V0xvk7c.png" alt="">  </p>
+<blockquote>
+<p>examples on boundary: <font color="orange">‘locates’ fattest hyperplane</font><br>other examples : <font color="purple">not needed</font><br>call boundary example <font color="orange">support vector</font>  </p>
+</blockquote>
+<p>刚才我们讲的那个问题是个特别的问题，用手解就可以解出来，那如果今天问题比较复杂，该怎么解？<font color="red">二次规划</font><br>接下来我们要解决怎么样把我们的问题表示成一个标准的二次规划的问题。<br><img src="http://i.imgur.com/woBmOdP.png" alt=""><br>二次规划的问题形式如上图右，一个u向量的二次函数，二次项的系数在矩阵Q里面，然后你可能会有一次项，放在一个p向量里面，所以我要最小化的是一个u的二次函数，刚才我们讲过所有的条件都要是线性的，也就是一个u的一次式，你可能有很多个条件，比如说M个，每个条件都配合着一个一次式，一组系数，放在\(a_m\)这个向量里面，可能这个条件会告诉你大于等于某个常数，我们放在\(c_m\)里面，把这些a集合起来放在A矩阵里面，c集合起来放在c向量里面。<br><img src="http://i.imgur.com/B8A4823.png" alt=""><br>Quadratic Programming的事情是这样，如果你能把这些Q、P、A、c这些系数统统找出来，剩下的事情就是找一个解QP的工具，把工具丢进去，告诉他我的系数是这些，他就会给你一个u的最佳解。第一件事就是把我们要解的变成u，把我们要最小化的式子变成一个u的二次式，这里没有一次项，p就是一个0向量；再把条件对应起来，常数很简单，为1，再把\(a_m\)表示出来就可以了。  </p>
+<blockquote>
+<p>hard-margin : nothing violate ‘fat boundary’<br>linear : \(x_n\)</p>
+</blockquote>
+<p>非线性资料用特征转换就可以了。</p>
+<h3 id="Reasons_behind_Large-Margin_Hyperplane">Reasons behind Large-Margin Hyperplane</h3><p><img src="http://i.imgur.com/pMwtiVy.png" alt="">  </p>
+<blockquote>
+<p>SVM(large-margin hyperplane):<font color="orange">‘weight-decay regularization’ within \(E_{in}\)=0</font>  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/uio37Ro.png" alt=""><br>要求margin是1.126时，不一定能shatter三个点。所以在这8种情形里面，不一定全都做得到。之前说过，你能做到多少情形，最终可以反映你的VC维是多少，你能做到的情形越少，我们的dichotomy越少，VC越小。  </p>
+<blockquote>
+<p>fewer dichotomies \(\Rightarrow\)smaller ‘VC dim’. \(\Rightarrow\) <font color="orange">better generalization</font>  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/Ise9G4f.png" alt=""><br>考虑之前的那个演算法，喜欢“胖”的线的演算法，我们来算他的VC dimension，演算法的VC dimension，之前没有提到过，这个应该怎么计算？这个和资料有关，而VC和资料是没有关系的。这边只讲概念上的。演算法的VC dimension是指这个演算法最多最多可以shatter多少个点。<br>如果今天有一个单位圆，这个单位圆上有三个点，如果你不在乎胖瘦，像一般的perceptron，你可以做出圈圈叉叉的所有组合，所以你的VC dimension就会是3，如果你想要至少\(\frac{\sqrt{3}}{2}\)那么胖，那么还是这个圆里的三个点，你肯定做不到所有可能的八种情形都表示出来，一定没有办法shatter三个点。<br><img src="http://i.imgur.com/gDSVCRb.png" alt=""><br>我们发现，只喜欢这个胖子的演算法的VC dimension和两个事情有关：<br><img src="http://i.imgur.com/hGzCTz5.png" alt=""><br>一个是资料会在哪样的空间里面，就像刚才的那个单位圆一样；还有一个是你想要的胖瘦的程度是什么样的，透过设定你喜欢的胖瘦的条件得到的VC dimension会比原来的d + 1来的小。<br><img src="http://i.imgur.com/Ek9Xw02.png" alt=""><br>对于large-margin，好像是想办法把not many和sophisticated要做得好，原来我们只能做一项。如果我们把large-margin和transform连起来的话，就会得到：<br><img src="http://i.imgur.com/LEPU9IN.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/14/机器学习技法二/" rel="prev">机器学习技法二</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/12/机器学习基石十六/" rel="next">机器学习基石十六</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/13/机器学习技法一/"
+                   data-title="机器学习技法一" data-url="http://Wan-YunPeng.github.io/2016/01/13/机器学习技法一/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习技法一"><span class="nav-number">1.</span> <span class="nav-text">机器学习技法一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear_Support_Vector_Machine"><span class="nav-number">1.1.</span> <span class="nav-text">Linear Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Course_Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Course Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Margin_Separating_Hyperplane"><span class="nav-number">1.3.</span> <span class="nav-text">Large-Margin Separating Hyperplane</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard_Large-Margin_Problem"><span class="nav-number">1.4.</span> <span class="nav-text">Standard Large-Margin Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support_Vector_Machine"><span class="nav-number">1.5.</span> <span class="nav-text">Support Vector Machine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reasons_behind_Large-Margin_Hyperplane"><span class="nav-number">1.6.</span> <span class="nav-text">Reasons behind Large-Margin Hyperplane</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

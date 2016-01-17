@@ -74,7 +74,7 @@ overfitting happens with excessive power,stochastic/deterministic noise and limi
 <meta property="og:image" content="http://i.imgur.com/VQsJxaM.png">
 <meta property="og:image" content="http://i.imgur.com/t6ywEca.png">
 <meta property="og:image" content="http://i.imgur.com/aEU2Mq9.png">
-<meta property="og:updated_time" content="2016-01-10T12:50:59.555Z">
+<meta property="og:updated_time" content="2016-01-12T13:57:04.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习基石十四">
 <meta name="twitter:description" content="机器学习基石十四RegularizationRegulared Hypothesis Set上次课讲到的overfitting发生的情况：
@@ -250,7 +250,7 @@ overfitting happens with excessive power,stochastic/deterministic noise and limi
 <blockquote>
 <p>overfitting happens with <font color="orange">excessive power,stochastic/deterministic noise and limited data</font>太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能发生。  </p>
 </blockquote>
-<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color="red">规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br><a id="more"></a><br><img src="http://i.imgur.com/pn2bI8C.png" alt=""><br>这个regularization，规则化这个名字来自于早期做function approximation，比如说我们想要逼近某个函数，像回归分析就是逼近某个函数，但是逼近的时候发现很多问题都是所谓的<font color="orange">ill-posed</font>，ill-posed的意思是有很多的函数都满足我们想要的solution，但是我们不知道要选择哪一个，于是我们要对解进行限制，不然解太多会造成一些问题。我们今天要做的规则化从某种角度来说也是一个解太多的问题：我们只有有限多个点，穿过这些点的函数有很多，我们要怎么样通过某种限制从这些函数中选择出一个比较好的函数，这是regularization要做的事情。<br>怎样从高次走向低次？<br>使用我们比较熟悉的多项式转换和linear regression来做例子，用w来代替\(\tilde{w}\)——简单起见。<br><img src="http://i.imgur.com/ER2FVb0.png" alt=""><br>从H2和H10可以看出，H2相当于H10的一个特例。所以什么叫从10次多项式走回去2次多项式，就是我在我的learning问题上加上一些constraint（条件），上面H10到H2的条件是：\(w_3=w_4=…=w_10=0\)。<br><img src="http://i.imgur.com/E9SY6eF.png" alt=""><br>如果要找一个最好的10次多项式来minimize Ein，这个大家都很熟悉了，我的10次多项式有11个系数，minimize Ein就是找出11个w可能的组合，来使我的Ein达到最小；那怎么找2次的呢？可以假设我的hypothesis set和10次的一样，都是考虑11维的w的向量，但是加上一个条件：w3之后的维度全是0，minimize Ein的情况也是一样，同样加上一个限制，这个左边的情况相对应。</p>
+<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color="red">规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br><a id="more"></a><br><img src="http://i.imgur.com/pn2bI8C.png" alt=""><br>这个regularization，规则化这个名字来自于早期做function approximation，比如说我们想要逼近某个函数，像回归分析就是逼近某个函数，但是逼近的时候发现很多问题都是所谓的<font color="orange">ill-posed</font>，ill-posed的意思是有很多的函数都满足我们想要的solution，但是我们不知道要选择哪一个，于是我们要对解进行限制，不然解太多会造成一些问题。我们今天要做的规则化从某种角度来说也是一个解太多的问题：我们只有有限多个点，穿过这些点的函数有很多，我们要怎么样通过某种限制从这些函数中选择出一个比较好的函数，这是regularization要做的事情。<br>怎样从高次走向低次？<br>使用我们比较熟悉的多项式转换和linear regression来做例子，用w来代替\(\tilde{w}\)——简单起见。<br><img src="http://i.imgur.com/ER2FVb0.png" alt=""><br>从H2和H10可以看出，H2相当于H10的一个特例。所以什么叫从10次多项式走回去2次多项式，就是我在我的learning问题上加上一些constraint（条件），上面H10到H2的条件是：\(w_3=w_4=…=w_{10}=0\)。<br><img src="http://i.imgur.com/E9SY6eF.png" alt=""><br>如果要找一个最好的10次多项式来minimize Ein，这个大家都很熟悉了，我的10次多项式有11个系数，minimize Ein就是找出11个w可能的组合，来使我的Ein达到最小；那怎么找2次的呢？可以假设我的hypothesis set和10次的一样，都是考虑11维的w的向量，但是加上一个条件：w3之后的维度全是0，minimize Ein的情况也是一样，同样加上一个限制，这个左边的情况相对应。</p>
 <blockquote>
 <p>step back = <font color="red">constrained optimization</font> of Ein 在Ein的求解上加上条件<br>why don’t you just use <font color="red">\(w \in R^{2+1}\)?:-)</font>希望能拓展我们的视野，在推到后面的问题的时候能够变得容易一些。  </p>
 </blockquote>
@@ -270,16 +270,16 @@ overfitting happens with excessive power,stochastic/deterministic noise and limi
 <p>\({\sum}_n = {(Z{\color{Purple} {w}}-y)}^T(Z{\color{Purple} {w}}-y)\)，这个式子在之前的推导过。</p>
 <p><font color="red">\(w^Tw \leq C\)</font>:feasible <strong>w</strong> within a radius-\(\sqrt{C}\) hypersphere几何上代表我们要考虑的w在一个球里面，球心是原点，球的半径是\(\sqrt{C}\),我们只考虑这个球里面的w，球外面的都不考虑。</p>
 </blockquote>
-<p>那么要怎么解这个问题？<br><img src="http://i.imgur.com/qId22yL.png" alt=""><br>先来看看这个条件对我们的最佳化问题造成了什么样的影响？之前在没有条件的情况下我们的解法是看我们的objective function朝着谷底的方向一路滚下去，那谷底的方向在那里？梯度的反方向就是谷底的方向。<br><img src="http://i.imgur.com/EqyzJqS.png" alt=""><br>梯度的反方向告诉我们向\(W_{lin}\)的方向滚过去，但是现在不是向最低点滚过去，我们现在做的是在条件下解这个最佳化问题。一般最佳解的情况都是在圆的最边上，现在假设现在我有一个w在球的边上，我们要怎么样判断它是不是我们要的最佳解？我们就还要判断它还能不能从山坡上往下滚，球的法向量告诉我们你不能往外走（normal那条），但是可以往垂直这个方向的向量走，如果Ein的gradient的一个分量是和normal向量垂直的话，那么就表示我们可以滚到一个更好的解上面且不违反条件。达到最优解的条件就是我的gradient的方向和法向量的方向平行。<br><img src="http://i.imgur.com/i5OuKQw.png" alt=""><br>因为这两个向量是平行的，那么把他们的比值设为<font color="orange">\(\frac{2\lambda }{N}\)</font>，这是为了之后的推导方面。<br>所以我们要找到\(\lambda\)和\(w_{REG}\)让这两个向量加起来为0.也就是他们两个是平行的。要是有人告诉你\(\lambda\)是多少的话。就会得到\(w_{REG})的线性方程式。<br><img src="http://i.imgur.com/fFlT1iv.png" alt=""><br>又或者我们可以怎么样看这个问题呢？我们把这个问题看成梯度加上某一个项等于0的问题，之前再解梯度等于0的时候对应到的是最小化Ein(w)，现在是要解梯度加上某个项等于0，就相当于要解原来的函数（Ein）加上某个项，梯度是原来函数的微分，反推的话，现在就要把梯度拿来做积分，所以这个加上的项\({\color{Orange} {\frac{2\lambda }{N}}}{\color{Purple} {w_{REG}}}\)积分后得到\({\color{Orange} { \frac{\lambda }{N}}}{\color{Purple} {w^Tw}}\)<br><img src="http://i.imgur.com/3St4Try.png" alt=""><br>新加上的那项通常叫做regularizer，整个新的Ein叫做augmented error，把之前的constraint融入到新的Ein中，当作regularizer，所以这是我们的新观点，不一定要解那个有条件的问题，有条件那个问题比较难解，我可以解这个augmented error，解完之后得到的解符合constraint。\(\lambda\)一般是大于0的，代表两个向量的比值，当\(\lambda\)等于0时，就变成解原来Ein了。</p>
+<p>那么要怎么解这个问题？<br><img src="http://i.imgur.com/qId22yL.png" alt=""><br>先来看看这个条件对我们的最佳化问题造成了什么样的影响？之前在没有条件的情况下我们的解法是看我们的objective function朝着谷底的方向一路滚下去，那谷底的方向在那里？梯度的反方向就是谷底的方向。<br><img src="http://i.imgur.com/EqyzJqS.png" alt=""><br>梯度的反方向告诉我们向\(W_{lin}\)的方向滚过去，但是现在不是向最低点滚过去，我们现在做的是在条件下解这个最佳化问题。一般最佳解的情况都是在圆的最边上，现在假设现在我有一个w在球的边上，我们要怎么样判断它是不是我们要的最佳解？我们就还要判断它还能不能从山坡上往下滚，球的法向量告诉我们你不能往外走（normal那条），但是可以往垂直这个方向的向量走，如果Ein的gradient的一个分量是和normal向量垂直的话，那么就表示我们可以滚到一个更好的解上面且不违反条件。达到最优解的条件就是我的gradient的方向和法向量的方向平行。<br><img src="http://i.imgur.com/i5OuKQw.png" alt=""><br>因为这两个向量是平行的，那么把他们的比值设为<font color="orange">\(\frac{2\lambda }{N}\)</font>，这是为了之后的推导方面。<br>所以我们要找到\(\lambda\)和\(w_{REG}\)让这两个向量加起来为0.也就是他们两个是平行的。要是有人告诉你\(\lambda\)是多少的话。就会得到\(w_{REG}\)的线性方程式。<br><img src="http://i.imgur.com/fFlT1iv.png" alt=""><br>又或者我们可以怎么样看这个问题呢？我们把这个问题看成梯度加上某一个项等于0的问题，之前再解梯度等于0的时候对应到的是最小化Ein(w)，现在是要解梯度加上某个项等于0，就相当于要解原来的函数（Ein）加上某个项，梯度是原来函数的微分，反推的话，现在就要把梯度拿来做积分，所以这个加上的项\({\color{Orange} {\frac{2\lambda }{N}}}{\color{Purple} {w_{REG}}}\)积分后得到\({\color{Orange} { \frac{\lambda }{N}}}{\color{Purple} {w^Tw}}\)<br><img src="http://i.imgur.com/3St4Try.png" alt=""><br>新加上的那项通常叫做regularizer，整个新的Ein叫做augmented error，把之前的constraint融入到新的Ein中，当作regularizer，所以这是我们的新观点，不一定要解那个有条件的问题，有条件那个问题比较难解，我可以解这个augmented error，解完之后得到的解符合constraint。\(\lambda\)一般是大于0的，代表两个向量的比值，当\(\lambda\)等于0时，就变成解原来Ein了。</p>
 <blockquote>
-<p>minimizing <font color="red">unconstrained <font color="green">\(E_aug\)</font></font> effectively minimizes some <font color="red">C-constrained&gt; <font color="blue">Ein</font></font>  </p>
+<p>minimizing <font color="red">unconstrained <font color="green">\(E_{aug}\)</font></font> effectively minimizes some <font color="red">C-constrained&gt; <font color="blue">Ein</font></font>  </p>
 </blockquote>
-<p>C是一个设定好的参数，C与\(\lambda\)对应，与其告诉C，不如直接告诉\(\lambda\)。<br>不同\(\lambda\)对应着不同结果：<br><img src="http://i.imgur.com/J7NzuKl.png" alt=""><br>\(\lambda\)越加越大的时候，就回underfit<br><img src="http://i.imgur.com/KcFeyPE.png" alt=""><br>如果你把\(\lambda\)设得越大，就代表你希望的w是越短越好，因为你的\(\lambda\)有点像在惩罚那些很长的w，实际上就代表了你要比较小的C。叫做weight-decay,把weight变小的regularization。<br>这里有个小小的细节，刚才讲的这个regularization可以和任何的transform做搭配，为了让结果比较好看，在做transform时实际上做了一点小小的手脚，还是用polynomial transform，不过这个polynomial transform有一些小小的缺点，如果你的输入是在[-1,1]之间的话，你用这样的方法，q次式，假设是1126次式，那么x的1126次方会变成一个很小很小的数字，这个很小的数字除了精确度之外，最重要的是你这个数字要在你最后的hypothesis里发生影响力的话，需要一个很大的w，这就和我们regularization有点冲突。之前秀给大家的结果中，用了一个比较平衡的方式来表示做了转换z里面的每一个坐标。这个方法叫做坐标转换，因为原来有q+1个坐标，这q+1个坐标彼此不是垂直的，因此在regularization的过程中出了一些些问题，这些问题导致我在低次方的地方会容忍比较多，在高次方的地方做了太重的regularization，那我怎么做呢？我想方法在这些多项式中找出一些垂直的基底，垂直的基底意思是把这些函数当成向量，函数有点像是无限多维的向量，我希望这些函数的彼此的内积要是0.所以我这里用了一些特别的多项式。<br><img src="http://i.imgur.com/gO9yHB3.png" alt=""><br>前5个legendre polynomials:<br><img src="http://i.imgur.com/JAifvmQ.png" alt="">  </p>
+<p>C是一个设定好的参数，C与\(\lambda\)对应，与其告诉C，不如直接告诉\(\lambda\)。<br>不同\(\lambda\)对应着不同结果：<br><img src="http://i.imgur.com/J7NzuKl.png" alt=""><br>\(\lambda\)越加越大的时候，就会underfit；\(\lambda\)越大，对应C越小。<br><img src="http://i.imgur.com/KcFeyPE.png" alt=""><br>如果你把\(\lambda\)设得越大，就代表你希望的w是越短越好，因为你的\(\lambda\)有点像在惩罚那些很长的w，实际上就代表了你要比较小的C。叫做weight-decay,把weight变小的regularization。<br>这里有个小小的细节，刚才讲的这个regularization可以和任何的transform做搭配，为了让结果比较好看，在做transform时实际上做了一点小小的手脚，还是用polynomial transform，不过这个polynomial transform有一些小小的缺点，如果你的输入是在[-1,1]之间的话，你用这样的方法，q次式，假设是1126次式，那么x的1126次方会变成一个很小很小的数字，这个很小的数字除了精确度之外，最重要的是你这个数字要在你最后的hypothesis里发生影响力的话，需要一个很大的w，这就和我们regularization有点冲突。之前秀给大家的结果中，用了一个比较平衡的方式来表示做了转换z里面的每一个坐标。这个方法叫做<font color="red">坐标转换</font>，因为原来有q+1个坐标，这q+1个坐标彼此不是垂直的，因此在regularization的过程中出了一些些问题，这些问题导致我在低次方的地方会容忍比较多，在高次方的地方做了太重的regularization，那我怎么做呢？我想方法在这些多项式中找出一些垂直的基底，垂直的基底意思是把这些函数当成向量，函数有点像是无限多维的向量，我希望这些函数的彼此的内积要是0.所以我这里用了一些特别的多项式。<br><img src="http://i.imgur.com/gO9yHB3.png" alt=""><br>前5个legendre polynomials:<br><img src="http://i.imgur.com/JAifvmQ.png" alt="">  </p>
 <h3 id="Regularization_and_VC_Theory">Regularization and VC Theory</h3><p><img src="http://i.imgur.com/Bnej9wG.png" alt="">  </p>
 <blockquote>
 <p>minimizing \(E_{aug}\):indirectly getting VC guarantee <font color="orange">without confining to <font color="red"> H(C)</font></font>在做Eaug的时候间接的把右上角的VC bound做好了</p>
 </blockquote>
-<p><img src="http://i.imgur.com/G3kLJgy.png" alt=""><br>augmented error和VC bound其实有一些相似和不同的地方，augmented error在Ein上加上了一项\(w^Tw\),VC Bound在Ein上加上了一项complexity的penality<br><img src="http://i.imgur.com/fDmjHmW.png" alt=""><br>那augmented error付出的复杂度是多少？在minimizing中，假设说所有w都可以选，就代表所有的w都是我的hypothesis set，那理论上就代表我最多付出\(\tilde{d}\)+1的代价，但实际上付出的代价只有在谷底的那些wi，所以实际上付出的代价是H(C)，而不是\VC(H)<br><img src="http://i.imgur.com/7CX9q2Y.png" alt=""><br><img src="http://i.imgur.com/SF5h3qH.png" alt="">  </p>
+<p><img src="http://i.imgur.com/G3kLJgy.png" alt=""><br>augmented error和VC bound其实有一些相似和不同的地方，augmented error在Ein上加上了一项\(w^Tw\),VC Bound在Ein上加上了一项complexity的penality<br><img src="http://i.imgur.com/fDmjHmW.png" alt=""><br>那augmented error付出的复杂度是多少？在minimizing中，假设说所有w都可以选，就代表所有的w都是我的hypothesis set，那理论上就代表我最多付出\(\tilde{d}\)+1的代价，但实际上付出的代价只有在谷底的那些wi，所以实际上付出的代价是H(C)，而不是VC(H)<br><img src="http://i.imgur.com/7CX9q2Y.png" alt=""><br><img src="http://i.imgur.com/SF5h3qH.png" alt="">  </p>
 <h3 id="General_Regularizers">General Regularizers</h3><blockquote>
 <p>want:constraint in the <font color="orange">‘direction’ of target function</font></p>
 </blockquote>
@@ -381,21 +381,21 @@ overfitting happens with excessive power,stochastic/deterministic noise and limi
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

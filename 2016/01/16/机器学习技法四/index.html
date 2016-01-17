@@ -1,0 +1,736 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Soft-Margin Support Vector Machinekernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法四">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/16/机器学习技法四/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Soft-Margin Support Vector Machinekernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussia">
+<meta property="og:image" content="http://i.imgur.com/fd4VY4F.png">
+<meta property="og:image" content="http://i.imgur.com/m6AULX1.png">
+<meta property="og:image" content="http://i.imgur.com/rrvh6R6.png">
+<meta property="og:image" content="http://i.imgur.com/oSVw4XW.png">
+<meta property="og:image" content="http://i.imgur.com/IWU0a7B.png">
+<meta property="og:image" content="http://i.imgur.com/tm3QBLE.png">
+<meta property="og:image" content="http://i.imgur.com/RFRBNXH.png">
+<meta property="og:image" content="http://i.imgur.com/g028lOU.png">
+<meta property="og:image" content="http://i.imgur.com/B4WJco1.png">
+<meta property="og:image" content="http://i.imgur.com/50ORzh1.png">
+<meta property="og:image" content="http://i.imgur.com/8K6usPH.png">
+<meta property="og:image" content="http://i.imgur.com/idIpHbS.png">
+<meta property="og:image" content="http://i.imgur.com/WCTUw0q.png">
+<meta property="og:image" content="http://i.imgur.com/snfkqTq.png">
+<meta property="og:image" content="http://i.imgur.com/kMAgYrv.png">
+<meta property="og:image" content="http://i.imgur.com/wE66h9d.png">
+<meta property="og:image" content="http://i.imgur.com/Nyck5wF.png">
+<meta property="og:image" content="http://i.imgur.com/m4yedKY.png">
+<meta property="og:image" content="http://i.imgur.com/IwIRzJQ.png">
+<meta property="og:image" content="http://i.imgur.com/mZpos0V.png">
+<meta property="og:image" content="http://i.imgur.com/nP6ektI.png">
+<meta property="og:image" content="http://i.imgur.com/RF4U4t6.png">
+<meta property="og:image" content="http://i.imgur.com/XZCcRxn.png">
+<meta property="og:updated_time" content="2016-01-16T09:01:03.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法四">
+<meta name="twitter:description" content="Soft-Margin Support Vector Machinekernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussia">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法四 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法四
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-16T14:49:03+08:00" content="2016-01-16">
+            2016-01-16
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/16/机器学习技法四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/16/机器学习技法四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Soft-Margin_Support_Vector_Machine">Soft-Margin Support Vector Machine</h2><p>kernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussian) ones with margin control</p>
+<h3 id="Motivation_and_Primal_Problem">Motivation and Primal Problem</h3><p>我们上次讲到SVM可能还是会overfit，为什么？其中一个原因就是你选择的转换太powerful了，你选的margin也帮不了你，还有另外一个原因就是我们坚持我们一定要把资料完美的分开。<br><img src="http://i.imgur.com/fd4VY4F.png" alt=""><br>就像上图左，用一条直线的效果可能还不错，就算有一点点的错误，这也是一个不错的hypothesis。要是你一定要把圈圈叉叉完美分开的话，你就会得到右边的图，会得到一个四次多项式，看起来这个SVM可能不是对资料最合理的model。  </p>
+<blockquote>
+<p>if always insisting on <strong>separable(shatter)</strong>, have power to overfit to noise.</p>
+</blockquote>
+<a id="more"></a>
+<p>怎么解决这个问题？回顾一下我们以前是怎么解决资料里面有noise。<br>我们第一个模型是pocket，但我们如果真的没有办法找到一条线将资料分开，不管在x还是z空间，那我们怎么办？我们找一条线犯最少的错误。<br><img src="http://i.imgur.com/m6AULX1.png" alt=""><br>pocket希望我的圈圈叉叉和我预测的圈圈叉叉不一样的数量加起来最少。有点像我们放弃那些做错的点。但是在hard-margin我们是这样做的吗？不是，我们说所有的圈圈叉叉都要分对(\(y_n(w^Tz_n+b) \geq 1\) for all n)，而且在所有分队的里面还要选那个w长度最小的，所以我们要避免之前提到的那个问题（完美分开），我们可以把我们的SVM放松一点，就像pocket一样容忍一些错误。<br><img src="http://i.imgur.com/rrvh6R6.png" alt=""><br>其中一种方式就是把两者合起来，即要求w最短，这个larg-margin有关，我们能够做对的那些点，要求他们符合原来larg-margin的条件，对于做错的点就不管了，不要求他大于等于1.可是只加上这样行不行？不行，既然你说做错没有关系，那我就统统都做错好了，你还要告诉你的SVM做错的要越少越好，所以你犯错的数量会像pocket一样找出最小的那个。你又要w最短，又要找出犯错数量最少，这两个之间应该怎么权衡呢？加上一个参数C，来表示他们的相对重要性，C比较大的时候代表我越不要犯错越好，C比较小的时候代表我能找出的w越短越好。<br><img src="http://i.imgur.com/oSVw4XW.png" alt=""><br>这就得到我们的新问题。这里把提到的两个条件合起来：做对的话，计较他的margin，也就是要大于等于1；如果做错的话，我就不算，所以这里有个负无限大。这里有一些缺陷：</p>
+<ol>
+<li>有一些是非的运算[..],不是线性的，不是一个QP的问题，那我们之前推导的dual和kernel都没法做。</li>
+<li>cannot distinguish <strong>small error</strong> (slightly away from fat boundary) or <strong>large error</strong> (a…w…a…y from fat boundary)</li>
+</ol>
+<p>我们这里用一个新的式子，这个式子可以区分小错或大错，而且他可以维持QP的特性。<br><img src="http://i.imgur.com/IWU0a7B.png" alt=""><br>本质上还是求w最短；我们要区分小错还是大错，我们把错误放在一个\(\xi_n\)里面，这个\(\xi_n\)是大于等于0的，表示这个点离我想要的那个值（y乘上分数是1）有多远，离得1很近是个小错，但是离1很远就是大错。然后我们计算的是这个错误，惩罚的是你犯了多大的错误，而不是你犯了几个错误。<br><img src="http://i.imgur.com/tm3QBLE.png" alt="">  </p>
+<blockquote>
+<p>parameter C: trade-off of large margin &amp; margin violation:  </p>
+<ol>
+<li>large C: want less margin violation 不要任何违反边界的地方。  </li>
+<li>small C: want large margin 边界胖一点，可能有很多违反。<br>QP of \(\tilde{d}\) + 1 + N variables, 2N constraints</li>
+</ol>
+</blockquote>
+<h3 id="Dual_Problem">Dual Problem</h3><p>接下来推导我们新问题的对偶问题。<br><img src="http://i.imgur.com/RFRBNXH.png" alt=""><br>接下来用拉格朗日对偶（max和min）写出这个问题来，再用kkt条件解即可。<br><img src="http://i.imgur.com/g028lOU.png" alt=""><br>记得kkt条件提到我需要对primal原来里面的每个变数的微分要是0，这是我在最佳解的时候要满足的事情，先对我们的新变数\(\xi_n\)做微分：<br><img src="http://i.imgur.com/B4WJco1.png" alt=""><br>得出的结果放入原式，得到<br><img src="http://i.imgur.com/50ORzh1.png" alt=""><br>就会得到一个简单的式子：<br><img src="http://i.imgur.com/8K6usPH.png" alt="">  </p>
+<blockquote>
+<p>familiar? :-)<br>inner problem same as hard-margin SVM 只是条件稍微变了一下。   </p>
+</blockquote>
+<p>那么这样我们就很容易得到关于w和b的一些推导式。<br><img src="http://i.imgur.com/idIpHbS.png" alt=""><br>总结一下，软边界的SVM的问题的最终形式：<br><img src="http://i.imgur.com/WCTUw0q.png" alt=""><br>基本上和硬边界的SVM没什么太大的变化，只是\(\alpha\)的上界变成了C，这个是从哪里来的？是从我们要求\(\beta_n\)和\(\alpha_n\)在最佳解上要一定的关系推导而来。  </p>
+<blockquote>
+<p>another(convex) QP, with N variables &amp; 2N + 1 constraints  </p>
+</blockquote>
+<h3 id="Messages_behind_Soft-Margin_SVM">Messages behind Soft-Margin SVM</h3><p>推导完soft-margin SVM后，我们就可以得到kernel soft-margin SVM，说我们可以允许一些些点违反我们胖胖的边界的情形。那这个演算法和我们之前知道的kernel hard-margin SVM有什么不一样的呢？<br><img src="http://i.imgur.com/snfkqTq.png" alt="">    </p>
+<ol>
+<li>其中一点就是我们在解这些问题的时候需要加上一些上界条件，这是从我那个参数C里面来的</li>
+<li>同样通过QP可以算出最佳的\(\alpha\)</li>
+<li>接下来可以算出b</li>
+<li>最后就可以得到我们想要的SVM</li>
+</ol>
+<p>kernel的方式我们很熟悉了，唯一不知道的是在这个问题里面我们算b的方式一样吗？在hard margin时，我们把kkt条件列出来发现其中有一条告诉我们说我只要用一个support vector的话，我就可以得到b是多少，现在因为是一个新的QP问题，所以他的KKT condition已经变了，那b应该怎么算？  </p>
+<p><img src="http://i.imgur.com/kMAgYrv.png" alt=""><br>这是在推出对偶问题时得出的条件，找到一个support vector，那他的\(\alpha\)大于等，根据右边第一个条件我们可以得到一个关于b的式子，但是在这个式子里面有一个未知变量\(\xi\)，这个变量我们还想要通过b去求出，但是现在b想依靠\(\xi\)来求出自己的值，有点像蛋生鸡和鸡生蛋的问题，通过观察第二个式子，我们想要\(xi\)等于0，那我们就找到一个\(\alpha\)小于C的点。所以：<br><img src="http://i.imgur.com/wE66h9d.png" alt=""><br>找到一个<font color="red">free support vector</font>(0&lt;\(\alpha\)&lt;C)。极少的情况下没有free support vector，在这种情况下，你的b就有一堆不等式来限制其取值范围。<br>看看soft-margin的表现怎么样，用gaussian kernel SVM<br><img src="http://i.imgur.com/Nyck5wF.png" alt=""><br>C比较小的时候，可以容忍犯错点多一些，C越大，就越不能容忍犯错的点。  </p>
+<blockquote>
+<p>large C \(Rightarrow\) less noise tolerance \(Rightarrow\) ‘overfit’<br>warning: SVM can still overfit 就算是soft-margin也有可能发生overfit</p>
+</blockquote>
+<p><img src="http://i.imgur.com/m4yedKY.png" alt=""><br>接下来观察一下soft-margin中的\(\alpha\)的物理意义是什么？我们有两组条件，这两组条件可以把我们资料中的点分成三类：<br><img src="http://i.imgur.com/IwIRzJQ.png" alt=""><br>一种之前已经用过了——free SV：它的\(\xi\)会等于0，刚才用这个条件来唯一的算出b是多少，为什么可以算出b是多少？\(\alpha\)不为0，\(\xi\)为0，就有1-\(y_n(w^Tz_n+b)\)为0，这些点刚好就是在边界上的点，上图中的方框框。<br>还有non SV，就是\(\alpha\)等于0的点，观察第二个式子\(\alpha\)等于0，前面不为0，那么\(\xi\)就为0，这些点就是没有违反边界的点。图中的圈圈和叉叉（没有被特别标记的）。<br>最后一种是\(\alpha\)刚好是C的，那么\(\xi\)就不是0，并且等于1-\(\y_n(w^Tz_n+b))，也就是\(\xi_n\)刚刚好记录违反了多少，图中的三角形的点。违反也有两种违反，一种是小小的违反——没有跨国分界线，另一种是大大的违反——跨过了边界线。  </p>
+<h3 id="Model_Selection">Model Selection</h3><p><img src="http://i.imgur.com/mZpos0V.png" alt=""><br>统统用Gaussian kernel，用了不同的C和\(\gamma\)的组合，横轴是不同的C，纵轴是不同的\(\gamma\)。那要怎么选？<strong>validation</strong>。<br><img src="http://i.imgur.com/nP6ektI.png" alt=""><br>cross-validation不是一个很平滑的函数，很难对C和\(\gamma\)做最佳化，一般就是送不同的C和\(\gamma\)进去看他们的表现。<br><img src="http://i.imgur.com/RF4U4t6.png" alt=""><br>Leave-one-out在SVM上有一个很有趣的结果，就是SVM leave-one-out cross validation error跟support vector的数量其实是有关系的，可以得到error的上限。证明方式再上图。<br><img src="http://i.imgur.com/XZCcRxn.png" alt=""><br>support vector数量很大时，可能表示这个模型不是太好（有危险，Eloocv上限变大了）。  </p>
+<blockquote>
+<p>number of SV : often used as a <font color="orange">safety check</font> if computing Ecv is too time-consuming</p>
+</blockquote>
+<p>SV的数量作为一个安全检查，看看你模型是不是很合理。 </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/17/机器学习技法五/" rel="prev">机器学习技法五</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/15/机器学习技法三/" rel="next">机器学习技法三</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/16/机器学习技法四/"
+                   data-title="机器学习技法四" data-url="http://Wan-YunPeng.github.io/2016/01/16/机器学习技法四/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Soft-Margin_Support_Vector_Machine"><span class="nav-number">1.</span> <span class="nav-text">Soft-Margin Support Vector Machine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation_and_Primal_Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation and Primal Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dual_Problem"><span class="nav-number">1.2.</span> <span class="nav-text">Dual Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Messages_behind_Soft-Margin_SVM"><span class="nav-number">1.3.</span> <span class="nav-text">Messages behind Soft-Margin SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model_Selection"><span class="nav-number">1.4.</span> <span class="nav-text">Model Selection</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

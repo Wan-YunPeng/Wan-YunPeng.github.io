@@ -1,0 +1,706 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Kernel Logistic Regressionallow some margin violation \(\xi_n\) while penalizing them by C;equivalent to upper-bounding \(\alpha_n\) by C使用kernel这个技巧在logistic regression上会有什么样的效果。
+Soft-Margin SVM as R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法五">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/17/机器学习技法五/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Kernel Logistic Regressionallow some margin violation \(\xi_n\) while penalizing them by C;equivalent to upper-bounding \(\alpha_n\) by C使用kernel这个技巧在logistic regression上会有什么样的效果。
+Soft-Margin SVM as R">
+<meta property="og:image" content="http://i.imgur.com/EZDlFnZ.png">
+<meta property="og:image" content="http://i.imgur.com/nOZb5GN.png">
+<meta property="og:image" content="http://i.imgur.com/Cc2NTyo.png">
+<meta property="og:image" content="http://i.imgur.com/vQNFDLk.png">
+<meta property="og:image" content="http://i.imgur.com/k3yQtoO.png">
+<meta property="og:image" content="http://i.imgur.com/OwGO2qq.png">
+<meta property="og:image" content="http://i.imgur.com/hKoDlcv.png">
+<meta property="og:image" content="http://i.imgur.com/KAKzyEx.png">
+<meta property="og:image" content="http://i.imgur.com/kBCf2yi.png">
+<meta property="og:image" content="http://i.imgur.com/HQVuLef.png">
+<meta property="og:image" content="http://i.imgur.com/zHGk3sb.png">
+<meta property="og:image" content="http://i.imgur.com/wJKj7rq.png">
+<meta property="og:image" content="http://i.imgur.com/SMQL4v9.png">
+<meta property="og:image" content="http://i.imgur.com/Qe8l2SZ.png">
+<meta property="og:image" content="http://i.imgur.com/h3N9vpU.png">
+<meta property="og:image" content="http://i.imgur.com/Hwrx4N5.png">
+<meta property="og:image" content="http://i.imgur.com/Kkt5l2q.png">
+<meta property="og:image" content="http://i.imgur.com/rfpe1MP.png">
+<meta property="og:image" content="http://i.imgur.com/Sil8ucx.png">
+<meta property="og:image" content="http://i.imgur.com/6MAxUwm.png">
+<meta property="og:image" content="http://i.imgur.com/NT7WDje.png">
+<meta property="og:image" content="http://i.imgur.com/VnPT3py.png">
+<meta property="og:image" content="http://i.imgur.com/pKlyR2E.png">
+<meta property="og:image" content="http://i.imgur.com/v0QPDZI.png">
+<meta property="og:image" content="http://i.imgur.com/HMPmyrS.png">
+<meta property="og:updated_time" content="2016-01-17T09:13:37.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法五">
+<meta name="twitter:description" content="Kernel Logistic Regressionallow some margin violation \(\xi_n\) while penalizing them by C;equivalent to upper-bounding \(\alpha_n\) by C使用kernel这个技巧在logistic regression上会有什么样的效果。
+Soft-Margin SVM as R">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法五 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法五
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-17T14:24:48+08:00" content="2016-01-17">
+            2016-01-17
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/17/机器学习技法五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/17/机器学习技法五/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Kernel_Logistic_Regression">Kernel Logistic Regression</h2><p>allow some <font color="orange">margin violation \(\xi_n\)</font> while penalizing them by C;equivalent to <font color="orange">upper-bounding \(\alpha_n\)</font> by C<br>使用kernel这个技巧在logistic regression上会有什么样的效果。</p>
+<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br><a id="more"></a><br>margin violation，我们想要这个胖胖的边界，但是我们把违反的部分记录下来，记录在\(\xi_n\)里，写出最佳化问题，导出其对偶问题在求解。我们可以从另外一个角度来看看我们在解这个问题的时候到底在做什么事情。我们如果给定任何一条边界（b,w），我们想说\(\xi_n\)到底是怎么算出来的，他记录了违反的部分，分为两种情形：<br><img src="http://i.imgur.com/Cc2NTyo.png" alt=""><br>违反的值的\(y_n(w^Tz_n+b))因为异号，一定是小于0，所以1-\(y_n(w^Tz_n+b))一定大于0，那么进一步可以写成不受限制的形式：<br><img src="http://i.imgur.com/vQNFDLk.png" alt=""><br>有点像我在最佳化的过程里面我不在乎\(\xi_n\)了，\(\xi_n\)不再是变数，而是根据b和w算出来的结果。这个形式是不是很熟悉<br><img src="http://i.imgur.com/k3yQtoO.png" alt=""><br>那为什么刚开始介绍SVM的时候就用L2 Regularization的形式去求解呢？有两个原因：</p>
+<ol>
+<li>新的问题好像没有条件（好事），但是他也不是一个QP问题，那么我们之前推导的对偶和kernel可能没有那么容易用上去。</li>
+<li>还有就是max(…,0)是不可导的，很难求解。</li>
+</ol>
+<p>这就是为什么soft-margin也可以写成这个样子，可是我们并没有直接用这个式子来做soft-margin的介绍，而是从hard-margin一路推到过来。<br><img src="http://i.imgur.com/OwGO2qq.png" alt=""><br>regularization做的事是让Ein变小，但是在Ein变小之外加上了条件：\(w^Tw \leq C).hard-margin SVM相当于是在Ein上加上了条件，但是我希望w的长度越小越好。这是我们之前知道的事情，那现在我们都是知道什么，如果看一般的L2 Regularization，我把条件丢到objective function里面，他会长这样：求两项之和最小，其中一项是w的长度，另外一项和error有关；soft-margin也是长这样，只是我们习惯上用不同的参数（之前是\(\lambda\)，现在是C）。<br><img src="http://i.imgur.com/hKoDlcv.png" alt=""><br>viewing SVM as regularized model: allows <font color="orange">extending/connecting</font> other learning models<br>我们现在已经介绍完了SVM，我们想做的是能不能把SVM延伸到其他问题上，例如logistic regression问题上或一般regression问题上，那我要做延伸的话，我了解联系的关系，我做延伸的时候，会比较看的出来到底怎么样做这些延伸的动作。</p>
+<h3 id="SVM_versus_Logistic_Regression">SVM versus Logistic Regression</h3><p><img src="http://i.imgur.com/KAKzyEx.png" alt=""><br>我们刚才把soft-margin写成了其他形式，这个形式里面有一个特殊的东西就是我们的\(\hat{err}\):计算两个东西的最大值。我们想说看看这个\(\hat{err}\)和我们之前讲的0/1 error到底有什么关系。<br><img src="http://i.imgur.com/kBCf2yi.png" alt=""><br>如果y和分数同号，那么0/1 error为0；不同号时，0/1 error是1，如上图，ys作为横轴，err作为纵轴。那如果是上面的那个SVM的error，那该怎么画？我们要花两个部分，第一个部分是，如果今天又violation，也就是ys比1还小，那记录下来的err就是1-ys；就会得到紫色那条线，我们可以很轻易的看到它是我们所在意的0/1 error的上限，可以把soft-margin svm看成是间接的0/1 error做好，一般把svm用的这个error叫做hinge error measure。<br><img src="http://i.imgur.com/HQVuLef.png" alt=""><br>如果我们把logistic regression里面用的error，稍微做个scaled等等的，把他映出来的话，会使上图中橙色那条线，他也会该在0/1 error上面<br><img src="http://i.imgur.com/zHGk3sb.png" alt="">   </p>
+<p><font color="purple">SVM</font> \(\approx\) <font color="green">L2-regularized</font> <font color="orange">logistic regression</font><br>soft-margin很像在做L2 regularized。<br>所以从我们之前上过的东西，我们现在可以轻易的有一些不同的可以来做binary classification的linear model：<br><img src="http://i.imgur.com/wJKj7rq.png" alt=""><br>所以，regularized LogReg几乎就是在做SVM的问题。那么如果我们解了一个soft-margin SVM的问题，我们能不能想象我们把这样的解拿到logistic regression里面用呢？logReg要用的是什么？我们想要预测那个几率，那个soft的值是多少，0到1之间的那个值是多少，我们不是要说圈圈叉叉，我们要说的是是圈圈的几率是多少，所以会不会其实我们解完SVM，这样的结果也告诉我们一些对于每个点是圈圈的几率的一个衡量。<br><img src="http://i.imgur.com/SMQL4v9.png" alt="">  </p>
+<h3 id="SVM_for_Soft_Binary_Classification">SVM for Soft Binary Classification</h3><p>那我们就来看看怎么样吧SVM用在soft的二元分类，也就是说我想要那些0到1之间的几率值。既然SVM和logistic regression这么像，那我们可不可以解出一个svm的解，把这个解当作是logistic regression的一个近似解。<br><img src="http://i.imgur.com/Qe8l2SZ.png" alt=""><br>这样会失去一些logistic regression的优点——likehood。另外一个可能性是我想保留logistic regression的likehood，那就得做一些像之前做得maximize likehood这样的learning的动作。把从svm中得到的解作为logReg的起始解。但是就没有kernel的优点了。<br>我们考虑的一个不一样的模型是这样，把svm做出来的结果——\(W_{SVM}^T \Phi(x) + b_{SVM}\)，为了使用logistic regression的flavor，在这个分数上加上两个自由度，一个是放缩A，另外一个是B，做某个平移的动作，并在这个两个参数上做logistic regression的训练动作。<br><img src="http://i.imgur.com/h3N9vpU.png" alt=""><br>所以，这就是我们新的logistic regression的问题：<br><img src="http://i.imgur.com/Hwrx4N5.png" alt=""><br>看起来很复杂，但是分两步做的话就是SVM和LogReg，又或者把SVM的结果看成是一个转换，多维到一维的转换。<br>two-level learning: <font color="orange">LogReg</font> on <font color="purple">SVM-transformed</font> data<br>这个在SVM领域是一个非常常用的方法，<br><img src="http://i.imgur.com/Kkt5l2q.png" alt=""><br>这样就可以得到soft binary classifier<br><img src="http://i.imgur.com/rfpe1MP.png" alt="">  </p>
+<h3 id="Kernel_Logistic_Regression-1">Kernel Logistic Regression</h3><p>logistic Regression不是一个二次式。我们想想之前的kernel trick到底为什么会work。kernel trick就是把一堆z空间的内积换成可以在x空间里轻易计算的函数，<br><img src="http://i.imgur.com/Sil8ucx.png" alt=""><br>最佳的w是一堆z的线性组合，这件事情其实是我们能够使用kernel的关键，我们之前告诉过大家一些方法，他们的w是一堆z的线性组合：<br><img src="http://i.imgur.com/6MAxUwm.png" alt=""><br>这些方法表示，其实最后的w可以表示成一堆z的线性组合。<br><img src="http://i.imgur.com/NT7WDje.png" alt=""><br>对于任何的L2-regularized模型，它的最好的w的是有z的线性组合。<br><img src="http://i.imgur.com/VnPT3py.png" alt=""><br>所以，L2-regularized是可以用kernel的<br><img src="http://i.imgur.com/pKlyR2E.png" alt=""><br>怎么把L2-regularized kernel化，既然我们说w一定是一堆z的线性组合，那干脆我们就不要求那个长长的w，专心把这些线性组合的系数\(\beta_n\)求出来，可以把最佳的w的形式带进去，想象求最佳的\(\beta\)<br><img src="http://i.imgur.com/v0QPDZI.png" alt=""><br>有了一个kernel问题之后，我剩下的只要解\(\beta\)就好，这个\(\beta\)有N个变数，和你的点的数量一样，和你w的长度和z空间的长度没有关系。那应该怎么解？GD/SGD，和之前解LogReg没有太大的区别。<br>kernel logistic regression: use <font color="red">representer theorem</font> for kernel trick on <font color="purple">L2-regularized logistic regression</font><br>我们从不同的角度来了解kernel logistic regression。<br><img src="http://i.imgur.com/HMPmyrS.png" alt="">  </p>
+<p><font color="orange">warning:</font> unlike coefficients \(\alpha_n\) in SVM,<font color="red">coefficients \(\beta_n\) in KLR often non-zero</font>!</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/16/机器学习技法四/" rel="next">机器学习技法四</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/17/机器学习技法五/"
+                   data-title="机器学习技法五" data-url="http://Wan-YunPeng.github.io/2016/01/17/机器学习技法五/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel_Logistic_Regression"><span class="nav-number">1.</span> <span class="nav-text">Kernel Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Soft-Margin_SVM_as_Regularized_Model"><span class="nav-number">1.1.</span> <span class="nav-text">Soft-Margin SVM as Regularized Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM_versus_Logistic_Regression"><span class="nav-number">1.2.</span> <span class="nav-text">SVM versus Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM_for_Soft_Binary_Classification"><span class="nav-number">1.3.</span> <span class="nav-text">SVM for Soft Binary Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernel_Logistic_Regression-1"><span class="nav-number">1.4.</span> <span class="nav-text">Kernel Logistic Regression</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
