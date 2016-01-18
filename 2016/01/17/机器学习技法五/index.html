@@ -72,7 +72,7 @@ Soft-Margin SVM as R">
 <meta property="og:image" content="http://i.imgur.com/pKlyR2E.png">
 <meta property="og:image" content="http://i.imgur.com/v0QPDZI.png">
 <meta property="og:image" content="http://i.imgur.com/HMPmyrS.png">
-<meta property="og:updated_time" content="2016-01-17T09:13:37.316Z">
+<meta property="og:updated_time" content="2016-01-18T01:57:21.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习技法五">
 <meta name="twitter:description" content="Kernel Logistic Regressionallow some margin violation \(\xi_n\) while penalizing them by C;equivalent to upper-bounding \(\alpha_n\) by C使用kernel这个技巧在logistic regression上会有什么样的效果。
@@ -244,12 +244,12 @@ Soft-Margin SVM as R">
 
       
         <span itemprop="articleBody"><h2 id="Kernel_Logistic_Regression">Kernel Logistic Regression</h2><p>allow some <font color="orange">margin violation \(\xi_n\)</font> while penalizing them by C;equivalent to <font color="orange">upper-bounding \(\alpha_n\)</font> by C<br>使用kernel这个技巧在logistic regression上会有什么样的效果。</p>
-<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br><a id="more"></a><br>margin violation，我们想要这个胖胖的边界，但是我们把违反的部分记录下来，记录在\(\xi_n\)里，写出最佳化问题，导出其对偶问题在求解。我们可以从另外一个角度来看看我们在解这个问题的时候到底在做什么事情。我们如果给定任何一条边界（b,w），我们想说\(\xi_n\)到底是怎么算出来的，他记录了违反的部分，分为两种情形：<br><img src="http://i.imgur.com/Cc2NTyo.png" alt=""><br>违反的值的\(y_n(w^Tz_n+b))因为异号，一定是小于0，所以1-\(y_n(w^Tz_n+b))一定大于0，那么进一步可以写成不受限制的形式：<br><img src="http://i.imgur.com/vQNFDLk.png" alt=""><br>有点像我在最佳化的过程里面我不在乎\(\xi_n\)了，\(\xi_n\)不再是变数，而是根据b和w算出来的结果。这个形式是不是很熟悉<br><img src="http://i.imgur.com/k3yQtoO.png" alt=""><br>那为什么刚开始介绍SVM的时候就用L2 Regularization的形式去求解呢？有两个原因：</p>
+<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br><a id="more"></a><br>margin violation，我们想要这个胖胖的边界，但是我们把违反的部分记录下来，记录在\(\xi_n\)里，写出最佳化问题，导出其对偶问题在求解。我们可以从另外一个角度来看看我们在解这个问题的时候到底在做什么事情。我们如果给定任何一条边界（b,w），我们想说\(\xi_n\)到底是怎么算出来的，他记录了违反的部分，分为两种情形：<br><img src="http://i.imgur.com/Cc2NTyo.png" alt=""><br>违反的值的\(y_n(w^Tz_n+b)\)因为异号，一定是小于0，所以1-\(y_n(w^Tz_n+b)\)一定大于0，那么进一步可以写成不受限制的形式：<br><img src="http://i.imgur.com/vQNFDLk.png" alt=""><br>有点像我在最佳化的过程里面我不在乎\(\xi_n\)了，\(\xi_n\)不再是变数，而是根据b和w算出来的结果。这个形式是不是很熟悉<br><img src="http://i.imgur.com/k3yQtoO.png" alt=""><br>那为什么刚开始介绍SVM的时候不用L2 Regularization的形式去求解呢？有两个原因：</p>
 <ol>
 <li>新的问题好像没有条件（好事），但是他也不是一个QP问题，那么我们之前推导的对偶和kernel可能没有那么容易用上去。</li>
 <li>还有就是max(…,0)是不可导的，很难求解。</li>
 </ol>
-<p>这就是为什么soft-margin也可以写成这个样子，可是我们并没有直接用这个式子来做soft-margin的介绍，而是从hard-margin一路推到过来。<br><img src="http://i.imgur.com/OwGO2qq.png" alt=""><br>regularization做的事是让Ein变小，但是在Ein变小之外加上了条件：\(w^Tw \leq C).hard-margin SVM相当于是在Ein上加上了条件，但是我希望w的长度越小越好。这是我们之前知道的事情，那现在我们都是知道什么，如果看一般的L2 Regularization，我把条件丢到objective function里面，他会长这样：求两项之和最小，其中一项是w的长度，另外一项和error有关；soft-margin也是长这样，只是我们习惯上用不同的参数（之前是\(\lambda\)，现在是C）。<br><img src="http://i.imgur.com/hKoDlcv.png" alt=""><br>viewing SVM as regularized model: allows <font color="orange">extending/connecting</font> other learning models<br>我们现在已经介绍完了SVM，我们想做的是能不能把SVM延伸到其他问题上，例如logistic regression问题上或一般regression问题上，那我要做延伸的话，我了解联系的关系，我做延伸的时候，会比较看的出来到底怎么样做这些延伸的动作。</p>
+<p>这就是为什么soft-margin也可以写成这个样子，可是我们并没有直接用这个式子来做soft-margin的介绍，而是从hard-margin一路推到过来。<br><img src="http://i.imgur.com/OwGO2qq.png" alt=""><br>regularization做的事是让Ein变小，但是在Ein变小之外加上了条件：\(w^Tw \leq C\).hard-margin SVM相当于是在Ein上加上了条件，但是我希望w的长度越小越好。这是我们之前知道的事情，那现在我们都是知道什么，如果看一般的L2 Regularization，我把条件丢到objective function里面，他会长这样：求两项之和最小，其中一项是w的长度，另外一项和error有关；soft-margin也是长这样，只是我们习惯上用不同的参数（之前是\(\lambda\)，现在是C）。<br><img src="http://i.imgur.com/hKoDlcv.png" alt=""><br>viewing SVM as regularized model: allows <font color="orange">extending/connecting</font> other learning models<br>我们现在已经介绍完了SVM，我们想做的是能不能把SVM延伸到其他问题上，例如logistic regression问题上或一般regression问题上，那我要做延伸的话，我了解联系的关系，我做延伸的时候，会比较看的出来到底怎么样做这些延伸的动作。</p>
 <h3 id="SVM_versus_Logistic_Regression">SVM versus Logistic Regression</h3><p><img src="http://i.imgur.com/KAKzyEx.png" alt=""><br>我们刚才把soft-margin写成了其他形式，这个形式里面有一个特殊的东西就是我们的\(\hat{err}\):计算两个东西的最大值。我们想说看看这个\(\hat{err}\)和我们之前讲的0/1 error到底有什么关系。<br><img src="http://i.imgur.com/kBCf2yi.png" alt=""><br>如果y和分数同号，那么0/1 error为0；不同号时，0/1 error是1，如上图，ys作为横轴，err作为纵轴。那如果是上面的那个SVM的error，那该怎么画？我们要花两个部分，第一个部分是，如果今天又violation，也就是ys比1还小，那记录下来的err就是1-ys；就会得到紫色那条线，我们可以很轻易的看到它是我们所在意的0/1 error的上限，可以把soft-margin svm看成是间接的0/1 error做好，一般把svm用的这个error叫做hinge error measure。<br><img src="http://i.imgur.com/HQVuLef.png" alt=""><br>如果我们把logistic regression里面用的error，稍微做个scaled等等的，把他映出来的话，会使上图中橙色那条线，他也会该在0/1 error上面<br><img src="http://i.imgur.com/zHGk3sb.png" alt="">   </p>
 <p><font color="purple">SVM</font> \(\approx\) <font color="green">L2-regularized</font> <font color="orange">logistic regression</font><br>soft-margin很像在做L2 regularized。<br>所以从我们之前上过的东西，我们现在可以轻易的有一些不同的可以来做binary classification的linear model：<br><img src="http://i.imgur.com/wJKj7rq.png" alt=""><br>所以，regularized LogReg几乎就是在做SVM的问题。那么如果我们解了一个soft-margin SVM的问题，我们能不能想象我们把这样的解拿到logistic regression里面用呢？logReg要用的是什么？我们想要预测那个几率，那个soft的值是多少，0到1之间的那个值是多少，我们不是要说圈圈叉叉，我们要说的是是圈圈的几率是多少，所以会不会其实我们解完SVM，这样的结果也告诉我们一些对于每个点是圈圈的几率的一个衡量。<br><img src="http://i.imgur.com/SMQL4v9.png" alt="">  </p>
 <h3 id="SVM_for_Soft_Binary_Classification">SVM for Soft Binary Classification</h3><p>那我们就来看看怎么样吧SVM用在soft的二元分类，也就是说我想要那些0到1之间的几率值。既然SVM和logistic regression这么像，那我们可不可以解出一个svm的解，把这个解当作是logistic regression的一个近似解。<br><img src="http://i.imgur.com/Qe8l2SZ.png" alt=""><br>这样会失去一些logistic regression的优点——likehood。另外一个可能性是我想保留logistic regression的likehood，那就得做一些像之前做得maximize likehood这样的learning的动作。把从svm中得到的解作为logReg的起始解。但是就没有kernel的优点了。<br>我们考虑的一个不一样的模型是这样，把svm做出来的结果——\(W_{SVM}^T \Phi(x) + b_{SVM}\)，为了使用logistic regression的flavor，在这个分数上加上两个自由度，一个是放缩A，另外一个是B，做某个平移的动作，并在这个两个参数上做logistic regression的训练动作。<br><img src="http://i.imgur.com/h3N9vpU.png" alt=""><br>所以，这就是我们新的logistic regression的问题：<br><img src="http://i.imgur.com/Hwrx4N5.png" alt=""><br>看起来很复杂，但是分两步做的话就是SVM和LogReg，又或者把SVM的结果看成是一个转换，多维到一维的转换。<br>two-level learning: <font color="orange">LogReg</font> on <font color="purple">SVM-transformed</font> data<br>这个在SVM领域是一个非常常用的方法，<br><img src="http://i.imgur.com/Kkt5l2q.png" alt=""><br>这样就可以得到soft binary classifier<br><img src="http://i.imgur.com/rfpe1MP.png" alt="">  </p>
@@ -271,6 +271,8 @@ Soft-Margin SVM as R">
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/18/机器学习技法六/" rel="prev">机器学习技法六</a>
             
           </div>
 
@@ -342,7 +344,7 @@ Soft-Margin SVM as R">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

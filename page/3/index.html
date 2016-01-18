@@ -166,6 +166,94 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/11/机器学习基石十五/" itemprop="url">
+                机器学习基石十五
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-11T20:07:08+08:00" content="2016-01-11">
+            2016-01-11
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/11/机器学习基石十五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/机器学习基石十五/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十五">机器学习基石十五</h2><h3 id="Validation">Validation</h3><h3 id="Model_Selection_Problem">Model Selection Problem</h3><p>即使你现在要做简单的二元分类（binary classification），我们已经学了很多很多中不同的方法，举例来说你可以用PLA、pocket、linear regression和logistic regression，这些方法里面很多事一步一步做的，你可以决定走（迭代）多少步，又或者可以决定步长是多少，还有就是用什么转换，regularizer用什么，regularizer的强度是多少等等。<br><img src="http://i.imgur.com/n52O1FL.png" alt=""><br>方法越多，选择越多，而且这些方法是组合起来的，会造成组合爆炸的情况，我们想说怎么从这些形形色色的方法中选出正确的选择。<br>之前已经引导过大家做过选择了，如下图，你会选一条线，有点错误的，还是曲线，一点错误都没有的。<br><img src="http://i.imgur.com/GmG1CTF.png" alt=""><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/11/机器学习基石十五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/11/线段树/" itemprop="url">
                 线段树
               </a>
@@ -497,101 +585,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/06/机器学习基石十一/" itemprop="url">
-                机器学习基石十一
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
-            2016-01-06
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
-<blockquote>
-<p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
-</blockquote>
-<p>三个线性算法的比较与总结：<br><img src="http://i.imgur.com/MEetY67.png" alt=""></p>
-<blockquote>
-<p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/06/机器学习基石十一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -630,7 +623,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

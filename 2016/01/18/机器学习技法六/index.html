@@ -39,55 +39,41 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="机器学习基石十一Linear Models for Classification
-
-linear scoring function: s = \(W^T\)X三者的计算分数方式
-
-三个线性算法的比较与总结：
-
-1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
+<meta name="description" content="Support Vector Regressiontwo-level learning for SVM-like sparse model for soft classification, or using representer theorem with regularized logistic error of dense model
+Kernel Ridge Regression上次讲到re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习基石十一">
-<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/index.html">
+<meta property="og:title" content="机器学习技法六">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/18/机器学习技法六/index.html">
 <meta property="og:site_name" content="YunPeng’s Blog">
-<meta property="og:description" content="机器学习基石十一Linear Models for Classification
-
-linear scoring function: s = \(W^T\)X三者的计算分数方式
-
-三个线性算法的比较与总结：
-
-1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
-<meta property="og:image" content="http://i.imgur.com/MEetY67.png">
-<meta property="og:image" content="http://i.imgur.com/uxchdVJ.png">
-<meta property="og:image" content="http://i.imgur.com/1d4cSXW.png">
-<meta property="og:image" content="http://i.imgur.com/B9IgVrY.png">
-<meta property="og:image" content="http://i.imgur.com/eYJ7ZJj.png">
-<meta property="og:image" content="http://i.imgur.com/f0NLflc.png">
-<meta property="og:image" content="http://i.imgur.com/6DCfeCc.png">
-<meta property="og:image" content="http://i.imgur.com/eWBp2Ht.png">
-<meta property="og:image" content="http://i.imgur.com/zptye28.png">
-<meta property="og:image" content="http://i.imgur.com/n3yG5BJ.png">
-<meta property="og:image" content="http://i.imgur.com/NvCqzEW.png">
-<meta property="og:image" content="http://i.imgur.com/9xjiQf8.png">
-<meta property="og:image" content="http://i.imgur.com/jvAsqEw.png">
-<meta property="og:image" content="http://i.imgur.com/FVWvnwm.png">
-<meta property="og:image" content="http://i.imgur.com/HI30B5f.png">
-<meta property="og:image" content="http://i.imgur.com/7uKTrx5.png">
-<meta property="og:image" content="http://i.imgur.com/EmenT8p.png">
-<meta property="og:image" content="http://i.imgur.com/F516GfA.png">
-<meta property="og:image" content="http://i.imgur.com/aH7N0nS.png">
-<meta property="og:image" content="http://i.imgur.com/P80mrDG.png">
-<meta property="og:image" content="http://i.imgur.com/D4MxidA.png">
-<meta property="og:updated_time" content="2016-01-09T12:39:26.949Z">
+<meta property="og:description" content="Support Vector Regressiontwo-level learning for SVM-like sparse model for soft classification, or using representer theorem with regularized logistic error of dense model
+Kernel Ridge Regression上次讲到re">
+<meta property="og:image" content="http://i.imgur.com/G0PxyP7.png">
+<meta property="og:image" content="http://i.imgur.com/MCVn9z4.png">
+<meta property="og:image" content="http://i.imgur.com/25D40Dk.png">
+<meta property="og:image" content="http://i.imgur.com/tCRChDH.png">
+<meta property="og:image" content="http://i.imgur.com/08EqyRl.png">
+<meta property="og:image" content="http://i.imgur.com/gF5M145.png">
+<meta property="og:image" content="http://i.imgur.com/sZ6D5Gm.png">
+<meta property="og:image" content="http://i.imgur.com/MrkjIrg.png">
+<meta property="og:image" content="http://i.imgur.com/qLFKtRT.png">
+<meta property="og:image" content="http://i.imgur.com/BUT0xFn.png">
+<meta property="og:image" content="http://i.imgur.com/etrHbpp.png">
+<meta property="og:image" content="http://i.imgur.com/uEnVTTX.png">
+<meta property="og:image" content="http://i.imgur.com/mrfSP5w.png">
+<meta property="og:image" content="http://i.imgur.com/o0woxUG.png">
+<meta property="og:image" content="http://i.imgur.com/vFfB4MN.png">
+<meta property="og:image" content="http://i.imgur.com/JCClKJ4.png">
+<meta property="og:image" content="http://i.imgur.com/i4Sm5PZ.png">
+<meta property="og:image" content="http://i.imgur.com/W3sv75M.png">
+<meta property="og:image" content="http://i.imgur.com/ehi7nil.png">
+<meta property="og:image" content="http://i.imgur.com/WYlblGZ.png">
+<meta property="og:image" content="http://i.imgur.com/2VrPJVU.png">
+<meta property="og:image" content="http://i.imgur.com/pL21UzJ.png">
+<meta property="og:updated_time" content="2016-01-18T07:05:35.465Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习基石十一">
-<meta name="twitter:description" content="机器学习基石十一Linear Models for Classification
-
-linear scoring function: s = \(W^T\)X三者的计算分数方式
-
-三个线性算法的比较与总结：
-
-1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。">
+<meta name="twitter:title" content="机器学习技法六">
+<meta name="twitter:description" content="Support Vector Regressiontwo-level learning for SVM-like sparse model for soft classification, or using representer theorem with regularized logistic error of dense model
+Kernel Ridge Regression上次讲到re">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -97,7 +83,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
   };
 </script>
 
-  <title> 机器学习基石十一 | YunPeng’s Blog </title>
+  <title> 机器学习技法六 | YunPeng’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -204,7 +190,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
           
           
             
-              机器学习基石十一
+              机器学习技法六
             
           
         </h1>
@@ -213,8 +199,8 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
-            2016-01-06
+          <time itemprop="dateCreated" datetime="2016-01-18T10:28:54+08:00" content="2016-01-18">
+            2016-01-18
           </time>
         </span>
 
@@ -239,8 +225,8 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
+              <a href="/2016/01/18/机器学习技法六/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/18/机器学习技法六/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -254,41 +240,14 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
       
 
       
-        <span itemprop="articleBody"><h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
+        <span itemprop="articleBody"><h2 id="Support_Vector_Regression">Support Vector Regression</h2><p><font color="orange">two-level</font> learning for <font color="orange">SVM-like sparse model</font> for soft classification, or using <font color="orange">representer theorem</font> with <font color="orange">regularized logistic error</font> of dense model</p>
+<h3 id="Kernel_Ridge_Regression">Kernel Ridge Regression</h3><p><img src="http://i.imgur.com/G0PxyP7.png" alt=""><br>上次讲到representer theorem，说什么时候我的w可以表示成一堆z向量的线性组合呢，如果你要处理的是一个有regularized的linear model，我们原来是linear model，加上一个L2 regularization后，可以得出你最后最好的那个w是一堆z的线性组合。这是我们上次得到的结果。<br><a id="more"></a><br>我们今天要探讨的是怎么样把我们以前学到的regression变成kernel的形式。<br>我们之前学的linear regression是试图看看y和预测出来的分数的差值的平方：$$err(y,w^Tz)=(y-w^Tz)^2$$<br>用这个squared error的方式，想办法把这个error达到最小，如果把他配合上regularization的化叫做<font color="blue">ridge regression</font>.那怎么把ridge regression加上kernel？<br>如果我们要做ridge regression的话，那么我们要解这样的问题：<br><img src="http://i.imgur.com/MCVn9z4.png" alt=""><br>我有error的部分，有一个regularized的部分，根据representer theorem，我们知道最后w的最佳解可以表示成z的线性组合。一个可能的方式就是既然我知道我最佳解w是z的线性组合，那我把w的形式带入原式，不再求w，而是求线性组合的系数\(\beta\).<br><img src="http://i.imgur.com/25D40Dk.png" alt=""><br>可以把他看成一个\(\beta\)的线性模型，前一部分看起来好像和\(\beta\)的复杂度有关，只是前一部分乘上了一个kernel，后一部分则是\(\beta\)作用于kernel，把kernel想象成一种转换出来的资料上，想成\(\beta\)在经过转换之后的资料上的error。可以在化简为另一种形式，只是关于\(\beta\)的。<br>剩下一个问题：我们要怎么样解出最好的\(\beta\)?<br><img src="http://i.imgur.com/tCRChDH.png" alt=""><br>这是我们得到的关于\(\beta\)的最终方程式，可以看成是一个\(\beta\)的二次式，它是一个无条件的最佳化问题，第一步就是算算梯度什么时候会为0.<br><img src="http://i.imgur.com/08EqyRl.png" alt=""><br>我们想要梯度为0，其中一个可能的解就是让上式括号的值为0：<br><img src="http://i.imgur.com/gF5M145.png" alt=""><br>但是这个反矩阵是不是一定存在呢？如果你的\(\lambda\)大于0，因为合法的kernel，K一定是半正定的，那么在对角线上再加上一个小小的\(\lambda\)之后一定可以变成一个可逆的矩阵。所以这个解一定存在，那你要怎么算？如果你用一般求逆矩阵的程式去算的话，一般花费\(O(N^3)\)的力气。<br>那么现在理论上我们可以很轻易的做non-linear regression.以前是你先坐transform，之后在z空间里做regression的动作；现在是另外一种方法，你可以用kernel的方法去解那个潜藏在z空间里面的那个linear regression的解是什么。<br><img src="http://i.imgur.com/sZ6D5Gm.png" alt=""><br>综合比较linear和带kernel的优缺点。  </p>
+<p><font color="purple">linear</font> versus <font color="orange">kernel</font>: trade-off between <font color="purple">efficiency</font> and <font color="orange">flexibility</font></p>
+<h3 id="Support_Vector_Regression_Primal">Support Vector Regression Primal</h3><p>least-squares SVM(LSSVM) = <font color="orange">kernel ridge regression</font> for classification<br><img src="http://i.imgur.com/MrkjIrg.png" alt=""><br>如果只看边界的话，几乎没有什么区别，但是你看方框框的点，右边这个几乎每个点都是support vector，为什么会这样？<br>LSSVM: similar boundary,<font color="orange">many more SVs</font>\(\beta\)很多都不为0，这代表未来在做预测的时候会多花很多的时间，也就是你的g会很肥大：slower prediction,<font color="orange">dense \(\beta(BIG g)\)</font><br>dense \(\beta\): LSSVM,Kernel LogReg; <font color="red">sparse \(\alpha\): standard SVM</font><br>所以下一步，我们想要的是\(\beta\)也是sparse，大多数是0<br>我们先考虑一个很特别的问题：tube regression，意思是这个regression下的分界线有一个中立区，下图蓝色部分，对于中立区中的错误的点，不扣他的分：<br><img src="http://i.imgur.com/qLFKtRT.png" alt=""><br>相应的错误计算方式在上面列出来了，<br>接下来就是要把这个L2-regularized tube regression拿去求解得到sparse的\(\beta\)<br><img src="http://i.imgur.com/BUT0xFn.png" alt=""><br>对比一下tube和squared两幅图，作出他们的错误图：<br><img src="http://i.imgur.com/etrHbpp.png" alt=""><br>我们发现向外走的时候红色长得很快，蓝色长得很慢，这样有好处，往外走长得快表示比较容易受到杂讯的影响，如果你现在有一些杂讯的话，很有可能你会为了迁就这些杂讯，为了不犯太大的错误，而影响了你的regression的结果。还有就是tube在比较小的范围内和square是比较相似的。<br><img src="http://i.imgur.com/uEnVTTX.png" alt=""><br>我们会先模仿之前解SVM的解法，先把他写成一个QP问题，然后透过dual等等方式解他，解完之后我们发现sparse属性。<br><img src="http://i.imgur.com/mrfSP5w.png" alt=""><br>为了和之前的SVM扯上连接，做了一些小小的改变，第一是把系数换成了1/2和C，然后把w0独立出来变成b。现在我们有了要解的最佳化问题，还要把max这些拆开变成一个二次规划问题。<br><img src="http://i.imgur.com/o0woxUG.png" alt=""><br>原来SVM是引入\(\xi_n\)，同样，这里我们也引入\(\xi_n\)，这个变数记录了我们要的和分数的差距在\(\epsilon\)之内，但是要是在\(\epsilon\)之外的话，我们就要收\(\xi_n\)的钱。这个新的变数放到最佳化的问题你，并且是大于等于0的。但这个还不是一个二次规划的问题，因为我们还有一个绝对值在这边，把他拆成两个部分。用两个变数来记录。那我们就得到了一个二次规划的问题。<br>Support Vector Regression（SVR） primal: minimize regularizer + <font color="red">(upper bube violations \(\xi_n^\wedge\) &amp; lower violations \(\xi_n^\vee\))</font><br>或者我们可以从图来看：<br><img src="http://i.imgur.com/vFfB4MN.png" alt=""><br>接下来就是怎么样把\(\tilde{d}\)移掉。</p>
+<h3 id="Support_Vector_Regression_Dual">Support Vector Regression Dual</h3><p><img src="http://i.imgur.com/JCClKJ4.png" alt=""><br>这里不再做详细的推导，给出几个关键点：<br><img src="http://i.imgur.com/i4Sm5PZ.png" alt=""><br>看看SVM的Dual和SVR的Dual，告诉大家他们的dual是有迹可循的：<br><img src="http://i.imgur.com/W3sv75M.png" alt=""><br>左边的图，按颜色标记来看，绿色的\(y_n\)和\(z_n\)跑到了二次项中….；对于右边的，同理去找。<br>那我们解出的SVR的解到底有没有sparsity这个属性呢？<br><img src="http://i.imgur.com/ehi7nil.png" alt=""><br>经过一番推导，我们知道w是z的线性组合，但是我们想知道他的系数是不是大多是都是0，怎么做？就是列出这些complementary slackness<br><img src="http://i.imgur.com/WYlblGZ.png" alt=""><br>只要是在tube里面的，w中对应的系数为0，support vector一定是那些在tube外或刚好在边界上的。</p>
+<h3 id="Summary_of_Kernel_Models">Summary of Kernel Models</h3><p><img src="http://i.imgur.com/2VrPJVU.png" alt=""><br>second row: popular in LIBLINEAR<br>对应到kernel：<br><img src="http://i.imgur.com/pL21UzJ.png" alt=""><br>fourth row: popular in LIBSVM<br>PLA/linear SVR使用的比较少：表现相对于第二列没有他好；kernel ridge regression/kernel logistic regression也比较少：没有sparsity；  </p>
 <blockquote>
-<p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
-</blockquote>
-<p>三个线性算法的比较与总结：<br><img src="http://i.imgur.com/MEetY67.png" alt=""></p>
-<blockquote>
-<p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
-</blockquote>
-<a id="more"></a>
-<p>今天的问题，linear classification是NP hard，不太好解，那么看看起来linear regression和logistic regression好像在求解这个很低的Ein上容易很多，我们能不能借用linear regression或logistic regression来作为我们替代linear classification的一个替代工具？<br>我们想在还是有linear scoring function这是大家都用的，但是我们现在要把它用在，把这些不同的演算法都用在classification上，也就是说我们限制y的输出只能是+1/-1.对于logistic regression来说，这个不是太大的问题，因为logistic regression本来拿到的资料就和binary classification没有什么不一样，对于linear regression来说+1和-1是两个特别的实数，所以好像我们也可以直接借来用。<br>把error function的计算过程串起来看一下。<br><img src="http://i.imgur.com/uxchdVJ.png" alt=""><br>将error function稍作变形，好在三者之间进行比较。linear不等号同乘一个y；linear regression同乘一个y的平方；logistic已经有ys了。这里只是把linear classification和regression做相应的变化动作。<br>这里就是要看看ys和error function之间的关系，在做这件事情之前，先看看ys的物理意义。  </p>
-<blockquote>
-<p>(<font color="blut">y</font><font color="purple">s</font>):classification <font color="blue">correctness</font> <font color="purple">score</font></p>
-</blockquote>
-<p>把y乘上去代表我们在意的是y的正确度，对y的correctness，s则是这个score，我们希望correctness score要越大越好。</p>
-<p>要比较这些error function，想做的事是把他们画在同一平面上看看<br><img src="http://i.imgur.com/1d4cSXW.png" alt=""><br>横轴是ys，纵轴是err。0/1看的是ys的sign是否是+1；sqr的特点是：如果今天有一个样本，在sqr err上得到一个比较低的error，那么它在0/1 err上也会得到一个蛮低的值，也就是说小的范围、小的那个范围sqr和0/1很像。那在比较远的地方0/1和sqr就会越来越不类似；logistic是一个平滑的曲线，ys越来越大的时候，他会趋近于0。当ys越来越小的时候，他就会离0/1越来越远<br>我们这里把logistic error function，这个cross-entropy的error做一个换底的动作，乘上一个倍数，这个scaled其实就是把原来我们取log e换成log 2，这样做目的在于ys等于0这个点上，我们看到scaled的cross-entropy跟0/1真的切在一起，这会利于我们的推导。<br><img src="http://i.imgur.com/B9IgVrY.png" alt=""><br>那么我们就会得到这样一个结论：</p>
-<blockquote>
-<p>for any <font color="purple">ys</font> where <font color="purple">s = \(W^T\)X</font>$${\color{Blue} {err_{0/1}}}({\color{Purple} {s,y}}) \leq {\color{Orange} {err_{SCE}}}({\color{Purple} {s,y}}) = {\color{Orange} {\frac{1}{In2}}}err_{CE}({\color{Purple} {s,y}})$$<br>$$\Rightarrow {\color{Blue} {E_{in}^{0/1}(W)}} \leq {\color{Orange} {E_{in}^{SCE}(W)}}={\color{Orange} {\frac{1}{In2}}}E_{in}^{CE}(W)$$<br>$${\color{Blue} {E_{out}^{0/1}(W)}} \leq {\color{Orange} {E_{out}^{SCE}(W)}}={\color{Orange} {\frac{1}{In2}}}E_{out}^{CE}(W)$$</p>
-</blockquote>
-<p><img src="http://i.imgur.com/eYJ7ZJj.png" alt=""><br>只要我们把cross-entropy做好的话，从某种角度说也把0/1做得不错。sqr也可以，只是比较宽松而已。<br><img src="http://i.imgur.com/f0NLflc.png" alt=""><br>三种方法的优点与缺点。<br>一些建议：<br><img src="http://i.imgur.com/6DCfeCc.png" alt=""><br>用linear regression求出来的w作为初始化的w，再用其他算法就行优化<br>大部分情况下使用logistic regression而不见的会用pocket算法  </p>
-<p>PLA和logistic regression的比较<br><img src="http://i.imgur.com/eWBp2Ht.png" alt=""><br>logistic regression每一轮会花更多的力气。那么我们能不能让logistic regression和PLA一样快？不然现在logistic regression和pocket一样快，都是每一轮看完所有的点，才决定要不要把\(\hat{w}\)换掉。<br>logistic regression的梯度：<br><img src="http://i.imgur.com/zptye28.png" alt=""><br>我们希望更新方向和gradient很接近，但是我们不想花n倍的那个力气去把gradient求出来，那么我们要怎么做？把\(\frac{1}{N} \sum_{n=1}^{N}\)想成是一个随机的过程的平均，随机抽取一个点然后平均，我们就避开了把他加起来除以N的动作，而是我们随机抽一个，然后从期望值上来说跟我真正把N个加起来然后求平均的值很接近。这个抽取的随机的梯度值叫做stochastic gradient，不是平均的梯度，而是在单一的一个点上求他的偏微分。<br><img src="http://i.imgur.com/n3yG5BJ.png" alt=""><br>这样，就可以得到另外一个演算法，不是用真正的梯度来下降，而是用一个随机的梯度来做<br><img src="http://i.imgur.com/NvCqzEW.png" alt=""><br>这样的话，计算上就很简单，每次迭代只需计算一个点。缺点就是这个算法不稳定，要是\(\eta\)太大，梯度下降的方向和真实的方向很可能不太一样。<br><img src="http://i.imgur.com/9xjiQf8.png" alt=""></p>
-<blockquote>
-<p>SGD logistic regression \(\approx\)<font color="purple">‘soft’</font> PLA<br>PLA \(\approx\)SGD logistic regression with <font color="blue">\(\eta\) = 1</font> when \(W_t^T X_n\) large</p>
-</blockquote>
-<p>两个使用的建议：</p>
-<blockquote>
-<p>1.迭代停止条件？SGD决定什么情况停很困难，一般相信<font color="orange">迭代次数够多</font>后就会达到我们想要的那个解<br>2.\(\eta\)?经验上通常取<font color="orange">0.1左右</font>。</p>
-</blockquote>
-<p>将这些模型进行延伸，从是非题到选择题/二元分类到多元分类<br>假设现在有四个类别：<br><img src="http://i.imgur.com/jvAsqEw.png" alt=""><br>四个类别看起来不太好做，我们的办法是先把其中一个类别先分出来，如：<br><img src="http://i.imgur.com/FVWvnwm.png" alt=""><br>像把方块从四个类别中分开一样，依次可以分开其他三个类别，注意每次只分出一个类别<br><img src="http://i.imgur.com/HI30B5f.png" alt=""><br>每一次我就做一个binary classify，把某一个类别跟其他类别分开，这样分开以后有什么好处？这样分开以后我可以确定一些事情，我们有四个不同的分类器，如上图中下面的四幅图一样，有些时候我的四个分类器里，只会有一个分类器告诉我这个点真的是这个类别，而其他分类器就说他不是他们的类别。有些区域会很确定这个点的类型。但是分类器会犯错，会有一些区域会有多个分类器抢着说这个点是他的类别；还有一种情况就是中间那个区域，四个分类器都说不是他们的类别。所以只有分类器的方式来做切割的话，会有些区域很确定，但是有些区域我们没办法确定。<br>那我们怎么做呢？我们用soft classification，soft binary classification工具，我们来做软性的分类，不要只说是或不是，我们求他的可能性，这里说的softly，也就是对应我们使用logistic regression，在下图中用颜色不同深浅来代表到底有多大的可能性是那个类别，越深的，代表的可能性越大，越浅的代表可能性越小<br><img src="http://i.imgur.com/7uKTrx5.png" alt=""><br>这四个分类器不再是像原来那样告诉我0/1，而是告诉我属于这个类别的概率是多少。将四个分类器组合起来，选取可能性最大的那个类别：<br><img src="http://i.imgur.com/EmenT8p.png" alt=""><br>应为sigmoid函数是单向性的，我们不一定要把\(\theta\)值求出来，直接比较scoring value也可以。<br>所以这边我们得到一个简单的演算法：<br><img src="http://i.imgur.com/F516GfA.png" alt=""><br>one-versus-all(OVA)：一个类别对其他类别<br>你要做多类别分类，先对于每个类别跑一个logistic regression，什么叫对每个类别跑一个logistic regression，就是对于某个类别，把资料中属于这个类别的说是圈圈，不是这个类别的说是叉叉，最后对每个类别都跑完之后怎么做预测呢，就选这k个logistic regression哪一个告诉我的分数最高，我就选哪一个。  </p>
-<blockquote>
-<p>优点：高效；这里使用logistic regression，在将来，有其他的演算法也可以像logistic regression输出0到1之间的实数值或者一个可以比大小的实数值的话，都可以套用这个方法<br>缺点：这个方法所使用的资料的类别太大，会导致对于每一个类别来说圈圈和叉叉的比例差的太大：我有100类别，这100个类别平均分布，对于我们要做logistic regression的那个类别来说，其余99个类别都是叉叉，相当于资料中有99%的是叉叉，1%的是圈圈，那么对于这个logistic regression来说，他可以有一个很轻易就做的很好的solution，这个solution说每个输入的资料都猜是叉叉（99%的正确率），也就是说到最后你拿到很多个logistic regression的集合，每个都很喜欢叉叉，到时候你只是选出一个猜叉叉概率最大的那一个，这样有时候会让你的表现不是很好<br>扩展：multinomial(‘coupled’) logistic regression我们没有考虑几率加起来是1，我们这里只是个别的估计，而真正的多元logistic regression就会把几率加起来为1这个事情放进去</p>
-</blockquote>
-<p>OVA的问题就是当资料里的类别过多的时候，我们就会遇见一个Unbalance的问题，也就是说我天的圈圈很少，叉叉非常的多。解决办法是不再使用one-versus-all，而是从资料中选出两个类别来，先看看这两个类别哪个比较像是我要的答案。如下图，之选方块和菱形就行对打，其他类别不放进来，观察哪边比较像是方块，哪一边比较像菱形，相当于我把方块当圈圈，菱形当叉叉来考虑<br><img src="http://i.imgur.com/aH7N0nS.png" alt=""><br>4个里面选2种，会有6种分类的方法。对于其他任意两个类别，我们也可以这样做，最终会得到一下分类<br><img src="http://i.imgur.com/P80mrDG.png" alt=""><br>那我们把这些分类问题都解出来之后，我们最后要怎么样决定哪一边要当作方块/菱形…，我们来看跟方块有关的分类器有哪些：上图种的第一个、第二个和第三个。这里有关的意思就是说在分类过程中我们有把方块使用进去的，我们看到这三个分类器在接近方块的地方通通都给了蓝色，从这三个分类器我们可以看出重叠的部分我们可以说是方块。<br>最后做预测的时候，用每个分类器去进行预测；类似于用这些分类器去进行一个投票，看哪个类别获得最高的支持。<br>得到另外一个算法：one-versus-one<br><img src="http://i.imgur.com/D4MxidA.png" alt=""></p>
-<blockquote>
-<p>优点：高效（训练资料量比原来的少，只取我们关心的两个类别的资料），稳定，他可以和任何的binary classification approaches搭配<br>缺点：use O(\(\k^2\))\(w_{[k,l]}\)——<font color="orange">more space,slower prediction,more training</font></p>
-<p>OVO:another simple multiclass <font color="orange">meta-algorithm</font> to keep in your toolbox</p>
+<p>first row: less used due to worse preformance<br>third row: less used due to dense \(\beta\)  </p>
 </blockquote>
 </span>
       
@@ -307,13 +266,11 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/08/机器学习基石十二/" rel="prev">机器学习基石十二</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/c-c-随机数/" rel="next">c_c++随机数</a>
+              <a href="/2016/01/17/机器学习技法五/" rel="next">机器学习技法五</a>
             
           </div>
         </div>
@@ -338,8 +295,8 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/01/06/机器学习基石十一/"
-                   data-title="机器学习基石十一" data-url="http://Wan-YunPeng.github.io/2016/01/06/机器学习基石十一/">
+              <div class="ds-thread" data-thread-key="2016/01/18/机器学习技法六/"
+                   data-title="机器学习技法六" data-url="http://Wan-YunPeng.github.io/2016/01/18/机器学习技法六/">
               </div>
             
           </div>
@@ -443,7 +400,7 @@ linear scoring function: s = \(W^T\)X三者的计算分数方式
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习基石十一"><span class="nav-number">1.</span> <span class="nav-text">机器学习基石十一</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Support_Vector_Regression"><span class="nav-number">1.</span> <span class="nav-text">Support Vector Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kernel_Ridge_Regression"><span class="nav-number">1.1.</span> <span class="nav-text">Kernel Ridge Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support_Vector_Regression_Primal"><span class="nav-number">1.2.</span> <span class="nav-text">Support Vector Regression Primal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Support_Vector_Regression_Dual"><span class="nav-number">1.3.</span> <span class="nav-text">Support Vector Regression Dual</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary_of_Kernel_Models"><span class="nav-number">1.4.</span> <span class="nav-text">Summary of Kernel Models</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
