@@ -166,6 +166,278 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/21/机器学习技法九/" itemprop="url">
+                机器学习技法九
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-21T11:24:02+08:00" content="2016-01-21">
+            2016-01-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/21/机器学习技法九/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/机器学习技法九/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Decision_Tree">Decision Tree</h2><p>Optimal re-weighting for diverse hypotheses and adaptive linear aggregation to boost ‘weak’ algorithms  </p>
+<h3 id="Decision_Tree_Hypothesis">Decision Tree Hypothesis</h3><p><img src="http://i.imgur.com/Pmz2dSI.png" alt=""><br>aggregation model我们到底进行到哪里，aggregation model就是我们将一些小g合起来变成一个胖胖的G，这样的做法有两个主要的面向，一个叫做blending，是我们已经有小g，可能是别人给的，也有可能是我们透过一些其他的方法得到的，那我们要怎么样把他们合起来呢？同等权重、不同权重：把这些小g当成是特征的转换，转换后再丢去一个linear model、conditional：同样把小g当作特征的转换，但是第二层的时候可能会用一个non-linear的模型，把这个叫做stacking。另外一个面向是如果我们原来并不知道有哪些小g，所以我们想要边学这些小g边合起来，我们讲了两种方式，如果你要使用uniform，那么这些小g需要时同等地位，做到这件事情的方法之一就是bagging，先做bootstrap，把我们的资料变成一些不同的副本，得到不同的小g，然后再让他们uniform的投票；另外，如果你想做linear的aggregation的话，那可以使用AdaBoost方法，得到不同的小g，给他们不同的权重，今天的主题Decision Tree就是做conditional aggregattion，在不同的情况下，我用不同的小g，那我要怎么一边学到小g，一边学到这些condition，然后把他们合起来。Decision Tree就是这样一个模型。  </p>
+<blockquote>
+<p><font color=blue>decision tree</font>: a traditional learning model that realizes conditional aggregation</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/21/机器学习技法九/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/20/机器学习技法八/" itemprop="url">
+                机器学习技法八
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-20T14:08:20+08:00" content="2016-01-20">
+            2016-01-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/20/机器学习技法八/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/机器学习技法八/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Adaptive_Boosting">Adaptive Boosting</h2><p>blending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  </p>
+<h3 id="Motivation_of_Boosting">Motivation of Boosting</h3><p>先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否有一个苹果，先给你看10张是苹果的照片，再给你看10张不是苹果（香蕉、菠萝等等）的照片。对于我们机器学习来说，我们就要靠这20个例子来做到到底一张图上是不是苹果的二元分类。那怎么做呢？这个老师把这20张图片给同学看，前面10张是苹果，后面10张不是，这对应着监督式学习的方法。<br><img src="http://i.imgur.com/Weari9i.png" alt=""><br>michael认为苹果是圆形的。这个看起来是一个区分苹果的规则，michael在一些图片上表现得很好，但是在一些图片上就表现的不好，例如上图中蓝色标出的图片，所以只靠圆形这个规则可能会犯一些错。我们需要逐步的帮助这些学生做修正，在michael说苹果是圆形后，我们帮他标出圆形这条规则可能会犯错的地方（蓝色）。老师可能做的事情是：把那些做对的图片稍微拿远一点，然后把犯错的那些图片稍微放大一点。这样就让学生吧注意力放在了刚才放错的地方。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/20/机器学习技法八/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/19/机器学习技法七/" itemprop="url">
+                机器学习技法七
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-19T10:04:46+08:00" content="2016-01-19">
+            2016-01-19
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/19/机器学习技法七/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/机器学习技法七/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Blending_and_Bagging">Blending and Bagging</h2><font color=orange>kernel ridge regression</font>(dense) via ridge regression + <font color=orange>representer theorem</font>;<font color=orange>support vector regression</font>(sparse) via regularized <font color=orange>tube</font> error + <font color=orange>Lagrange dual</font>  
+
+<h3 id="Motivation_of_Aggregation">Motivation of Aggregation</h3><p>假设你有T个朋友\(g_1,g_2,…,g_T\)（如15个），每个朋友告诉你明天的股票会涨还是会跌，那你听了这15个朋友的意见后会怎么办？<br><img src="http://i.imgur.com/jRnMZ6t.png" alt=""><br>这是一些简单的可以想到的把15个人的意见融合起来的方式，当然还有其他的选择，这种情形对应到机器学习就是aggregation。  </p>
+<font color=red>aggregation</font> modles: <strong>mix or combine</strong> hypotheses (for better performance)<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/19/机器学习技法七/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/18/机器学习技法六/" itemprop="url">
                 机器学习技法六
               </a>
@@ -333,281 +605,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/16/机器学习技法四/" itemprop="url">
-                机器学习技法四
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-16T14:49:03+08:00" content="2016-01-16">
-            2016-01-16
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/16/机器学习技法四/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/16/机器学习技法四/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Soft-Margin_Support_Vector_Machine">Soft-Margin Support Vector Machine</h2><p>kernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussian) ones with margin control</p>
-<h3 id="Motivation_and_Primal_Problem">Motivation and Primal Problem</h3><p>我们上次讲到SVM可能还是会overfit，为什么？其中一个原因就是你选择的转换太powerful了，你选的margin也帮不了你，还有另外一个原因就是我们坚持我们一定要把资料完美的分开。<br><img src="http://i.imgur.com/fd4VY4F.png" alt=""><br>就像上图左，用一条直线的效果可能还不错，就算有一点点的错误，这也是一个不错的hypothesis。要是你一定要把圈圈叉叉完美分开的话，你就会得到右边的图，会得到一个四次多项式，看起来这个SVM可能不是对资料最合理的model。  </p>
-<blockquote>
-<p>if always insisting on <strong>separable(shatter)</strong>, have power to overfit to noise.</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/16/机器学习技法四/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/15/机器学习技法三/" itemprop="url">
-                机器学习技法三
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-15T14:40:45+08:00" content="2016-01-15">
-            2016-01-15
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/15/机器学习技法三/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/机器学习技法三/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Kernel_Support_Vector_Machine">Kernel Support Vector Machine</h2><p>dual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  </p>
-<h3 id="Kernel_Trick">Kernel Trick</h3><p><img src="http://i.imgur.com/e0T8ZYE.png" alt=""><br>上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N+1（一个等号的条件和N个不等号的条件），所以不论我们是从变量个数还是条件个数都好像和\(\tilde{d}\)没有关系，可是我们仔细一看，\(\tilde{d}\)跑到了一个地方，在我们计算矩阵\(Q_D\)，\(Q_D\)里面是二次项系数，这些系数是怎么来的？是两个y相称和两个x做内积，这里是z空间，就是两个z做内积的结果，那就和\(\tilde{d}\)有关系了。从计算的角度来说，我们需要把\(Q_D\)里面的系数统统算出来，才能送到二次规划的问题里去求解。这里便是我们的瓶颈所在。那么有没有什么办法可以使我们的这步算的快一些。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/15/机器学习技法三/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/15/拉格朗日对偶/" itemprop="url">
-                拉格朗日对偶
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-15T11:17:07+08:00" content="2016-01-15">
-            2016-01-15
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/数学/" itemprop="url" rel="index">
-                  <span itemprop="name">数学</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/15/拉格朗日对偶/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/拉格朗日对偶/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找<font color=blue>变量</font>受一个或<font color=blue>多个条件所限制</font>的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。</p>
-<h3 id="原始问题">原始问题</h3><p>假设\(f(x),(c_i)(x),(h_j)(x)\)是定义在\(R^n\)上的<font color=red>连续可微函数</font>(后面会提到为什么)，考虑约束最优化问题：$$\underset{x \in R^n}{min}f(x)$$ $$s.t.&emsp;c_i(x) \leq 0;i=1,2,…k$$ $$h_j(x)=0;j=1,2,…l$$<br>称为约束最优化问题的<font color=red>原始问题</font>。<br>现在<font color=blue>如果不考虑约束条件</font>,原始问题就是：$$\underset{x \in R^n}{min}f(x)$$<br>因为假设其连续可微，利用高中的知识，对\(f(x)\)求导数，然后令其为0，就可以解除最优解。那么问题来了，有约束条件，想方法<font color=red>把约束条件去掉</font>，引入拉格朗日函数。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/15/拉格朗日对偶/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
  </div>
@@ -641,7 +643,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

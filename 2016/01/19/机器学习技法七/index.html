@@ -1,0 +1,705 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Blending and Baggingkernel ridge regression(dense) via ridge regression + representer theorem;support vector regression(sparse) via regularized tube error + Lagrange dual  
+
+Motivation of Aggregation假">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法七">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/19/机器学习技法七/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Blending and Baggingkernel ridge regression(dense) via ridge regression + representer theorem;support vector regression(sparse) via regularized tube error + Lagrange dual  
+
+Motivation of Aggregation假">
+<meta property="og:image" content="http://i.imgur.com/jRnMZ6t.png">
+<meta property="og:image" content="http://i.imgur.com/rN4DGfM.png">
+<meta property="og:image" content="http://i.imgur.com/iqeZ7st.png">
+<meta property="og:image" content="http://i.imgur.com/cQ1EHbj.png">
+<meta property="og:image" content="http://i.imgur.com/pEzlEd0.png">
+<meta property="og:image" content="http://i.imgur.com/U1itSRH.png">
+<meta property="og:image" content="http://i.imgur.com/0VH8afm.png">
+<meta property="og:image" content="http://i.imgur.com/UKmNr4g.png">
+<meta property="og:image" content="http://i.imgur.com/8sCSliy.png">
+<meta property="og:image" content="http://i.imgur.com/o3wztrQ.png">
+<meta property="og:image" content="http://i.imgur.com/bGMhqP8.png">
+<meta property="og:image" content="http://i.imgur.com/FuZv0wA.png">
+<meta property="og:image" content="http://i.imgur.com/8tNiZmL.png">
+<meta property="og:image" content="http://i.imgur.com/cqeRykr.png">
+<meta property="og:image" content="http://i.imgur.com/dscJLPg.png">
+<meta property="og:image" content="http://i.imgur.com/ulTOsRH.png">
+<meta property="og:image" content="http://i.imgur.com/ppBVeWO.png">
+<meta property="og:image" content="http://i.imgur.com/sKDtcDw.png">
+<meta property="og:image" content="http://i.imgur.com/v1uQCp9.png">
+<meta property="og:image" content="http://i.imgur.com/HucfTuE.png">
+<meta property="og:image" content="http://i.imgur.com/wF7ixIq.png">
+<meta property="og:image" content="http://i.imgur.com/2ZTaSNt.png">
+<meta property="og:image" content="http://i.imgur.com/W1UpgEB.png">
+<meta property="og:image" content="http://i.imgur.com/O6C3cDj.png">
+<meta property="og:updated_time" content="2016-01-20T02:03:06.592Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法七">
+<meta name="twitter:description" content="Blending and Baggingkernel ridge regression(dense) via ridge regression + representer theorem;support vector regression(sparse) via regularized tube error + Lagrange dual  
+
+Motivation of Aggregation假">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法七 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法七
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-19T10:04:46+08:00" content="2016-01-19">
+            2016-01-19
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/19/机器学习技法七/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/机器学习技法七/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Blending_and_Bagging">Blending and Bagging</h2><font color="orange">kernel ridge regression</font>(dense) via ridge regression + <font color="orange">representer theorem</font>;<font color="orange">support vector regression</font>(sparse) via regularized <font color="orange">tube</font> error + <font color="orange">Lagrange dual</font>  
+
+<h3 id="Motivation_of_Aggregation">Motivation of Aggregation</h3><p>假设你有T个朋友\(g_1,g_2,…,g_T\)（如15个），每个朋友告诉你明天的股票会涨还是会跌，那你听了这15个朋友的意见后会怎么办？<br><img src="http://i.imgur.com/jRnMZ6t.png" alt=""><br>这是一些简单的可以想到的把15个人的意见融合起来的方式，当然还有其他的选择，这种情形对应到机器学习就是aggregation。  </p>
+<font color="red">aggregation</font> modles: <strong>mix or combine</strong> hypotheses (for better performance)<br><a id="more"></a><br>稍微给我们刚才做的事情一些数学上的记号：<br>1. 选择一个平时表现最好的$$G(x)=g_{t_*}(x)&emsp;with&emsp;t_*=argmin_{t \in {1,2,…,T}}{\color{Blue}{ E_{val}(g_t^-)}}$$<br>2. 权重均等投票机制：$$G(x)=sign(\sum_{t=1}^{T} {\color{Red} 1}\cdot g_t(x))$$<br>3. 权重不等投票机制：$$G(x)=sign(\sum_{t=1}^{T} {\color{Red} {\alpha_t}}\cdot g_t(x))&emsp;with&emsp;{\color{Red}{\alpha_t \geq 0}}$$这种情况包含前两种情况，第一是我只给最信任的一票，其他不给；第二是我给每个分配的权重相等。<br>4. 特定情况的处理：$$G(x)=sign(\sum_{t=1}^{T} {\color{Red} {q_t(x)}}\cdot g_t(x))&emsp;with&emsp;{\color{Red}{q_t(x) \geq 0}}$$函数\(q_t\)表示条件是否成立，成立的时候到底给他多少权重。包括前一种情形，就是不管条件如何都分配\(\alpha_t\)的权重。那么最后一种情况相当于包含了前面的所有情况。<br><br>现在我们讲讲selection的组合方式，也就是从中选一个最值得信赖的（表现最好的）。\(G(x)=g_{t_*}(x)&emsp;with&emsp;t_*=argmin_{t \in {1,2,…,T}}{\color{Blue}{ E_{val}(g_t^-)}}\)<br>三个特点：<br>&gt; <font color="orange">simple</font> and popular<br>&gt; what if use \(E_{in}(g_t)\) instead of \(E_{val}(g_t^-\)? <font color="orange">complexity price on \(d_{vc}\), remember?</font><br>&gt; need <font color="orange"> one strong</font> \(g_t^-\) to guarantee small \(E_{val}\)(and small \(E_{out}\))<br><br>为什么aggregation可以做的好？对于下面左的资料只能用水平的线或垂直的线，那么这个资料无法分开，但是如果我们让水平的线或垂直的线可以自由组合，那么我们就可以把资料分开了。<br><img src="http://i.imgur.com/rN4DGfM.png" alt=""><br>另一个对aggregation的解释可能是右图，如果今天我有一堆hypothesis，他们做得还不错，如上图中的多个perceptron（灰色）可以将资料分开，那你要选哪一条？在SVM中我们提到要选胖胖的那一条，但如果是PLA，他可能会选中间的任何一条，但是如果你让這些灰色的线来做投票的话，你会得到一个比较中庸的线，中间那条实线，大概就对应的到比较胖的线。<br>&gt; proper aggregation \(\rightarrow\) <font color="orange">better performance</font>
+
+
+<h3 id="Uniform_Blending">Uniform Blending</h3><p>我们现在讲要怎么样把这些hypothesis合起来，先介绍一个概念blending——打果汁机：把你的hypotheses丢下去，打一杯果汁或调一杯鸡尾酒。  </p>
+<font color="purple">uniform</font> <font color="red">blending</font>: known <font color="red">\(g_t\)</font>,each with <font color="purple">1</font> ballot$$G(x)=sign(\sum_{t=1}^{T}{\color{Purple}1} \cdot {\color{Red}{g_t}}(x))$$<br><img src="http://i.imgur.com/iqeZ7st.png" alt=""><br>那回归的话应该怎么做？<br><img src="http://i.imgur.com/cQ1EHbj.png" alt=""><br>取平均。<br><img src="http://i.imgur.com/pEzlEd0.png" alt=""><br>每个小g都一样，那么最后的结果和小g是一样的；但是每个小g都不太一样，例如对于某个x来说，有些小g可能低估了，低估了我们要得f(x),有点小g可能高估了，平均起来，那些低估高估的情况可能相互抵消掉，那么我们可能就会估计得更准一些。<br><font color="orange">diverse hypotheses</font>: even simple <font color="purple">uniform blending</font> can be better than any <font color="red">single hypothesis</font>  aggregation这样的机制要work，很重要的前提是我们的小g要diverse，不一样。<br>对regression的例子，我们稍微可以进一步分析说为什么uniform blending可以表现的好。\(G(x)=\frac{1}{T} \sum_{t=1}^{T}g_t(x)\)。先讨论固定的x<br><img src="http://i.imgur.com/U1itSRH.png" alt=""><br><img src="http://i.imgur.com/0VH8afm.png" alt=""><br>想象现在有一个抽象的做机器学习的过程，第一步，假设每一轮我手上都有N笔资料，第二步，利用每轮这新的N笔资料学一个小g，这些小g学出来后，把他平均得到一个G，无限多次后得到我的演算法作用到大小是N的资料上的平均的期望值是多少：<br><img src="http://i.imgur.com/UKmNr4g.png" alt=""><br>得到的\(\bar{g}\)替换上式的G，再给他一个物理上的解释：<br><img src="http://i.imgur.com/8sCSliy.png" alt=""><br>演算法的表现的期望值 = 小\(g_t\)和这个共识到底差多远（variance） + \(\bar{g}\)这些共识的表现如何（bias）<br>uniform blending: reduces <font color="red">variance</font> for more stable performance.平均的过程其实就是想办法消除前面的那一项。<br><br>### Linear and Any Blending<br><br><img src="http://i.imgur.com/o3wztrQ.png" alt=""><br>linear blending，给每个分类器一个权重，那什么样才是好的\(\alpha\),一个简单的想法是能够让我们Ein达到最低。<br><img src="http://i.imgur.com/bGMhqP8.png" alt=""><br>linear blending = LinModel + <font color="red">hypotheses as transform</font> + <font color="orange">constraints</font><br>现在来看一下这个constraint：<br><img src="http://i.imgur.com/FuZv0wA.png" alt=""><br>如果\(\alpha\)小于0，表示例如在做二元分类，你说正的，他说负的，你说负的，他说正的。所以\(\alpha\)小于0表示你的machine学完之后反过来用。反过来用有时候还不错：如果你今天做binary classification，做完之后得到一个非常非常糟糕的结果，它的error是99%，我们反过来用，就是1%error了。<br>从这个角度来看，我们常常会把那个constraint忽略掉。<br>like selection, blending practically done with (\(E_{val}\) instead of \(E_{in}\)) + (\(g_t^-\) from minimum \(E_{train}\))<br><img src="http://i.imgur.com/8tNiZmL.png" alt=""><br>如果要做linear blending的话，建议的方法是从某个比较小的\(D_{train}\)得到一堆的\(g^-\)，有了这些\(g^-\)之后把你的validation set里的资料转换成，透过这些\(g^-\)转换成z空间的资料，把这个转换称做\(\Phi^-\).做完这些转换之后，你就可以把你的linear model用在这些新的资料上，求出\(\alpha\). 我们回传的G是这些\(\alpha\)和\(\Phi (x)\)的内积，透过某个linear hypothesis（可能是regression，也能是classification），<br><img src="http://i.imgur.com/cqeRykr.png" alt=""><br>这里用的是\(\Phi (x)\)而不是\(\Phi^- (x)\)，就像我们以前做完validation，我们传回去的是g而不是g-一样，我们希望透过\(\Phi (x)\)，也就是真正的g，而不是g-，来让我们的表现可能可以更好。<br><img src="http://i.imgur.com/dscJLPg.png" alt=""><br>这是linear blending一般的步骤，不一定非得用linear，但是步骤和linear类似：<br><img src="http://i.imgur.com/ulTOsRH.png" alt=""><br>any blending: <font color="orange">powerful</font>, achieves conditional blending;but <font color="red">danger of overfitting</font>, as always.<br>之前提过的台大参加KDDCup，雅虎提供的一堆资料，应用的方法：<br><img src="http://i.imgur.com/ppBVeWO.png" alt=""><br><br>### Bagging(Bootstrap Aggregation)<br><br><img src="http://i.imgur.com/sKDtcDw.png" alt=""><br>blending交给我们的东西是：如果我们透过某种方法得到小g，那我们到底要怎么把他们合起来？可以做权重相等的投票或者权重不等的投票，更多的时候你会问一个问题是：这些小g到底是怎么来的？我可不可以一边学到这些小g，一边决定我要怎么把他合起来？这是接下来会探讨的课题。<br>我们什么时候得到不一样的小g，不同的模型得到的不同的小g，或者同一模型的不同参数等等。<br><img src="http://i.imgur.com/v1uQCp9.png" alt=""><br>我们想要的是能不能拿同一份资料来，但是我不想用g-，用同一份资料制造很多不同的g出来。<br><img src="http://i.imgur.com/HucfTuE.png" alt=""><br>怎么做呢，先看看之前推导的一个理论结果：bias和variance，这个概念对我们实物上有什么重要性呢？我们说它的概念就是大家的共识，比起把演算法直接套在资料上，拿到一个小g要来的好，大家的共识要比单一的小g来的好，但是我们之前推导这个的时候，假定的是我们每一次需要一堆新的资料，但是我们现在只有一堆资料，那我们要怎么做？<br>我们想要的是那个小g的平均，我们做不到，因为他需要无限多个小g，而我们没有无限多个小g，再来，每个小g要一个新的资料产生，我们没有那么多新的资料，我们需要做两个妥协：1.我们用有限多但是很大的T来代替。2.第二个办法是怎么样从我们手上的N笔资料去生成新的资料<br><img src="http://i.imgur.com/wF7ixIq.png" alt=""><br><font color="red">bootstrapping</font>: a statistical tool that <font color="red">re-samples</font> from D to ‘simulat’ \(D_t\)拔靴法<br>从我手上的资料里面取N笔：每次抓一笔出来，记录下来，比如说这是第三笔，再放回去，再抓一笔出来，再记录一下，再放回去。。。因为又放回去的动作，所以同一笔资料可能会被抓出来多次，当然也有可能同一笔资料没有被选中过。<br><img src="http://i.imgur.com/2ZTaSNt.png" alt=""><br><img src="http://i.imgur.com/W1UpgEB.png" alt=""><br>bootstrap aggregation(BAGging): a simple meta algorithm on top of base algorithm A<br>一个实际的例子，用的是pocket算法，生出了25条灰色的线，每个pocket迭代1000次：<br><img src="http://i.imgur.com/O6C3cDj.png" alt=""><br>bagging works reasonably well <font color="orange">if base algorithm sensitive to data randomness</font></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/20/机器学习技法八/" rel="prev">机器学习技法八</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/18/机器学习技法六/" rel="next">机器学习技法六</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/19/机器学习技法七/"
+                   data-title="机器学习技法七" data-url="http://Wan-YunPeng.github.io/2016/01/19/机器学习技法七/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Blending_and_Bagging"><span class="nav-number">1.</span> <span class="nav-text">Blending and Bagging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation_of_Aggregation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation of Aggregation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Uniform_Blending"><span class="nav-number">1.2.</span> <span class="nav-text">Uniform Blending</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

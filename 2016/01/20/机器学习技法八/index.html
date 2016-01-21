@@ -1,0 +1,718 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Adaptive Boostingblending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  
+Motivation of Boosting先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法八">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/20/机器学习技法八/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Adaptive Boostingblending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  
+Motivation of Boosting先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否">
+<meta property="og:image" content="http://i.imgur.com/Weari9i.png">
+<meta property="og:image" content="http://i.imgur.com/dLO9qry.png">
+<meta property="og:image" content="http://i.imgur.com/t1b8ZDf.png">
+<meta property="og:image" content="http://i.imgur.com/JTUBOvk.png">
+<meta property="og:image" content="http://i.imgur.com/p2G6OWz.png">
+<meta property="og:image" content="http://i.imgur.com/4plRXAr.png">
+<meta property="og:image" content="http://i.imgur.com/X3jZoNG.png">
+<meta property="og:image" content="http://i.imgur.com/DZG41UP.png">
+<meta property="og:image" content="http://i.imgur.com/n6z4a7w.png">
+<meta property="og:image" content="http://i.imgur.com/Ps3wKrr.png">
+<meta property="og:image" content="http://i.imgur.com/NSXu33R.png">
+<meta property="og:image" content="http://i.imgur.com/nF6deZO.png">
+<meta property="og:image" content="http://i.imgur.com/0pewXfU.png">
+<meta property="og:image" content="http://i.imgur.com/93bDcd0.png">
+<meta property="og:image" content="http://i.imgur.com/X6a2FTw.png">
+<meta property="og:image" content="http://i.imgur.com/BtITojt.png">
+<meta property="og:image" content="http://i.imgur.com/BXxpgnq.png">
+<meta property="og:image" content="http://i.imgur.com/YrgOxJs.png">
+<meta property="og:image" content="http://i.imgur.com/7p5qFrN.png">
+<meta property="og:image" content="http://i.imgur.com/dxxegVF.png">
+<meta property="og:image" content="http://i.imgur.com/U1ANKDE.png">
+<meta property="og:image" content="http://i.imgur.com/9L5nlIF.png">
+<meta property="og:image" content="http://i.imgur.com/nagn6hL.png">
+<meta property="og:image" content="http://i.imgur.com/N9nxFX0.png">
+<meta property="og:image" content="http://i.imgur.com/vZWjhAd.png">
+<meta property="og:image" content="http://i.imgur.com/p96fjJ4.png">
+<meta property="og:image" content="http://i.imgur.com/7zo6Jgh.png">
+<meta property="og:image" content="http://i.imgur.com/dXgTNWO.png">
+<meta property="og:image" content="http://i.imgur.com/FMOgocz.png">
+<meta property="og:image" content="http://i.imgur.com/VJ1M94K.png">
+<meta property="og:image" content="http://i.imgur.com/1eWEFTm.png">
+<meta property="og:image" content="http://i.imgur.com/zOq2t0k.png">
+<meta property="og:image" content="http://i.imgur.com/kXg0XgR.png">
+<meta property="og:image" content="http://i.imgur.com/VlWi3mg.png">
+<meta property="og:updated_time" content="2016-01-20T10:56:51.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法八">
+<meta name="twitter:description" content="Adaptive Boostingblending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  
+Motivation of Boosting先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法八 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法八
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-20T14:08:20+08:00" content="2016-01-20">
+            2016-01-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/20/机器学习技法八/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/机器学习技法八/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Adaptive_Boosting">Adaptive Boosting</h2><p>blending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  </p>
+<h3 id="Motivation_of_Boosting">Motivation of Boosting</h3><p>先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否有一个苹果，先给你看10张是苹果的照片，再给你看10张不是苹果（香蕉、菠萝等等）的照片。对于我们机器学习来说，我们就要靠这20个例子来做到到底一张图上是不是苹果的二元分类。那怎么做呢？这个老师把这20张图片给同学看，前面10张是苹果，后面10张不是，这对应着监督式学习的方法。<br><img src="http://i.imgur.com/Weari9i.png" alt=""><br>michael认为苹果是圆形的。这个看起来是一个区分苹果的规则，michael在一些图片上表现得很好，但是在一些图片上就表现的不好，例如上图中蓝色标出的图片，所以只靠圆形这个规则可能会犯一些错。我们需要逐步的帮助这些学生做修正，在michael说苹果是圆形后，我们帮他标出圆形这条规则可能会犯错的地方（蓝色）。老师可能做的事情是：把那些做对的图片稍微拿远一点，然后把犯错的那些图片稍微放大一点。这样就让学生吧注意力放在了刚才放错的地方。<br><a id="more"></a><br><img src="http://i.imgur.com/dLO9qry.png" alt=""><br>另一个同学tina认为红色的可能是苹果，但是在草莓和青苹果上会犯错误，老师再把这些错误标出来。老师的职责就是在学生提出规则后告诉他哪些被分对，哪些被分错，不过从michael和tina我们找出了两条描述苹果的规则，老师再把刚才犯错误的放大一些，没犯错的缩小一些。<br><img src="http://i.imgur.com/t1b8ZDf.png" alt=""><br>老师说很多苹果是红色，也是圆形，但是靠着两点还是没办法完全区分出来。joey说苹果还有绿色的。再把绿色这条规则犯的错误标出来，但是这些错误现在都是比较小的错误了，因为那些不是joey集中在看的东西。那么他在这一轮犯的错误，我们在下一轮再修正就好。<br><img src="http://i.imgur.com/JTUBOvk.png" alt=""><br>jessica观察到苹果是有梗的。现在班上的学生就学到了很多关于苹果的描述，把这些规则组合起来就能很好的区分是否为苹果，比刚开始单一的圆形规则要好的多。<br><img src="http://i.imgur.com/p2G6OWz.png" alt=""><br>这就是本次课要讲的演算法，这些学生所代表的就是一些很简单的hypothesis（\(g_t\)）,比如上图中一些灰色的垂直线或水平线。整个班上有很多的学生，就是把这些线aggregate起来，得到上图中弯弯曲曲的那条黑线。老师就像是一个演算法，他让我们的学生（假设）的注意力集中在那些犯错的点上。  </p>
+<h3 id="Diversity_by_Re-weighting">Diversity by Re-weighting</h3><p>在介绍这个新的演算法前，从我们熟悉的bagging开始讲起，bagging的核心就是bootstrapping，我们从最初的资料D经过bootstrap后得到\(\tilde{D}_t\)，像下面的这个例子可能经过抽样后得到两笔x1的example，一笔x2和一笔x4的example。<br><img src="http://i.imgur.com/4plRXAr.png" alt=""><br>所以如果我把这个\(\tilde{D}_t\)丢去给一个base algorithm，让他帮我们得到小\(g_t\)的时候，他可能做得是想办法在这四个新的example上去最小化0/1 error，看看怎么样可以犯的错误最小<br><img src="http://i.imgur.com/X3jZoNG.png" alt=""><br>我们可以用另外一个简单表示方式，既然这两笔x1是一样的，我们干脆用u来记录各笔资料的数量，再这样的表示方式之下怎样得到和上面Ein对应的式子呢？在每一笔资料上算错误，在前面到底值多少，他要是一份，错了就扣一份，是两份，错了就扣两分。<br><img src="http://i.imgur.com/DZG41UP.png" alt=""><br>u上面的小t表示这是第几轮的\(u_n\).所以我们可以用另外一种方式来看待bagging做得事情，他其实是透过bootstrap的方式产生这些小u，然后用base algorithm来最小化加上权重的Ein。  </p>
+<blockquote>
+<p>each diverse \(g_t\) in bagging: by minimizing bootstrap-weighted error</p>
+</blockquote>
+<p><img src="http://i.imgur.com/n6z4a7w.png" alt=""><br>我们这个演算法要可以接受这些weight，这些weight可以是整数，就想刚才bagging那个例子，也可以用小数。但是我们以前没有学过这种weighted base algorithm，以前的base algorithm只是把Ein做到最小就好，现在加个小u，该怎么做？<br>这个小u表示的是份数，那么在SVM里面怎么表示一个error扣相应的\(u_n\)的分数，一个简单的做法就是在每个err前乘上一个\(u_n\):<br><img src="http://i.imgur.com/Ps3wKrr.png" alt=""><br>这两个例子表示把你的小u放进演算法一点也不难。</p>
+<blockquote>
+<p>example-weighted learning: extension of class-weighted learning in Lecture 8 of ML Foundations指纹辨识</p>
+</blockquote>
+<p>如果我们的base algorithm可以根据这些小u回传什么样的小g的话，那我要怎么样改变这些小u来得到不一样的小g？我们在aggregation里面提到过，越不一样的小g，对我们最后在做aggregation就越有利。<br><img src="http://i.imgur.com/NSXu33R.png" alt=""><br>如果小gt在我是用u-t的时候非常不好，那我在后面的那个步骤里面就不会在选到小gt了，或和小gt长得很像的hypothesis，我会选一个和小gt很不一样的\(g_{t+1}\)，我们得到\(g_{t+1}\)怎样和gt不一样的方法：让小gt在下一轮的weight里面表现很差。什么意思？想象我们做二元分类，表现很差是什么意思，就是我看小gt的error的话，他应该要跟丢铜板没有两样，也就是说我如果在新的\(u^{t+1}\)上看他的error的话，它的error的期望会是1/2：<br><img src="http://i.imgur.com/nF6deZO.png" alt=""><br>接下来要做的事情就是构造一个\(u^{t+1}\)使得上式可以成立。<br><img src="http://i.imgur.com/0pewXfU.png" alt=""><br>我要把小gt犯的错误，通过\(u_n^{t+1}\)去加权，加权完后还要去坐一下正规化，得到1/2.我们需要把所有犯错的小u和没有犯错的小u调到一样。<br><img src="http://i.imgur.com/93bDcd0.png" alt=""><br>怎么做？假设犯错的是1126，对的是6211，这两个数字本来不相等，我们希望\(u_n^{t+1}\)的时候要相等，可以怎么做，这边使用一个像刚才图片放大缩小的方式，也就是乘上某个数或除下某个数，最简单的就是左边全部乘上6211，右边的全部乘上1126.这是一个简单的做法。或者我们用一个犯错的比例来看的话，就是把做错的乘上最对的比例，作对的乘上错误的比例：<br><img src="http://i.imgur.com/X6a2FTw.png" alt="">  </p>
+<h3 id="Adaptive_Boosting_Algorithm">Adaptive Boosting Algorithm</h3><p>从optimal re-weighting的概念可以定义一个新的变数：<br><img src="http://i.imgur.com/BtITojt.png" alt=""><br>新的变数是方块t——\(\sqrt{\frac{1-\epsilon_t }{\epsilon_t }}\),这样就可以把上面的放缩式子很简单的写成如果是错误的，我就把它乘上方块t，如果是对的，我就除以方块t，使用这个方块t和之前使用\(\epsilon_t\)的效果是一样的，这个方块t告诉我们更多的物理意义：如果你的\(\epsilon_t\)比1/2来的小，那么方块t就会大于等于1.通常一定比1/2来的小，因为1/2是丢铜板乱猜的，所以你今天有一个base algorithm在那边学，应该要学的比乱猜要好才对。比乱猜还好的话，你的方块t就会比1/2大，这个错误的就真的被放大了，正确的被放小了。正像是那个老师放缩图片一样。<br><img src="http://i.imgur.com/BXxpgnq.png" alt=""><br>从这个概念出发，我们得到一个初步的演算法的长相，就是从bagging出发，延伸到我们每一轮得到这个小g，是透过改变u来的，这个u就是我们example上的权重，这个小u的更新方式是错误的乘上方块t，对的除以方块t。经过这么多轮之后，我们得到很多小g，再想办法把他合成G。<br>我们现在已经解决了一些问题，还有一些问题没有解决。比如一开始的u要是多少？一个合理的u是1/N。最后的G如何得到？<br><img src="http://i.imgur.com/YrgOxJs.png" alt=""><br>用uniform？有可能g1对我的Ein很小，而g2的Ein很大，因为我们说过每个g会很不一样（optimal re-weightingt），那g2就对Ein很差，但是给他们分配的权重都是一样的，这样对结果可能不是很好。<br>接下来，介绍怎样在我的演算法的过程中把这些小g合理的线性组合起来（确定\(\alpha\)的值）。<br>那么我们演算法的新流程就是这样：<br><img src="http://i.imgur.com/7p5qFrN.png" alt=""><br>现在的问题是\(\alpha\)是什么，怎么求，如果是好的小g，我们给他的权重要多一下，坏的小g给他权重少一点。怎么样决定是好的还是坏的，一个简单的概念是好的小g它的\(\epsilon\)会很小（Ein小），也就是他的方块t会很大。所以也就是好的权重大一些，对应着就是方块t大的权重多一些。\(\alpha\)和方块t应该是一个正比的关系。设计这个演算法的人采用自然对数的方式：<br><img src="http://i.imgur.com/dxxegVF.png" alt=""><br>例如我们今天有一个小g，它的\(\epsilon\)是1/2，表示他是乱猜的，它的方块t是1，对应的\(\alpha\)是0，意思就是要是这个g就和丢铜板一样烂的话，那你干脆不要出现在我最后的G里，如果你的\(\epsilon\)是0的话，你的方块t是无限大。所以这个\(\alpha\)有些物理上的意义。<br>这是我们介绍的adaptive boosting：<br><img src="http://i.imgur.com/U1ANKDE.png" alt=""><br>完整的演算法：<br><img src="http://i.imgur.com/9L5nlIF.png" alt=""><br>刚开始每个点的权重一样，都为1/N，然后得到一个小g（从下面这个演算法A来），然后把错误的点的权重乘以方块t，错误的点的权重除以方块t，根据方块t来决定这个小g的权重\(\alpha\)，最后再把求出来的这些g和\(\alpha\)合起来成为一个linear aggregation。<br>一般也就做AdaBoost。中文也叫皮匠法——三个臭皮匠顶过一个诸葛亮。<br>看看他理论上的特性。VC维来分析：<br><img src="http://i.imgur.com/nagn6hL.png" alt=""><br>\(d_{VC}(g)\)是为了所有小g要付出的代价，我们是要把T个小g合起来，所以可以证明是原来的代价乘上\(T\logT\)这么多。其他的部分都是标准的VC bound告诉我们的事情。对于这个演算法，原来的作者证明了他有一个很好的性质就是我们可以在相对很短的时间把第一项Ein做得很小，他们得到的结果是我们只要花大概\(\log N\)多轮就可以把Ein做到0，只要我们的g的\(\epsilon_t\)比1/2，比乱猜来的小就行。那么我就也可以把第二项做得很小，因为第二项里我只需要\(\log N\)，最后最后等到我的资料量N够大的时候，右边蓝色的那一项也可以很小<br><img src="http://i.imgur.com/N9nxFX0.png" alt=""><br>如果我的演算法A弱弱的，我对他的要求只有一点点，就是比乱猜好一点点，只要他比乱猜好一点点，我就可以通过这个演算法把他逐步变强，强到他的Ein是0，而且它的Eout也可以很小。这样的性质我们叫做boosting，AdaBoost是逐步做到这样的过程。</p>
+<h3 id="Adaptive_Boosting_in_Action">Adaptive Boosting in Action</h3><p><img src="http://i.imgur.com/vZWjhAd.png" alt=""><br>刚才讲到我们AdaBoost的需要只要搭配一个弱弱的演算法就好，这个弱弱的演算法需要在我的weighted-error上面比乱猜好，什么样的演算法做得到这样的事情？之前就讲过：<br><img src="http://i.imgur.com/p96fjJ4.png" alt=""><br>在某个维度上好像只在那个维度上的perceptron一样。下面看一个例子：<br><img src="http://i.imgur.com/7zo6Jgh.png" alt=""><br><img src="http://i.imgur.com/dXgTNWO.png" alt=""><br><img src="http://i.imgur.com/FMOgocz.png" alt=""><br><img src="http://i.imgur.com/VJ1M94K.png" alt=""><br><img src="http://i.imgur.com/1eWEFTm.png" alt=""><br><img src="http://i.imgur.com/zOq2t0k.png" alt=""><br>只要5刀，就可以把这些圈圈叉叉全部分开。复杂点的资料：<br><img src="http://i.imgur.com/kXg0XgR.png" alt=""><br>AdaBoost-Stump在实物上最好的应用是人脸辨识：<br><img src="http://i.imgur.com/VlWi3mg.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/21/机器学习技法九/" rel="prev">机器学习技法九</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/19/机器学习技法七/" rel="next">机器学习技法七</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/20/机器学习技法八/"
+                   data-title="机器学习技法八" data-url="http://Wan-YunPeng.github.io/2016/01/20/机器学习技法八/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptive_Boosting"><span class="nav-number">1.</span> <span class="nav-text">Adaptive Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation_of_Boosting"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation of Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diversity_by_Re-weighting"><span class="nav-number">1.2.</span> <span class="nav-text">Diversity by Re-weighting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adaptive_Boosting_Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">Adaptive Boosting Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adaptive_Boosting_in_Action"><span class="nav-number">1.4.</span> <span class="nav-text">Adaptive Boosting in Action</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
