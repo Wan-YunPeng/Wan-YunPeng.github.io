@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/21/机器学习技法九/" itemprop="url">
-                机器学习技法九
+              <a class="post-title-link" href="/2016/01/26/机器学习技法十四/" itemprop="url">
+                机器学习技法十四
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-21T11:24:02+08:00" content="2016-01-21">
-            2016-01-21
+          <time itemprop="dateCreated" datetime="2016-01-26T15:24:41+08:00" content="2016-01-26">
+            2016-01-26
           </time>
         </span>
 
@@ -203,8 +203,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/21/机器学习技法九/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/机器学习技法九/" itemprop="commentsCount"></span>
+              <a href="/2016/01/26/机器学习技法十四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/26/机器学习技法十四/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,13 +219,10 @@
 
       
         
-          <h2 id="Decision_Tree">Decision Tree</h2><p>Optimal re-weighting for diverse hypotheses and adaptive linear aggregation to boost ‘weak’ algorithms  </p>
-<h3 id="Decision_Tree_Hypothesis">Decision Tree Hypothesis</h3><p><img src="http://i.imgur.com/Pmz2dSI.png" alt=""><br>aggregation model我们到底进行到哪里，aggregation model就是我们将一些小g合起来变成一个胖胖的G，这样的做法有两个主要的面向，一个叫做blending，是我们已经有小g，可能是别人给的，也有可能是我们透过一些其他的方法得到的，那我们要怎么样把他们合起来呢？同等权重、不同权重：把这些小g当成是特征的转换，转换后再丢去一个linear model、conditional：同样把小g当作特征的转换，但是第二层的时候可能会用一个non-linear的模型，把这个叫做stacking。另外一个面向是如果我们原来并不知道有哪些小g，所以我们想要边学这些小g边合起来，我们讲了两种方式，如果你要使用uniform，那么这些小g需要时同等地位，做到这件事情的方法之一就是bagging，先做bootstrap，把我们的资料变成一些不同的副本，得到不同的小g，然后再让他们uniform的投票；另外，如果你想做linear的aggregation的话，那可以使用AdaBoost方法，得到不同的小g，给他们不同的权重，今天的主题Decision Tree就是做conditional aggregattion，在不同的情况下，我用不同的小g，那我要怎么一边学到小g，一边学到这些condition，然后把他们合起来。Decision Tree就是这样一个模型。  </p>
-<blockquote>
-<p><font color=blue>decision tree</font>: a traditional learning model that realizes conditional aggregation</p>
-</blockquote>
+          <h2 id="Radial_Basis_Function_Network">Radial Basis Function Network</h2><p>pre-training with denoising autoencoder(non-linear PCA) and fine-tuning with backprop for NNet with many layers</p>
+<h3 id="RBF_Network_Hypothesis">RBF Network Hypothesis</h3><p>从一个之前讲过的模型Gaussian SVM讲起，在SVM里，如果我配上Gaussian kernel他就可以在一个无限多维的转换空间里面想办法找一个胖胖的边界<br><img src="http://i.imgur.com/RpcGuWX.png" alt=""><br>那如果从我们得到的结果来说，也可以认为Gaussian SVM做的事情其实就是拿一堆gaussian来，然后把他们做线性组合，这些gaussian的中心在我们资料的support vector上面，把他们做线性组合之后，来作出最后的决定。我们顺着这个思路，来讲讲我们本次要学的RBF kernel是什么样子。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/21/机器学习技法九/#more" rel="contents">
+            <a class="btn" href="/2016/01/26/机器学习技法十四/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -258,8 +255,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/20/机器学习技法八/" itemprop="url">
-                机器学习技法八
+              <a class="post-title-link" href="/2016/01/25/机器学习技法十三/" itemprop="url">
+                机器学习技法十三
               </a>
             
           
@@ -269,8 +266,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-20T14:08:20+08:00" content="2016-01-20">
-            2016-01-20
+          <time itemprop="dateCreated" datetime="2016-01-25T13:56:58+08:00" content="2016-01-25">
+            2016-01-25
           </time>
         </span>
 
@@ -295,8 +292,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/20/机器学习技法八/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/机器学习技法八/" itemprop="commentsCount"></span>
+              <a href="/2016/01/25/机器学习技法十三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/25/机器学习技法十三/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -311,10 +308,10 @@
 
       
         
-          <h2 id="Adaptive_Boosting">Adaptive Boosting</h2><p>blending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  </p>
-<h3 id="Motivation_of_Boosting">Motivation of Boosting</h3><p>先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否有一个苹果，先给你看10张是苹果的照片，再给你看10张不是苹果（香蕉、菠萝等等）的照片。对于我们机器学习来说，我们就要靠这20个例子来做到到底一张图上是不是苹果的二元分类。那怎么做呢？这个老师把这20张图片给同学看，前面10张是苹果，后面10张不是，这对应着监督式学习的方法。<br><img src="http://i.imgur.com/Weari9i.png" alt=""><br>michael认为苹果是圆形的。这个看起来是一个区分苹果的规则，michael在一些图片上表现得很好，但是在一些图片上就表现的不好，例如上图中蓝色标出的图片，所以只靠圆形这个规则可能会犯一些错。我们需要逐步的帮助这些学生做修正，在michael说苹果是圆形后，我们帮他标出圆形这条规则可能会犯错的地方（蓝色）。老师可能做的事情是：把那些做对的图片稍微拿远一点，然后把犯错的那些图片稍微放大一点。这样就让学生吧注意力放在了刚才放错的地方。<br>
+          <h2 id="Deep_Learning">Deep Learning</h2><p>automatic pattern feature extraction from layers of neurons with backprop for GD/SGD</p>
+<h3 id="Deep_Neural_Network">Deep Neural Network</h3><p><img src="http://i.imgur.com/tlaPgoE.png" alt=""><br>整个类神经网络的核心就是这些一层一层的神经元，还有他们的链接关系，那我们要用多少个神经元呢？或者用多少层呢？我们整过网络的结构到底是什么样子？结构指的是例如哪个神经元放哪里，又或者可不可以跨层连接等。这是一个非常困难的问题，如果今天你心中有一个特别的结构，想去看看他能不能实现，又或者我把这些结构当成是个参数的话，之前讲的有关模型选择，有关参数选择的validation方法，你统统都可以用的上。<br>structural decisions : <font color=orange>key issue</font> for applying NNet<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/20/机器学习技法八/#more" rel="contents">
+            <a class="btn" href="/2016/01/25/机器学习技法十三/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -347,8 +344,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/19/机器学习技法七/" itemprop="url">
-                机器学习技法七
+              <a class="post-title-link" href="/2016/01/25/AC自动机/" itemprop="url">
+                AC自动机
               </a>
             
           
@@ -358,8 +355,76 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-19T10:04:46+08:00" content="2016-01-19">
-            2016-01-19
+          <time itemprop="dateCreated" datetime="2016-01-25T11:04:43+08:00" content="2016-01-25">
+            2016-01-25
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/25/AC自动机/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/25/AC自动机/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/24/机器学习技法十二/" itemprop="url">
+                机器学习技法十二
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-24T12:32:32+08:00" content="2016-01-24">
+            2016-01-24
           </time>
         </span>
 
@@ -384,8 +449,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/19/机器学习技法七/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/机器学习技法七/" itemprop="commentsCount"></span>
+              <a href="/2016/01/24/机器学习技法十二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/24/机器学习技法十二/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -400,12 +465,9 @@
 
       
         
-          <h2 id="Blending_and_Bagging">Blending and Bagging</h2><font color=orange>kernel ridge regression</font>(dense) via ridge regression + <font color=orange>representer theorem</font>;<font color=orange>support vector regression</font>(sparse) via regularized <font color=orange>tube</font> error + <font color=orange>Lagrange dual</font>  
-
-<h3 id="Motivation_of_Aggregation">Motivation of Aggregation</h3><p>假设你有T个朋友\(g_1,g_2,…,g_T\)（如15个），每个朋友告诉你明天的股票会涨还是会跌，那你听了这15个朋友的意见后会怎么办？<br><img src="http://i.imgur.com/jRnMZ6t.png" alt=""><br>这是一些简单的可以想到的把15个人的意见融合起来的方式，当然还有其他的选择，这种情形对应到机器学习就是aggregation。  </p>
-<font color=red>aggregation</font> modles: <strong>mix or combine</strong> hypotheses (for better performance)<br>
+          <h2 id="Nueral_Network">Nueral Network</h2><h3 id="Motivation">Motivation</h3><p>从我们之前学过的perceptron出发，perceptron这样的模型就是你把你的输入乘上一堆的权重之后，算出一个分数，就这个分数而言，一般取大于0为+1，小于0为-1，如果今天我们把一堆perceptron用linear aggregation的方式组合起来，图示如下：<br><img src="http://i.imgur.com/35CIcyr.png" alt=""><br>从我们的输入出发，例如乘上第一组的权重w1，然后去取正负一的话，等于是我们做了一个g1这样的perceptron；我们可能把他乘上第二组权重w2，得到g2这样的perceptron…得到一堆的perceptron之后，各个perceptron有自己的票数\(\alpha\),我们把他组合起来，最后得到G。数学式如右边所示。我们看到是怎么样从我们的输入得到我们的G，在这个过程里有两组权重w和\(\alpha\)，此外，有两个地方取了sign，分布式小g和G。g所在的圆圈一般叫做node，这里是取正负号之后输出去。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/19/机器学习技法七/#more" rel="contents">
+            <a class="btn" href="/2016/01/24/机器学习技法十二/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -438,8 +500,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/18/机器学习技法六/" itemprop="url">
-                机器学习技法六
+              <a class="post-title-link" href="/2016/01/23/机器学习技法十一/" itemprop="url">
+                机器学习技法十一
               </a>
             
           
@@ -449,8 +511,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-18T10:28:54+08:00" content="2016-01-18">
-            2016-01-18
+          <time itemprop="dateCreated" datetime="2016-01-23T12:15:18+08:00" content="2016-01-23">
+            2016-01-23
           </time>
         </span>
 
@@ -475,8 +537,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/18/机器学习技法六/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/18/机器学习技法六/" itemprop="commentsCount"></span>
+              <a href="/2016/01/23/机器学习技法十一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/23/机器学习技法十一/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -491,99 +553,10 @@
 
       
         
-          <h2 id="Support_Vector_Regression">Support Vector Regression</h2><p><font color=orange>two-level</font> learning for <font color=orange>SVM-like sparse model</font> for soft classification, or using <font color=orange>representer theorem</font> with <font color=orange>regularized logistic error</font> of dense model</p>
-<h3 id="Kernel_Ridge_Regression">Kernel Ridge Regression</h3><p><img src="http://i.imgur.com/G0PxyP7.png" alt=""><br>上次讲到representer theorem，说什么时候我的w可以表示成一堆z向量的线性组合呢，如果你要处理的是一个有regularized的linear model，我们原来是linear model，加上一个L2 regularization后，可以得出你最后最好的那个w是一堆z的线性组合。这是我们上次得到的结果。<br>
+          <h2 id="Gradient_Boosted_Decision_Tree">Gradient Boosted Decision Tree</h2><p>bagging of randomized C&amp;RT trees with automatic validation and feature selection</p>
+<h3 id="Adaptive_Boosted_Decision_Tree">Adaptive Boosted Decision Tree</h3><p>回顾一下上次讲的Random Forest：<br><img src="http://i.imgur.com/boEzXqD.png" alt=""><br>外层是个bagging，内层是个Decision tree，那如果我们今天要把decision tree套到不是和RF在一起，而是和adaboost在一起，那会怎么样呢？adaboost每一轮的时候他会给我们的资料一群新的权重，利用这个权重，我们可以学一个新的小g，如果用decision tree的话，就是用decision tree学出一个小g来，最后得到每个小g的权重后把他们用linear的方式合起来：<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/18/机器学习技法六/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/17/机器学习技法五/" itemprop="url">
-                机器学习技法五
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-17T14:24:48+08:00" content="2016-01-17">
-            2016-01-17
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/17/机器学习技法五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/17/机器学习技法五/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="Kernel_Logistic_Regression">Kernel Logistic Regression</h2><p>allow some <font color=orange>margin violation \(\xi_n\)</font> while penalizing them by C;equivalent to <font color=orange>upper-bounding \(\alpha_n\)</font> by C<br>使用kernel这个技巧在logistic regression上会有什么样的效果。</p>
-<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/17/机器学习技法五/#more" rel="contents">
+            <a class="btn" href="/2016/01/23/机器学习技法十一/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -609,7 +582,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
  </div>
@@ -643,7 +616,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

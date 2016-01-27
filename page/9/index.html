@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/10/22/常量表达式constexpr/" itemprop="url">
-                常量表达式constexpr
+              <a class="post-title-link" href="/2015/11/18/static/" itemprop="url">
+                类static成员变量
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-22T10:38:55+08:00" content="2015-10-22">
-            2015-10-22
+          <time itemprop="dateCreated" datetime="2015-11-18T19:42:49+08:00" content="2015-11-18">
+            2015-11-18
           </time>
         </span>
 
@@ -188,8 +188,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/22/常量表达式constexpr/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/22/常量表达式constexpr/" itemprop="commentsCount"></span>
+              <a href="/2015/11/18/static/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/18/static/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -204,11 +204,17 @@
 
       
         
-          <h3 id="const常量用作数组大小的两种情况">const常量用作数组大小的两种情况</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size(); <span class="comment">// s.size()的大小在编译时不能确定</span></span><br><span class="line"><span class="keyword">int</span> a[n]; <span class="comment">// 错误,const int n 表达式必须含有常量值 </span></span><br><span class="line"><span class="keyword">int</span> *a = <span class="keyword">new</span> <span class="keyword">int</span>[n]; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> m = <span class="number">10</span>; <span class="comment">// n的大小在编译时可以确定</span></span><br><span class="line"><span class="keyword">int</span> a[m]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
-<p>想动态分配二维数组:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"test"</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = s.size();</span><br><span class="line"><span class="keyword">int</span> **a = <span class="keyword">new</span> <span class="keyword">int</span>*[n];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[n * n]; <span class="comment">// 一次性确定所需空间,此处连续</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">1</span>; i &lt; n; ++i)</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br></pre></td></tr></table></figure>
+          <ol>
+<li>类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致了它仅能访问类的静态数据和静态成员函数。  </li>
+<li>不能将静态成员函数定义为虚函数。  </li>
+<li>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。  </li>
+<li>由于静态成员函数没有this指针，所以就差不多等同于non-member函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</li>
+<li>static并没有增加程序的时空开销，相反它还缩短了子类对父类静态成员的访问时间，节省了子类的内存空间。</li>
+<li>静态数据成员在&lt;定义或说明&gt;时前面加关键字static。</li>
+<li>静态数据成员是静态存储的，所以必须对它进行<strong>初始化</strong>。</li>
+<li>静态成员初始化与一般数据成员初始化不同:<br>&emsp;&emsp;初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；<br>&emsp;&emsp;初始化时不加该成员的访问权限控制符private，public等；<br>&emsp;&emsp;初始化时使用作用域运算符来标明它所属类；<br>&emsp;&emsp;所以我们得出静态数据成员初始化的格式：<br>&emsp;&emsp;&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/22/常量表达式constexpr/#more" rel="contents">
+            <a class="btn" href="/2015/11/18/static/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -241,8 +247,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/10/17/hello-world/" itemprop="url">
-                Hello World
+              <a class="post-title-link" href="/2015/11/04/const/" itemprop="url">
+                const总结
               </a>
             
           
@@ -252,8 +258,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-17T12:37:54+08:00" content="2015-10-17">
-            2015-10-17
+          <time itemprop="dateCreated" datetime="2015-11-04T15:22:34+08:00" content="2015-11-04">
+            2015-11-04
           </time>
         </span>
 
@@ -263,8 +269,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/17/hello-world/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/hello-world/" itemprop="commentsCount"></span>
+              <a href="/2015/11/04/const/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/04/const/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -279,16 +285,252 @@
 
       
         
-          <p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ ddd</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+          <span itemprop="articleBody"><ol>
+<li>成员函数可以声明成const函数(声明后加const)</li>
+<li>对于const对象，只能调用const成员函数</li>
+<li>Const函数和非const函数可以形成重载</li>
+<li>对于非const对象的函数调用优先选择非const成员函数</li>
+<li>对于类中的mutable数据成员，可以被const成员函数修改</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> A</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> val;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	A(<span class="keyword">int</span> x) :val(x)&#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x)</span> <span class="keyword">const</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"aa"</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> val * x;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> x)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"bb"</span> &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> val * x;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function">A <span class="keyword">const</span> <span class="title">a</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a(<span class="number">2</span>) &lt;&lt; endl; <span class="comment">// 调用const函数，输出“aa”</span></span><br><span class="line">	<span class="function">A <span class="title">b</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; b(<span class="number">2</span>) &lt;&lt; endl; <span class="comment">// 调用非const函数，输出“bb”</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/27/dp/" itemprop="url">
+                什么是动态规划？动态规划的意义
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-27T13:01:43+08:00" content="2015-10-27">
+            2015-10-27
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/27/dp/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/27/dp/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>关键字：状态 状态迁移</p>
+<h3 id="动态规划中递推式的求解方法不是动态规划的本质">动态规划中递推式的求解方法不是动态规划的本质</h3><h4 id="0-动态规划的本质">0.动态规划的本质</h4><p>是对问题<strong>状态的定义</strong>和<strong>状态转移</strong>方程的定义。<br>引自维基百科  </p>
+<blockquote>
+<p>dynamic programming is a method for solving a complex problem by breaking it down into a collection of simpler subproblems.  </p>
+</blockquote>
+<p>动态规划是通过拆分问题，定义问题状态和状态之间的关系，使得问题能够以递推（或者说分治）的方式去解决。
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/17/hello-world/#more" rel="contents">
+            <a class="btn" href="/2015/10/27/dp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/26/fibonacci/" itemprop="url">
+                fibonacci数列及其应用
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-26T09:24:17+08:00" content="2015-10-26">
+            2015-10-26
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/26/fibonacci/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/26/fibonacci/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="一、起源和定义">一、起源和定义</h3><p>斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：  </p>
+<blockquote>
+<p>有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？  </p>
+</blockquote>
+<p>而最早研究这个数列的当然就是<a href="http://baike.baidu.com/view/112871.htm">斐波那契</a>(Leonardo Fibonacci)了，他当时是为了描述如下情况的兔子生长数目：  </p>
+<blockquote>
+<p>-第一个月有一对刚诞生的兔子<br>-第二个月之后（第三个月初）它们可以生育<br>-每月每对可生育的兔子会诞生下一对新兔子<br>-兔子永不死去</p>
+</blockquote>
+<p><img src="http://i.imgur.com/5nR3KFi.png" alt=""><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/26/fibonacci/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/10/24/lambda-and-function/" itemprop="url">
+                lambda函数和std::function
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-24T13:38:41+08:00" content="2015-10-24">
+            2015-10-24
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/24/lambda-and-function/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/24/lambda-and-function/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="lambda函数">lambda函数</h2><h3 id="基本的lambda函数">基本的lambda函数</h3><p>在标准 C++，特别是当使用 C++ 标准程序库算法函数诸如 sort 和 find，用户经常希望能够在算法函数调用的附近定义一个临时的述部函数(又称谓词函数，predicate function)。由于语言本身允许在函数内部定义类型，可以考虑使用函数对象，然而这通常既麻烦又冗赘，也阻碍了代码的流程。此外，标准 C++ 不允许定义于函数内部的类型被用于模板，所以前述的作法是不可行的。<br> C++11 对 lambda 的支持可以解决上述问题。  </p>
+<p>一个 lambda 函数可以用如下的方式定义:  </p>
+<blockquote>
+<p>[](int x, int y) { return x + y; }  </p>
+</blockquote>
+<p>这个不具名函数的回返类型是 decltype(x+y)。只有在 lambda 函数符合”return expression”的形式下，它的回返类型才能被忽略。在前述的情况下，lambda 函数仅能为一个述句。<br>在一个更为复杂的例子中，回返类型可以被明确的指定如下：</p>
+<blockquote>
+<p>[](int x, int y) -&gt; int { int z = x + y; return z + x; }</p>
+</blockquote>
+<p>本例中，一个临时的参数 z 被创建用来存储中间结果。如同一般的函数，z 的值不会保留到下一次该不具名函数再次被调用时。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/10/24/lambda-and-function/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -314,7 +556,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">&raquo;</a>
   </nav>
 
  </div>
@@ -348,7 +590,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

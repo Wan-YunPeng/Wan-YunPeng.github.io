@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Random Forestrecursive branching(purification) for conditional aggregation of constant hypotheses
+Random Forest Algorithm看看我们最近学的两个机器学习的模型：bagging透过bootstrap得到不一样的资料，送给base algorithm得到小g，再由这些小g来投票。Dec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法十">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/22/机器学习技法十/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Random Forestrecursive branching(purification) for conditional aggregation of constant hypotheses
+Random Forest Algorithm看看我们最近学的两个机器学习的模型：bagging透过bootstrap得到不一样的资料，送给base algorithm得到小g，再由这些小g来投票。Dec">
+<meta property="og:image" content="http://i.imgur.com/GJIL2Kn.png">
+<meta property="og:image" content="http://i.imgur.com/M0SzJHM.png">
+<meta property="og:image" content="http://i.imgur.com/lJxMh5k.png">
+<meta property="og:image" content="http://i.imgur.com/c3DoYRF.png">
+<meta property="og:image" content="http://i.imgur.com/Cw1G7Ms.png">
+<meta property="og:image" content="http://i.imgur.com/n68dOeE.png">
+<meta property="og:image" content="http://i.imgur.com/emMCCER.png">
+<meta property="og:image" content="http://i.imgur.com/bkwUA8r.png">
+<meta property="og:image" content="http://i.imgur.com/pdM8GGK.png">
+<meta property="og:image" content="http://i.imgur.com/tGuPGz6.png">
+<meta property="og:image" content="http://i.imgur.com/lU3GiRR.png">
+<meta property="og:image" content="http://i.imgur.com/lb5rGBs.png">
+<meta property="og:image" content="http://i.imgur.com/yc80QS3.png">
+<meta property="og:image" content="http://i.imgur.com/7B2Yv7l.png">
+<meta property="og:image" content="http://i.imgur.com/HAgYBlw.png">
+<meta property="og:image" content="http://i.imgur.com/hl4leeo.png">
+<meta property="og:image" content="http://i.imgur.com/4PnpxqB.png">
+<meta property="og:image" content="http://i.imgur.com/g0U7LCc.png">
+<meta property="og:image" content="http://i.imgur.com/eDIy2X9.png">
+<meta property="og:image" content="http://i.imgur.com/rop9qwd.png">
+<meta property="og:image" content="http://i.imgur.com/0UUYXMf.png">
+<meta property="og:image" content="http://i.imgur.com/lyPmLCL.png">
+<meta property="og:image" content="http://i.imgur.com/e2trfBs.png">
+<meta property="og:image" content="http://i.imgur.com/An05t4v.png">
+<meta property="og:image" content="http://i.imgur.com/VhCdzph.png">
+<meta property="og:image" content="http://i.imgur.com/NVFIhS9.png">
+<meta property="og:image" content="http://i.imgur.com/A1x7oRB.png">
+<meta property="og:image" content="http://i.imgur.com/t7TqU0P.png">
+<meta property="og:image" content="http://i.imgur.com/ZQTLHu5.png">
+<meta property="og:image" content="http://i.imgur.com/CVi2Mxs.png">
+<meta property="og:image" content="http://i.imgur.com/hoJ0Q8a.png">
+<meta property="og:image" content="http://i.imgur.com/GWle4gb.png">
+<meta property="og:image" content="http://i.imgur.com/ArmLduZ.png">
+<meta property="og:image" content="http://i.imgur.com/L52OB2J.png">
+<meta property="og:image" content="http://i.imgur.com/DVmRdIt.png">
+<meta property="og:image" content="http://i.imgur.com/3TIl6BR.png">
+<meta property="og:image" content="http://i.imgur.com/TWfjmMB.png">
+<meta property="og:image" content="http://i.imgur.com/vS6DHey.png">
+<meta property="og:image" content="http://i.imgur.com/DnehgGA.png">
+<meta property="og:image" content="http://i.imgur.com/LmTfoTv.png">
+<meta property="og:image" content="http://i.imgur.com/vfx1yac.png">
+<meta property="og:image" content="http://i.imgur.com/RqOEjj7.png">
+<meta property="og:image" content="http://i.imgur.com/yNTVVZp.png">
+<meta property="og:image" content="http://i.imgur.com/vTVD2lP.png">
+<meta property="og:image" content="http://i.imgur.com/zDwaDe4.png">
+<meta property="og:image" content="http://i.imgur.com/DmSNP10.png">
+<meta property="og:image" content="http://i.imgur.com/WdLkSet.png">
+<meta property="og:updated_time" content="2016-01-22T09:21:57.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法十">
+<meta name="twitter:description" content="Random Forestrecursive branching(purification) for conditional aggregation of constant hypotheses
+Random Forest Algorithm看看我们最近学的两个机器学习的模型：bagging透过bootstrap得到不一样的资料，送给base algorithm得到小g，再由这些小g来投票。Dec">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法十 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法十
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-22T10:28:25+08:00" content="2016-01-22">
+            2016-01-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/22/机器学习技法十/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/机器学习技法十/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Random_Forest">Random Forest</h2><p><strong>recursive branching(purification)</strong> for <strong>conditional aggregation</strong> of <strong>constant hypotheses</strong></p>
+<h3 id="Random_Forest_Algorithm">Random Forest Algorithm</h3><p>看看我们最近学的两个机器学习的模型：<br><img src="http://i.imgur.com/GJIL2Kn.png" alt=""><br>bagging透过bootstrap得到不一样的资料，送给base algorithm得到小g，再由这些小g来投票。Decision tree是拿到资料后递归的建立一颗树，和分支的条件结合起来。bagging的特点是：如果你下面的演算法相对来说没有那么稳定，就是所谓的variance很大，变化很大的话，透过bagging，因为他让这些小g来投票或是平均，会达到把variance降低的效果；decision tree做了一些切割，如果你的资料有一点点变化，能够下刀的地方就会不一样，切下去之后资料又变小了，所以他对于不同的资料相对会比较敏感一些，也就是他的variance很大，你的资料稍微变一点点，你得到的树可能就会差很多。如果把两者结合起来是不是能够平衡一下variance？<br>aggregation of aggregation<br><a id="more"></a></p>
+<p><font color="red">random forest(RF)</font> = bagging + fully-grown C&amp;RT decision tree<br>它的演算法是这样：<br><img src="http://i.imgur.com/M0SzJHM.png" alt=""><br>每一轮想办法用bootstrapping得到不同的资料，再由这些资料得到一个decision tree，最后由所有的decision tree公平的投票（权重相等）得到G。<br>可以看出在bagging的过程，我们几乎可以拆到每一台机器上去做，所以每一次是独立的学一棵树，decision tree的学习本身就是很有效率，所以整个过程都是很有效的；再来，在C&amp;RT里有很多的好处，例如他可以处理multi-class的资料、missing feature、categorical-feature等，这些好处都被random forest继承下来；最后，原来C&amp;RT的坏处是对资料太敏感了，完全长成的树会很容易overfit等，但是这些缺点会因为bagging的原因得到改进。这些特点合起来让random forest变成一个非常有用的东西。  </p>
+<blockquote>
+<p>highly parallel/efficient to learn<br>inherit pros of C&amp;RT<br>eliminate cons of fully-grown tree  </p>
+</blockquote>
+<p>这是基本的RF，我们再来看看怎么样可以让RF做得不一样。<br><img src="http://i.imgur.com/lJxMh5k.png" alt=""><br>在bagging里面怎么得到不同的小g——是通过bootstrap在我原来的资料里面随机抽样。大家记得在我们的bagging这类的演算法或者uniform aggregation里面，一切的关键就是我们想要得到不同的小g，除了随机抽取不同的资料外，还有什么方法我们可以得到不同的小g呢？<br><img src="http://i.imgur.com/c3DoYRF.png" alt=""><br>除了在资料端做抽取外，我们还可以在特征端做抽取，例如原来有100个特征，我只随机从中抽取10个来做我的树，这样的话我也可以得到很不一样的树。<br><img src="http://i.imgur.com/Cw1G7Ms.png" alt=""><br>比较技术上来说，我们做的事情其实是：  </p>
+<ol>
+<li>从原来的100个维度随机抽取10个来做分类的动作，随机抽取这10个维度等于我们做了一个新的特征转换，这个特征转换只包含了原来特征里面的若干个维度，等于是一个低纬度的投影的动作。  </li>
+<li>也就是我们最后考虑的Z空间其实是原来那个X空间的一个随机的subspace  </li>
+<li>通常会考虑\(d^’\)比d小很多，这样的话会更有效率，这样的技巧也可以套用在其他模型上  </li>
+<li>原来的作者建议你每次做breach，分支的时候，都可以对他做一次random sampling，来选择不一样的\(d^’\)的特征</li>
+</ol>
+<p>这是RF的一个延伸： RF = bagging + random-subspace C&amp;RT<br>原来的RF作者还做了一件更延伸的事情，如果我们要考虑每一次要随机的看一个子空间的话，我们可以想成其实是把我们原来的输入，原来的特征乘上一个投影矩阵，这个投影矩阵的内容是它的每一行都是我们所谓的natural basis——平常这个单位的各自的方向，我们只是做一些随机的投影动作，<br><img src="http://i.imgur.com/n68dOeE.png" alt=""><br>为什么我们一定要用这些方向，如果我们用一些不同的方向可不可以？<br><img src="http://i.imgur.com/emMCCER.png" alt=""><br>考虑一个投影矩阵，这个投影矩阵的每一row不再是固定的方向，而是随机的投影方向，等于是我们投影过去后是把若干个feature combine起来，在RF里通常考虑的是low-dimensional的投影。意思是说他投影过去以后可能在这个row里面只有若干个相对少的非0项：例如我从原来的100个里面每次选3个合起来算一个加权的分数，再在上面做切割，再选另外5个合起来做切割，我不会投影的时候一定每次都要把100个全部都投影进去；这样的方式其实包含了random subspace，我这些投影的向量其实是从原来欧几里得里那些自然的方向得出来的；原来的RF作者检验的是考虑用投影的方式，不是一开始投影完每次的分支都使用，而是每次做分支的时候考虑用一个新的投影。<br>RF = bagging + random-combination C&amp;RT——randomness everywhere  </p>
+<h3 id="Out-Of-Bag_Estimate">Out-Of-Bag Estimate</h3><p>刚才讲到RF里的一个核心机制是bagging，bagging里有一个bootstrapping的方法，现在看看bootstrapping到底还告诉了我们什么东西。bootstrapping aggregation最重要的就是透过bootstrap的方式在每一轮里选一些不一样的资料\(\tilde{D}_t),用这个\(\tilde{D}_t)来学我们需要的小gt，这是一个随机的过程，如果把这个随机的过程列成一个表：<br><img src="http://i.imgur.com/bkwUA8r.png" alt=""><br>这个表说到底哪笔资料在做哪个小g的时候有被选到，被选到的部分标出蓝色，没有选到的部分标出红色的星星。这些被标记为星星的资料叫做<font color="red">out-of-bag(OOB) examples</font>，我们这一节就来看看OOB有什么奥妙的地方。<br>我们先来看看到底有多少Out-of-bag的资料，没有被选到的资料就是，大家记得我们做了N’次，过了N’那么多次之后都没有被选到的资料。我们先来看一个简单的例子，如果我今天的N和N’一模一样。<br><img src="http://i.imgur.com/pdM8GGK.png" alt=""><br>一直没被抽中的概率是\((1-\frac{1}{N})^N\)，去极限得\(\frac{1}{e}\)。当N很大的时候，我们会得到\(\frac{1}{e}\)比例的资料会使OOB，这是大概的OOB资料大小，如果我们抽N轮的话。OOB这样的资料有什么特性呢，将上面那个表和另外一个表对比一下：<br><img src="http://i.imgur.com/tGuPGz6.png" alt=""><br>还记得以前做validation的时候做什么事情吗，validation的时候我们把我们的所有资料切成两个区，一个叫做比较小的训练资料，一个叫做validation的验证资料。我们用这些验证资料来衡量每个小g-的表现到底怎么样，然后选一个表现最好的小g-，我们的验证资料为什么可以衡量我们小g-的表现，因为他们并没有用来得到我们的小g-。对照一下左边，我们其实也只是拿蓝色的部分来做得到我们的小g，红色的部分没有用到，那他的特性就会像validation，可以用来验证我们的小gt的表现到底怎么样，可是我们真的需要吗？<br><img src="http://i.imgur.com/lU3GiRR.png" alt=""><br>注意bagging或Random Forest是一个aggregation的方法，它的最终目的是要得到G，不是想知道小g好或不好，就算每个小g很不好，他们合起来的G也可能挺好的。所以这个时候我们可能想象的事情是我们不需要验证小g，可是我们会想到验证G，因为在RF或Bagging的世界里我们可能还是有一些其他的参数需要做选择，此时OOB资料就派上用场了。这就需要这些标记为星星的资料未受污染，什么意思呢？例如说我们对于每一笔资料来说其实我们现在最重要的事情是这一笔资料什么时候可以当成validation的资料。我们看\((x_n,y_n)\),他可以当作\(g_2、g_3和g_T\)的验证资料，因为他没有出现(g_2、g_3和g_T\)的训练资料里。所以他可以当作某个G-的validation资料，这个G-使用(g_2、g_3和g_T\)，当然可能还有其他打星星的部分组成。但是他不能当作g1的validation资料。对于每一个row我们都可以做一个G-出来，看看\((x_n,y_n)\)表现怎么样，把他平均起来，有点像leave one out cross validation,在每一笔资料上都当作验证资料一次，看看表现怎么样，然后算个平均，我们可以做这样的事情，这样就可以大概知道我整个的G表现怎么样。这样平均的结果叫做OOB error，他估算的事情是我们的G表现到底是好还是不好。<br>所以bagging或RF的演算法就有这样一个特性： 我做好一个G后，从某种角度上来说我马上就可以知道它的表现好不好。因为他们里面的bootstrap让他们可以做所谓的self-validation，不用另外做一个validation的过程。<br>那我们以前那validation做什么事情，我们以前拿validation说我有一堆不同的演算法的时候我把这些演算法送到比较小资料上去得到小g-，得到小g-后再用我的validation set做选择<br><img src="http://i.imgur.com/lb5rGBs.png" alt=""><br>现在我有OOB这个东西之后我可以怎么做选择。我用所有的资料丢下去，做了一棵Random Forest，做完之后我顺便算算他的OOB error到底是多少，那我就可以用这个OOB错误来选择在random forest里面最适合的模型。例如我可以选择random forest的参数，我要做那些随机的投影，我到底要做投影到多少维度或是我的RF里我的decision tree有没有些什么其他的参数或其他的heuristic要做选择。我们最重要的事情是我们不需要切成两部分，然后每个部分去做训练、验证，最后再做一个大大的训练。<br>这个OOB错误在实物上用来衡量G的表现通常相当的准确。</p>
+<h3 id="Feature_Selection">Feature Selection</h3><p>现在给大家讲一个特殊的问题——feature selection。想象你输入的资料可能维度还蛮高的，例如有10000个维度，这10000维度里面你可能会想要把一些冗余的移掉。<br><img src="http://i.imgur.com/yc80QS3.png" alt=""><br>这些冗余的feature带给我们的信息是重复的；有可能你的资料里有一些feature跟你最后要做的工作是没有关系的，例如你的病人会在病例上填他保险的身份，根据这个身份来决定他到底要不要的癌症，这个好像不对吧，是否得癌症和他保险的身份没有关系。但是你的病例上有这些资料，所以要把这些资料移掉。可能你10000维的资料移掉冗余之后只有300维，这个过程在数学上叫做转换，10000维变成300维，再用这个300维做后续的学习。这样的问题叫做feature selection。它的优缺点：<br><img src="http://i.imgur.com/7B2Yv7l.png" alt=""><br>feature selection是一个组合爆炸的问题，很多很多种组合的可能，你不知道要选哪一种，要想解决这个组合爆炸的问题其中一个很简单的想法就是如果不考虑各式各样的组合他们交互的关系等等，我只专注在给每个feature打一个分数，给他一个重要性，然后按这些重要性排序，例如我10000个重要性的排序，选择前面300个就好了<br><img src="http://i.imgur.com/HAgYBlw.png" alt=""><br>这个简单的方式在线性模型里特别的容易实行，为什么？线性模型最终最终实现后，是每个维度x乘上他对应的权重，然后算一个加权的分数，算完加权分数后看我是要做分类还是回归分析等，注意他的分数是通过每个维度的加权算出来的，如果我今天手上有一个w，这个w还不错，还不错的意思是他告诉我合理的分数长什么样子，如果我的x，他们彼此之间的范围不是差太多，那么怎么样，如果我今天的wi比较大的话，这个时候他在我算分数的时候就会占一个比较重要的地位。如果wi比较小，他在我算分数的时候就一点影响也没有，看起来这个w的大小决定了他对于我们最后做决策的分数的影响。所以我们可以用这个w的大小来当作importance，来当作说这个feature到底有多重要：<br><img src="http://i.imgur.com/hl4leeo.png" alt=""><br>把这个结果套用到上面，从10000维中选择前300个。非线性呢？这个很难，因为特征之间是彼此交错在一起的，接下来讲在RF里，因为randomness特性，在做feature selection的时候比较容易一些。<br>那要怎么做呢？基本的想法叫做random test——我们现在在做特征选择，如果某个特征对你来说很重要，你如果埋进去一些杂讯、随机产生的词，这样的话，你的学习的表现一定会变差。<br><img src="http://i.imgur.com/4PnpxqB.png" alt=""><br>从这样的想法出发，我们如果看我把原来的特征丢进去的表现还有丢垃圾进去的表现看这个差距我就知道今天到底我的这个特征有多重要。<br>那我们要塞些什么随机的垃圾进去？<br><img src="http://i.imgur.com/g0U7LCc.png" alt=""><br>随机的垃圾，我们可以塞一些我们常在几率课里听到的一些分布，比如高斯分布，可不可以？可以，但是会有一点点小小的缺点，就是你今天塞这些值进去的时候你本质上影响到了你在这个特征上的分布，你原始的资料可能不是高斯分布，你塞一个高斯分布进去，所以你今天算那个表现的差距的时候会有两个部分，一个是你吧分布改掉了，另外一个是杂讯的影响。那如果不用这些高斯分布的话，我们应该怎么做呢？之前讲过bootstrap是从原来的资料里抽取一笔，然后放回去。。。因为我都在你原来的资料里做抽样，所以我可以维持大体上来说我的抽样的几率跟你原始资料的出来的抽样几率其实是差不多的。在这里使用一个类似的想法佳作permutation——例如今天我有100个不同的值，我把这100个值做重新随机的排列，就像在洗牌一样，你有52张牌，洗一洗，再放到52个位置上去，因为你只是做洗牌的动作，所以整体来看的话，例如我在第i个维度上看那个几率的话其实是差不多的，但是因为你经过了随机排列的动作，所以，最后整个资料的数值是乱的（A病人的资料塞到了B病人里，B病人的资料塞到了C病人里）。这样乱掉之后还是可以做random test，来测试说这个feature到底是需要还是不需要，并且你使用的整体的分布和原来的很接近。<br><img src="http://i.imgur.com/eDIy2X9.png" alt=""><br>这个做法在统计里面叫做<font color="red">permutation</font> test.<br>现在只剩下一个问题，我们要怎么样衡量这些performance，我们要有在原来的资料D上的表现，还要有在随机排序过的资料\(D^{(p)}\)上的表现，怎么做？先看后面那一项，如果我们需要在随机排序的资料上的表现的话，通常我们要拿这些随机排序的资料来重新做一次训练，得到另一个G，再做validation验证一下这个G到底表现怎么样，因为我们今天是RF，不需要再做validation，用OOB代替就可以了。所以那些performance，我们都可以写出OOB，我们不需要特别的validation，我们只需要OOB就好了。<br><img src="http://i.imgur.com/rop9qwd.png" alt=""><br>前面一项解决了，那后面一项也这么算吗？可以，但是那就还要在训练一次，有没有什么办法可以不用在训练？原始作者说了，G不变，只在OOB的资料来做那个验证的时候动手脚，在做验证的时候做permutation，而不是在训练的时候，不是在G这边做permutation。<br><img src="http://i.imgur.com/0UUYXMf.png" alt=""></p>
+<h3 id="Random_Forest_in_Action">Random Forest in Action</h3><p>接下来看看RF在实物上的表现，用平常给大家看的二元分类在二维空间里面的图表，我们说如果我们完全没有用random forest，我们用上一讲的decision tree，只是多加上了random combination，random combination说我们不是要切垂直刀或水平刀，而是把一些特征随机的合起来然后在那个上面切一刀，这样看起来说是我们可以切斜线的方式来切刀，可能会得到下图左的结果，再加上一些bagging的方式，可能得到中间那幅图，比较大的圈圈叉叉是被bootstrap选到的，如果你今天只用这棵树来做分类的话可能得到右边那幅图。<br><img src="http://i.imgur.com/lyPmLCL.png" alt=""><br>如果我把树的数量增加，会发生什么事：<br><img src="http://i.imgur.com/e2trfBs.png" alt=""><br>t=100表示我的第100棵树，我们看bagging可能选了另外一些点，得到一个新的边界，大家看到这个边界还是一个非常不完美的边界，而且在没有选到的点上犯了一些些错误，不过你把100棵树组起来之后，右边的这个边界看起来很有趣，弯弯曲曲的部分是不同的树做投票的结果，比其他两个复杂。跟多棵树呢？200棵树：<br><img src="http://i.imgur.com/An05t4v.png" alt=""><br>右边看起来平滑了一点，对于bagging每次得到的树不一样，有时会得到非常简单的边界，但这个非常简单的边界会犯一些错误，300棵树：<br><img src="http://i.imgur.com/VhCdzph.png" alt=""><br>我们好像更平滑了一些，400棵树：<br><img src="http://i.imgur.com/NVFIhS9.png" alt=""><br><img src="http://i.imgur.com/A1x7oRB.png" alt=""><br><img src="http://i.imgur.com/t7TqU0P.png" alt=""><br><img src="http://i.imgur.com/ZQTLHu5.png" alt=""><br><img src="http://i.imgur.com/CVi2Mxs.png" alt=""><br>大家看到这个边界越张越不一样，例如说这个红色的好像在扩展，蓝色在缩小。那900棵树，1000棵树呢：<br><img src="http://i.imgur.com/hoJ0Q8a.png" alt=""><br><img src="http://i.imgur.com/GWle4gb.png" alt=""><br>对比一下1000棵树的图形和1棵树的图形，看圈圈和叉叉的距离的话，那个黑色的边界大概会穿过距离的中间位置，而一棵树的情形，例如左图，有一些边界就会压在电上。通过圈圈叉叉的中间的是什么？是large-margin，这个整个的边界要比我们在之前看到打一棵树和bootstrap出来的边界要平滑的多，所以你告诉我们说random forest这样用了很多很多棵树，他做出了平滑的结果和类似large-margin的效果。<br><img src="http://i.imgur.com/ArmLduZ.png" alt=""><br>我们再来看一个例子，如果你说刚才那个资料他简单了，这里给出一个复杂的例子：<br><img src="http://i.imgur.com/L52OB2J.png" alt=""><br>左边是bagging出来的单一的树的结果，右边是整个森林的结果，如果只有一棵树，我们说左边和右边得到的结果是一样的。<br><img src="http://i.imgur.com/DVmRdIt.png" alt=""><br>6棵树呢？单一的树还是弯弯曲曲的边界，但是整合起来以后已经是一个相对来说比较平滑一些的边界了。<br><img src="http://i.imgur.com/3TIl6BR.png" alt=""><br><img src="http://i.imgur.com/TWfjmMB.png" alt=""><br><img src="http://i.imgur.com/vS6DHey.png" alt=""><br>21棵树时，右边已经是一个还不错的边界。<br><img src="http://i.imgur.com/DnehgGA.png" alt=""><br>如果有杂讯会怎么样？我们把刚才那个资料加上10%的杂讯<br><img src="http://i.imgur.com/LmTfoTv.png" alt=""><br>有杂讯的时候看起来decision tree收到了很大的影响，因为我们说切切切他已经切到最后把每个东西都好好的切出来这样的话，他会想办法把什么东西都切进去，所以你看收到杂讯的影响如果是单一的树的话，这个边界变得非常的歪七扭八，而且有一部分看起来是想要去overfit那些杂讯的，多一些树呢？<br><img src="http://i.imgur.com/vfx1yac.png" alt=""><br><img src="http://i.imgur.com/RqOEjj7.png" alt=""><br><img src="http://i.imgur.com/yNTVVZp.png" alt=""><br><img src="http://i.imgur.com/vTVD2lP.png" alt=""><br>21棵树的时候，你主要的边界还是大概做出来了，杂讯的部分在某些地方有一点点影响，但是他会受到不同的树相互投票的关系会把这些杂讯尽量的消除掉，这个voting的机制会让我们得到比较稳定的结果。<br>上面的例子告诉我们RF你用越多棵树越好，我们做的事用有限棵树去逼近无限棵树<br><img src="http://i.imgur.com/zDwaDe4.png" alt=""><br>那到底多少颗树比较好<br><img src="http://i.imgur.com/DmSNP10.png" alt=""><br>RF有一个缺点，就是RF是一个随机性的演算法，所以你如果你的随机过程还没有达到相对稳定的状态或者是你对于那些一点点变化都非常敏感的话，那么可能会有的缺点就是他会受到这个随机过程的影响，会有些高高低低的变化。所以实物上你是有RF的话，通常建议你看一看你的G到底表现的稳不稳定，你说多一棵树或少一棵树它的表现稳不稳定，来决定树的数量到底够还是不够。<br><img src="http://i.imgur.com/WdLkSet.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/23/机器学习技法十一/" rel="prev">机器学习技法十一</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/21/机器学习技法九/" rel="next">机器学习技法九</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/22/机器学习技法十/"
+                   data-title="机器学习技法十" data-url="http://Wan-YunPeng.github.io/2016/01/22/机器学习技法十/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Random_Forest"><span class="nav-number">1.</span> <span class="nav-text">Random Forest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random_Forest_Algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">Random Forest Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Out-Of-Bag_Estimate"><span class="nav-number">1.2.</span> <span class="nav-text">Out-Of-Bag Estimate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature_Selection"><span class="nav-number">1.3.</span> <span class="nav-text">Feature Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random_Forest_in_Action"><span class="nav-number">1.4.</span> <span class="nav-text">Random Forest in Action</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

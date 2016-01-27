@@ -1,0 +1,721 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Gradient Boosted Decision Treebagging of randomized C&amp;amp;RT trees with automatic validation and feature selection
+Adaptive Boosted Decision Tree回顾一下上次讲的Random Forest：外层是个bagging，内层是个Decision tree，那如果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法十一">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/23/机器学习技法十一/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Gradient Boosted Decision Treebagging of randomized C&amp;amp;RT trees with automatic validation and feature selection
+Adaptive Boosted Decision Tree回顾一下上次讲的Random Forest：外层是个bagging，内层是个Decision tree，那如果">
+<meta property="og:image" content="http://i.imgur.com/boEzXqD.png">
+<meta property="og:image" content="http://i.imgur.com/SbRG4X6.png">
+<meta property="og:image" content="http://i.imgur.com/CxfCOSb.png">
+<meta property="og:image" content="http://i.imgur.com/5f8YnmJ.png">
+<meta property="og:image" content="http://i.imgur.com/TnVX0uU.png">
+<meta property="og:image" content="http://i.imgur.com/upxiiMJ.png">
+<meta property="og:image" content="http://i.imgur.com/pLORsbJ.png">
+<meta property="og:image" content="http://i.imgur.com/eI1xeMC.png">
+<meta property="og:image" content="http://i.imgur.com/XyUy0eV.png">
+<meta property="og:image" content="http://i.imgur.com/UhuGwTD.png">
+<meta property="og:image" content="http://i.imgur.com/WLjTUjR.png">
+<meta property="og:image" content="http://i.imgur.com/o4onl8E.png">
+<meta property="og:image" content="http://i.imgur.com/YOR1HlW.png">
+<meta property="og:image" content="http://i.imgur.com/b6Jkwl6.png">
+<meta property="og:image" content="http://i.imgur.com/hYEri1g.png">
+<meta property="og:image" content="http://i.imgur.com/cVwb1A2.png">
+<meta property="og:image" content="http://i.imgur.com/k312Kuf.png">
+<meta property="og:image" content="http://i.imgur.com/vCXffhm.png">
+<meta property="og:image" content="http://i.imgur.com/ws1mET6.png">
+<meta property="og:image" content="http://i.imgur.com/PiCFzui.png">
+<meta property="og:image" content="http://i.imgur.com/kP4PaBV.png">
+<meta property="og:image" content="http://i.imgur.com/k17d2Uz.png">
+<meta property="og:image" content="http://i.imgur.com/UyvqEzF.png">
+<meta property="og:image" content="http://i.imgur.com/ZVdbN9H.png">
+<meta property="og:image" content="http://i.imgur.com/EuJ5ivx.png">
+<meta property="og:image" content="http://i.imgur.com/u1ANajx.png">
+<meta property="og:image" content="http://i.imgur.com/AwXUUB9.png">
+<meta property="og:image" content="http://i.imgur.com/p7JgIsz.png">
+<meta property="og:image" content="http://i.imgur.com/V3ffJgR.png">
+<meta property="og:image" content="http://i.imgur.com/COOGdUK.png">
+<meta property="og:image" content="http://i.imgur.com/xpaNYZi.png">
+<meta property="og:image" content="http://i.imgur.com/uZHVqyp.png">
+<meta property="og:image" content="http://i.imgur.com/0m2MyLJ.png">
+<meta property="og:image" content="http://i.imgur.com/kwo2i3O.png">
+<meta property="og:image" content="http://i.imgur.com/XOHM235.png">
+<meta property="og:image" content="http://i.imgur.com/Byn1u4r.png">
+<meta property="og:image" content="http://i.imgur.com/A9IXyA3.png">
+<meta property="og:image" content="http://i.imgur.com/QGDUeoa.png">
+<meta property="og:image" content="http://i.imgur.com/lwfCjYk.png">
+<meta property="og:image" content="http://i.imgur.com/freu7sI.png">
+<meta property="og:image" content="http://i.imgur.com/iApobZK.png">
+<meta property="og:image" content="http://i.imgur.com/akjSJMf.png">
+<meta property="og:image" content="http://i.imgur.com/b07tmML.png">
+<meta property="og:image" content="http://i.imgur.com/Lhdd8pS.png">
+<meta property="og:image" content="http://i.imgur.com/2g60XRH.png">
+<meta property="og:updated_time" content="2016-01-23T11:29:30.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法十一">
+<meta name="twitter:description" content="Gradient Boosted Decision Treebagging of randomized C&amp;amp;RT trees with automatic validation and feature selection
+Adaptive Boosted Decision Tree回顾一下上次讲的Random Forest：外层是个bagging，内层是个Decision tree，那如果">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法十一 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法十一
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-23T12:15:18+08:00" content="2016-01-23">
+            2016-01-23
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/23/机器学习技法十一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/23/机器学习技法十一/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Gradient_Boosted_Decision_Tree">Gradient Boosted Decision Tree</h2><p>bagging of randomized C&amp;RT trees with automatic validation and feature selection</p>
+<h3 id="Adaptive_Boosted_Decision_Tree">Adaptive Boosted Decision Tree</h3><p>回顾一下上次讲的Random Forest：<br><img src="http://i.imgur.com/boEzXqD.png" alt=""><br>外层是个bagging，内层是个Decision tree，那如果我们今天要把decision tree套到不是和RF在一起，而是和adaboost在一起，那会怎么样呢？adaboost每一轮的时候他会给我们的资料一群新的权重，利用这个权重，我们可以学一个新的小g，如果用decision tree的话，就是用decision tree学出一个小g来，最后得到每个小g的权重后把他们用linear的方式合起来：<br><a id="more"></a><br><img src="http://i.imgur.com/SbRG4X6.png" alt=""><br>这些都只是复习，理论上我们知道RF，我们也可以做出Adaboot DTree，不过在这里我们发现我们需要一件事情，我们的Decision Tree要改成可以接受资料weight的版本——每一笔资料可以有不同的权重，这和我们之前讲的C&amp;RT的decision tree不太一样。在Adaboost里面，根据权重最佳化加权过的Ein<br><img src="http://i.imgur.com/CxfCOSb.png" alt=""><br>我们想做的事情可能是这样：把原来的演算法当作黑盒子，完全不动，我只是在外面想办法送进去这个演算法的资料，在这些资料上做一些手脚，而不是去更改演算法的部分，这件事情做得到吗？可以做得到，我们来看看权重是什么意思，我们当时是从bagging出发，bootstrap的时候如果我重复的抽取到几份，我就给他的权重是多少，权重是3，代表重复取到3份，所以权重代表我要在资料里面复制几份，同样，如果我根据我得到的权重，先把我的资料做sampling，比如说占了30%的，我就给他30%的几率，根据这个来做sampling的话我就可以得到一组新的资料，和bagging的资料很类似，这组新的资料里面，每一种example的比例就大概会和权重u里面的比例差不多，也就是说他就能够表达我们要的权重的资讯。<br><img src="http://i.imgur.com/5f8YnmJ.png" alt=""><br>所以这是退回来，我们原来在bagging里面做的是我们先透过bootstrap得到好几份，这个好几份可以变成权重，然后我用这个权重的方式告诉我底下的演算法。现在我底下的演算法说我不吃权重了，你可不可以喂没有权重的资料进来，可是我又想告诉他权重的资讯，那怎么办？我退回来一步说，那我在资料那边做处理，我根据我的权重，先把我的资料做sample，做抽样的动作，根据权重做抽样之后大体上来说，抽样完我的资料的比例跟权重里面那些重要性和不重要性的比例就会差不多，这样送进去我原来没有改变的演算法，他就可以得到我们想要的小g。<br><img src="http://i.imgur.com/TnVX0uU.png" alt=""><br>改变的只是通过sampling做抽样的动作，得到有点像bagging里的那个\(\tilde{D}_t\)，然后再送进去。<br>更进一步看，把这个资料送进Adaboost里得到一个小g，我们还要决定这个小g的票数<br><img src="http://i.imgur.com/upxiiMJ.png" alt=""><br>注意到说，如果我今天有一棵完全长成的树，然后这棵完全长成的树是由我所有看得到的资料训练出来的，如果这些资料统统都不一样，还记得decision tree怎么做吗，一刀一刀切下去，切到不能再切为止，就可以确保每一笔他看过的资料都能做对，那他的Ein就是0，Ein是0的话那就糟糕了，为什么？Ein是0，Ein的u也是0，没有加权的Ein是0，加权后的Ein也是0，\(\epsilon_t\)也会是0，那这棵树的权重就会是无限大：<br><img src="http://i.imgur.com/pLORsbJ.png" alt=""><br>这就需要我们砍掉树的一部分，并且不要在说有的资料上做训练：简单来说，我们想要一棵弱一点的树<br><img src="http://i.imgur.com/eI1xeMC.png" alt=""><br>我们透过sampling已经做掉一半，我们可以说我们用的是部分的资料；pruned怎么办，可以用之前提到的所有pruned的方式，例如说把每个叶子去掉之后看看validation error怎么样，或者直接限制我的树的高度。<br><img src="http://i.imgur.com/XyUy0eV.png" alt=""><br>什么是最弱的树，AdaBoost搭配最弱的树，例如说树最多就一层高，一层高的时候我们来想C&amp;RT里面做了什么事情，C&amp;RT只说我要切一刀，左边，右边，没了，所以这个树里面只有一个重要的branching criteria，C&amp;RT切一刀时想办法让左右两边的impurity加起来最低。<br><img src="http://i.imgur.com/UhuGwTD.png" alt=""><br>A大Boost-Stump = special case of AdaBoost-DTree  </p>
+<h3 id="Optimization_View_of_AdaBoost">Optimization View of AdaBoost</h3><p>现在更进一步的看看AdaBoost这个演算法里面的奥妙。其中一个就是权重的计算方法：<br><img src="http://i.imgur.com/WLjTUjR.png" alt=""><br>可以看到我们的u就是一路乘上来变成新的u，如果我看我最后一轮更新完的u，就是从第一个u一路连乘得到的：<br><img src="http://i.imgur.com/o4onl8E.png" alt=""><br>所以，AdaBoost里面每个点的权重和exp(-\(y_n\)(投票分数))成正比<br><img src="http://i.imgur.com/YOR1HlW.png" alt=""><br>今天这个voting score，投票的分数到底有什么有趣的地方呢，我们来看看。AdaBoost基本上是个linear blending的延伸，我今天要线性的把我的小g组合起来，可以把linear blending看成是两步，第一步是使用我们的hypothesis来做特征的转换，之后用一个线性的模型把他们组合起来，这个线性的模型会告诉我们每一个是几票，权重是多少<br><img src="http://i.imgur.com/b6Jkwl6.png" alt=""><br>这是我们刚才看到的voting score，如果我们把他换个名字，我们刚才说小g就是特征转换，叫做\(\Phi\)，\(\alpha\)就是线性模型里面我要把他们合起来的那个权重，不是点的权重，而是每个转换过的特征的权重，把他叫做w，voting score是什么，就是w乘上\(\Phi\)，还记得SVM里的一个式子吗，上面的那个式子就是我们距离边界有多远，也就是说我的voting score其实也是某一种距离，也是某个margin，在某一个空间里面，对于在那个空间里的点到分割线的距离的一个衡量，当然还要做正规化，但是我们看到主要的项已经出来了。<br><img src="http://i.imgur.com/hYEri1g.png" alt=""><br>所以我们希望这个margin越大越好，就是y乘上voting score是正的，而且越大越好，那这个exp就越小越好，也就是每个点的权重越小越好。待会会告诉大家Adaboost的一个有趣的性质，如果我把每个点的权重都加起来的话，这个值会越来越小。<br><img src="http://i.imgur.com/cVwb1A2.png" alt=""><br>随着Adaboost轮数的增加，这个值会越来越小，就代表某一种程度上Adaboost在这个过程中想办法让每一个点的margin都越来越正，越来越大。所以Adaboost可以达到large-margin的效果。<br><img src="http://i.imgur.com/k312Kuf.png" alt=""><br>上面这个函数比较特殊，我们来看看，之前说过只要有个分数，我们好像就可以画一下，根据这个分数还有想要的y，到底这个函数的长相是什么样子：<br><img src="http://i.imgur.com/vCXffhm.png" alt=""><br>记不记得我们的好朋友0/1 error：ys小于0就会有个1的错误，大于0，就没有错误。把上面的那个函数exp(-y乘上s)画出来的话就会得到紫色那条曲线。我们一般把他叫做<font color="purple">exponential error measure</font>，又是一个上线，我们已经不止一次碰到0/1的上线，这些上线我们说可以用来大概的把0/1做到大概好。<br><img src="http://i.imgur.com/ws1mET6.png" alt=""><br>那说了这么多，AdaBoost真的可以做到好吗，我们来看看我们要怎么证明这件事。用gradient descent，梯度下降的方法，我们说如果你要最小化某一个函数的话，你可以做的事情是从现在所在的点出发，看看附近往哪个方向走一小步会变得比较好，可以在这个点的附近做泰勒展开<br><img src="http://i.imgur.com/PiCFzui.png" alt=""><br>做泰勒展开之后你会发现在这个点的附近你会被梯度描述说，在这附近的方向大体长什么样子，之后你想办法去求一个最好的方向\(V^T\)，在长度的限制下求一个最好的方向后，发现这个最好的方向会是梯度负的方向，求得这个负的梯度的方向后，我们再往这个方向上走一小小步\(\eta\)，这样，我现在就可以把我想最佳化的东西做得稍微好一点点，一直下去，我可能就会走到谷底的地方。这是之前的梯度下降法做的事情。我们现在要来依样画葫芦，如果今天我把我的函数当成一个方向，我把我找出来的小g当成是一个方向。之前说找向量的方向，现在找函数的方向，感觉怪怪的。函数和向量有什么不一样？向量说我给你一个index，给你第几格，你告诉我那一个的值是多少，例如我给你第四格，你告诉我第四格的值是3，函数是怎样，我给你一个x，你告诉我它的函数的值是多少，也就是说函数和向量没有那么大不一样，只是你今天给他的index不一样而已，原来向量里面的index是整数，现在函数里面的index是实数，所以不要怕，我们做的事情和上面没有太大的不一样。我们想成现在我们要找一个好的方向就是要找一个好的函数，所以我要找一个函数，我就从现在我已经找到的地方出发\(\sum_{\tau=1}^{t-1} \alpha_t g_t(x_n)\),我现在下一步是要加一个新的g进来，加一个新的\(\alpha\)进来，但是现在我还不确定哪一个是我的g，所以我把它叫做h，代表我在找那个方向，同样的，我还不确定我的\(\alpha\)是多少，所以我先想象我要走一小步，像上面的\(\eta\)一样，其他的部分，是一样的，我要怎么样把他变成像上面的形式。<br><img src="http://i.imgur.com/kP4PaBV.png" alt=""><br>展开一下就得到u的一个式子，把\(\eta\)和h独立出来，我想要一个最好的h，我不知道怎么办，我想让他像上面一样拆开，就用泰勒展开式吧。得到最后的形式，如果我想要最佳化我的error的话，我就要让第二项（包括负号）越小越好。<br><img src="http://i.imgur.com/k17d2Uz.png" alt=""><br>所以这是我们的目标，后面这项越小越好，后面这项是什么，我们来稍微把他整理一下。如果我今天做的事binary classification，我的y是正负一，我的h也是正负一，这个时候会发生什么事，我要让那项越小越好，我可以稍微把他整理一下，分成两种情形，y和h同号和异号。<br><img src="http://i.imgur.com/UyvqEzF.png" alt=""><br>同号u为-1，异号u为正1。先做一个有趣的事情，先把他平移，先抽出一个-1来，那么就变成同号为0，异号为2，为什么要平移，因为我想让他家看出来，u乘上2倍的犯错的情形，就可以写出前面是一个常数，后面是一个两倍的\(u_n^{(t)}\)乘上犯错的情形，这个是\(E_{in}^{u^{(t)}}\)，当然，原来我们在Ein里面定义还有个1/N，所以这里要乘上一个N。所以目标又变成了让\(E_{in}^{u^{(t)}}\)变小，什么东西会让\(E_{in}^{u^{(t)}}\)变小，AdaBoost里面的那个算法A，那个AdaBoost里面的base algorithm是什么，我们就是喂给他u，给他说我希望\(E_{in}^{u^{(t)}}\)越小越好，所以那个演算法，根据我们这边的推导的话，就帮我们找出了一个好的函数方向。所以这是AdaBoost里面那个A做的事情：他找到了一个gt，就会是我们想要的那个好的方向，只不过这个方向是个函数而已<br><img src="http://i.imgur.com/ZVdbN9H.png" alt=""><br><img src="http://i.imgur.com/EuJ5ivx.png" alt=""><br>这是我们可以做的第二步，我们找出一个好的方向，我们不用执着于像以前gradient descent一样，一定走一小步一小步，我们能不能走的大步一点，怎么做呢？如果我们能找出这个的话，某种角度来说它是faster，往下降得比较快，这个faster是贪心的，就是只有在这一轮看起来比较快，这通常在最佳化里叫做steepest decent<br><img src="http://i.imgur.com/u1ANajx.png" alt=""><br>如果是这样的话，我们来看看怎么样求一个好的\(\eta\),一样，我现在有y，有g，我可以探讨两种情形，正确和错误两种情形。这样写下来的话，就可以把之前\(\underset{\eta}{min} \hat(E_{ADA})\)写出上式。<br><img src="http://i.imgur.com/AwXUUB9.png" alt="">  </p>
+<h3 id="Gradient_Boosting">Gradient Boosting</h3><p>所以刚才我们把AdaBoost做了另外一种解释，说如果你看待exponential error的话，AdaBoost每一轮就是在这个error上面一步一步的做最佳化，每一步的时候他找出一个小h，再把这个小h当成他的gt，然后决定这个gt上面他要走多长的距离，最终变成那个gt的票数，就是\(\alpha_t\),所以里面有两个部分，一个部分是对h做最佳化，一个部分是对\(\eta\)做最佳化<br><img src="http://i.imgur.com/p7JgIsz.png" alt=""><br>根据这个概念的话，我们就也可能可以把他进一步的延伸说同样的概念我可不可以拿来对不同的error function做事情，我不一定要exponential，如果我在意的是像logistic regression，可不可以用cross-entropy，如果我今天在意的是regression，我可不可以用square等等。所以我们就可以把他扩展，叫做Gradient Boost，基本上和AdaBoost做的事情一样，，只是把里面那个部分换掉<br><img src="http://i.imgur.com/V3ffJgR.png" alt=""><br>换成什么，换成任何我有兴趣的error function，当然你是用gradient decent类的方法，所以这个error function要是平滑的，我们的error function是什么，就是从你目前已经达到的\(\alpha\)和g的组合出发，往h的方向走一小小步，你想要这件事情变好，相对于你的error function还有你的y变好。在这个架构下，你可以不一样的hypothesis，不一定要是classification，最常使用的是real-output，意思是实数输出的那些hypothesis。<br><img src="http://i.imgur.com/COOGdUK.png" alt=""><br>例如说我们要做regression的话，我们要怎么样做呢，regression要做的是平方的错误。<br><img src="http://i.imgur.com/xpaNYZi.png" alt=""><br>上面那个东西要怎么写呢？我想写出跟现在的err有关系，然后往某个方向走过去。<br><img src="http://i.imgur.com/uZHVqyp.png" alt=""><br>让后面的那项越小越好。s-y如果是正的，那我就给他一个负的h，如果s-y是负的，我就给他一个正的h；这样乘起来以后都是负的，就会往越来越低的方向走<br><img src="http://i.imgur.com/0m2MyLJ.png" alt=""><br>在gradient里面我们说要找一个方向，既然是一个方向，我们就要限制你的方向是方圆一步之内，那个v的长度等于1，因为最终你要靠\(\eta\)来决定走多大步，所以既然只是方向，你应该要对h的大小做一个限制。而不是完全不限制他，让他跑到无限大去。<br><img src="http://i.imgur.com/kwo2i3O.png" alt=""><br>所以我们讲到，在这个问题里面，我们应该对h的大小做一些限制，因为它的大小对我们来说根本不重要，因为未来\(\eta\)会解决它的大小问题。像我们之前在gradient decent的做法的话，既然h只是一个方向，一般会限制h的长度为1，可以这样做，但是这样代表我们要解一个有条件的最佳化问题，我们知道有条件的最佳化问题不是那么好解，怎么办？例如说以前regularization的时候，我们用拉格朗日函数变一变，变到我要最佳化的那个函数里面，这边用的是类似的方法：<br><img src="http://i.imgur.com/XOHM235.png" alt=""><br>加上h的平方，h越大，我就越不喜欢他。为什么要加上h的平方，因为前面有一个两倍的h乘上一个东西，这就可以凑出一个平方式。第二项就比较重要了，因为其他部分都是常数，我们最佳化的东西是h-(y-s)的平方，y是我想要的y，s是我目前做到的分数，所以y-s表示我还有多少没有做到，这是所谓的余数，所以我要找到一个好的h，看起来我的h要尽可能的和这些余数接近，在平方误差上要尽可能的接近，怎么做？就是做一个regression而已嘛，所以上面这个问题的最佳解其实就是拿我的x，还有这些余数来做一个regression<br><img src="http://i.imgur.com/Byn1u4r.png" alt=""><br>你要找一个好的gt，你就要要解一个regression的问题，在regression里面你从x出发，到余数，你目前做的跟你想要的差距是多少<br><img src="http://i.imgur.com/A9IXyA3.png" alt=""><br>找到一个好的gt后，我们要怎么决定他的权重呢？\(\eta\)的大小<br><img src="http://i.imgur.com/QGDUeoa.png" alt=""><br>单变量的线性回归，再输入x和余数上。<br><img src="http://i.imgur.com/lwfCjYk.png" alt=""><br>所以这是gradientboost for regression，他要求到底我的每个小g有多少票，有多少\(\alpha\)的时候，它的做法是用gt来做转换，转换完以后做一个简单的linear regression。<br>把这些概念合在一起，就得到一个最后的演算法，叫做GBDT<br><img src="http://i.imgur.com/freu7sI.png" alt=""><br>GBDT:’regression sibling’ of AdaBoost-DTree——popular in practice</p>
+<h3 id="Summary_of_Aggregation_Models">Summary of Aggregation Models</h3><p>到这里差不多已经介绍完所有想给大家介绍的aggregation model，这边复习一下。我们讲过blending model：如果我今天手上有了一些小g以后，我才要把他们合起来的时候，就像是把他们丢到果汁机里面融合起来一样，我们讲了三个blending的方向<br><img src="http://i.imgur.com/iApobZK.png" alt=""><br>uniform for ‘stability’; non-uniform/conditional carefully for ‘complexity’（已经做了一层转换）<br>刚才讲的是blending，那如果我今天做的是learning：我手上还没有小g，我要边学小g，边决定要怎么把他们合起来。一样，我们有三个不同的面向<br><img src="http://i.imgur.com/akjSJMf.png" alt=""><br>uniform的代表是bagging；linear的是AdaBoost；conditional的是Decision Tree。在这一讲里面，我们把AdaBoost延伸到GradientBoost，意思是一样要找到一些不一样的小g，但不像AdaBoost那样重新改变权重的方式，如果今天在regression的设定里面的话，他透过的方式就是看看我现在还剩下多少的余数，我在余数上面做一个learning的问题<br><img src="http://i.imgur.com/b07tmML.png" alt=""><br>这四个模型在实物上都很受欢迎，最常用的是Boost的两个方法。<br><img src="http://i.imgur.com/Lhdd8pS.png" alt=""><br>bagging + decision tree = RF; AdaBoost + decision tree = AdaBoost-DTree;GradientBoost + decision Tree = GBDT<br>这三个混起来使用的方式在实物上都非常受欢迎。<br><img src="http://i.imgur.com/2g60XRH.png" alt=""><br>回到最初讲aggregation的时候，为什么aggregation把这样的小g合起来可以做的好，两个面向，第一个是解决underfitting，单一的切水平刀或垂直刀，你把他合起来之后就会变强，从我们的解释来说，这些变强的原因是什么，因为aggregation代表的就是feature transform，所以你原来单一的feature，弱弱的，但是你做了一个比较复杂的转换之后，可能就变得强得多了；另外一方面来说，aggregation有一个完全不一样的面向，就是把很多个合起来之后会找到一个比较中庸的选择，这个比较中庸的选择可以防止overfitting的发生，表示aggregation有regularization的性质。  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/24/机器学习技法十二/" rel="prev">机器学习技法十二</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/22/机器学习技法十/" rel="next">机器学习技法十</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/23/机器学习技法十一/"
+                   data-title="机器学习技法十一" data-url="http://Wan-YunPeng.github.io/2016/01/23/机器学习技法十一/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient_Boosted_Decision_Tree"><span class="nav-number">1.</span> <span class="nav-text">Gradient Boosted Decision Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adaptive_Boosted_Decision_Tree"><span class="nav-number">1.1.</span> <span class="nav-text">Adaptive Boosted Decision Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization_View_of_AdaBoost"><span class="nav-number">1.2.</span> <span class="nav-text">Optimization View of AdaBoost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient_Boosting"><span class="nav-number">1.3.</span> <span class="nav-text">Gradient Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary_of_Aggregation_Models"><span class="nav-number">1.4.</span> <span class="nav-text">Summary of Aggregation Models</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

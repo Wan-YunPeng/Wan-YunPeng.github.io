@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/12/机器学习基石十六/" itemprop="url">
-                机器学习基石十六
+              <a class="post-title-link" href="/2016/01/17/机器学习技法五/" itemprop="url">
+                机器学习技法五
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T19:53:22+08:00" content="2016-01-12">
-            2016-01-12
+          <time itemprop="dateCreated" datetime="2016-01-17T14:24:48+08:00" content="2016-01-17">
+            2016-01-17
           </time>
         </span>
 
@@ -203,8 +203,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/12/机器学习基石十六/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/机器学习基石十六/" itemprop="commentsCount"></span>
+              <a href="/2016/01/17/机器学习技法五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/17/机器学习技法五/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,16 +219,102 @@
 
       
         
-          <h2 id="机器学习基石十六">机器学习基石十六</h2><h3 id="Three_Learning_Principles">Three Learning Principles</h3><p>上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。</p>
-<h3 id="Occam’s_Razor">Occam’s Razor</h3><blockquote>
-<p>entities must not be multiplied <font color=orange>beyond necessity</font>————William of Occam不要对一个东西多做过多的处理，应该用越简单的方式越好，把那些不必要的东西”剃掉”<br>‘<font color=orange>Occam’s razor</font>‘ for trimming down unnecessary explanation</p>
-</blockquote>
-<p>我们希望不要对资料做过多的解释。这在machine learning里是什么意思呢？他实际上就呼应了我们讲的：对资料最简单的解释也就是最好的解释  </p>
+          <h2 id="Kernel_Logistic_Regression">Kernel Logistic Regression</h2><p>allow some <font color=orange>margin violation \(\xi_n\)</font> while penalizing them by C;equivalent to <font color=orange>upper-bounding \(\alpha_n\)</font> by C<br>使用kernel这个技巧在logistic regression上会有什么样的效果。</p>
+<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/17/机器学习技法五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/16/机器学习技法四/" itemprop="url">
+                机器学习技法四
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-16T14:49:03+08:00" content="2016-01-16">
+            2016-01-16
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/16/机器学习技法四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/16/机器学习技法四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Soft-Margin_Support_Vector_Machine">Soft-Margin Support Vector Machine</h2><p>kernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussian) ones with margin control</p>
+<h3 id="Motivation_and_Primal_Problem">Motivation and Primal Problem</h3><p>我们上次讲到SVM可能还是会overfit，为什么？其中一个原因就是你选择的转换太powerful了，你选的margin也帮不了你，还有另外一个原因就是我们坚持我们一定要把资料完美的分开。<br><img src="http://i.imgur.com/fd4VY4F.png" alt=""><br>就像上图左，用一条直线的效果可能还不错，就算有一点点的错误，这也是一个不错的hypothesis。要是你一定要把圈圈叉叉完美分开的话，你就会得到右边的图，会得到一个四次多项式，看起来这个SVM可能不是对资料最合理的model。  </p>
 <blockquote>
-<p>The simplest model that fits the data is also the most plausible</p>
+<p>if always insisting on <strong>separable(shatter)</strong>, have power to overfit to noise.</p>
 </blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/机器学习基石十六/#more" rel="contents">
+            <a class="btn" href="/2016/01/16/机器学习技法四/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -261,8 +347,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/12/最大M字段和/" itemprop="url">
-                最大M子段和
+              <a class="post-title-link" href="/2016/01/15/机器学习技法三/" itemprop="url">
+                机器学习技法三
               </a>
             
           
@@ -272,159 +358,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T15:47:21+08:00" content="2016-01-12">
-            2016-01-12
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/12/最大M字段和/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/最大M字段和/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="问题描述">问题描述</h3><p>给定由n个整数（可能为负数）组成的序列a1,a2,…,an,以及一个正整数m，要求确定次序列的m个不相交子段的总和达到最大。最大子段和问题是最大m子段和问题当m = 1时的特殊情形。</p>
-<h3 id="问题分析">问题分析</h3><p>设b(i,j)表示数组a的前j项中i个子段和的最大值，且第i个子段含a[j]\(1 \leq i \leq m,i \leq j \leq n\)，则所求的最优值显然为$$\underset{m \leq j \leq n}{max}b(m,j)$$<br>与最大子段问题相似，计算b(i,j)的递归式为：$$b(i,j)=max\begin{Bmatrix}b(i,j-1) + a[j],\underset{i-1 \leq t &lt; i}{maxb(i-1,t) + a[j]}\end{Bmatrix}&emsp;&emsp;(1 \leq i \leq m,i \leq j \leq n)$$<br>其中，b(i,j-1) + a[j]表示第i个子段含a[j - 1],a[j]和a[j - 1]都在第i子段里<br>\(\underset{i - 1 \leq i &lt; j}{max\begin{Bmatrix}b(i - 1,t) + a[j]\end{Bmatrix}}\)项表示第i个子段仅含a[j]。<br>初始时，b(0,j) = 0,\(1 \leq j \leq n \);&emsp;b(i,0) = 0,\(1 \leq i \leq m \)。<br>代码如下：（未优化）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/最大M字段和/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/12/树状数组/" itemprop="url">
-                树状数组
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T12:35:23+08:00" content="2016-01-12">
-            2016-01-12
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/12/树状数组/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/树状数组/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="树状数组">树状数组</h2><h3 id="概述">概述</h3><p>树状数组(Binary Indexed Tree，BIT，二分索引树)，其初衷是解决数据压缩里的累积频率(Cumulative Frequency)的计算问题，现多用于高效计算数列的前缀和。它可以以\(O(\log n)\)的时间得到\(\sum_{i=1}^N\) a[i]，并同样以\(O(\log n)\)对某项加一个常数</p>
-<h3 id="例子">例子</h3><p>假如我现在有个需求，就是要频繁的求数组的前n项和，并且存在着数组中某些数字的频繁修改，那么我们该如何实现这样的需求？  </p>
-<ol>
-<li>传统方法：根据索引修改为O(1)，但是求前n项和为O(n)。但是若求和的操作是m次的话，时间复杂度就是O(m*n)  </li>
-<li>空间转换方法：我开一个数组sum[],sum[i] = a[1] + … + a[i]:表示数组前i项和，我求n项和为O(1)，但是我修改却成了O(n)，这是因为我的sum[i]中牵涉的数据太多了，那么我能不能在相应的sum[i]中只保存某些a[i]的值？先看下面这张图：<br><img src="http://i.imgur.com/AgnJlgJ.png" alt="">
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/树状数组/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/11/机器学习基石十五/" itemprop="url">
-                机器学习基石十五
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-11T20:07:08+08:00" content="2016-01-11">
-            2016-01-11
+          <time itemprop="dateCreated" datetime="2016-01-15T14:40:45+08:00" content="2016-01-15">
+            2016-01-15
           </time>
         </span>
 
@@ -449,8 +384,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/11/机器学习基石十五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/机器学习基石十五/" itemprop="commentsCount"></span>
+              <a href="/2016/01/15/机器学习技法三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/机器学习技法三/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -465,9 +400,10 @@
 
       
         
-          <h2 id="机器学习基石十五">机器学习基石十五</h2><h3 id="Validation">Validation</h3><h3 id="Model_Selection_Problem">Model Selection Problem</h3><p>即使你现在要做简单的二元分类（binary classification），我们已经学了很多很多中不同的方法，举例来说你可以用PLA、pocket、linear regression和logistic regression，这些方法里面很多事一步一步做的，你可以决定走（迭代）多少步，又或者可以决定步长是多少，还有就是用什么转换，regularizer用什么，regularizer的强度是多少等等。<br><img src="http://i.imgur.com/n52O1FL.png" alt=""><br>方法越多，选择越多，而且这些方法是组合起来的，会造成组合爆炸的情况，我们想说怎么从这些形形色色的方法中选出正确的选择。<br>之前已经引导过大家做过选择了，如下图，你会选一条线，有点错误的，还是曲线，一点错误都没有的。<br><img src="http://i.imgur.com/GmG1CTF.png" alt=""><br>
+          <h2 id="Kernel_Support_Vector_Machine">Kernel Support Vector Machine</h2><p>dual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  </p>
+<h3 id="Kernel_Trick">Kernel Trick</h3><p><img src="http://i.imgur.com/e0T8ZYE.png" alt=""><br>上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N+1（一个等号的条件和N个不等号的条件），所以不论我们是从变量个数还是条件个数都好像和\(\tilde{d}\)没有关系，可是我们仔细一看，\(\tilde{d}\)跑到了一个地方，在我们计算矩阵\(Q_D\)，\(Q_D\)里面是二次项系数，这些系数是怎么来的？是两个y相称和两个x做内积，这里是z空间，就是两个z做内积的结果，那就和\(\tilde{d}\)有关系了。从计算的角度来说，我们需要把\(Q_D\)里面的系数统统算出来，才能送到二次规划的问题里去求解。这里便是我们的瓶颈所在。那么有没有什么办法可以使我们的这步算的快一些。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/11/机器学习基石十五/#more" rel="contents">
+            <a class="btn" href="/2016/01/15/机器学习技法三/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -500,8 +436,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/11/线段树/" itemprop="url">
-                线段树
+              <a class="post-title-link" href="/2016/01/15/拉格朗日对偶/" itemprop="url">
+                拉格朗日对偶
               </a>
             
           
@@ -511,19 +447,34 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-11T12:40:29+08:00" content="2016-01-11">
-            2016-01-11
+          <time itemprop="dateCreated" datetime="2016-01-15T11:17:07+08:00" content="2016-01-15">
+            2016-01-15
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/数学/" itemprop="url" rel="index">
+                  <span itemprop="name">数学</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
         
 
         
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/11/线段树/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/线段树/" itemprop="commentsCount"></span>
+              <a href="/2016/01/15/拉格朗日对偶/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/拉格朗日对偶/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -538,10 +489,101 @@
 
       
         
-          <h3 id="概述">概述</h3><p><strong>线段树</strong>（英语：Segment Tree）是一种<font color=blue>二叉搜索树</font>，它将一个<font color=blue>区间</font>划分成一些单元区间，每个单元区间对应线段树中的一个<font color=red>叶结点</font>。<br>对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是<font color=blue>平衡二叉树</font>。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。<br>使用线段树可以快速的查找某一个节点在若干条线段中出现的次数，<font color=blue>时间复杂度</font>为O(logN)。而未优化的<font color=blue>空间复杂度</font>为2N，因此有时需要<font color=blue>离散化</font>让空间压缩。</p>
-<h3 id="基本操作">基本操作</h3><p>给定整个线段区间，建立一棵线段树的时间复杂度是 O(N)。单点修改的时间复杂度是 O(log N) 。单点查询的时间复杂度是 O(1)。如果允许惰性赋值而加上延迟标记的话，许多的区间修改的时间复杂度也会是 O(log N)，但是单点查询的时间复杂度会变成 O(log N)。<br>
+          <p>在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找<font color=blue>变量</font>受一个或<font color=blue>多个条件所限制</font>的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。</p>
+<h3 id="原始问题">原始问题</h3><p>假设\(f(x),(c_i)(x),(h_j)(x)\)是定义在\(R^n\)上的<font color=red>连续可微函数</font>(后面会提到为什么)，考虑约束最优化问题：$$\underset{x \in R^n}{min}f(x)$$ $$s.t.&emsp;c_i(x) \leq 0;i=1,2,…k$$ $$h_j(x)=0;j=1,2,…l$$<br>称为约束最优化问题的<font color=red>原始问题</font>。<br>现在<font color=blue>如果不考虑约束条件</font>,原始问题就是：$$\underset{x \in R^n}{min}f(x)$$<br>因为假设其连续可微，利用高中的知识，对\(f(x)\)求导数，然后令其为0，就可以解除最优解。那么问题来了，有约束条件，想方法<font color=red>把约束条件去掉</font>，引入拉格朗日函数。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/11/线段树/#more" rel="contents">
+            <a class="btn" href="/2016/01/15/拉格朗日对偶/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/14/机器学习技法二/" itemprop="url">
+                机器学习技法二
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-14T15:14:58+08:00" content="2016-01-14">
+            2016-01-14
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/14/机器学习技法二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/机器学习技法二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习技法二">机器学习技法二</h2><h3 id="Dual_Support_Vector_Machine">Dual Support Vector Machine</h3><h3 id="Motivation_of_Dual_SVM">Motivation of Dual SVM</h3><p>复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x空间可能就是一个很好的非线性分类器。<br><img src="http://i.imgur.com/4yLfYnD.png" alt="">  </p>
+<blockquote>
+<p>demanded:<font color=orange>not many</font> (large-margin),but <font color=orange>sophisticated</font> boundary(feature transform) 透过SVM（large margin）来控制模型的复杂度;又透过特征转换得到弯弯曲曲的边界把Ein降低<br>QP with <font color=purple>\(\tilde{d}\) + 1 </font>variables and N constraints——challenging if \(\tilde{d}\) large, or infinite?! 在z空间的维度是\(\tilde{d}\),这个值太大话，就不好解。  </p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/14/机器学习技法二/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -567,7 +609,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
   </nav>
 
  </div>
@@ -601,7 +643,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

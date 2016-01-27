@@ -1,0 +1,705 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Nueral NetworkMotivation从我们之前学过的perceptron出发，perceptron这样的模型就是你把你的输入乘上一堆的权重之后，算出一个分数，就这个分数而言，一般取大于0为+1，小于0为-1，如果今天我们把一堆perceptron用linear aggregation的方式组合起来，图示如下：从我们的输入出发，例如乘上第一组的权重w1，然后去取正负一的话，等于是我们做了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法十二">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/24/机器学习技法十二/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Nueral NetworkMotivation从我们之前学过的perceptron出发，perceptron这样的模型就是你把你的输入乘上一堆的权重之后，算出一个分数，就这个分数而言，一般取大于0为+1，小于0为-1，如果今天我们把一堆perceptron用linear aggregation的方式组合起来，图示如下：从我们的输入出发，例如乘上第一组的权重w1，然后去取正负一的话，等于是我们做了">
+<meta property="og:image" content="http://i.imgur.com/35CIcyr.png">
+<meta property="og:image" content="http://i.imgur.com/GQ2v9wp.png">
+<meta property="og:image" content="http://i.imgur.com/d0NxWER.png">
+<meta property="og:image" content="http://i.imgur.com/f0tti8G.png">
+<meta property="og:image" content="http://i.imgur.com/CHGCkaD.png">
+<meta property="og:image" content="http://i.imgur.com/lgJ08GQ.png">
+<meta property="og:image" content="http://i.imgur.com/i4i5hHG.png">
+<meta property="og:image" content="http://i.imgur.com/N2FAC3X.png">
+<meta property="og:image" content="http://i.imgur.com/pm6z7HA.png">
+<meta property="og:image" content="http://i.imgur.com/lrCKrf5.png">
+<meta property="og:image" content="http://i.imgur.com/ny0qJqP.png">
+<meta property="og:image" content="http://i.imgur.com/7ZN5lg8.png">
+<meta property="og:image" content="http://i.imgur.com/zpgSp6x.png">
+<meta property="og:image" content="http://i.imgur.com/dEixSHq.png">
+<meta property="og:image" content="http://i.imgur.com/6eqFNXo.png">
+<meta property="og:image" content="http://i.imgur.com/XCCWN6e.png">
+<meta property="og:image" content="http://i.imgur.com/1YLSTrp.png">
+<meta property="og:image" content="http://i.imgur.com/yZ0HseK.png">
+<meta property="og:image" content="http://i.imgur.com/Ck1gMwb.png">
+<meta property="og:image" content="http://i.imgur.com/GqP06KV.png">
+<meta property="og:image" content="http://i.imgur.com/Uc6XW5g.png">
+<meta property="og:image" content="http://i.imgur.com/wVJ0AZJ.png">
+<meta property="og:image" content="http://i.imgur.com/A20lgVA.png">
+<meta property="og:image" content="http://i.imgur.com/OUskKGy.png">
+<meta property="og:image" content="http://i.imgur.com/ORPFluI.png">
+<meta property="og:image" content="http://i.imgur.com/pz8reI6.png">
+<meta property="og:image" content="http://i.imgur.com/b0T6DI8.png">
+<meta property="og:image" content="http://i.imgur.com/VLKeT9S.png">
+<meta property="og:image" content="http://i.imgur.com/5XdDrmY.png">
+<meta property="og:image" content="http://i.imgur.com/PfzZyVV.png">
+<meta property="og:image" content="http://i.imgur.com/Ghc9koX.png">
+<meta property="og:image" content="http://i.imgur.com/D7BVLDR.png">
+<meta property="og:updated_time" content="2016-01-24T14:14:01.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法十二">
+<meta name="twitter:description" content="Nueral NetworkMotivation从我们之前学过的perceptron出发，perceptron这样的模型就是你把你的输入乘上一堆的权重之后，算出一个分数，就这个分数而言，一般取大于0为+1，小于0为-1，如果今天我们把一堆perceptron用linear aggregation的方式组合起来，图示如下：从我们的输入出发，例如乘上第一组的权重w1，然后去取正负一的话，等于是我们做了">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法十二 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法十二
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-24T12:32:32+08:00" content="2016-01-24">
+            2016-01-24
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/24/机器学习技法十二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/24/机器学习技法十二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Nueral_Network">Nueral Network</h2><h3 id="Motivation">Motivation</h3><p>从我们之前学过的perceptron出发，perceptron这样的模型就是你把你的输入乘上一堆的权重之后，算出一个分数，就这个分数而言，一般取大于0为+1，小于0为-1，如果今天我们把一堆perceptron用linear aggregation的方式组合起来，图示如下：<br><img src="http://i.imgur.com/35CIcyr.png" alt=""><br>从我们的输入出发，例如乘上第一组的权重w1，然后去取正负一的话，等于是我们做了一个g1这样的perceptron；我们可能把他乘上第二组权重w2，得到g2这样的perceptron…得到一堆的perceptron之后，各个perceptron有自己的票数\(\alpha\),我们把他组合起来，最后得到G。数学式如右边所示。我们看到是怎么样从我们的输入得到我们的G，在这个过程里有两组权重w和\(\alpha\)，此外，有两个地方取了sign，分布式小g和G。g所在的圆圈一般叫做node，这里是取正负号之后输出去。<br><a id="more"></a><br>这样的模型可以做到什么样的边界？它的边界是长什么样子的？<br>想象我们有一个perceptron g1，他说蓝色为+1，红色为-1，另外一个g2，蓝色+1，红色-1.我们来看看刚才那个模型可以做什么事。<br><img src="http://i.imgur.com/GQ2v9wp.png" alt=""><br>我把两条线用linear aggregation的方式合起来，我们可以做到什么事？得到最右边的图，为g1和g2的AND运算，逻辑运算，如果把+1当作true，-1当作false，我们刚才那样的模型，把perceptron做linear aggregation怎么做到右边这个AND呢？<br><img src="http://i.imgur.com/d0NxWER.png" alt=""><br>可能是这样做的，把\(\alpha\)的值设成-1，1，1；g0是一个常数的输出，输出+1。取G=sign(-1+g1(x)+g2(x))，就可以做到AND运算。这里说明了如果我们用linear aggregation of perceptron的话，我们似乎可以在第一层的perceptron上面做一些些逻辑的运算，进去第二层的时候出来一个复杂的边界，这个边界就不再是一个线性的边界。你可以自己推导一下OR、NOT运算<br>实际上linear aggregation of perceptron是非常powerful的，我看下面一个例子：<br><img src="http://i.imgur.com/f0tti8G.png" alt=""><br>想象说在我们的目标里面有一个圆圈圈，在圆圈圈里面是+1，外面是-1，我们可以想象如果用单一的perceptron是没有办法做的，但是我用8个perceptron呢，用刚才那个AND的方式合起来，我大概还可以切出一个看起来还OK的圆形的边界，用16个perceptron就会更细致一些，从这个例子看起来，只要我们有越来越多的perceptron，我们可以切除任何的convex set，凸多边形，它的VC dimension是无限大，所以这里告诉我们说只要我们有够多的perceptron，没有什么做不到的事情，再来，上面这个例子是用一堆的perceptron逼近一个平滑的边界。但是他还是有做不到的事情：<br><img src="http://i.imgur.com/CHGCkaD.png" alt=""><br>g1和g2的异或就不能用linear的方式实现。因为如果你把这两天线g1、g2当作特征转换的话，转换过去以后，你还是没有得到线性可分的资料，因为像右边那个例子里蓝色集中在一个双曲线的两侧，红色集中在一个双曲线的两侧，这并不是线性可分的资料。所以在那个空间，就算你转换过去之后，也没有办法用linear aggregation得到一个适合的边界。<br>所以，刚才讲到linear aggregation of perceptron这样的模型还是有限制的，那我们要怎么样做到XOR呢？<br>转换之后没有办法分开来，也许我们还需要再做转换，转换到我们觉得适合的空间，也许就可以用一条线将他分开了。所以我们这里做的事是考虑再多一层的转换<br><img src="http://i.imgur.com/lgJ08GQ.png" alt=""><br>大家要是熟悉boolean逻辑运算的话，XOR可以透过两层的转换来做到，第一层考虑AND，第二层考虑OR。在一层的转换描述在刚才秀给大家看的图里面就会长这样：<br><img src="http://i.imgur.com/i4i5hHG.png" alt=""><br>先透过第一层的权重做出g1和g2，做出之后需要AND的转换，做AND有一点特别，就是要把其中一个g反向，所以第一层的\(alpha\)有一个-1，我做AND输出去之后，然后再有下一层，下一层才做OR。虽说这里没教怎么做OR，但是和AND很类似。那么我最后的G就会和XOR的效果一样。<br><img src="http://i.imgur.com/N2FAC3X.png" alt=""><br>这样的数学其实是仿照生物学里的神经运算<br><img src="http://i.imgur.com/pm6z7HA.png" alt=""><br>一个神经元对应一个node，神经元彼此之间的联系就是权重，表示这些联系之间的强弱。这只是一个模仿而已，例如模仿鸟类的动作<br><img src="http://i.imgur.com/lrCKrf5.png" alt=""><br>nueral network : <font color="orange">bio-inspired</font> model</p>
+<h3 id="Neural_Network_Hypothesis">Neural Network Hypothesis</h3><p><img src="http://i.imgur.com/ny0qJqP.png" alt=""><br>刚才那个图示就是我们神经网络的运作过程，从一开始的输入出发，经过一层一层的运算，最后得到我们的输出，输出是最后一层的运算，把这个一层一层当成是原始输入的一个转换，转换到最后以后，透过最后一层的权重去算一个分数，在输出的这一步，其实只是一个线性的模型而已，我们学过的线性模型都可以用在这里<br><img src="http://i.imgur.com/7ZN5lg8.png" alt=""><br>接下来讨论一下使用squared error的回归，我们希望输出的分数和想要的分数尽可能接近的话，应该怎么做？<br>先看看中间的部分，中间的部分就是在做一个转换，一开始把我的输入转换成中间结果，再把中间结果转换到下一层去…其实可以把中间这个转换想成transform function，把我的分数——输入和权重的结果转换一下变成它的输出项<br><img src="http://i.imgur.com/zpgSp6x.png" alt=""><br>一定要用阶梯状的转换函数吗？也可以用其他的transform function。用线性的话，整个网络组合起来也是线性的，不如直接做一个线性的运算，最后做linear aggregation就好了，有点浪费。阶梯函数有个好处就是他的输出基本上只有+1和-1，是离散的函数，离散的函数在最佳化上不是那么容易，这边也是一样。好吧，既然这里既不能用阶梯状的，也不能用线性的，退一步就用一个比较平滑的——s形函数，最常用的是tanh(s)。<br>接下来，给大家讲中间函数使用tanh，目标还是回归，到底会发生什么事情。<br>讲了这些，我们就要考虑我们要得neural network hypothesis长什么样子，如果我固定了这个hypothesis的一些值之后，我从输入，我最终要算出输出，我们考虑的hypothesis长这个样子：这些输入经过权重之后得到中间的输出，再经过权重之后得到中间代输出，最后到最后一层的时候才得到最后的输出。输入的部分叫做第0层，第一次处理叫第1层，以此类推，最后一层是第三层。<br><img src="http://i.imgur.com/dEixSHq.png" alt=""><br>第0层和第1层之间的权重用\(w_{ij}^{(1)}来表示，L表示最后一层，在每一层的w里面他需要看些什么东西呢，他需要把前一层的输出当成这一层的输入，经过一番运算后得到下一层的结果，所以w从哪边到哪边呢，他就要看前一层所谓输入的部分，前一层有多少个，把每一层的数量用小d来代表，\(d^{(0)})表示第0层的时候有多少个，到d的第一个，一直到最后一个。从这些d来看，过了w之后，我要接到几个要处理的节点的话，我们就说下一层里面有\(d^{l}\)个<br><img src="http://i.imgur.com/6eqFNXo.png" alt=""><br>再这样的类神经网络里，如果确定了各个参数，我只需输入一个新的x当作第0层，经过一层一层的运算后，到最后一层，就可以得到我们预测的结果<br><img src="http://i.imgur.com/XCCWN6e.png" alt=""><br>这样的类神经网络看起来很复杂，那他每一步这样计算下去，到底在做什么事情<br>其实我们可以这样看待它，这个一层一层的处理里面，他做的事情就是转换，靠w来转换。<br><img src="http://i.imgur.com/1YLSTrp.png" alt=""><br>NNet: <font color="red">pattern extraction</font> with layers of <font color="purple">connection weights</font></p>
+<h3 id="Neural_Network_Learning">Neural Network Learning</h3><p>我们要怎么样从资料里学到我们想要的权重？<br>如果今天只有一层，你的类神经网络只有一层藏起来，一层做转换的，这样的权重要怎么学到？其实我们已经学过了，因为他基本上就是aggregation of perceptron。这个可以用gradient boosting学到；那很多层呢，就不是这么简单了，反正我们经过这么多运算后，会得到一个输出h(x),就是这个网络输出的结果，我们希望这个输出的结果跟我们想要的y是接近的，所以，如果定义说类神经网络的输出结果和我们的y做平方的结果当成是单一个点上犯的错，用\(e_n\)来表示<br><img src="http://i.imgur.com/yZ0HseK.png" alt=""><br>如果我能够知道这个\(e_n\)跟每个中间层的w的变化关系，什么是变化关系，就是\(\frac{\partial e_n}{\partial w_{ij}^{(l)}}\)的结果，那就可以用我们学过的gradient decent来一步一步做最佳化。关键就是怎么算出\(\frac{\partial e_n}{\partial w_{ij}^{(l)}}\)这个值。<br>先看最后一层，假设最后一层只有单一的输出的话，<br><img src="http://i.imgur.com/Ck1gMwb.png" alt=""><br>主要是看\(\frac{\partial e_n}{\partial w_{ij}^{(l)}}\)<br><img src="http://i.imgur.com/GqP06KV.png" alt=""><br>最后一层的\delta_1^{(L)} =2(y_n-s_1^{(L)})，那我们有没有办法反推回去知道其他层的\(\delta\)呢？<br>\(\delta\)是什么，就是我最后的这个错误，对分数的偏微分结果，那么来看看到底这个分数怎么影响到最后的错误<br><img src="http://i.imgur.com/Uc6XW5g.png" alt=""><br>从这个分数出发，经过tanh函数得到这一层的输出，也就是下一层的输入\(x_j^{(l)})，经过下一层权重的计算又可以得到下一层的分数，这些分数最后会一直计算下去得到最后的\(e_n\)。用反推，利用中间人来计算<br><img src="http://i.imgur.com/wVJ0AZJ.png" alt="">  </p>
+<p><font color="blue">\(\delta_j^{(l)})</font> can be computed <font color="orange">backwards</font> from <font color="green">\(\delta_k^{(l+1)}\)</font><br>这个演算法叫做BackPropagation（反推\(\delta\)的算法）<br><img src="http://i.imgur.com/A20lgVA.png" alt=""><br>实物上我们把第一步到第三步，基本上这是针对一个点的步骤，我们把他做很多次，可以平行化的来做，不是计算一个点，而是，例如说20个点的\(x_i^{(l)})和\(\delta_j^{(l)})，再算他们的平均<br><img src="http://i.imgur.com/OUskKGy.png" alt=""></p>
+<h3 id="Optimization_and_Regularization">Optimization and Regularization</h3><p><img src="http://i.imgur.com/ORPFluI.png" alt=""><br>刚才介绍了怎么样在一个类神经网络里面做最佳化，他一切的关键是想要透过gradient decent的方式或其他的方式去最佳化我们这里写下的Ein，这个Ein里有我们原始的输入，经过一层一层得到输出，跟我的y在某个错误衡量上作比较，刚才讲的是平方的错误衡量，当然你可以推广到其他的错误衡量，这里的重点是经过了怎么多层的转换后，整个函数对于你的w非常有可能不是凸函数，可能是多个凸函数的组合，这对于最佳化是个问题，不是单一的凸函数可能不会找到一个最佳解，你有很多的山峰，不容易找到全局最优，所以之前讲的Gradient decent只会让你得到一个局部最优<br><img src="http://i.imgur.com/pz8reI6.png" alt=""><br>如果从不同的起始点出发，得到的解可能就不一样。又没有什么办法可以避免不好的山谷？有，例如说，既然最后的结果对于出发点是敏感的，我们有什么地方是需要避免的？例如说我今天的权重很大，权重很大的意思是算出来的分数会很大，做了tanh后就会在图中趋于一个常数那里，叫做saturate，做梯度的话，变化量会特别的小，gradient decent就会走特别小的一步。一般的做法是小一点的权重或是一个随机的权重。<br>NNet: difficult to optimize, but practically works<br>那这样的模型从理论上来说它的复杂度是什么样子的呢？这里不详细的证明，给出一个大概的结果<br><img src="http://i.imgur.com/b0T6DI8.png" alt=""><br>这告诉我们说如果今天你的神经元数量够多——V很大，那你的VC dimension也会很大，也就是可以把你想做的事情做好，这看起来是好事，但是从另外一个角度来看，就会很容易overfit<br><img src="http://i.imgur.com/VLKeT9S.png" alt=""><br>NNet : watch out for overfitting<br>那避免overfit，其中一个方法就是regularization<br><img src="http://i.imgur.com/5XdDrmY.png" alt=""><br>可以，不过这样的regularization有时候有一些缺点，他基本上是把我原来没有regularized的那个权重变小，他变小的方式基本上跟你原来可以达到的权重是成比例的，原来是比较大的权重，他就缩的比较大；原来是比较小的权重，他就缩的比较小。这就表示大的变得小一点，小的变得再小一点，但是永远不会为0，意思是你所有的权重都还在，但是我们最好希望有些w最好是0，为了稀疏性，那我们怎么做到权重是0，以前学过L1-regularization，但是在某些地方不能微分，我们的BackPropagation是需要可微分的，那怎么办？<br><img src="http://i.imgur.com/PfzZyVV.png" alt=""><br>所以，大家有时候就会考虑另外一个选择，通常叫做weight-elimination(scaled L2),意思是有没有什么办法把我的weight消除掉，希望我的weight原来很大的时候，我把它缩小，缩小一个中等的分量，我weight很小的时候，我要缩小一个中等的分量，这样后面的部分就会为0，消失不见。<br><img src="http://i.imgur.com/Ghc9koX.png" alt=""><br>处理刚才讲的，还有一招regularization的机制——Early Stopping。<br><img src="http://i.imgur.com/D7BVLDR.png" alt=""><br>从w0出发，到w1的时候，我们可以说没次走一小步的时候，某种角度是考虑他方圆的某个范围之内的w，然后走到一个新的地方，再考虑范围内某个w，再走一小步，所以，你走的步数越多，表示你看过的，或选过的w就越多，你走的步数越少，其实你今天看过的，选择过的范围就很小。所以今天我看有效的VC dimension，就是你看过的那些来算算它的复杂度怎么样的话，就发现，你做最佳化的时间越多，VC dimension就越大。那你最佳化的时间短一点，VC dimension就不会那么大。还记得那个VC dimension的图吗，上图第一个，一个好的VC dimension的范围在中间，套到现在的情况，现在你在最佳化做了几步，跟你的VC dimension有关，那是不是你可以用最佳化的步数，横轴变成最佳化的步数t，来控制你的VC dimension的大小，然后，你的t也应该在中间的某个位置停下来，在中间停下来的方式叫做Early Stopping。实际上这样做会得到一个类似的结果，上图第二个。那什么时候停下来呢？validation！</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/25/AC自动机/" rel="prev">AC自动机</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/23/机器学习技法十一/" rel="next">机器学习技法十一</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/24/机器学习技法十二/"
+                   data-title="机器学习技法十二" data-url="http://Wan-YunPeng.github.io/2016/01/24/机器学习技法十二/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nueral_Network"><span class="nav-number">1.</span> <span class="nav-text">Nueral Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Motivation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural_Network_Hypothesis"><span class="nav-number">1.2.</span> <span class="nav-text">Neural Network Hypothesis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural_Network_Learning"><span class="nav-number">1.3.</span> <span class="nav-text">Neural Network Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization_and_Regularization"><span class="nav-number">1.4.</span> <span class="nav-text">Optimization and Regularization</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

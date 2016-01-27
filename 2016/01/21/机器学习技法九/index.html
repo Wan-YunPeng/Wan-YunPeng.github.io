@@ -78,7 +78,7 @@ Decision Tree Hypothesisaggregation model我们到底进行到哪里，aggregati
 <meta property="og:image" content="http://i.imgur.com/0Dj0TTI.png">
 <meta property="og:image" content="http://i.imgur.com/3VG1zVx.png">
 <meta property="og:image" content="http://i.imgur.com/DccORTH.png">
-<meta property="og:updated_time" content="2016-01-21T11:24:45.868Z">
+<meta property="og:updated_time" content="2016-01-21T11:27:14.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习技法九">
 <meta name="twitter:description" content="Decision TreeOptimal re-weighting for diverse hypotheses and adaptive linear aggregation to boost ‘weak’ algorithms  
@@ -263,7 +263,7 @@ Decision Tree Hypothesisaggregation model我们到底进行到哪里，aggregati
 <h3 id="Decision_Tree_Algorithm">Decision Tree Algorithm</h3><p><img src="http://i.imgur.com/fdIPFTf.png" alt=""><br>根据这个表达方式，可以得出一个简单的decision tree的表达方式。我们将手上的资料送给一个decision tree希望可以产生一颗树——G，要产生这颗树的话我们就要学到怎么做分支，然后分支以后产生了哪些小小的树。第一步先从资料里面学习怎么样做分支；做完分支以后，把我们手上的资料就根据这个分支分成那么多块，这些各自的资料块就会用来学出那些小小的树。此外还有一个重要的步骤就是决定什么时候停下来。<br><img src="http://i.imgur.com/k00TKWy.png" alt=""><br>今天要介绍的演算法叫做classification and regression tree——C&amp;RT:<br><img src="http://i.imgur.com/7BFF3CD.png" alt=""><br>C&amp;RT相比之前介绍的四个步骤有一些些不一样：<br><img src="http://i.imgur.com/e6I3vW9.png" alt=""><br>每次分成两块，最后为一颗二叉树；最后回传的小g会是一个常数。做二元分类，做到叶子的时候，计算叶子中的资料的值，0/1 error是看y的标签数量，1多我们就说类别是1，0多就说是0，regression就计算y的平均值。<br><img src="http://i.imgur.com/ZK2JxL2.png" alt=""><br>其他的部分，原来的作者还做了一些选择：<br><img src="http://i.imgur.com/pjVTCUQ.png" alt=""><br>利用decision stump来将资料切两半，decision stump：只看资料里的一个feature，从某个阈值分开，一边是正1，一边是负1.我们怎么决定到底切开以后怎么样最好呢？在C&amp;RT里他们使用的概念叫做purifying——能不能切开之后得到比较纯的dataset，纯的意思是这个dataset里面的y统统都一样或者他的y都很接近。分支的做法就是考虑所有的decision stump，看看用这些decision stump来切开的时候，两边的资料到底是纯还是不纯，等下会介绍怎么样判读一份资料到底纯还是不纯。C&amp;RT就回根据到底纯还是不纯这个结果去判断使用哪个decision stump。<br>C&amp;RT：: bi-branching by purifying<br>怎么样衡量纯度：<br><img src="http://i.imgur.com/wjXPQBm.png" alt=""><br>popular choices: Gini for classification, regression error for regression<br>最终的C&amp;RT形式就是：<br><img src="http://i.imgur.com/JRuLG9z.png" alt=""><br>那什么时候停下来呢？<br><img src="http://i.imgur.com/oNT9ODI.png" alt=""><br>C&amp;RT:fully-grown tree with constant leaves that come from bi-branching by purifying.</p>
 <h3 id="Decision_Tree_Heuristics_in_C&amp;RT">Decision Tree Heuristics in C&amp;RT</h3><p><img src="http://i.imgur.com/XCGjtOX.png" alt=""><br>这样的演算法非常的简单，不仅可以处理我们常见的classification和binary，更重要的是他处理起multi-class classification和classification一样简单。<br>如果输入的资料都不一样，那么你切切切，总会把所有的资料全部分开，那他的Ein就会是0.之前说过Ein为0，可能会不太妙，因为你的VC dimension可能会无限大，你没办法控制你的复杂度。所以这种完全长成的树看起来可能不是太好，因为会有overfit的危险。看起来我们需要一个regularization的过程：<br><img src="http://i.imgur.com/lxjmtlc.png" alt=""><br>我们需要一个衡量一棵树到底复杂还是不复杂的方式，既然我们切太多刀是导致我们的树太复杂，太容易overfit的原因，那我们可以退一步说我们不要切那么多刀，或者不要那么多片树叶，所以一个衡量我们树复杂度的方式是他到底有多少树叶。所以我们要解的问题可能是这样：找出所有的树，算一算每棵树的Ein，再看看他的复杂度是多少，用一个\(\lambda\)的参数把他们平衡一下，来看看最后选哪一颗树。这样的树通常叫做<font color="red">pruned decision tree</font>(被砍的树)，这件事情并不好做，所有可能的树不是很容易得到；实物上通常的做法是这样：假设已经通过刚才的C&amp;RT得到一颗完全长成的树，之后尝试将每一个叶子摘掉，意思是把他和隔壁的叶子合起来，合起来之后可能会在那个新叶子上得到一个新的常数，把每一个叶子摘掉之后看看哪个的Ein会最小。比如完全长成树有十片叶子，我把每片叶子都摘掉，得到所有九片叶子的树，看看哪棵树的Ein最小。再从这个摘掉一片叶子的树出发，再摘掉第二片叶子。。。这样生出很多棵不同的树，然后把这些不同的树列在all possible G里，求出Ein和复杂度最小的那棵树。还有一个\(\lambda\)，怎么选择？可以用validation的方式。<br>decision tree这样的演算法其实还有一些其他的特点。我们之前的考虑的一般都叫做numerical feature，我们输入部分都是一些数字，然后决定一个阈值，在哪儿切开：<br><img src="http://i.imgur.com/O5PLX2I.png" alt=""><br>实物上我们面对的输入有可能不是这样的数字，例如说categorial feature，是类别的，例如说我今天看的是病人的症状的话，症状不是一个数字，是一个类别，不是数字的时候就使用decision subset：比如你这个类别有四种选择，可以说这三种走左边，这一种走右边。我做分支的时候可以把所有分子的subset穷举出来，看怎么样切比较好。<br>decision tree这个演算法还可以用在什么地方？刚才提到decision tree的一个特点就是做切割，例如你现在看病人的特性，你说50公斤以下的走左边，50公斤以上的走右边。那我们问大家一个问题，比如今天有一个急诊病人进来，由于某些原因，我们忘记帮他量体重了，我们没有病人体重的资料，但是我们还是要知道说我们对这个病人做什么样的处理，例如说对他使用多少的药量等等，<br><img src="http://i.imgur.com/jhwIcF8.png" alt=""><br>如果手上没有体重的资料，但是我想要根据我的decision tree来做处置的时候，那怎么办？其中一个最简单的做法就是去量一量体重，又或者现在没有时间去量，我们目测一下他是在50公斤之上还是之下，可以看看他的身高，胖瘦等等。对应在C&amp;RT里通常也使用类似的方法，如果你有一些特征，目前没有值，没有值的话就没有办法做切割，怎么办？他会在训练的时候为每个特征找一些替代品，比如体重小于50公斤的替代品就是身高小于150。把这些替代品想办法在训练的过程中也存起来，这些替代品怎么找的，大体上就是用这些替代品来做切割的时候和原来的做切割要是类似的，如果在训练过程中把这些原来的切割和替代品都存起来，那在测试的过程中，如果今天发现说这个切割需要的那个feature刚好是问号，就用替代品来代替。  </p>
 <p><font color="orange">C&amp;RT : handles missing features easily</font></p>
-<h3 id="Decision_Tree_in_Action">Decision Tree in Action</h3><p>最后看一个展示的程式：<br><img src="http://i.imgur.com/ZOqilGc.png" alt=""><br>第一步在root上做切割（第一次把左边的两个圆圈分割出来），得到（之后类似）：<br><img src="http://i.imgur.com/Z8zPl8l.png" alt=""> <img src="http://i.imgur.com/YihqDqe.png" alt=""><br><img src="http://i.imgur.com/oJbSU8h.png" alt=""> <img src="http://i.imgur.com/D1sEEx5.png" alt=""><br><img src="http://i.imgur.com/okBkOrL.png" alt=""><br>当切到很纯净的资料时，就要回传base hypothesis回去<br><img src="http://i.imgur.com/24HhnId.png" alt=""> <img src="http://i.imgur.com/S7x2YWY.png" alt=""><br><img src="http://i.imgur.com/LgJGNwa.png" alt=""> <img src="http://i.imgur.com/K0bvlR5.png" alt=""><br>最后得到的结果就是最后一张图，边界化就会得到下面左图：<br><img src="http://i.imgur.com/0Dj0TTI.png" alt=""><br>和右边的AdaBoost对比一下，AdaBoost也是切水平刀或垂直刀，有一点很不一样，就是AdaBoost一定是横跨整个平面或垂直整个平面，而decision tree切的刀是在条件之下切的。<br>C&amp;RT : divide-and-conquer<br>在复杂的资料上的不同表现：<br><img src="http://i.imgur.com/3VG1zVx.png" alt="">   </p>
+<h3 id="Decision_Tree_in_Action">Decision Tree in Action</h3><p>最后看一个展示的程式：<br><img src="http://i.imgur.com/ZOqilGc.png" alt=""><br>第一步在root上做切割（第一次把左边的两个圆圈分割出来），得到（之后类似）：<br><img src="http://i.imgur.com/Z8zPl8l.png" alt=""><img src="http://i.imgur.com/YihqDqe.png" alt=""><br><img src="http://i.imgur.com/oJbSU8h.png" alt=""><img src="http://i.imgur.com/D1sEEx5.png" alt=""><br><img src="http://i.imgur.com/okBkOrL.png" alt=""><br>当切到很纯净的资料时，就要回传base hypothesis回去<br><img src="http://i.imgur.com/24HhnId.png" alt=""><img src="http://i.imgur.com/S7x2YWY.png" alt=""><br><img src="http://i.imgur.com/LgJGNwa.png" alt=""><img src="http://i.imgur.com/K0bvlR5.png" alt=""><br>最后得到的结果就是最后一张图，边界化就会得到下面左图：<br><img src="http://i.imgur.com/0Dj0TTI.png" alt=""><br>和右边的AdaBoost对比一下，AdaBoost也是切水平刀或垂直刀，有一点很不一样，就是AdaBoost一定是横跨整个平面或垂直整个平面，而decision tree切的刀是在条件之下切的。<br>C&amp;RT : divide-and-conquer<br>在复杂的资料上的不同表现：<br><img src="http://i.imgur.com/3VG1zVx.png" alt="">   </p>
 <p><font color="red">C&amp;RT : even more efficient than AdaBoost-Stump</font><br>C&amp;RT实物上的好处：<br><img src="http://i.imgur.com/DccORTH.png" alt="">  </p>
 </span>
       
@@ -281,6 +281,8 @@ Decision Tree Hypothesisaggregation model我们到底进行到哪里，aggregati
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/22/机器学习技法十/" rel="prev">机器学习技法十</a>
             
           </div>
 
@@ -352,7 +354,7 @@ Decision Tree Hypothesisaggregation model我们到底进行到哪里，aggregati
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

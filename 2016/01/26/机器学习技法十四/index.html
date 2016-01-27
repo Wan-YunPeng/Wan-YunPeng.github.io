@@ -1,0 +1,716 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Radial Basis Function Networkpre-training with denoising autoencoder(non-linear PCA) and fine-tuning with backprop for NNet with many layers
+RBF Network Hypothesis从一个之前讲过的模型Gaussian SVM讲起，在SVM里，如果我配上G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法十四">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/26/机器学习技法十四/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Radial Basis Function Networkpre-training with denoising autoencoder(non-linear PCA) and fine-tuning with backprop for NNet with many layers
+RBF Network Hypothesis从一个之前讲过的模型Gaussian SVM讲起，在SVM里，如果我配上G">
+<meta property="og:image" content="http://i.imgur.com/RpcGuWX.png">
+<meta property="og:image" content="http://i.imgur.com/VRNTCav.png">
+<meta property="og:image" content="http://i.imgur.com/xWWdo4z.png">
+<meta property="og:image" content="http://i.imgur.com/kDMhuUg.png">
+<meta property="og:image" content="http://i.imgur.com/3hRRCa8.png">
+<meta property="og:image" content="http://i.imgur.com/wqZDQW9.png">
+<meta property="og:image" content="http://i.imgur.com/2hvVYKy.png">
+<meta property="og:image" content="http://i.imgur.com/SSJBCnQ.png">
+<meta property="og:image" content="http://i.imgur.com/9aWP4Ll.png">
+<meta property="og:image" content="http://i.imgur.com/ITWJ5u7.png">
+<meta property="og:image" content="http://i.imgur.com/pxSD5y0.png">
+<meta property="og:image" content="http://i.imgur.com/KH0Gy3h.png">
+<meta property="og:image" content="http://i.imgur.com/A6RKdGS.png">
+<meta property="og:image" content="http://i.imgur.com/ChfkPRu.png">
+<meta property="og:image" content="http://i.imgur.com/uB4bkxm.png">
+<meta property="og:image" content="http://i.imgur.com/q1BanBn.png">
+<meta property="og:image" content="http://i.imgur.com/1acuUbN.png">
+<meta property="og:image" content="http://i.imgur.com/TbL1G7H.png">
+<meta property="og:image" content="http://i.imgur.com/VO6O84R.png">
+<meta property="og:image" content="http://i.imgur.com/68k5VCR.png">
+<meta property="og:image" content="http://i.imgur.com/dSYBqCU.png">
+<meta property="og:image" content="http://i.imgur.com/PKxyjxq.png">
+<meta property="og:image" content="http://i.imgur.com/S98YIUr.png">
+<meta property="og:image" content="http://i.imgur.com/cD2Nshb.png">
+<meta property="og:image" content="http://i.imgur.com/BaHotBf.png">
+<meta property="og:image" content="http://i.imgur.com/EkGDMfW.png">
+<meta property="og:image" content="http://i.imgur.com/tPY1sYV.png">
+<meta property="og:image" content="http://i.imgur.com/JhaPWwD.png">
+<meta property="og:image" content="http://i.imgur.com/nkgZabQ.png">
+<meta property="og:image" content="http://i.imgur.com/bvZju6u.png">
+<meta property="og:image" content="http://i.imgur.com/ZfRW09l.png">
+<meta property="og:image" content="http://i.imgur.com/h3z0ZUf.png">
+<meta property="og:image" content="http://i.imgur.com/vHA5yoH.png">
+<meta property="og:image" content="http://i.imgur.com/xx7Zle9.png">
+<meta property="og:image" content="http://i.imgur.com/A5TvAd6.png">
+<meta property="og:image" content="http://i.imgur.com/b3TapOv.png">
+<meta property="og:image" content="http://i.imgur.com/HuXRcbp.png">
+<meta property="og:image" content="http://i.imgur.com/2VWRDnj.png">
+<meta property="og:image" content="http://i.imgur.com/KMom8fi.png">
+<meta property="og:image" content="http://i.imgur.com/42E5t4F.png">
+<meta property="og:image" content="http://i.imgur.com/wXO5Ic6.png">
+<meta property="og:image" content="http://i.imgur.com/uCFLCQB.png">
+<meta property="og:updated_time" content="2016-01-27T06:20:59.950Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法十四">
+<meta name="twitter:description" content="Radial Basis Function Networkpre-training with denoising autoencoder(non-linear PCA) and fine-tuning with backprop for NNet with many layers
+RBF Network Hypothesis从一个之前讲过的模型Gaussian SVM讲起，在SVM里，如果我配上G">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法十四 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法十四
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-26T15:24:41+08:00" content="2016-01-26">
+            2016-01-26
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/26/机器学习技法十四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/26/机器学习技法十四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Radial_Basis_Function_Network">Radial Basis Function Network</h2><p>pre-training with denoising autoencoder(non-linear PCA) and fine-tuning with backprop for NNet with many layers</p>
+<h3 id="RBF_Network_Hypothesis">RBF Network Hypothesis</h3><p>从一个之前讲过的模型Gaussian SVM讲起，在SVM里，如果我配上Gaussian kernel他就可以在一个无限多维的转换空间里面想办法找一个胖胖的边界<br><img src="http://i.imgur.com/RpcGuWX.png" alt=""><br>那如果从我们得到的结果来说，也可以认为Gaussian SVM做的事情其实就是拿一堆gaussian来，然后把他们做线性组合，这些gaussian的中心在我们资料的support vector上面，把他们做线性组合之后，来作出最后的决定。我们顺着这个思路，来讲讲我们本次要学的RBF kernel是什么样子。<br><a id="more"></a><br>radial代表你今天要算的函数值只跟某个距离有关，什么距离？你新的点x到你的中心点\(x_n\)有关，你要算的gaussian值的距离只和这两个点的距离有关和其他的点没有关系；basis function是指我们要拿来做线性组合的系数，如上面的\(\alpha_n、\y_n\)这些组合的系数；我们要怎么样来看待Gaussian SVM输出的这个函数呢？一个另外看待它的方式是这样：让\(g_n(x)=y_n exp(-\gamma ||x-x_n||^2)\)，它的物理意义是看我的新的x和\(x_n\)到底够不够近，越近的我就给他越多的票，什么样的票？就是他要投\(y_n\)是+1还是-1的票，那就可以把我的SVM表达成是拿这些\(g_n\)来做线性组合，当然，我只需要\(\alpha_n))不是0的那些，就是所谓的support vector。<br><img src="http://i.imgur.com/VRNTCav.png" alt=""><br>Radial Basis Function Network : linear aggregation of radial hypotheses<br>那为什么要交network，上次讲到neural network的图示如下左，那如果我把RBF network画出来的话，应该是右边的图<br><img src="http://i.imgur.com/xWWdo4z.png" alt=""><br>它的第一层是center，就是刚才我们讲到在SVM里的那些\(x_n\)，他说我今天有一些中心点，请你算一算我到这些中心点的Radial basis function是多少，最后我再把这些hypothesis线性组合起来。输出的部分其实差不多，如果我今天做线性组合的话，这和类神经网络是一样的。不一样的是第一层，在类神经网络里我们第一层做的事是先算内积，在做一个tanh的转换，而在RBF network里面，我们在第一层是算距离，再通过例如gaussian或是其他函数的转换，再输出去。<br><img src="http://i.imgur.com/kDMhuUg.png" alt=""><br>RBF Network其实是NNet的一个分支<br><img src="http://i.imgur.com/3hRRCa8.png" alt=""><br>整个写下来，这是我们RBF Network的hypothesis的长相，他可以表示每一个函数的长相，其中有几个部分，第一个部分是我的radial basis function是什么样的（RBF表示），gaussian只是其中一种，我把我们的中心叫做\(\mu_m\)，我们算的是x和这个中心的距离，算出这个距离后，吧这个距离送到一个RBF函数里，在第二层给他投票，也就是\(\beta_m\)，做线性组合，最后看看我们要做的问题是什么，是回归分析，还是分类，再决定我们的输出（Output）要用什么样的形式，什么样的转换。这里重要的两个参数\(\mu_m 、\beta_m\).<br><img src="http://i.imgur.com/wqZDQW9.png" alt=""><br>这是Gaussian SVM对应RBF network中的系数<br>learning : given RBF and Output, decide \(\mu_m\) and \(\beta_m\)<br>我们刚才介绍RBF network的时候是从kernel开始的，kernel是把x空间里的两个点转换到z空间，再在那个z空间里算两个向量的内积，因为这样操作的关系，所以如果是kernel就要受到Mercer’s condition的保障，说它产生的矩阵要是半正定的。我们之前提到过，kernel其实是描述一种相似性，我两个原来的向量之间的相似性透过转换到一个z空间做内积的方式来描述这种相似性。我们这次讲的RBF是什么？它是描述一种相似性，只是这种相似性直接是可以用在x空间里面的距离来计算的，我可以根据这样概念去定义不同的RBF，只要我可以用x空间的距离来算出（相似性）来就好了。一般是距离越近，相似性越大，所以kernel和RBF可以看出是两种对相似性的描述，而Gaussian处于两者的交集中。那在他们两个之外呢？我们当然可以用一些其他不一样的相似性，其实你可以想象在类神经网络里每个神经元做的事情是在比较两个向量的相似性，只不过这两个量是输入和权重，做了内积后，透过那个s形的函数输出去，然后来决定他的相似性。<br><img src="http://i.imgur.com/2hvVYKy.png" alt=""><br>又或者你今天有更一般的资料，你可能决定相似性的方法不一样，例如DNA序列，DNA序列其实就是一些特殊的字串，你可能会算算这么样进过最少的修改从一个字串变到另外一个字串。这也是一种相似性，这种相似性既不是kernel，也不是RBF。<br>RBF Network : distance similarity-to-centers as feature transform相似性其实是一个很好的定义特征转换的方法  </p>
+<h3 id="RBF_Network_Learning">RBF Network Learning</h3><p><img src="http://i.imgur.com/SSJBCnQ.png" alt=""><br>刚才讲了RBF network的基本概念，考虑一个问题，我们的中心应该怎么找，干脆就把我们看过的所有资料，这些\(x_n\)统统都当成中心好了，这样的RBF network叫做full RBF network，它里面有多少个中心？我有N笔资料就有N笔中心。它的意思是我看过的每一笔资料应该都会对他几何上周围的那些点x有一些些的影响。影响力的大小就是我们的\(\beta_m\)<br><img src="http://i.imgur.com/9aWP4Ll.png" alt=""><br>举例来说，如果我们想象今天做二元分类时每一个点都有同样的影响力，相当于他们根据距离的远近来对这个点做投票，本来一人一票，不过如果你距离远一点，那你就少一点票，如果你距离近一点，你就多一点票。这样做同样影响力组合起来的结果，我们得到每一个点，他跟着一个RBF（\(exp(-\gamma||x-x_m||^2)\)），他可以投的票可能是+1，可能是-1（\(y_m\)），看他要投哪一边，我们在一个新的点上要衡量值的时候，就把所有我看过的点上面这些影响力根据距离加权之后，根据投票的结果决定我应该是+1，还是-1.<br>full RBF Network: lazy way to decide \(x_n\)<br>这个方法和机器学习里另一个重要的方法有一些很有趣的关联性。<br><img src="http://i.imgur.com/ITWJ5u7.png" alt=""><br>k nearest neighbor: also laze but very intuitive<br>用full RBF Network有什么好处呢？现在给大家一个很有趣的结果。考虑一个full RBF，不像刚才那样直接把\(\beta\)设成y，而是最佳化一下\(\beta\)<br><img src="http://i.imgur.com/pxSD5y0.png" alt=""><br>我考虑一个regression的情形，我的Output就没有经过任何的转换，而是直接输出。如果是这样的话是什么东西？我们只需要用RBF这样的函数，对应到这些中心点，来把我的资料做转换，转换之后\(\beta\)只是一个线性的问题了。把经过RBF转换后的资料记为\(z_n\)，它的维度是\(R^N\)，之后就可以用linear regression来算出最佳解，这个解大家很熟悉了<br><img src="http://i.imgur.com/KH0Gy3h.png" alt=""><br>那Z的大小是多少？它是一个NxN的矩阵，而且还是对称的，这个对称的矩阵用高斯函数的时候，有一个很有趣的性质：只要所有的x都不一样，每一笔资料都不一样，那你今天用gaussian RBF产生出来的Z矩阵就是可逆的。<br>Z是对称的，那么\(Z^T\)和Z是相同的，\(\beta = (ZZ)^{-1}Zy = Z^{-1}Z^{-1}Zy = Z^{-1}y \)<br>为什么说这样的结果很有趣?有了这个结果后，我今天想要用我刚才得到的这个\(g_{RBF}\)函数，也就是我经过一番训练得到最好的\(\beta\)，然后把我看过的资料，例如x1喂进去<br><img src="http://i.imgur.com/A6RKdGS.png" alt=""><br>这样的应用在一些地方很有用处，但是对于machine learning却不一定<br><img src="http://i.imgur.com/ChfkPRu.png" alt=""><br>Z表示的是两个点的形似度（用gaussian衡量的），这个形式和之前的一个学了的形式很相似<br><img src="http://i.imgur.com/uB4bkxm.png" alt=""><br><img src="http://i.imgur.com/q1BanBn.png" alt=""><br><img src="http://i.imgur.com/1acuUbN.png" alt=""><br>下一步就是怎么找到好的代表用在我们的RBF Network里面。</p>
+<h3 id="k-Means_Algorigthm">k-Means Algorigthm</h3><p>我们现在的目标是找出这些好的代表，想想好的代表应该是长什么样子？本来是每个点当自己的代表，当时要是两个点非常的接近，我想的是这两个点不需要都出现在我的RBF Network里面，让这两个点公用一个代表，就能表达原来RBF想要表达的意思，我们把这叫做cluster，资料分群<br><img src="http://i.imgur.com/TbL1G7H.png" alt=""><br>所以我们要解决的是分群的问题，更进一步说我们要解决的是分群，而且要在每一群里真的找出一个代表的值。之前在基石里讲过，分群是一个典型的非监督式的学习问题。我们要把我们看过的点，这些\(x_n\)分成一群一群，用\(S_1,S_2,…,S_M\)表示，在我们考虑的问题里假设他们是disjoint，互不干涉的，意思是一个点只能属于一个群，不能同时属于两个群。然后在每一群里面，找一个代表，要是有两个点是属于同一群的话，我希望这个群的代表和这两个点都是接近的。我们可以考虑每个点到自己代表的距离的函数<br><img src="http://i.imgur.com/VO6O84R.png" alt=""><br>我们的目标可以写成<br><img src="http://i.imgur.com/68k5VCR.png" alt=""><br>把最佳化问题写出来<br><img src="http://i.imgur.com/dSYBqCU.png" alt=""><br>先观察一下这个问题，这是一个困难的最佳化问题，为什么？他有两个部分，一个部分是这些最佳化的值\(\mu_m\)，另一个部分是分群的动作，这是一个组合最佳化的问题，所以在这个问题里面，我们既需要做排列的最佳化，又要做数值的最佳化，这样的问题我们之前不曾遇见。怎么办？这个问题里面有两群变数，第一个是S，第二个是\(\mu\)，合在一起最佳化很难，那我们能不能分开做最佳化。<br>先固定一组系数\(\mu\),这些中心已经决定了，现在只考虑怎么样分群最好。一个点只能属于一个群，用和群中心的距离来衡量他和那个群接近。<br><img src="http://i.imgur.com/PKxyjxq.png" alt=""><br>所以固定中心点后，想要决定这个点属于哪个群就比较简单了。<br>我们已经解决了问题的一半，固定中心点之后，我可以决定在哪个群。那我今天决定在哪一群后，是不是每个群可以更新各自的中心点。分群确定之后，要计算的就是距离了<br><img src="http://i.imgur.com/S98YIUr.png" alt=""><br>最佳的\(\mu_n\)是这个群的平均<br><img src="http://i.imgur.com/cD2Nshb.png" alt=""><br>这个演算法就是k-Means<br><img src="http://i.imgur.com/BaHotBf.png" alt=""><br>处理完开始之后，现在处理停下来。停下来的意思就是在这个演算法的空间里没有可以改变的东西<br><img src="http://i.imgur.com/EkGDMfW.png" alt=""><br>k-Means : the most popular <font color="red">clustering</font> algorithm through <font color="orange">alternating minimization</font><br>把K-Means搭上RBF Network<br><img src="http://i.imgur.com/tPY1sYV.png" alt="">  </p>
+<h3 id="k-Means_and_RBF_Network_in_Action">k-Means and RBF Network in Action</h3><p>用一个例子来说明k-means的运作过程<br><img src="http://i.imgur.com/JhaPWwD.png" alt=""><br>这是我设计的资料，可以看出，这里面有4群资料点，接下来看看k-means有没有办法把这4群资料做归类。一开始的中心点用方块表示，先要根据中心点和各个点的距离决定这个点归于哪个群，用不同的颜色表示<br><img src="http://i.imgur.com/nkgZabQ.png" alt=""><br><img src="http://i.imgur.com/bvZju6u.png" alt=""><br><img src="http://i.imgur.com/ZfRW09l.png" alt=""><br><img src="http://i.imgur.com/h3z0ZUf.png" alt=""><br><img src="http://i.imgur.com/vHA5yoH.png" alt=""><br><img src="http://i.imgur.com/xx7Zle9.png" alt=""><br><img src="http://i.imgur.com/A5TvAd6.png" alt=""><br><img src="http://i.imgur.com/b3TapOv.png" alt=""><br><img src="http://i.imgur.com/HuXRcbp.png" alt=""><br><img src="http://i.imgur.com/2VWRDnj.png" alt=""><br>不选k为4，而是一些不一样的数字<br><img src="http://i.imgur.com/KMom8fi.png" alt=""><br><img src="http://i.imgur.com/42E5t4F.png" alt=""><br>sensitive to k and initialization 对群的数量和初始化有关系<br>用k-means做完分群的动作，用这些分出来的中心点来当作RBF的特征转换，转换完之后，我就可以去做，例如说binary classification<br><img src="http://i.imgur.com/wXO5Ic6.png" alt=""><br><img src="http://i.imgur.com/uCFLCQB.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/25/机器学习技法十三/" rel="next">机器学习技法十三</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/26/机器学习技法十四/"
+                   data-title="机器学习技法十四" data-url="http://Wan-YunPeng.github.io/2016/01/26/机器学习技法十四/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Radial_Basis_Function_Network"><span class="nav-number">1.</span> <span class="nav-text">Radial Basis Function Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RBF_Network_Hypothesis"><span class="nav-number">1.1.</span> <span class="nav-text">RBF Network Hypothesis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBF_Network_Learning"><span class="nav-number">1.2.</span> <span class="nav-text">RBF Network Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-Means_Algorigthm"><span class="nav-number">1.3.</span> <span class="nav-text">k-Means Algorigthm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-Means_and_RBF_Network_in_Action"><span class="nav-number">1.4.</span> <span class="nav-text">k-Means and RBF Network in Action</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

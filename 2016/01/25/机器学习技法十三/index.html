@@ -1,0 +1,708 @@
+<!doctype html>
+<html class="theme-next use-motion ">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Read the f**king code" />
+
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="Deep Learningautomatic pattern feature extraction from layers of neurons with backprop for GD/SGD
+Deep Neural Network整个类神经网络的核心就是这些一层一层的神经元，还有他们的链接关系，那我们要用多少个神经元呢？或者用多少层呢？我们整过网络的结构到底是什么样子？结构指的是例如哪个神经元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习技法十三">
+<meta property="og:url" content="http://Wan-YunPeng.github.io/2016/01/25/机器学习技法十三/index.html">
+<meta property="og:site_name" content="YunPeng’s Blog">
+<meta property="og:description" content="Deep Learningautomatic pattern feature extraction from layers of neurons with backprop for GD/SGD
+Deep Neural Network整个类神经网络的核心就是这些一层一层的神经元，还有他们的链接关系，那我们要用多少个神经元呢？或者用多少层呢？我们整过网络的结构到底是什么样子？结构指的是例如哪个神经元">
+<meta property="og:image" content="http://i.imgur.com/tlaPgoE.png">
+<meta property="og:image" content="http://i.imgur.com/oWQ94Mt.png">
+<meta property="og:image" content="http://i.imgur.com/mYVRuLw.png">
+<meta property="og:image" content="http://i.imgur.com/GeOLIO9.png">
+<meta property="og:image" content="http://i.imgur.com/aqgTao9.png">
+<meta property="og:image" content="http://i.imgur.com/EG57Q7i.png">
+<meta property="og:image" content="http://i.imgur.com/BxTbqvY.png">
+<meta property="og:image" content="http://i.imgur.com/bAFXDOc.png">
+<meta property="og:image" content="http://i.imgur.com/ct1p18J.png">
+<meta property="og:image" content="http://i.imgur.com/YzHzPGR.png">
+<meta property="og:image" content="http://i.imgur.com/Pkb13ZI.png">
+<meta property="og:image" content="http://i.imgur.com/CLNBBod.png">
+<meta property="og:image" content="http://i.imgur.com/Y2pmi5K.png">
+<meta property="og:image" content="http://i.imgur.com/dcDLWum.png">
+<meta property="og:image" content="http://i.imgur.com/dsrISdz.png">
+<meta property="og:image" content="http://i.imgur.com/QfY7iHc.png">
+<meta property="og:image" content="http://i.imgur.com/suifsMV.png">
+<meta property="og:image" content="http://i.imgur.com/JBpwPhw.png">
+<meta property="og:image" content="http://i.imgur.com/1HNqA4W.png">
+<meta property="og:image" content="http://i.imgur.com/JLQHHOQ.png">
+<meta property="og:image" content="http://i.imgur.com/KLQY21d.png">
+<meta property="og:image" content="http://i.imgur.com/8IFQGRL.png">
+<meta property="og:image" content="http://i.imgur.com/Czcrvn9.png">
+<meta property="og:image" content="http://i.imgur.com/ImgL38N.png">
+<meta property="og:image" content="http://i.imgur.com/ep169do.png">
+<meta property="og:image" content="http://i.imgur.com/0UHyhz3.png">
+<meta property="og:image" content="http://i.imgur.com/3zQWyYI.png">
+<meta property="og:image" content="http://i.imgur.com/Chz7nuu.png">
+<meta property="og:image" content="http://i.imgur.com/tS0Zgdx.png">
+<meta property="og:image" content="http://i.imgur.com/ufrfOhD.png">
+<meta property="og:image" content="http://i.imgur.com/dOZ9DYH.png">
+<meta property="og:updated_time" content="2016-01-25T11:37:42.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习技法十三">
+<meta name="twitter:description" content="Deep Learningautomatic pattern feature extraction from layers of neurons with backprop for GD/SGD
+Deep Neural Network整个类神经网络的核心就是这些一层一层的神经元，还有他们的链接关系，那我们要用多少个神经元呢？或者用多少层呢？我们整过网络的结构到底是什么样子？结构指的是例如哪个神经元">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: '',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 机器学习技法十三 | YunPeng’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">YunPeng’s Blog</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              机器学习技法十三
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-25T13:56:58+08:00" content="2016-01-25">
+            2016-01-25
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/25/机器学习技法十三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/25/机器学习技法十三/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Deep_Learning">Deep Learning</h2><p>automatic pattern feature extraction from layers of neurons with backprop for GD/SGD</p>
+<h3 id="Deep_Neural_Network">Deep Neural Network</h3><p><img src="http://i.imgur.com/tlaPgoE.png" alt=""><br>整个类神经网络的核心就是这些一层一层的神经元，还有他们的链接关系，那我们要用多少个神经元呢？或者用多少层呢？我们整过网络的结构到底是什么样子？结构指的是例如哪个神经元放哪里，又或者可不可以跨层连接等。这是一个非常困难的问题，如果今天你心中有一个特别的结构，想去看看他能不能实现，又或者我把这些结构当成是个参数的话，之前讲的有关模型选择，有关参数选择的validation方法，你统统都可以用的上。<br>structural decisions : <font color="orange">key issue</font> for applying NNet<br><a id="more"></a><br>我们这里看两种基本的结构。一种是shallow：hidden层只有少数的几层；另一种是deep：hidden层有很多层。<br><img src="http://i.imgur.com/oWQ94Mt.png" alt=""><br>浅的好处是什么？层数比较少，在你计算的时候会比较有效率一些，你只有少数的几层，顶多只需要决定那几层里几个神经元就好了，整个有关结构的决定会比较简单一些；我在那浅浅几层里放足够多的神经元也可以做到很复杂的事情。深的在训练和学习的时候会花费比较多的力气，再来，在整个结构上的决定会比较复杂，当然，理论上可以会很powerful。但是这几年deep learning非常流行，接下来会讲解。<br>用手写辨识来举例<br><img src="http://i.imgur.com/mYVRuLw.png" alt=""><br>例如我们要辨识出1和5，我们可以想象说我们写下整个数字后，可能整个辨识的过程我们可以先想办法在这些数字里萃取出各个不同部位的特征，例如从下往上数的第二层，可能我们想要萃取的特征是我们大概写了哪些短短的笔画，当然把短短的笔画再组合起来以后就会得到更复杂的笔画，到最后我们才做辨识的动作。所以我们原来给的手写的数字可能是一张图片，可能是一堆的点，从这些点你可能会萃取出一层一层更复杂的特征，然后到够复杂的特征之后，你就可以很轻易的根据这些够复杂的特征来做决定。虽然我们这里的图示只有两侧，感觉浅浅的，但是我们描述的意思是每一层可以代表不一样的物理意义。举例来说，我今天如果要辨识1的话，这个可能需要\(\phi_1、\phi_2、\phi_3\)，这三个合起来就会变成一个1，其他的三种都不需要，所以一个辨识1的神经元（z1），他可能会希望前面三个神经元告诉他说他有\(\phi_1、\phi_2、\phi_3\)这三个部分（蓝色线），但是没有\(\phi_4、\phi_5、\phi_6\)这三个部分（红色线），5的情况类似，从图中的蓝色和红色线可以看出。所以我可以透过，如果我只把第一层想成只是从我的一点一点（pixel）里萃取出短短的笔画的话（简单的特征），我把整个后面的决定动作再用其他的weight来表达出来。<br><img src="http://i.imgur.com/GeOLIO9.png" alt=""><br>越多层，我就可以表示越多种这些不一样的变化，然后每一层相对要做的事情就变得简单了。这对原始的特征raw feature很有用。<br>deep learning: currently popular in vision/speech/….<br>刚才讲到deep learning有很多的应用，那他里面的困难是怎么解决的呢？这里概略的介绍一下，其中一个困难是决定网络的架构；再来就是模型复杂度；这是一个困难的最佳化问题；计算复杂度很高。研究者们是怎么样解决这些问题的。对于网络的架构，你今天如果要解决结构上的问题，你要怎么样设计你的网络？常常除了validation这样客观的工具之后，研究者还会加上他们对这个问题的了解/认识。例如convolutional NNet：如果我的类神经网络是拿来处理image的，像素之间彼此是有物理上的位置关系的，那既然这样的话，convolutional NNet在设计神经元之间的连接的时候，让附近的像素连到下一层的同一个神经元，隔太远的像素干脆就不要连上去。模型的复杂度很高，这么办？资料量很大的时候，这不见得是个问题，资料量很大的时候可以支持那个模型的复杂度，当然，资料量大了，就会在计算量那里面临一些问题，可以用regularization控制一下模型复杂度。对于困难的最佳化问题，其中一个好的办法是：既然我们的backprop是用来帮助梯度下降的，梯度下降对于起始点其实是很敏感的，有很多deep learning的方法会很谨慎的选择它的起始点而不是随机的方式。对于计算复杂度，只要靠硬件和架构了。<br><img src="http://i.imgur.com/aqgTao9.png" alt=""><br>在这个课里，没有办法涵盖类神经网络和深度学习的所有先进的技巧，但是可以给大家一个基本的入门的部分，如果我想要做深度学习的话，我可以怎么样做。下图是一个简单的深度学习的方法<br><img src="http://i.imgur.com/EG57Q7i.png" alt=""><br>整个网络要训练得好，你必须先把他的initial的这些权重在一个比较好的位置，要怎么决定一个一开始比较好的权重呢？可能可以这样做，说我们干脆一层一层的来决定，我们第一次的时候先决定一开始的0层，最下面是输入，从输入到第一层，想办法决定他们的权重一开始是什么样子，图a，决定这个之后，暂时固定下来，再决定第一层和第二层之间的权重应该要是什么样子，图b，这样子一路下去，把一开始的权重决定下来，让他们统统变成黑色之后（固定），我才进行下一步——把这些权重透过进一步的训练来让他们满足我想要的工作。<br><img src="http://i.imgur.com/BxTbqvY.png" alt="">  </p>
+<h3 id="Autoencoder">Autoencoder</h3><p>刚才已经给大家介绍了一个简单的深度学习的架构，接下来再给大家讲一下怎么样在这个架构上做到预训练，也就是帮我们的权重决定初始的动作。我们先来想想权重的物理意义是什么？我们说在类神经网络或深度学习的架构下，权重代表我们要怎么做特征转换，或者另外一种说法，我们要怎么样把我们的资料换成一个不同的表现形式——编码。在深度学习里面，我们做完pre-training之后，其实我们是不知道这个权重未来会被怎么样被使用，所以我们希望这些权重只要能够保存我资料的原始信息就好了<br><img src="http://i.imgur.com/bAFXDOc.png" alt=""><br>用之前的那个例子，输入资料转换成一些特征后，把这些特征充组起来是可以表示原来的资料的（比如1）。<br>我们希望在预训练的时候找到的这些特征转换（w）是information-preserving的——我在转换过去之后，还可以再转换回来，然后得到和我转换之前类似的结果（高度类似）。<br>怎么做呢？其中一个做法是可以使用一个类神经网络来做<br><img src="http://i.imgur.com/ct1p18J.png" alt=""><br>什么意思，我把原始输入进行转换，转换到中间的某些神经元，这些神经元的输出是我的新的表达方式，我还能够试着重建回来，重建回来的时候，我可能有另外一批的权重，用另外一批的权重重建回来那些\(x_i\)的值，和原始输入的值是类似的。<br><img src="http://i.imgur.com/YzHzPGR.png" alt=""><br>这样的类神经网络叫做自动编码器。这个学习的动作是在逼近identity function，逼近这个完全没有做任何转变的函数，蓝色的w叫编码的权重，红色的是解码的权重。<br>有什么好处？<br><img src="http://i.imgur.com/Pkb13ZI.png" alt=""><br>autoencoder : representation-learning through approximating identity function<br>我们来看看基本的autoencoder会长什么样子，基本的autoencoder是一个d到\(\tilde{d}\)再到d的类神经网络，常被使用的error function是平方错误<br><img src="http://i.imgur.com/CLNBBod.png" alt=""><br>他是一个很浅的类神经网络，你可以轻易的时候用backpropagation，也可以轻易的做最佳化动作，通常会考虑\(\tilde{d}\)比d小的情形，这样可以把我们原来的资料压缩到一个比较低维度d表现形式。<br><img src="http://i.imgur.com/Y2pmi5K.png" alt=""><br>输入和输出的部分是一样的，可以看作是一个无监督的学习。很多的时候会让编码的权重和解码的权重一样，这是一个限制，一个条件，怎么把条件加入最佳化里面之前已经讲过，这其实就是一个regularization。<br><img src="http://i.imgur.com/dcDLWum.png" alt=""><br>这是刚才讲过的deep learning的基本演算法，现在我们多学了什么，在pre-training的时候使用autoencoder，他会拿前一层的输出（一开始是输入的部分），第二次的时候是拿第一层的输入部分，以此类推。<br><img src="http://i.imgur.com/dsrISdz.png" alt=""><br>many successful pre-training techniques take <font color="red">‘fancier’ autoencoders</font> with different architectures and regularization schemes  </p>
+<h3 id="Denoising_Autoencoder">Denoising Autoencoder</h3><p>接下来稍微谈谈regularization的问题。我们可以在deep learning里面实现哪些不一样的regularization的机制来控制我们的模型复杂度呢。<br><img src="http://i.imgur.com/QfY7iHc.png" alt=""><br>这样很高的模型复杂度告诉我们说我们需要regularization<br><img src="http://i.imgur.com/suifsMV.png" alt=""><br>接下来给大家介绍一个很不一样的regularization的方法。这之前，再复习一下overfitting的成因是什么<br><img src="http://i.imgur.com/JBpwPhw.png" alt=""><br>杂讯其实对overfitting来说是一个很重要的原因。怎么处理這些杂讯？<br><img src="http://i.imgur.com/1HNqA4W.png" alt=""><br>最直观的想法就是把这些杂讯清除掉；另一个很不一样的想法是把杂讯加到资料里面，什么意思？<br>用autoencoder来解释，想象我们有了一个好的自动编码器，意思是我给他看过的资料或有点像他看过的资料，他应该要能够经过这个自动编码器后他最后的输出和他的输入差不多，除此之外，我们还希望如果他有某种强固型的话，今天如果我给他一点不一样的资料，这不一样的资料可能是原始的资料加上一些杂讯，加入杂讯后的资料和原始资料的差距也不是特别大，你希望他解码后跟原来的资料还是要差不多。这样，我们想做一个denoising autoencoder，不仅有编码的动作，还有去杂讯的功能，怎么做呢？用刚才一样的架构，但是我喂进去的资料不太一样，喂进去的资料有我想要的输出，再加上杂讯，这样的资料描述的是什么，我送给你脏的资料，你的autoencoder要能够输出干净的资料<br><img src="http://i.imgur.com/JLQHHOQ.png" alt=""><br>我们希望最后得到g是能够去杂讯的<br>artificial noise/hint as regularization!——practically also useful for NNet/models</p>
+<h3 id="Principal_Component_Analysis">Principal Component Analysis</h3><p>我们之前的介绍环绕在autoencoder下，其实我们跟大家讲的是non-linear，他不是一个线性的。为什么我们没有考虑autoencoder线性的模型长什么样子呢？<br><img src="http://i.imgur.com/KLQY21d.png" alt=""><br>之所以没有讲线性的，是因为本来我每一层考虑的就是非线性的转换，所以非线性的autoencoder在那样的架构下比较有用。现在考虑一下线性的是怎么回事。<br><img src="http://i.imgur.com/8IFQGRL.png" alt=""><br>他最后的每一个输出，比如说是第k个component的输出就会是上图中的\(h_k(x)\)，我原始的输入，经过了一层蓝色的权重，得到第一层的输出，在经过第二层的权重，变成最后一层的输出。现在考虑他的三个特例。第一个是把x0拿掉，想象我们的x没有做那个加上第0维的动作，就是原始的x，从第一个维度到最后一个维度，这样让我们输入的范围和输出的范围比较一致。第二是考虑让编码和解码的权重相等来实现regularization。第三就是我中间的那个维度比我输入或输出的维度要来的小。这样，我就可以把我的hypothesis写出<br><img src="http://i.imgur.com/Czcrvn9.png" alt=""><br>写出最佳化的动作，它的Ein是什么<br><img src="http://i.imgur.com/ImgL38N.png" alt=""><br>要做的事就是找到一个W矩阵，让Ein最小。之前做linear都很简单，这里也是吗？咋看之下不是那么容易，发现Ein里面是W的一个四次式。接下来就是推导这个W的公式解，虽说咋看之下不容易，但是还是有个公式解<br>我们要求的是w，但是我们在整个式子里看到是w和自己的transpose的乘积，如果我们对w操作太复杂，反正\(WW^T\)是一个半正定的矩阵，我们可以对他做eigen-decompose<br><img src="http://i.imgur.com/ep169do.png" alt=""><br>得到的V是互相垂直的，中间的那个矩阵是个对角线的矩阵，它是一个特殊的矩阵，是根据\(WW^T\)分解来的，他最多有\(\tilde{d}\)个不是0的数，所以我们把原来对W的限制转换为对\(\Gamma\)矩阵的限制。\(V^Tx_n\)表示一个坐标转换，转换之后乘上了一个\(\Gamma\)，\(\Gamma\)里面最多只有\(\tilde{d}\)个非零数字，表示它在对角线上至少有\(d-\tilde{d}\)个为0，表示转换之后，我把那个坐标里面的某些值去掉，其他的可能会根据那个对角线的值做一点点放缩的动作，放缩后我得到一个新的坐标，再乘上一个V，表示我把它换回我原来的坐标系。前面的资料可以用类似的方式表示，旋转，但是没有做任何的放缩，在选转回来就行。<br>接下来就最佳化\(\Gamma\)和V就行了<br>从\(\Gamma\)开始<br><img src="http://i.imgur.com/0UHyhz3.png" alt=""><br>最佳化里面没什么关系的先用灰色表示。V和V的transpose只是旋转，他们并不影响长度，既然这样，就先把红色的V涂掉，最佳化的问题就变成\(I-\Gamma\)(some vector)的形式，我想要这个平方的和最小，我们唯一的机会就是在\(I-\Gamma\)里生出很多0，那你就可以把后面那个向量中的很多值变成0.因为I的对角线上都是1，所以我也希望\(\Gamma\)的对角线上有很多的1<br><img src="http://i.imgur.com/3zQWyYI.png" alt=""><br>最多只能是\(\tilde{d}\)个1.<br>下一步要做的就是<br><img src="http://i.imgur.com/Chz7nuu.png" alt=""><br>把这个最佳化的问题简化一下，把最小化变成最大化（看起来会稍微干净一点）。<br><img src="http://i.imgur.com/tS0Zgdx.png" alt=""><br>min的意思有点像是在后面的那个向量里面要留下哪些维度，那max就应该是拿掉哪些维度。想象\(\tilde{d}\)为1，那你只能拿掉一个维度，\(V^T\)只有第一个row会影响这里面的计算，因为其他部分统统都乘上0了，如果今天只有这个向量有影响的时候，我们来看看怎么样最佳化这个向量。 我们要解的最佳化问题就会变成\(max_v \sum_{n=1}^N v^Tx_nx_n^Tv\)同时满足\(v^Tv=1\)<br><img src="http://i.imgur.com/ufrfOhD.png" alt=""><br>linear autoencoder: projecting to orthogonal patterns wj that ‘matches’ {xn} most</p>
+<p><img src="http://i.imgur.com/dOZ9DYH.png" alt="">  </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/26/机器学习技法十四/" rel="prev">机器学习技法十四</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/25/AC自动机/" rel="next">AC自动机</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/01/25/机器学习技法十三/"
+                   data-title="机器学习技法十三" data-url="http://Wan-YunPeng.github.io/2016/01/25/机器学习技法十三/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/profile.jpg" alt="Wan YunPeng" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Wan YunPeng</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Read the f**king code</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wan-YunPeng" target="_blank">github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.google.com" target="_blank">google</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zh-cn.facebook.com/" target="_blank">facebook</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com" target="_blank">twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com" target="_blank">weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep_Learning"><span class="nav-number">1.</span> <span class="nav-text">Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep_Neural_Network"><span class="nav-number">1.1.</span> <span class="nav-text">Deep Neural Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autoencoder"><span class="nav-number">1.2.</span> <span class="nav-text">Autoencoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Denoising_Autoencoder"><span class="nav-number">1.3.</span> <span class="nav-text">Denoising Autoencoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Principal_Component_Analysis"><span class="nav-number">1.4.</span> <span class="nav-text">Principal Component Analysis</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wan YunPeng</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wyptca"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
