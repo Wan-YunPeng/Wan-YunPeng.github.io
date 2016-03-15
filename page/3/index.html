@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/17/机器学习技法五/" itemprop="url">
-                机器学习技法五
+              <a class="post-title-link" href="/2016/01/11/机器学习基石十五/" itemprop="url">
+                机器学习基石十五
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-17T14:24:48+08:00" content="2016-01-17">
-            2016-01-17
+          <time itemprop="dateCreated" datetime="2016-01-11T20:07:08+08:00" content="2016-01-11">
+            2016-01-11
           </time>
         </span>
 
@@ -203,8 +203,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/17/机器学习技法五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/17/机器学习技法五/" itemprop="commentsCount"></span>
+              <a href="/2016/01/11/机器学习基石十五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/机器学习基石十五/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,10 +219,9 @@
 
       
         
-          <h2 id="Kernel_Logistic_Regression">Kernel Logistic Regression</h2><p>allow some <font color=orange>margin violation \(\xi_n\)</font> while penalizing them by C;equivalent to <font color=orange>upper-bounding \(\alpha_n\)</font> by C<br>使用kernel这个技巧在logistic regression上会有什么样的效果。</p>
-<h3 id="Soft-Margin_SVM_as_Regularized_Model">Soft-Margin SVM as Regularized Model</h3><p>回归一下SVM的内容。我们从hard-margin开始讲起，我们想找出一条胖胖的分割线，能够分开所有的资料并且是margin最大的，经过一番推导后，我们说这个问题有一个对应对偶问题，这个对偶问题和z空间的维度没有任何关系；把margin放松一下就变成了soft-margin的问题，我们允许违反一些胖胖的条件的点，也得到了相应的对偶问题，唯一和hard-margin的区别就是\(\alpha\)的上限是C。<br><img src="http://i.imgur.com/EZDlFnZ.png" alt=""><br>soft-margin preferred in practice; linear:LIBLINEAR（一般的SVM）; non-linear:LIBSVM（dual kernel的SVM）<br>soft-margin是实物上常使用的SVM。<br><img src="http://i.imgur.com/nOZb5GN.png" alt=""><br>
+          <h2 id="机器学习基石十五">机器学习基石十五</h2><h3 id="Validation">Validation</h3><h3 id="Model_Selection_Problem">Model Selection Problem</h3><p>即使你现在要做简单的二元分类（binary classification），我们已经学了很多很多中不同的方法，举例来说你可以用PLA、pocket、linear regression和logistic regression，这些方法里面很多事一步一步做的，你可以决定走（迭代）多少步，又或者可以决定步长是多少，还有就是用什么转换，regularizer用什么，regularizer的强度是多少等等。<br><img src="http://i.imgur.com/n52O1FL.png" alt=""><br>方法越多，选择越多，而且这些方法是组合起来的，会造成组合爆炸的情况，我们想说怎么从这些形形色色的方法中选出正确的选择。<br>之前已经引导过大家做过选择了，如下图，你会选一条线，有点错误的，还是曲线，一点错误都没有的。<br><img src="http://i.imgur.com/GmG1CTF.png" alt=""><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/17/机器学习技法五/#more" rel="contents">
+            <a class="btn" href="/2016/01/11/机器学习基石十五/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -255,8 +254,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/16/机器学习技法四/" itemprop="url">
-                机器学习技法四
+              <a class="post-title-link" href="/2016/01/11/线段树/" itemprop="url">
+                线段树
               </a>
             
           
@@ -266,8 +265,82 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-16T14:49:03+08:00" content="2016-01-16">
-            2016-01-16
+          <time itemprop="dateCreated" datetime="2016-01-11T12:40:29+08:00" content="2016-01-11">
+            2016-01-11
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/11/线段树/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/线段树/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="概述">概述</h3><p><strong>线段树</strong>（英语：Segment Tree）是一种<font color=blue>二叉搜索树</font>，它将一个<font color=blue>区间</font>划分成一些单元区间，每个单元区间对应线段树中的一个<font color=red>叶结点</font>。<br>对于线段树中的每一个非叶子节点[a,b]，它的左子树表示的区间为[a,(a+b)/2]，右子树表示的区间为[(a+b)/2+1,b]。因此线段树是<font color=blue>平衡二叉树</font>。叶节点数目为N，即整个线段区间的长度。即根节点的b-a+1。<br>使用线段树可以快速的查找某一个节点在若干条线段中出现的次数，<font color=blue>时间复杂度</font>为O(logN)。而未优化的<font color=blue>空间复杂度</font>为2N，因此有时需要<font color=blue>离散化</font>让空间压缩。</p>
+<h3 id="基本操作">基本操作</h3><p>给定整个线段区间，建立一棵线段树的时间复杂度是 O(N)。单点修改的时间复杂度是 O(log N) 。单点查询的时间复杂度是 O(1)。如果允许惰性赋值而加上延迟标记的话，许多的区间修改的时间复杂度也会是 O(log N)，但是单点查询的时间复杂度会变成 O(log N)。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/11/线段树/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/10/机器学习基石十四/" itemprop="url">
+                机器学习基石十四
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-10T20:13:49+08:00" content="2016-01-10">
+            2016-01-10
           </time>
         </span>
 
@@ -292,8 +365,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/16/机器学习技法四/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/16/机器学习技法四/" itemprop="commentsCount"></span>
+              <a href="/2016/01/10/机器学习基石十四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/机器学习基石十四/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -308,13 +381,284 @@
 
       
         
-          <h2 id="Soft-Margin_Support_Vector_Machine">Soft-Margin Support Vector Machine</h2><p>kernel as shortcut to (transfrom + inner product) tor remove dependence on \(\tilde{d}\): allowing a spectrum of simple(linear) models to infinite dimensional(Gaussian) ones with margin control</p>
-<h3 id="Motivation_and_Primal_Problem">Motivation and Primal Problem</h3><p>我们上次讲到SVM可能还是会overfit，为什么？其中一个原因就是你选择的转换太powerful了，你选的margin也帮不了你，还有另外一个原因就是我们坚持我们一定要把资料完美的分开。<br><img src="http://i.imgur.com/fd4VY4F.png" alt=""><br>就像上图左，用一条直线的效果可能还不错，就算有一点点的错误，这也是一个不错的hypothesis。要是你一定要把圈圈叉叉完美分开的话，你就会得到右边的图，会得到一个四次多项式，看起来这个SVM可能不是对资料最合理的model。  </p>
+          <h2 id="机器学习基石十四">机器学习基石十四</h2><h3 id="Regularization">Regularization</h3><h3 id="Regulared_Hypothesis_Set">Regulared Hypothesis Set</h3><p>上次课讲到的overfitting发生的情况：</p>
 <blockquote>
-<p>if always insisting on <strong>separable(shatter)</strong>, have power to overfit to noise.</p>
+<p>overfitting happens with <font color=orange>excessive power,stochastic/deterministic noise and limited data</font>太多的power，资料量不够，又有随机会觉得的噪声时，overfitting很可能发生。  </p>
+</blockquote>
+<p><img src="http://i.imgur.com/rVbLaH3.png" alt=""><br>上图右使典型的overfit，我们的资料量不是很多，又用了一个四次多项式或者更高的多项式去fit它，这时候Ein很低，但是Eout很大，今天要做的就是把右图不好的状况变成左边好的状况，左边叫做<font color=red>规则化的fit</font>，左边的特点是红色的线要比右边的平滑许多，更接近我们蓝色的那条线。上次课提到过如何做，就是我们从高次的hypothesis走向低次的hypothesis。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/10/机器学习基石十四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/09/机器学习基石十三/" itemprop="url">
+                机器学习基石十三
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-09T20:39:05+08:00" content="2016-01-09">
+            2016-01-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/09/机器学习基石十三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/机器学习基石十三/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十三">机器学习基石十三</h2><p>hazard of overfitting<br>先从一个例子出发，假设我们现在要做一个一维的回归分析的问题。X只有一个维度，然后我们要做回归分析，要输出一个实数，假设有5个资料点，这5个资料点是怎样产生的呢？X是随机产生的，y呢则是说我把这个x带进某一个2次函数里面，然后再加上一点点小小的noise，这样子来产生我的y。所以我最想要的f长什么样子？就是下图蓝色的那一条线。<br><img src="http://i.imgur.com/djnlqWD.png" alt=""><br>我本来不知道我们的目标函数是一个二次函数，我有五个资料点，不然我用一个4次的多项式来做这个回归分析，怎么样用四次的多项式？我们上次讲过你只要把一个四次的特征转换配合我们原来学过的linear regression你就可以用4次多项式来做。你有五个点，你要用一个4次多项式的话，只有一个4次多项式会通过这个点，也就是一个唯一解。因为这个四次多项式通过这五个点，所以他的Ein一定是0，上图中红色的线。可以看出这条红色的线和我们的目标函数蓝色的那条线一点都不像，也就是说它的Eout其实非常非常的大。这种情况叫做bad generalization。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/09/机器学习基石十三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/08/机器学习基石十二/" itemprop="url">
+                机器学习基石十二
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-08T20:26:49+08:00" content="2016-01-08">
+            2016-01-08
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/08/机器学习基石十二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/机器学习基石十二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十二">机器学习基石十二</h2><h3 id="non-linear_transform">non-linear transform</h3><p>linear model中的linear hypotheses是什么意思？如果是二元分类，我们说视觉上，它就像切<font color=orange>一条线</font>，将资料分成圈圈和叉叉两个部分;数学上来说，它里面的精神就是用我们的输入x去算一个分数<font color=purple>s</font>=\(W^T\)X，算出这个分数后再用各种不同的转换来做决定的转换。<br>这样的模型的好处在于它的<font color=orange>vc维是受到控制的</font>，这样可以确定我们的Ein和Eout不会差太远，缺点是在实际情况中，总会有些资料，有些点是拿直线无法分开的（总是会分错），下图右，这样我们的Ein就会很大，而Ein和Eout不会差太远，就会导致我们的Eout也会很大。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/08/机器学习基石十二/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/06/机器学习基石十一/" itemprop="url">
+                机器学习基石十一
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-06T11:13:45+08:00" content="2016-01-06">
+            2016-01-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/06/机器学习基石十一/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/机器学习基石十一/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石十一">机器学习基石十一</h2><p>Linear Models for Classification</p>
+<blockquote>
+<p>linear scoring function: s = \(W^T\)X三者的计算分数方式</p>
+</blockquote>
+<p>三个线性算法的比较与总结：<br><img src="http://i.imgur.com/MEetY67.png" alt=""></p>
+<blockquote>
+<p>1.linear classification:再取完加权分数后，把这个分数取正负号，+1为圈圈，-1为叉叉，然后从classification的角度来看，它的0/1 loss是什么样子的。这个问题是NP hard<br>2.对于linear regression，我们直接把分数算完之后就输出出去了，因为我们的目标是整个可能的实数，不是只有+1/-1而已，如果使用一个squared error，那么最后我们很容易得到一个解<br>3.我们上次讲的logistic regression则是，我们把算完的分数通过一个sigmoid函数来输出，我们想要求的是一个0到1之间的几率估计。经过一番推到，我们得到一个convex optimization，一个凸函数的优化问题，我们可以用gradient descent的方式来解答  </p>
 </blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/16/机器学习技法四/#more" rel="contents">
+            <a class="btn" href="/2016/01/06/机器学习基石十一/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -347,8 +691,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/15/机器学习技法三/" itemprop="url">
-                机器学习技法三
+              <a class="post-title-link" href="/2016/01/05/c-c-随机数/" itemprop="url">
+                c_c++随机数
               </a>
             
           
@@ -358,8 +702,81 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-15T14:40:45+08:00" content="2016-01-15">
-            2016-01-15
+          <time itemprop="dateCreated" datetime="2016-01-05T18:08:19+08:00" content="2016-01-05">
+            2016-01-05
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/05/c-c-随机数/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/c-c-随机数/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>计算机的随机数都是由伪随机数，即是由小M多项式序列生成的，其中产生每个小序列都有一个初始值，即随机种子。（注意： 小M多项式序列的周期是65535，即每次利用一个随机种子生成的随机数的<font color=red>周期是65535</font>，当你取得65535个随机数后它们又重复出现了。）<br>rand()函数可以用来产生随机数，但是这不是真正意义上的随机数，是一个<font color=red>伪随机数</font>，是根据一个数（我们可以称它为种子）为基准以某个递推公式推算出来的一系列数，当这系列数很大的时候，就符合正态公布，从而相当于产生了随机数，但这不是真正的随机数，当计算机正常开机后，这个种子的值是定了的，除非你破坏了系统。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/c-c-随机数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/05/机器学习基石十/" itemprop="url">
+                机器学习基十
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-05T16:56:32+08:00" content="2016-01-05">
+            2016-01-05
           </time>
         </span>
 
@@ -384,8 +801,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/15/机器学习技法三/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/机器学习技法三/" itemprop="commentsCount"></span>
+              <a href="/2016/01/05/机器学习基石十/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/机器学习基石十/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -400,190 +817,197 @@
 
       
         
-          <h2 id="Kernel_Support_Vector_Machine">Kernel Support Vector Machine</h2><p>dual SVM : another QP with valuable geometric messages and almost no dependence on \(\tilde{d}\)  </p>
-<h3 id="Kernel_Trick">Kernel Trick</h3><p><img src="http://i.imgur.com/e0T8ZYE.png" alt=""><br>上次我们推导出来的对偶问题是一个二次规划的问题，这个问题里我们用的变数是\(\alpha\)，他有N个，他的条件数量是N+1（一个等号的条件和N个不等号的条件），所以不论我们是从变量个数还是条件个数都好像和\(\tilde{d}\)没有关系，可是我们仔细一看，\(\tilde{d}\)跑到了一个地方，在我们计算矩阵\(Q_D\)，\(Q_D\)里面是二次项系数，这些系数是怎么来的？是两个y相称和两个x做内积，这里是z空间，就是两个z做内积的结果，那就和\(\tilde{d}\)有关系了。从计算的角度来说，我们需要把\(Q_D\)里面的系数统统算出来，才能送到二次规划的问题里去求解。这里便是我们的瓶颈所在。那么有没有什么办法可以使我们的这步算的快一些。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/15/机器学习技法三/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/15/拉格朗日对偶/" itemprop="url">
-                拉格朗日对偶
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-15T11:17:07+08:00" content="2016-01-15">
-            2016-01-15
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/数学/" itemprop="url" rel="index">
-                  <span itemprop="name">数学</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/15/拉格朗日对偶/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/15/拉格朗日对偶/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>在数学最优化问题中，拉格朗日乘数法（以数学家约瑟夫·拉格朗日命名）是一种寻找<font color=blue>变量</font>受一个或<font color=blue>多个条件所限制</font>的多元函数的极值的方法。这种方法将一个有n个变量与k个约束条件的最优化问题转换为一个有n + k个变量的方程组的极值问题，其变量不受任何约束。这种方法引入了一种新的标量未知数，即拉格朗日乘数，又称拉格朗日乘子，或拉氏乘子：约束方程的梯度（gradient）的线性组合里每个向量的系数。</p>
-<h3 id="原始问题">原始问题</h3><p>假设\(f(x),(c_i)(x),(h_j)(x)\)是定义在\(R^n\)上的<font color=red>连续可微函数</font>(后面会提到为什么)，考虑约束最优化问题：$$\underset{x \in R^n}{min}f(x)$$ $$s.t.&emsp;c_i(x) \leq 0;i=1,2,…k$$ $$h_j(x)=0;j=1,2,…l$$<br>称为约束最优化问题的<font color=red>原始问题</font>。<br>现在<font color=blue>如果不考虑约束条件</font>,原始问题就是：$$\underset{x \in R^n}{min}f(x)$$<br>因为假设其连续可微，利用高中的知识，对\(f(x)\)求导数，然后令其为0，就可以解除最优解。那么问题来了，有约束条件，想方法<font color=red>把约束条件去掉</font>，引入拉格朗日函数。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/15/拉格朗日对偶/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/14/机器学习技法二/" itemprop="url">
-                机器学习技法二
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-14T15:14:58+08:00" content="2016-01-14">
-            2016-01-14
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/机器学习/" itemprop="url" rel="index">
-                  <span itemprop="name">机器学习</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/14/机器学习技法二/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/14/机器学习技法二/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="机器学习技法二">机器学习技法二</h2><h3 id="Dual_Support_Vector_Machine">Dual Support Vector Machine</h3><h3 id="Motivation_of_Dual_SVM">Motivation of Dual SVM</h3><p>复习一下上次课讲的内容，如果我们想用二次规划解支持向量机的问题，那如果我们今天想用非线性转换的话，只需要将我们原来的输入x透过转换变成z，剩下的事情就一样了，在z空间里面把我的矩阵A，Q和向量P常数c统统做好，然后让二次规划的程式去解，找出最好的b和w，然后z空间里面做线性分类，对应到x空间可能就是一个很好的非线性分类器。<br><img src="http://i.imgur.com/4yLfYnD.png" alt="">  </p>
+          <h2 id="机器学习基石十">机器学习基石十</h2><p>logistic regression<br>之前看病的例子，根据顾客的资料判断那他是否得癌症，这是个典型的二元分类的例子，要是今天我们关心的不是他是否得癌症，而是几周后他癌症复发的几率是多少，体现在二元分类上，我们关心的是+1发生的几率是多少，这类问题叫做软二元分类：</p>
 <blockquote>
-<p>demanded:<font color=orange>not many</font> (large-margin),but <font color=orange>sophisticated</font> boundary(feature transform) 透过SVM（large margin）来控制模型的复杂度;又透过特征转换得到弯弯曲曲的边界把Ein降低<br>QP with <font color=purple>\(\tilde{d}\) + 1 </font>variables and N constraints——challenging if \(\tilde{d}\) large, or infinite?! 在z空间的维度是\(\tilde{d}\),这个值太大话，就不好解。  </p>
+<p><font color=purple>‘soft’</font> binary classification:<font color=purple>f</font>(x) = <font color=orange>P(+1|x)</font> \(\in\)[0,1]——target function（目标函数）</p>
+</blockquote>
+<p>我们想要输出的是0或1或0到1之间的一个实数，想要输出的是P(+1|x)本身，我们需要好的hypothesis，我们需要的资料是什么样子呢？理想状况下，我们知道x，那我们就想要知道跟这个x对应的p值是多少。如果有这些资料，就相当于有了对我们的目标的一个描述，那剩下要做的事就是找一个hypothesis g，让他跟这个资料上的预测的差异越小越好，这样他就可能跟我的目标函数f很接近。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/机器学习基石十/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/03/机器学习基石九/" itemprop="url">
+                机器学习基九
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-03T17:24:35+08:00" content="2016-01-03">
+            2016-01-03
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/03/机器学习基石九/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/机器学习基石九/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石九">机器学习基石九</h2><p>linear regression</p>
+<p>之前的信用卡问题，今天不是要决定是否给他信用卡，而是决定给他多少钱的信用卡。我们想说我们的hypothesis要长什么样才能输出一个实数，和之前一样，先假设一些简单的hypothesis：根据顾客的资料，来做一些加权，求出一个值，我们希望算出来的这个加权值和我们想要给顾客多少额度的金额是接近的<br><img src="http://i.imgur.com/kYimNhh.png" alt=""></p>
+<blockquote>
+<p>for x = (<font color=red>\(x_0\))</font>,\(x_1,x_2,…,x_d\))’features of customer’,<br>approximate the <font color=purple>desired credit limit</font> with a <font color=blue>weighted</font> sum:$${\color{Purple}{y}} \approx \sum_{\color{Red}{i=0}}^{d} {\color{Blue}{W_i}} X_i$$<br>linear regression hypothesis:<font color=blue>h</font>(x)=\({\color{Blue}{W^T}}X\)</p>
 </blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/14/机器学习技法二/#more" rel="contents">
+            <a class="btn" href="/2016/01/03/机器学习基石九/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/29/机器学习基石八/" itemprop="url">
+                机器学习基石八
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-29T22:38:55+08:00" content="2015-12-29">
+            2015-12-29
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/29/机器学习基石八/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/机器学习基石八/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="机器学习基石八">机器学习基石八</h2><p>上次学到：</p>
+<blockquote>
+<p>learning happens if <font color=orange>finite \(d_{vc}\), large N,</font> and <font color=orange>low \(E_{in}\)</font></p>
+</blockquote>
+<p><img src="http://i.imgur.com/BM9fHgo.png" alt=""><br>target function会产生一堆的样本，我们的资料，这些资料从哪里来？除了从target function得到他的y的部分，它的x是由某个我们所不知道的分布产生的，未来在测试的时候，我们也要用一样的分布，我们的演算法从这些资料和一个好的hypothesis set里找到一个好的的hypothesis。好的hypothesis set是vc维是有限的，好的hypothesis是Ein是很小的。<br>要是资料有<font color=red>噪音</font>呢？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/29/机器学习基石八/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -609,7 +1033,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">&raquo;</a>
   </nav>
 
  </div>
@@ -643,7 +1067,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -657,7 +1081,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

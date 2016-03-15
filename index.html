@@ -166,6 +166,86 @@
           
           
             
+              <a class="post-title-link" href="/2016/03/07/堆算法/" itemprop="url">
+                堆算法
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-03-07T21:43:53+08:00" content="2016-03-07">
+            2016-03-07
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/03/07/堆算法/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/堆算法/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>算法：对vector进行堆排序<br>1<br>// range heap example<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> myints[] = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">5</span>,<span class="number">15</span>&#125;;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(myints,myints+<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"> </span><br><span class="line">  make_heap (v.begin(),v.end());</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"initial max heap   : "</span> &lt;&lt; v.front() &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">  pop_heap (v.begin(),v.end()); v.pop_back();</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"max heap after pop : "</span> &lt;&lt; v.front() &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">  v.push_back(<span class="number">99</span>); push_heap (v.begin(),v.end());</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"max heap after push: "</span> &lt;&lt; v.front() &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">  sort_heap (v.begin(),v.end());</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"final sorted range :"</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">unsigned</span> i=<span class="number">0</span>; i&lt;v.size(); i++) <span class="built_in">cout</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; v[i];</span><br><span class="line"> </span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出:</p>
+<p>initial max heap   : 30<br>max heap after pop : 20<br>max heap after push: 99<br>final sorted range : 5 10 15 20 99</p>
+<p>函数说明：</p>
+<p>std::make_heap将[start, end)范围进行堆排序，默认使用less<int>, 即最大元素放在第一个。初始为最大堆</p>
+<p>std::pop_heap将front（即第一个最大元素）移动到end的前部，同时将剩下的元素重新构造成(堆排序)一个新的heap。此时最后一个元素还没有删除。</p>
+<p>std::push_heap对刚插入的（尾部）元素做堆排序。</p>
+<p>std::sort_heap将一个堆做排序,最终成为一个有序的系列，可以看到sort_heap时，必须先是一个堆（两个特性：1、最大元素在第一个2、添加或者删除元素以对数时间），因此必须先做一次make_heap.<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/07/堆算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/26/机器学习技法十四/" itemprop="url">
                 机器学习技法十四
               </a>
@@ -578,11 +658,372 @@
 
 
     
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/22/机器学习技法十/" itemprop="url">
+                机器学习技法十
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-22T10:28:25+08:00" content="2016-01-22">
+            2016-01-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/22/机器学习技法十/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/22/机器学习技法十/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Random_Forest">Random Forest</h2><p><strong>recursive branching(purification)</strong> for <strong>conditional aggregation</strong> of <strong>constant hypotheses</strong></p>
+<h3 id="Random_Forest_Algorithm">Random Forest Algorithm</h3><p>看看我们最近学的两个机器学习的模型：<br><img src="http://i.imgur.com/GJIL2Kn.png" alt=""><br>bagging透过bootstrap得到不一样的资料，送给base algorithm得到小g，再由这些小g来投票。Decision tree是拿到资料后递归的建立一颗树，和分支的条件结合起来。bagging的特点是：如果你下面的演算法相对来说没有那么稳定，就是所谓的variance很大，变化很大的话，透过bagging，因为他让这些小g来投票或是平均，会达到把variance降低的效果；decision tree做了一些切割，如果你的资料有一点点变化，能够下刀的地方就会不一样，切下去之后资料又变小了，所以他对于不同的资料相对会比较敏感一些，也就是他的variance很大，你的资料稍微变一点点，你得到的树可能就会差很多。如果把两者结合起来是不是能够平衡一下variance？<br>aggregation of aggregation<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/22/机器学习技法十/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/21/机器学习技法九/" itemprop="url">
+                机器学习技法九
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-21T11:24:02+08:00" content="2016-01-21">
+            2016-01-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/21/机器学习技法九/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/21/机器学习技法九/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Decision_Tree">Decision Tree</h2><p>Optimal re-weighting for diverse hypotheses and adaptive linear aggregation to boost ‘weak’ algorithms  </p>
+<h3 id="Decision_Tree_Hypothesis">Decision Tree Hypothesis</h3><p><img src="http://i.imgur.com/Pmz2dSI.png" alt=""><br>aggregation model我们到底进行到哪里，aggregation model就是我们将一些小g合起来变成一个胖胖的G，这样的做法有两个主要的面向，一个叫做blending，是我们已经有小g，可能是别人给的，也有可能是我们透过一些其他的方法得到的，那我们要怎么样把他们合起来呢？同等权重、不同权重：把这些小g当成是特征的转换，转换后再丢去一个linear model、conditional：同样把小g当作特征的转换，但是第二层的时候可能会用一个non-linear的模型，把这个叫做stacking。另外一个面向是如果我们原来并不知道有哪些小g，所以我们想要边学这些小g边合起来，我们讲了两种方式，如果你要使用uniform，那么这些小g需要时同等地位，做到这件事情的方法之一就是bagging，先做bootstrap，把我们的资料变成一些不同的副本，得到不同的小g，然后再让他们uniform的投票；另外，如果你想做linear的aggregation的话，那可以使用AdaBoost方法，得到不同的小g，给他们不同的权重，今天的主题Decision Tree就是做conditional aggregattion，在不同的情况下，我用不同的小g，那我要怎么一边学到小g，一边学到这些condition，然后把他们合起来。Decision Tree就是这样一个模型。  </p>
+<blockquote>
+<p><font color=blue>decision tree</font>: a traditional learning model that realizes conditional aggregation</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/21/机器学习技法九/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/20/机器学习技法八/" itemprop="url">
+                机器学习技法八
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-20T14:08:20+08:00" content="2016-01-20">
+            2016-01-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/20/机器学习技法八/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/20/机器学习技法八/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Adaptive_Boosting">Adaptive Boosting</h2><p>blending known diverse hypotheses uniformly,linearly,or even non-linearly,obtaining viverse hypotheses from bootstrapped data  </p>
+<h3 id="Motivation_of_Boosting">Motivation of Boosting</h3><p>先从一个浅显的例子开始，你小学的时候老师教你如何辨认一张图里面是否有一个苹果，先给你看10张是苹果的照片，再给你看10张不是苹果（香蕉、菠萝等等）的照片。对于我们机器学习来说，我们就要靠这20个例子来做到到底一张图上是不是苹果的二元分类。那怎么做呢？这个老师把这20张图片给同学看，前面10张是苹果，后面10张不是，这对应着监督式学习的方法。<br><img src="http://i.imgur.com/Weari9i.png" alt=""><br>michael认为苹果是圆形的。这个看起来是一个区分苹果的规则，michael在一些图片上表现得很好，但是在一些图片上就表现的不好，例如上图中蓝色标出的图片，所以只靠圆形这个规则可能会犯一些错。我们需要逐步的帮助这些学生做修正，在michael说苹果是圆形后，我们帮他标出圆形这条规则可能会犯错的地方（蓝色）。老师可能做的事情是：把那些做对的图片稍微拿远一点，然后把犯错的那些图片稍微放大一点。这样就让学生吧注意力放在了刚才放错的地方。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/20/机器学习技法八/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/01/19/机器学习技法七/" itemprop="url">
+                机器学习技法七
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-19T10:04:46+08:00" content="2016-01-19">
+            2016-01-19
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/01/19/机器学习技法七/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/19/机器学习技法七/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Blending_and_Bagging">Blending and Bagging</h2><font color=orange>kernel ridge regression</font>(dense) via ridge regression + <font color=orange>representer theorem</font>;<font color=orange>support vector regression</font>(sparse) via regularized <font color=orange>tube</font> error + <font color=orange>Lagrange dual</font>  
+
+<h3 id="Motivation_of_Aggregation">Motivation of Aggregation</h3><p>假设你有T个朋友\(g_1,g_2,…,g_T\)（如15个），每个朋友告诉你明天的股票会涨还是会跌，那你听了这15个朋友的意见后会怎么办？<br><img src="http://i.imgur.com/jRnMZ6t.png" alt=""><br>这是一些简单的可以想到的把15个人的意见融合起来的方式，当然还有其他的选择，这种情形对应到机器学习就是aggregation。  </p>
+<font color=red>aggregation</font> modles: <strong>mix or combine</strong> hypotheses (for better performance)<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/19/机器学习技法七/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
  </div>
@@ -616,7 +1057,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -630,7 +1071,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

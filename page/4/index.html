@@ -166,8 +166,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/13/机器学习技法一/" itemprop="url">
-                机器学习技法一
+              <a class="post-title-link" href="/2015/12/26/机器学习基石七/" itemprop="url">
+                机器学习基石七
               </a>
             
           
@@ -177,8 +177,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-13T15:11:32+08:00" content="2016-01-13">
-            2016-01-13
+          <time itemprop="dateCreated" datetime="2015-12-26T16:10:55+08:00" content="2015-12-26">
+            2015-12-26
           </time>
         </span>
 
@@ -203,8 +203,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/13/机器学习技法一/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/13/机器学习技法一/" itemprop="commentsCount"></span>
+              <a href="/2015/12/26/机器学习基石七/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/26/机器学习基石七/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -219,15 +219,11 @@
 
       
         
-          <h2 id="机器学习技法一">机器学习技法一</h2><h3 id="Linear_Support_Vector_Machine">Linear Support Vector Machine</h3><h3 id="Course_Introduction">Course Introduction</h3><p>Three major techniques surrounding <font color=orange>feature transforms</font>:</p>
-<ol>
-<li>SVM  </li>
-<li>AdaBoost  </li>
-<li>Deep Learning  </li>
-</ol>
-<h3 id="Large-Margin_Separating_Hyperplane">Large-Margin Separating Hyperplane</h3><p>看看之前讲过的linear classification：有圈圈和叉叉两种标签，找出一条线，或是高维空间的超平面，来把圈圈和叉叉分开。数学上来说就是把我们的资料X拿过来，算一个加权的分数，看这个分数是正的还是负的，来决定要预测圈圈还是叉叉。之前讲过PLA和Pocket算法，PLA当资料线性可分时，他可以找出那条线来<br><img src="http://i.imgur.com/Hpc5eqo.png" alt=""><br>
+          <h2 id="机器学习基石七">机器学习基石七</h2><p>VC维<br>上次课得出的一个重要的结论：<br><img src="http://i.imgur.com/bokvHuM.png" alt=""></p>
+<p>几个条件，让我们的learning可以做得到：</p>
+<p><img src="http://i.imgur.com/aKjK4oA.png" alt=""><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/13/机器学习技法一/#more" rel="contents">
+            <a class="btn" href="/2015/12/26/机器学习基石七/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -260,8 +256,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/12/机器学习基石十六/" itemprop="url">
-                机器学习基石十六
+              <a class="post-title-link" href="/2015/12/24/机器学习基石六/" itemprop="url">
+                机器学习基石六
               </a>
             
           
@@ -271,8 +267,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T19:53:22+08:00" content="2016-01-12">
-            2016-01-12
+          <time itemprop="dateCreated" datetime="2015-12-24T12:15:55+08:00" content="2015-12-24">
+            2015-12-24
           </time>
         </span>
 
@@ -297,8 +293,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/12/机器学习基石十六/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/机器学习基石十六/" itemprop="commentsCount"></span>
+              <a href="/2015/12/24/机器学习基石六/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/24/机器学习基石六/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -313,16 +309,15 @@
 
       
         
-          <h2 id="机器学习基石十六">机器学习基石十六</h2><h3 id="Three_Learning_Principles">Three Learning Principles</h3><p>上次课讲了一个很重要的工具：validation，我们要怎么做？留下一部分资料作为我们的validation data，验证资料，可以留下一份验证资料或者交叉的方式留下验证资料，目的是希望模拟你在做测试的过程，这样你就知道不同的model表现得好不好。</p>
-<h3 id="Occam’s_Razor">Occam’s Razor</h3><blockquote>
-<p>entities must not be multiplied <font color=orange>beyond necessity</font>————William of Occam不要对一个东西多做过多的处理，应该用越简单的方式越好，把那些不必要的东西”剃掉”<br>‘<font color=orange>Occam’s razor</font>‘ for trimming down unnecessary explanation</p>
+          <h2 id="机器学习基石六">机器学习基石六</h2><h3 id="Theory_of_Generalization">Theory of Generalization</h3><blockquote>
+<p>growth function \(m_{H}(N)\):max number of dichotomies</p>
 </blockquote>
-<p>我们希望不要对资料做过多的解释。这在machine learning里是什么意思呢？他实际上就呼应了我们讲的：对资料最简单的解释也就是最好的解释  </p>
+<p><img src="http://i.imgur.com/94K3T1h.png" alt=""><br>假设我告诉你今天有一个Hypothesis Set，它最小的break point是2，这告诉我们什么的呢？如果我今天只有一个点的时候，那我的成长函数一定能够shatter/击败所有的情形，我能在某种点的组合上产生两种dichotomy  </p>
 <blockquote>
-<p>The simplest model that fits the data is also the most plausible</p>
+<p>N = 1:every \(m_{H}(N)\) = 2 by definition<br>N = 2:every \(m_{H}(N)\) &lt; 4 by definition(so <font color=purple>maximum possible=3</font>)</p>
 </blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/机器学习基石十六/#more" rel="contents">
+            <a class="btn" href="/2015/12/24/机器学习基石六/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -355,8 +350,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/12/最大M字段和/" itemprop="url">
-                最大M子段和
+              <a class="post-title-link" href="/2015/12/22/morris后序遍历/" itemprop="url">
+                morris遍历
               </a>
             
           
@@ -366,8 +361,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T15:47:21+08:00" content="2016-01-12">
-            2016-01-12
+          <time itemprop="dateCreated" datetime="2015-12-22T21:21:55+08:00" content="2015-12-22">
+            2015-12-22
           </time>
         </span>
 
@@ -377,8 +372,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/12/最大M字段和/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/最大M字段和/" itemprop="commentsCount"></span>
+              <a href="/2015/12/22/morris后序遍历/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/morris后序遍历/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -393,87 +388,14 @@
 
       
         
-          <h3 id="问题描述">问题描述</h3><p>给定由n个整数（可能为负数）组成的序列a1,a2,…,an,以及一个正整数m，要求确定次序列的m个不相交子段的总和达到最大。最大子段和问题是最大m子段和问题当m = 1时的特殊情形。</p>
-<h3 id="问题分析">问题分析</h3><p>设b(i,j)表示数组a的前j项中i个子段和的最大值，且第i个子段含a[j]\(1 \leq i \leq m,i \leq j \leq n\)，则所求的最优值显然为$$\underset{m \leq j \leq n}{max}b(m,j)$$<br>与最大子段问题相似，计算b(i,j)的递归式为：$$b(i,j)=max\begin{Bmatrix}b(i,j-1) + a[j],\underset{i-1 \leq t &lt; i}{maxb(i-1,t) + a[j]}\end{Bmatrix}&emsp;&emsp;(1 \leq i \leq m,i \leq j \leq n)$$<br>其中，b(i,j-1) + a[j]表示第i个子段含a[j - 1],a[j]和a[j - 1]都在第i子段里<br>\(\underset{i - 1 \leq i &lt; j}{max\begin{Bmatrix}b(i - 1,t) + a[j]\end{Bmatrix}}\)项表示第i个子段仅含a[j]。<br>初始时，b(0,j) = 0,\(1 \leq j \leq n \);&emsp;b(i,0) = 0,\(1 \leq i \leq m \)。<br>代码如下：（未优化）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/最大M字段和/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/12/树状数组/" itemprop="url">
-                树状数组
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-12T12:35:23+08:00" content="2016-01-12">
-            2016-01-12
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/12/树状数组/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/树状数组/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="树状数组">树状数组</h2><h3 id="概述">概述</h3><p>树状数组(Binary Indexed Tree，BIT，二分索引树)，其初衷是解决数据压缩里的累积频率(Cumulative Frequency)的计算问题，现多用于高效计算数列的前缀和。它可以以\(O(\log n)\)的时间得到\(\sum_{i=1}^N\) a[i]，并同样以\(O(\log n)\)对某项加一个常数</p>
-<h3 id="例子">例子</h3><p>假如我现在有个需求，就是要频繁的求数组的前n项和，并且存在着数组中某些数字的频繁修改，那么我们该如何实现这样的需求？  </p>
+          <h2 id="morris遍历">morris遍历</h2><p>二叉树的Morris遍历可不使用用栈，在常量空间O(1)、线性时间O(n)内实现二叉树的前中后序遍历，且遍历后不破坏二叉树的形状（中间过程允许改变其形状）。Morris遍历的基本原理是利用所有叶子结点的right指针，指向其后继结点，组成一个环，在第二次遍历到这个结点时，由于其左子树已经遍历完了，则访问该结点。</p>
+<h3 id="中序遍历">中序遍历</h3><p>中序遍历的算法步骤如下：</p>
 <ol>
-<li>传统方法：根据索引修改为O(1)，但是求前n项和为O(n)。但是若求和的操作是m次的话，时间复杂度就是O(m*n)  </li>
-<li>空间转换方法：我开一个数组sum[],sum[i] = a[1] + … + a[i]:表示数组前i项和，我求n项和为O(1)，但是我修改却成了O(n)，这是因为我的sum[i]中牵涉的数据太多了，那么我能不能在相应的sum[i]中只保存某些a[i]的值？先看下面这张图：<br><img src="http://i.imgur.com/AgnJlgJ.png" alt="">
+<li>如果当前节点的左孩子为空，则<font color=red>输出</font>当前节点并将其右孩子作为当前节点。  </li>
+<li>如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在<font color=red>中序遍历下的前驱节点</font>。<br>A. 如果前驱节点的右孩子为空，将它的右孩子设置为当前节点。当前节点更新为当前节点的左孩子。<br>B. 如果前驱节点的右孩子为当前节点，<font color=red>输出</font>当前节点。将它的右孩子重新设为空（恢复树的形状）。当前节点更新为当前节点的右孩子。  </li>
+<li>重复以上1、2直到当前节点为空。
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/树状数组/#more" rel="contents">
+            <a class="btn" href="/2015/12/22/morris后序遍历/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -506,8 +428,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/01/11/机器学习基石十五/" itemprop="url">
-                机器学习基石十五
+              <a class="post-title-link" href="/2015/12/22/机器学习基石五/" itemprop="url">
+                机器学习基石五
               </a>
             
           
@@ -517,8 +439,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-01-11T20:07:08+08:00" content="2016-01-11">
-            2016-01-11
+          <time itemprop="dateCreated" datetime="2015-12-22T18:38:55+08:00" content="2015-12-22">
+            2015-12-22
           </time>
         </span>
 
@@ -543,8 +465,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/11/机器学习基石十五/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/机器学习基石十五/" itemprop="commentsCount"></span>
+              <a href="/2015/12/22/机器学习基石五/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石五/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -559,9 +481,532 @@
 
       
         
-          <h2 id="机器学习基石十五">机器学习基石十五</h2><h3 id="Validation">Validation</h3><h3 id="Model_Selection_Problem">Model Selection Problem</h3><p>即使你现在要做简单的二元分类（binary classification），我们已经学了很多很多中不同的方法，举例来说你可以用PLA、pocket、linear regression和logistic regression，这些方法里面很多事一步一步做的，你可以决定走（迭代）多少步，又或者可以决定步长是多少，还有就是用什么转换，regularizer用什么，regularizer的强度是多少等等。<br><img src="http://i.imgur.com/n52O1FL.png" alt=""><br>方法越多，选择越多，而且这些方法是组合起来的，会造成组合爆炸的情况，我们想说怎么从这些形形色色的方法中选出正确的选择。<br>之前已经引导过大家做过选择了，如下图，你会选一条线，有点错误的，还是曲线，一点错误都没有的。<br><img src="http://i.imgur.com/GmG1CTF.png" alt=""><br>
+          <h2 id="Training_versus_Testing">Training versus Testing</h2><p>训练和测试的过程到底有什么不一样？<br>上一节的一个简单总结，机器有时是学不到东西的，有时是可以学到的，什么时候可以学到：</p>
+<blockquote>
+<p>learning is <font color=orange>PAC</font>-possible if enough <font color=orange>statistical data</font> and <font color=orange>finite |H|</font> 资料来自某个分布并且演算法的假设集合个数有限</p>
+</blockquote>
+<p>另外一种情况，如果Hypothesis Set是无限大的（就像我们之前的perceptron），到底会发生什么事情？<br>回顾一下前四堂课所讲的内容：<br><img src="http://i.imgur.com/THn7QAp.png" alt=""><br>第一堂课的时候就告诉大家，有一个未知的 f ，我们希望找出一个 g ，这个 g 和 f 能够很接近。在第四堂课的时候把这件事情写成了\(E_{out}\)(g)要很接近0，我们拿出某些新的资料（从P中产生），在上面犯的错误要越少越好；第二堂课里面，我们采用了一个不一样的方法，先在我们看过的资料上做得好就好了，所以我们找一些方法，能够让\(E_{in}\)(g)接近0，例如Perceptron learning algorithm或是pocket算法。第三次课讲了学习是在特定的情况下（批次的资料、监督、二元分类等——机器学习核心的问题），有了这些概念后，我们在第四次上课终于想办法把Ein和Eout联系起来，如果我们的Hypothesis Set不是很多的话，我们真的能够让Ein和Eout会很接近。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/11/机器学习基石十五/#more" rel="contents">
+            <a class="btn" href="/2015/12/22/机器学习基石五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/22/机器学习基石四/" itemprop="url">
+                机器学习基石四
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-22T14:34:55+08:00" content="2015-12-22">
+            2015-12-22
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/22/机器学习基石四/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/22/机器学习基石四/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="Feasibility_of_Learning">Feasibility of Learning</h2><p><img src="http://i.imgur.com/zKbmDjv.png" alt=""></p>
+<p>对于上面这个例子，不论你答什么，都可以说你答错了，没有从这6个例子学到东西。<br>我们再从数学的角度来看，观察下面这个例子</p>
+<p><img src="http://i.imgur.com/M2OP9bN.png" alt=""></p>
+<p>输入是一个三个维度的向量，每个维度只取0或1，输出还是+1和-1，用圈圈和叉叉做代表，现在给你五笔资料，你能不能弄一个机器学习的演算法，得出 g 应该是什么样子，最重要的是 g 和目标函数 f 是否接近。<br>三个维度，三个bit只有8种可能性，输出是两种，所以总共的函数最多有\(2^{8}\)=256种，好吧，我们把这256种统统放在high positive set里面，然后让我的机器演算法选择一个 g ，这个 g 在这五笔资料上都跟 f 一模一样，也就是这个 g 在这五笔资料上统统都是正确的。我们之前学的perceptron learning algorithm大体上来说就是做的这件事，看他能不能找到一条线，把所有的圈圈和叉叉都分开。现在的问题是这样的 g 好还是不好？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/22/机器学习基石四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/20/机器学习基石三/" itemprop="url">
+                机器学习基石三
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-20T20:45:55+08:00" content="2015-12-20">
+            2015-12-20
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/20/机器学习基石三/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/机器学习基石三/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>\(\color{red}{多元分类}\)&emsp;\(\color{red}{回归分析}\)<br>回想一下上次所讲的算法和应用场景，这类问题我们叫做二元分类问题（是非题），现实生活中还有很多其他的是非题，如电子邮件是否为垃圾邮件，病人是否生病等等。<br>从二元分类出发，假设我们要分多个类别，而不是简单的两个类别。比如说将铜板分成四个类别：按照美国铜板来分类，10cent最小，同时重量也是最小，如果把我们手上的铜板按照大小（可能是半径大小或是重量）得到下图<br><img src="http://i.imgur.com/CczslyD.png" alt=""><br>将这些资料喂给电脑，并告诉它这个大小、这个重量的是10cent,这个大小、这个重量的是1cent,这个大小、这个重量的是5cent,这个大小、这个重量的是25cent,我们希望电脑能不能得到一个 g ，能使贩卖机能准确的判断顾客投进去的一个铜板到底是哪一种？  </p>
+<blockquote>
+<p>分类US硬币（1c,5c,10c,25c）(按大小、重量)<br>y = {1c,5c,10c,25c} or y = {1,2,…,K}(abstractly)<br>binary classification: special cse with K = 2  </p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/20/机器学习基石三/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/20/leetcode_string/" itemprop="url">
+                leetcode——字符串笔记
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-20T19:15:00+08:00" content="2015-12-20">
+            2015-12-20
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/20/leetcode_string/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode_string/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>  </p>
+<h2 id="字符串">字符串</h2><h4 id="1-是否为空">1.是否为空</h4><p>字符串是否为空</p>
+<h4 id="2-[]、itr和substr">2.[]、itr和substr</h4><p>s[i]取的是下标为i的字符,string::iterator解除引用后也是字符。将字符视为ascii值，对应的相当于是整型。s.substr(i,1)得到的是一个子字符串，</p>
+<h4 id="3-tolower">3.tolower</h4><p>int tolower(int c)将一个字符转换为它的小写形式，返回ascii值，toupper同理</p>
+<h4 id="4-transform–uo">4.transform–uo</h4><p>OutputIterator transform (InputIterator first1, InputIterator last1,                        OutputIterator result, UnaryOperation op);返回一个指向结果的迭代器，将区间[first1,last1)之间的元素进行一员操作op后,将其结果保存在result为首的空间中，源区间的值不受影响。除非就保存在源区间的位置<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/20/leetcode_string/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/20/leetcode/" itemprop="url">
+                leetcode——线性表笔记
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-20T19:13:00+08:00" content="2015-12-20">
+            2015-12-20
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/20/leetcode/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/leetcode/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="线性表笔记">线性表笔记</h2><h3 id="数组">数组</h3><ol>
+<li><p>unique(ForwardIterator first, ForwardIterator last)返回一个迭代器（end）</p>
+<blockquote>
+<p>当unique所处理的迭代区间的值已排序，那么返回的迭代器前的元素只出现一次<br>当unique所处理的迭代区间的值没有排序，那么返回的迭代器前的元素没有两个相邻的元素重复<br>1） unique(A,A + n)(A为数组，n为数组大小)<br>2） unique(nums.begin(),nums.end())(nums为容器–含有迭代器)</p>
+</blockquote>
+</li>
+<li><p>distance()返回两个迭代器之间的距离，对于非线性容器（如list）特别好用。</p>
+</li>
+<li>upper_bound(first,last,val)返回一个迭代器，在范围[first,last)之间，第一个大于val的值的迭代器</li>
+<li>lower_bound(first,last,val)找出第一个值大于等于val的元素，返回其迭代器
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/20/leetcode/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/20/c-15晦涩特性/" itemprop="url">
+                c++15晦涩特性
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-20T13:20:32+08:00" content="2015-12-20">
+            2015-12-20
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/20/c-15晦涩特性/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/20/c-15晦涩特性/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <ol>
+<li>方括号的真正含义  </li>
+<li>最烦人的解析  </li>
+<li>替代运算标记符  </li>
+<li>重定义关键字  </li>
+<li>Placement new  </li>
+<li>在声明变量的同时进行分支  </li>
+<li>成员函数的引用修饰符  </li>
+<li>图灵完备的模板元编程  </li>
+<li>指向成员的指针操作符  </li>
+<li>静态实例方法  </li>
+<li>重载++和–  </li>
+<li>操作符重载和检查顺序  </li>
+<li>函数作为模板参数  </li>
+<li>模板的参数也是模板  </li>
+<li>try块作为函数  </li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/20/c-15晦涩特性/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2015/12/18/机器学习基石二/" itemprop="url">
+                机器学习基石二
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-18T10:38:55+08:00" content="2015-12-18">
+            2015-12-18
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/机器学习/" itemprop="url" rel="index">
+                  <span itemprop="name">机器学习</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/12/18/机器学习基石二/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/机器学习基石二/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><font color = red>感知机</font>&emsp;<font color = red>线性分类器</font><br>承接上一章的内容，到底怎么样有一个机器学习的演算法才判断是否给申请人一张信用卡。（机器学习解决是非题）<br>首先复习一下上一次的内容：  </p>
+<p><img src="http://i.imgur.com/wggMOeL.png" alt=""><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/18/机器学习基石二/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -587,7 +1032,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">&raquo;</a>
   </nav>
 
  </div>
@@ -621,7 +1066,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -635,7 +1080,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
